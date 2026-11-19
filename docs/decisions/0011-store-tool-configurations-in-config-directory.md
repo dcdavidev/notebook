@@ -15,7 +15,7 @@ Every development tool adds its own configuration file, and most of them default
 We store tool configurations in **`.config/`** when the tool supports it:
 
 - `.config/lefthook.yml` (Lefthook)
-- `.config/cspell.yml` and `.config/cspell/custom.txt` (CSpell)
+- `.config/cspell.yml` and the word lists in `.config/cspell/` (CSpell)
 - `.config/lefthook/install-if-deps-changed.sh` (hook script)
 
 1. **Cleaner Root**: Fewer configuration files in the repository root.

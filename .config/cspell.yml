@@ -9,18 +9,43 @@ import:
   # Italian dictionary, enabled only for the Italian translations below.
   - '@cspell/dict-it-it/cspell-ext.json'
 
-# Paths are relative to this file.
+# Project word lists, one word per line. Paths are relative to this file.
 dictionaryDefinitions:
-  - name: custom-dict
-    path: ./cspell/custom.txt
+  # English words missing from the default dictionaries.
+  - name: project-english
+    path: ./cspell/english.txt
+    addWords: true
+  # Italian words missing from the Italian dictionary.
+  - name: project-italian
+    path: ./cspell/italian.txt
+    addWords: true
+  # Acronyms, product names, transaction codes, and other technical terms
+  # from tools and course topics, in any language.
+  - name: project-technical
+    path: ./cspell/technical.txt
     addWords: true
 
 dictionaries:
-  - custom-dict
+  - project-english
+  - project-technical
 
 overrides:
-  - filename: '**/messages/it.json'
+  - filename:
+      - '**/messages/it.json'
+      - '**/.config/cspell/italian.txt'
     language: en,it
+    dictionaries:
+      - project-italian
+  # Course lessons: skip code (fenced blocks and inline code), which is full
+  # of identifiers in other languages.
+  - filename: '**/content/**/*.md'
+    ignoreRegExpList:
+      - '/^\s*```[\s\S]*?^\s*```/gm'
+      - '/`[^`\n]+`/g'
+  - filename: '**/content/**/*.it.md'
+    language: en,it
+    dictionaries:
+      - project-italian
 
 ignorePaths:
   - .agents/**

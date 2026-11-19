@@ -33,7 +33,7 @@ pre-commit:
 
     - name: spellcheck
       run: pnpm exec cspell --no-progress --no-summary --no-must-find-files {staged_files}
-      fail_text: Fix the spelling, or add the word to .config/cspell/custom.txt.
+      fail_text: Fix the spelling, or add the word to a word list in .config/cspell/ (english.txt, italian.txt, or technical.txt).
 
     - name: typecheck
       glob: '*.{ts,tsx,mts,cts}'
