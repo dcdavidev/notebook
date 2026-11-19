@@ -6,7 +6,7 @@ Date: 2026-11-19
 
 Deprecated
 
-Tailwind CSS was removed on 2026-11-19. Styling now uses Material UI.
+Tailwind CSS was removed on 2026-11-19. Styling now uses Material UI (see [ADR-0013](./0013-use-material-ui-for-components-and-theming.md)).
 
 ## Context
 

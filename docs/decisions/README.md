@@ -58,3 +58,7 @@ What is the change or architecture being adopted? What options were considered a
 | [**ADR-0010**](./0010-run-ci-in-a-single-github-actions-job.md)           | Run CI in a Single GitHub Actions Job                | Accepted   | 2026-11-19 |
 | [**ADR-0011**](./0011-store-tool-configurations-in-config-directory.md)   | Store Tool Configurations in the .config Directory   | Accepted   | 2026-11-19 |
 | [**ADR-0012**](./0012-require-nodejs-24-and-pin-the-version.md)           | Require Node.js 24 and Pin the Exact Version         | Accepted   | 2026-11-19 |
+| [**ADR-0013**](./0013-use-material-ui-for-components-and-theming.md)      | Use Material UI for Components and Theming           | Accepted   | 2026-11-19 |
+| [**ADR-0014**](./0014-offer-multiple-color-palettes-from-coolors.md)      | Offer Multiple Color Palettes from Coolors           | Accepted   | 2026-11-19 |
+| [**ADR-0015**](./0015-self-host-fonts-with-fontsource.md)                 | Self-Host Fonts with Fontsource                      | Accepted   | 2026-11-19 |
+| [**ADR-0016**](./0016-use-tabler-icons.md)                                | Use Tabler Icons                                     | Accepted   | 2026-11-19 |
