@@ -1,0 +1,88 @@
+{
+  "name": "@dcdavidev/notebook",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Digital notebook for free programming courses, downloadable study notes, and personal hobbies.",
+  "keywords": [
+    "notebook",
+    "programming",
+    "courses",
+    "study-notes",
+    "nextjs"
+  ],
+  "homepage": "https://notebook.dcdavidev.me",
+  "bugs": {
+    "url": "https://github.com/dcdavidev/notebook/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dcdavidev/notebook.git"
+  },
+  "license": "AGPL-3.0-only",
+  "author": {
+    "name": "Davide Di Criscito",
+    "url": "https://dcdavidev.me"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "check": "pnpm run lint:check && pnpm run fmt:check && pnpm run spellcheck && pnpm run typecheck",
+    "commit": "czg",
+    "commit:lint": "commitlint --from=HEAD~1",
+    "dev": "next dev",
+    "fmt": "prettier --ignore-unknown --write .",
+    "fmt:check": "prettier --ignore-unknown --check .",
+    "lint": "eslint --no-warn-ignored --fix .",
+    "lint:check": "eslint --no-warn-ignored .",
+    "prepare": "lefthook install",
+    "spellcheck": "cspell --no-progress --no-summary .",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@cspell/cspell-types": "^10.5.2",
+    "@next/eslint-plugin-next": "16.4.6",
+    "@prettier/plugin-xml": "^3.4.2",
+    "@spellbookx/recipes": "^1.3.0",
+    "@tailwindcss/turbopack": "4.3.3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "commitlint-config-spellbookx": "^1.3.0",
+    "conventional-changelog-conventionalcommits": "^10.4.1",
+    "cspell": "^10.5.2",
+    "cspell-config-spellbookx": "^1.3.0",
+    "cz-config-spellbookx": "^1.3.0",
+    "cz-git": "^1.14.0",
+    "czg": "^1.14.0",
+    "eslint": "^10.15.0",
+    "eslint-plugin-spellbookx": "^1.3.0",
+    "lefthook": "^2.2.2",
+    "prettier": "^3.10.1",
+    "prettier-config-spellbookx": "^1.3.0",
+    "prettier-plugin-ini": "^1.3.0",
+    "prettier-plugin-packagejson": "^3.1.0",
+    "prettier-plugin-properties": "^0.4.0",
+    "prettier-plugin-sh": "^0.20.2",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "prettier-plugin-toml": "^4.1.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@12.21.0",
+  "engines": {
+    "node": ">=24"
+  }
+}
