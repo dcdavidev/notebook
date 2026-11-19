@@ -7,7 +7,9 @@ Website: [notebook.dcdavidev.me](https://notebook.dcdavidev.me)
 ## Tech stack
 
 - [Next.js](https://nextjs.org) (App Router) with React and TypeScript
-- [Tailwind CSS](https://tailwindcss.com)
+- [Material UI](https://mui.com/material-ui/) with CSS theme variables and multiple color palettes from [Coolors](https://coolors.co/palettes/trending)
+- [Tabler Icons](https://tabler.io/icons)
+- [Fontsource](https://fontsource.org) fonts: Satisfy (site title), Inter (text), and PT Mono (quotes and code)
 - [pnpm](https://pnpm.io) as package manager
 - [Spellbookx](https://github.com/dcdavidev/spellbookx) toolchain: ESLint, Prettier, CSpell, Commitlint, and cz-git
 - [Lefthook](https://github.com/evilmartians/lefthook) for Git hooks

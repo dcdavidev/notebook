@@ -4,7 +4,9 @@ Date: 2026-11-19
 
 ## Status
 
-Accepted
+Deprecated
+
+Tailwind CSS was removed on 2026-11-19. Styling now uses Material UI.
 
 ## Context
 

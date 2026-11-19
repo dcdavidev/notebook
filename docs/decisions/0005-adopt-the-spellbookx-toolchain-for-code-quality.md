@@ -17,7 +17,7 @@ Spellbookx is the author's own suite of shareable configurations for these tools
 We adopted the **Spellbookx** toolchain:
 
 - `eslint-plugin-spellbookx` with the `recommended-spellcheck` preset (`eslint.config.mjs`).
-- `prettier-config-spellbookx` with the `tailwind` preset (`prettier.config.mjs`).
+- `prettier-config-spellbookx` with the `base` preset (`prettier.config.mjs`).
 - `cspell-config-spellbookx`, imported in `.config/cspell.yml`.
 - `commitlint-config-spellbookx` and `cz-config-spellbookx` (see [ADR-0008](./0008-enforce-conventional-commits.md)).
 
