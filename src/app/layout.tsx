@@ -8,7 +8,8 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 import './globals.css';
 
-import { AppShell } from '@/components/layout/app-shell';
+import { ConsentedAnalytics } from '@/components/consented-analytics';
+import { CookieBanner } from '@/components/island/cookie-banner';
 import { Providers } from '@/components/providers';
 import {
   createPaletteInitScript,
@@ -36,7 +37,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       <body>
         <InitColorSchemeScript attribute="class" />
         <Providers>
-          <AppShell>{children}</AppShell>
+          {children}
+          <CookieBanner />
+          <ConsentedAnalytics />
         </Providers>
       </body>
     </html>

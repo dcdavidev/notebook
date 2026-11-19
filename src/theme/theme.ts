@@ -19,6 +19,8 @@ export const fonts = {
 const palette = {
   primary: { main: 'var(--nb-primary)' },
   secondary: { main: 'var(--nb-secondary)' },
+  // Informational messages use the brand color of the active palette.
+  info: { main: 'var(--nb-primary)' },
   background: {
     default: 'var(--nb-background)',
     paper: 'var(--nb-paper)',

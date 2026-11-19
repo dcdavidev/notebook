@@ -14,7 +14,7 @@ import {
   IconSearch,
 } from '@tabler/icons-react';
 
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import { SettingsMenu } from '@/components/settings-menu';
 
 export function TopBar({ onOpenMenu }: { onOpenMenu: () => void }) {
   return (
@@ -71,7 +71,7 @@ export function TopBar({ onOpenMenu }: { onOpenMenu: () => void }) {
 
       <Box sx={{ flex: 1 }} />
 
-      <ThemeSwitcher />
+      <SettingsMenu />
       <Tooltip title="Source code">
         <IconButton
           href="https://github.com/dcdavidev/notebook"

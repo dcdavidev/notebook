@@ -17,8 +17,11 @@ import { IconExternalLink, IconNotebook } from '@tabler/icons-react';
 
 import { navigation } from './navigation';
 
+import { useHasConsent } from '@/lib/consent';
+
 export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
+  const hasExternalConsent = useHasConsent('external');
 
   return (
     <Stack sx={{ height: '100%', p: 2, gap: 2 }}>
@@ -108,10 +111,15 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
         }}
       >
         <Avatar
-          src="https://github.com/dcdavidev.png"
+          // The picture comes from GitHub: load it only with consent.
+          src={
+            hasExternalConsent ? 'https://github.com/dcdavidev.png' : undefined
+          }
           alt="Davide Di Criscito"
           sx={{ width: 36, height: 36 }}
-        />
+        >
+          DD
+        </Avatar>
         <Box sx={{ minWidth: 0 }}>
           <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>
             Davide Di Criscito

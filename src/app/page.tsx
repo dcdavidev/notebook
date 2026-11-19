@@ -1,71 +1,72 @@
+import { Suspense } from 'react';
+
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { IconBook2, IconNotes } from '@tabler/icons-react';
+import packageJson from '../../package.json';
 
-import { LinkButton } from '@/components/link-button';
-import { ActivityCard } from '@/components/overview/activity-card';
-import { CoursesCard } from '@/components/overview/courses-card';
-import { GoalsCard } from '@/components/overview/goals-card';
-import { HeroCard } from '@/components/overview/hero-card';
-import { TipsCard } from '@/components/overview/tips-card';
+import { Waves } from '@/components/backgrounds/waves';
+import { AnimatedTitle } from '@/components/landing/animated-title';
+import { FadeIn } from '@/components/landing/fade-in';
+import {
+  LocalePrompt,
+  LocalePromptSkeleton,
+} from '@/components/landing/locale-prompt';
+import { SettingsMenu } from '@/components/settings-menu';
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <Stack sx={{ gap: 3 }}>
-      <Stack
-        direction={{ xs: 'column', sm: 'row' }}
-        sx={{ alignItems: { sm: 'flex-end' }, gap: 2 }}
-      >
-        <Box sx={{ flex: 1 }}>
-          <Typography variant="h4" component="h1" sx={{ fontWeight: 700 }}>
-            Overview
-          </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            Your courses, study notes, and hobbies — all in one place.
-          </Typography>
-        </Box>
-        <Stack direction="row" sx={{ gap: 1 }}>
-          <LinkButton
-            href="/notes"
-            variant="outlined"
-            startIcon={<IconNotes size={18} />}
-            sx={{ borderRadius: 3 }}
-          >
-            Study notes
-          </LinkButton>
-          <LinkButton
-            href="/courses"
-            variant="outlined"
-            startIcon={<IconBook2 size={18} />}
-            sx={{ borderRadius: 3 }}
-          >
-            Courses
-          </LinkButton>
-        </Stack>
-      </Stack>
+    <Box
+      component="main"
+      sx={{
+        position: 'relative',
+        width: '100%',
+        minHeight: '100dvh',
+        overflow: 'hidden',
+        display: 'grid',
+        placeItems: 'center',
+        bgcolor: 'background.default',
+      }}
+    >
+      <Waves fade={0.35} />
 
-      <Grid container spacing={2}>
-        <Grid size={{ xs: 12, lg: 5 }}>
-          <HeroCard />
-        </Grid>
-        <Grid size={{ xs: 12, lg: 7 }}>
-          <ActivityCard />
-        </Grid>
-        <Grid size={{ xs: 12, lg: 8 }}>
-          <CoursesCard />
-        </Grid>
-        <Grid size={{ xs: 12, lg: 4 }}>
-          <Stack sx={{ gap: 2, height: '100%' }}>
-            <GoalsCard />
-            <Box sx={{ flex: 1 }}>
-              <TipsCard />
-            </Box>
-          </Stack>
-        </Grid>
-      </Grid>
-    </Stack>
+      <Box sx={{ position: 'absolute', top: 16, right: 16, zIndex: 1 }}>
+        <SettingsMenu />
+      </Box>
+
+      <Stack
+        sx={{
+          position: 'relative',
+          alignItems: 'center',
+          textAlign: 'center',
+          gap: { xs: 3, sm: 4 },
+          px: 2,
+          py: 8,
+          maxWidth: 760,
+        }}
+      >
+        <AnimatedTitle>Notebook</AnimatedTitle>
+
+        <FadeIn delay={1}>
+          <Typography
+            component="p"
+            sx={{
+              fontSize: { xs: '1.125rem', sm: '1.375rem' },
+              color: 'text.secondary',
+              textWrap: 'balance',
+            }}
+          >
+            {packageJson.description}
+          </Typography>
+        </FadeIn>
+
+        <FadeIn delay={1.4}>
+          <Suspense fallback={<LocalePromptSkeleton />}>
+            <LocalePrompt />
+          </Suspense>
+        </FadeIn>
+      </Stack>
+    </Box>
   );
 }

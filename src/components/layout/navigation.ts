@@ -31,7 +31,7 @@ export const navigation: NavSection[] = [
   {
     title: 'Main',
     items: [
-      { label: 'Overview', href: '/', icon: IconLayoutDashboard },
+      { label: 'Overview', href: '/overview', icon: IconLayoutDashboard },
       { label: 'Courses', href: '/courses', icon: IconBook2 },
       { label: 'Study notes', href: '/notes', icon: IconNotes },
       { label: 'Hobbies', href: '/hobbies', icon: IconPalette },
