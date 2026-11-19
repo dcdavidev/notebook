@@ -37,6 +37,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `pnpm check`      | Run lint, format check, spellcheck, and type-check |
 | `pnpm commit`     | Write a Conventional Commit with the czg prompt    |
 
+## Architecture decisions
+
+The key technical decisions and their reasons are recorded in [docs/decisions](docs/decisions/README.md).
+
 ## Contributing
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). To report a vulnerability, follow [SECURITY.md](SECURITY.md).
