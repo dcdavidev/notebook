@@ -13,7 +13,8 @@
     "hideLessons": "Hide the lessons of {course}",
     "versionLabel": "Version {version}. Change version",
     "latestVersion": "Latest",
-    "readingProgress": "Reading progress"
+    "readingProgress": "Reading progress",
+    "backToTop": "Back to top"
   },
   "Overview": {
     "title": "What shall we learn today?",

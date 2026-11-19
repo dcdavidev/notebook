@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 
 import { IconBrandGithub, IconMenu2 } from '@tabler/icons-react';
 
+import { AppFooter } from './app-footer';
 import { AppSidebar } from './app-sidebar';
 import { ReadingProgress } from './reading-progress';
 import { VersionMenu } from './version-menu';
@@ -192,9 +193,14 @@ export function AppShell({
               the reader scrolls to the end of the page. */}
           {currentCourse && <ReadingProgress resetKey={pathname} />}
         </Stack>
-        <Box component="main" sx={{ flex: 1, display: 'flex', minHeight: 0 }}>
+        <Box
+          component="main"
+          tabIndex={-1}
+          sx={{ flex: 1, display: 'flex', minHeight: 0, outline: 'none' }}
+        >
           {children}
         </Box>
+        <AppFooter />
       </Stack>
     </Box>
   );

@@ -13,7 +13,8 @@
     "hideLessons": "Nascondi le lezioni di {course}",
     "versionLabel": "Versione {version}. Cambia versione",
     "latestVersion": "Ultima",
-    "readingProgress": "Avanzamento della lettura"
+    "readingProgress": "Avanzamento della lettura",
+    "backToTop": "Torna su"
   },
   "Overview": {
     "title": "Cosa impariamo oggi?",
