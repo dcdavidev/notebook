@@ -2,10 +2,16 @@ import type { Metadata } from 'next';
 import { hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import { IconArrowRight } from '@tabler/icons-react';
+
+import { LinkButton } from '@/components/link-button';
 import { routing } from '@/i18n/routing';
+import { type CourseSummary, getCourses } from '@/lib/courses';
 
 /**
  * The whole page depends on the language, and each language is fully
@@ -13,6 +19,36 @@ import { routing } from '@/i18n/routing';
  */
 // eslint-disable-next-line unicorn/consistent-boolean-name -- Next.js route segment config name
 export const instant = false;
+
+/**
+The topic promoted by the call to action.
+*/
+const featuredTopic = 'abap';
+
+/**
+ * Accent colors for the topic cards. Each topic always gets the same one,
+ * picked from its slug.
+ */
+const accents = [
+  '#2e7d5b',
+  '#c2410c',
+  '#6d28d9',
+  '#0e7490',
+  '#be185d',
+  '#a16207',
+  '#1d4ed8',
+];
+
+/**
+ * Picks a stable accent color for a topic.
+ */
+function accentFor(slug: string): string {
+  let hash = 0;
+  for (const char of slug) {
+    hash = (hash * 31 + (char.codePointAt(0) ?? 0)) % 997;
+  }
+  return accents[hash % accents.length] ?? accents[0] ?? 'currentColor';
+}
 
 export async function generateMetadata({
   params,
@@ -32,6 +68,99 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * One topic in the masonry: a tinted card with the description, the tags,
+ * and a button in the topic's color. Cards grow with their content, so the
+ * columns get the uneven, Pinterest-like rhythm.
+ */
+function TopicCard({
+  course,
+  href,
+  openLabel,
+  lessonsLabel,
+}: {
+  course: CourseSummary;
+  href: string;
+  openLabel: string;
+  lessonsLabel: string;
+}) {
+  const accent = accentFor(course.slug);
+  return (
+    <Box
+      component="li"
+      sx={{
+        breakInside: 'avoid',
+        mb: 2,
+        p: 2.5,
+        borderRadius: 5,
+        border: 1,
+        borderColor: `color-mix(in oklch, ${accent} 30%, transparent)`,
+        bgcolor: `color-mix(in oklch, ${accent} 10%, var(--nb-background))`,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1.5,
+      }}
+    >
+      <Stack direction="row" sx={{ alignItems: 'baseline', gap: 1 }}>
+        <Typography
+          component="h3"
+          sx={{ fontWeight: 700, fontSize: '1.4rem', color: accent }}
+        >
+          {course.title}
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          {lessonsLabel}
+        </Typography>
+      </Stack>
+      {course.description && (
+        <Typography sx={{ color: 'text.secondary' }}>
+          {course.description}
+        </Typography>
+      )}
+      {course.tags.length > 0 && (
+        <Stack
+          direction="row"
+          component="ul"
+          sx={{ flexWrap: 'wrap', gap: 0.75, m: 0, p: 0, listStyle: 'none' }}
+        >
+          {course.tags.map((tag) => (
+            <Chip
+              key={tag}
+              component="li"
+              label={tag}
+              size="small"
+              variant="outlined"
+              sx={{
+                borderColor: `color-mix(in oklch, ${accent} 35%, transparent)`,
+              }}
+            />
+          ))}
+        </Stack>
+      )}
+      <LinkButton
+        href={href}
+        variant="contained"
+        disableElevation
+        endIcon={<IconArrowRight size={18} />}
+        sx={{
+          alignSelf: 'flex-start',
+          mt: 0.5,
+          borderRadius: 999,
+          textTransform: 'none',
+          fontWeight: 600,
+          bgcolor: accent,
+          color: '#fff',
+          '&:hover': {
+            bgcolor: `color-mix(in oklch, ${accent}, black 15%)`,
+          },
+        }}
+      >
+        {openLabel}
+      </LinkButton>
+    </Box>
+  );
+}
+
 export default async function OverviewPage({
   params,
 }: PageProps<'/[lang]/overview'>) {
@@ -40,31 +169,105 @@ export default async function OverviewPage({
     ? lang
     : routing.defaultLocale;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'Overview' });
+  const [t, tLearn, courses] = await Promise.all([
+    getTranslations({ locale, namespace: 'Overview' }),
+    getTranslations({ locale, namespace: 'Learn' }),
+    getCourses(locale),
+  ]);
+  const featured =
+    courses.find((item) => item.slug === featuredTopic) ?? courses[0];
 
   return (
     <Stack
       sx={{
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        width: '100%',
+        maxWidth: 1100,
+        mx: 'auto',
         px: 2,
-        pb: { xs: 6, md: '12vh' },
+        pt: { xs: 6, md: '10vh' },
+        pb: 10,
+        gap: { xs: 6, md: 8 },
       }}
     >
-      <Typography
-        variant="h3"
-        component="h1"
-        sx={{
-          fontWeight: 400,
-          fontSize: { xs: '1.75rem', sm: '2.4rem' },
-          letterSpacing: '-0.01em',
-          textAlign: 'center',
-          textWrap: 'balance',
-        }}
-      >
-        {t('title')}
-      </Typography>
+      <Stack sx={{ alignItems: 'center', textAlign: 'center', gap: 2.5 }}>
+        <Typography
+          variant="h3"
+          component="h1"
+          sx={{
+            fontWeight: 400,
+            fontSize: { xs: '1.75rem', sm: '2.4rem' },
+            letterSpacing: '-0.01em',
+            textWrap: 'balance',
+          }}
+        >
+          {t('title')}
+        </Typography>
+        <Typography
+          sx={{
+            maxWidth: 560,
+            color: 'text.secondary',
+            fontSize: '1.1rem',
+            textWrap: 'balance',
+          }}
+        >
+          {t('subtitle')}
+        </Typography>
+        {featured && (
+          <LinkButton
+            href={`/${locale}/learn/${featured.slug}`}
+            variant="contained"
+            size="large"
+            disableElevation
+            endIcon={<IconArrowRight size={20} />}
+            sx={{
+              mt: 1,
+              px: 3.5,
+              py: 1.25,
+              borderRadius: 999,
+              textTransform: 'none',
+              fontSize: '1.05rem',
+              fontWeight: 600,
+            }}
+          >
+            {t('cta', { topic: featured.title })}
+          </LinkButton>
+        )}
+      </Stack>
+
+      {courses.length > 0 && (
+        <Box component="section" aria-labelledby="topics-title">
+          <Typography
+            id="topics-title"
+            component="h2"
+            sx={{ fontWeight: 700, fontSize: '1.5rem', mb: 2.5 }}
+          >
+            {t('topics')}
+          </Typography>
+          <Box
+            component="ul"
+            sx={{
+              m: 0,
+              p: 0,
+              listStyle: 'none',
+              columnCount: { xs: 1, sm: 2, md: 3 },
+              columnGap: 2,
+            }}
+          >
+            {courses.map((course) => (
+              <TopicCard
+                key={course.slug}
+                course={course}
+                href={`/${locale}/learn/${course.slug}`}
+                openLabel={t('openCourse')}
+                lessonsLabel={tLearn('lessonCount', {
+                  count: course.versions[0]?.lessons.length ?? 0,
+                })}
+              />
+            ))}
+          </Box>
+        </Box>
+      )}
     </Stack>
   );
 }

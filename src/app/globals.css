@@ -12,3 +12,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/*
+ * Code blocks highlighted by Shiki carry both themes: the light colors
+ * inline, the dark ones in `--shiki-dark*` variables. MUI sets the `dark`
+ * class on `html` in dark mode.
+ */
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}

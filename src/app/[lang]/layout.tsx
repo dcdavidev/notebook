@@ -6,6 +6,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { DocumentLanguage } from '@/components/document-language';
 import { AppShell } from '@/components/shell/app-shell';
 import { routing } from '@/i18n/routing';
+import { getCourses } from '@/lib/courses';
 
 /**
 Prerenders every page once per language.
@@ -48,11 +49,12 @@ export default async function LocaleLayout({
     notFound();
   }
   setRequestLocale(lang);
+  const courses = await getCourses(lang);
 
   return (
     <NextIntlClientProvider>
       <DocumentLanguage lang={lang} />
-      <AppShell>{children}</AppShell>
+      <AppShell courses={courses}>{children}</AppShell>
     </NextIntlClientProvider>
   );
 }

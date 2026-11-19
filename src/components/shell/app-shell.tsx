@@ -10,12 +10,17 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 
 import { IconBrandGithub, IconMenu2 } from '@tabler/icons-react';
 
 import { AppSidebar } from './app-sidebar';
+import { ReadingProgress } from './reading-progress';
+import { VersionMenu } from './version-menu';
 
 import { SettingsMenu } from '@/components/settings-menu';
+import { Link, usePathname } from '@/i18n/navigation';
+import type { CourseSummary } from '@/lib/courses';
 
 const expandedWidth = 272;
 const collapsedWidth = 64;
@@ -25,10 +30,23 @@ const collapsedWidth = 64;
  * rail of icons on the left, and a wide, quiet content area on the right.
  * On small screens, the sidebar opens as a drawer.
  */
-export function AppShell({ children }: { children: ReactNode }) {
+export function AppShell({
+  children,
+  courses,
+}: {
+  children: ReactNode;
+  courses: CourseSummary[];
+}) {
   const t = useTranslations('Shell');
   const [collapsed, setCollapsed] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const pathname = usePathname();
+  // `/learn/<topic>/...`: the topic shown on the left of the app bar.
+  const topic = pathname.startsWith('/learn/')
+    ? pathname.split('/', 3)[2]
+    : undefined;
+  const currentCourse = courses.find((item) => item.slug === topic);
 
   const width = collapsed ? collapsedWidth : expandedWidth;
 
@@ -58,6 +76,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         }}
       >
         <AppSidebar
+          courses={courses}
           collapsed={collapsed}
           onToggleCollapsed={() => {
             setCollapsed((current) => !current);
@@ -82,6 +101,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         }}
       >
         <AppSidebar
+          courses={courses}
           collapsed={false}
           onNavigate={() => {
             setDrawerOpen(false);
@@ -93,7 +113,21 @@ export function AppShell({ children }: { children: ReactNode }) {
         <Stack
           direction="row"
           component="header"
-          sx={{ alignItems: 'center', gap: 1, px: { xs: 1, md: 2 }, py: 1 }}
+          sx={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 'appBar',
+            alignItems: 'center',
+            gap: 1,
+            px: { xs: 1, md: 2 },
+            py: 1,
+            minHeight: 56,
+            bgcolor:
+              'color-mix(in oklch, var(--nb-background) 85%, transparent)',
+            backdropFilter: 'blur(12px)',
+            borderBottom: 1,
+            borderColor: 'divider',
+          }}
         >
           <IconButton
             onClick={() => {
@@ -104,7 +138,29 @@ export function AppShell({ children }: { children: ReactNode }) {
           >
             <IconMenu2 />
           </IconButton>
-          <Box sx={{ flex: 1 }} />
+          <Stack
+            direction="row"
+            sx={{ flex: 1, minWidth: 0, alignItems: 'center', gap: 1 }}
+          >
+            {currentCourse && (
+              <>
+                <Typography
+                  component={Link}
+                  href={`/learn/${currentCourse.slug}`}
+                  noWrap
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: '1.1rem',
+                    color: 'text.primary',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {currentCourse.title}
+                </Typography>
+                <VersionMenu course={currentCourse} pathname={pathname} />
+              </>
+            )}
+          </Stack>
           <Tooltip title={t('sourceCode')}>
             <IconButton
               href="https://github.com/dcdavidev/notebook"
@@ -132,6 +188,9 @@ export function AppShell({ children }: { children: ReactNode }) {
             </IconButton>
           </Tooltip>
           <SettingsMenu />
+          {/* On course pages, a bar right under the app bar fills up while
+              the reader scrolls to the end of the page. */}
+          {currentCourse && <ReadingProgress resetKey={pathname} />}
         </Stack>
         <Box component="main" sx={{ flex: 1, display: 'flex', minHeight: 0 }}>
           {children}

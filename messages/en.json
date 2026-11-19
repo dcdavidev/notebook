@@ -7,9 +7,30 @@
     "expandSidebar": "Expand sidebar",
     "openNavigation": "Open navigation",
     "sourceCode": "Source code",
-    "authorWebsite": "Davide Di Criscito's website (opens in a new tab)"
+    "authorWebsite": "Davide Di Criscito's website (opens in a new tab)",
+    "courses": "Courses",
+    "showLessons": "Show the lessons of {course}",
+    "hideLessons": "Hide the lessons of {course}",
+    "versionLabel": "Version {version}. Change version",
+    "latestVersion": "Latest",
+    "readingProgress": "Reading progress"
   },
   "Overview": {
-    "title": "What shall we learn today?"
+    "title": "What shall we learn today?",
+    "subtitle": "Free, open courses written in Markdown. Pick a topic and start from the first lesson.",
+    "cta": "Start with {topic}",
+    "topics": "Topics",
+    "openCourse": "Open the course"
+  },
+  "Learn": {
+    "lessonOf": "Lesson {step} of {total}",
+    "previous": "Previous",
+    "next": "Next",
+    "lessons": "Lessons",
+    "editOnGitHub": "Edit this page on GitHub",
+    "tags": "Tags",
+    "overview": "Overview",
+    "startCourse": "Start the course",
+    "lessonCount": "{count, plural, one {# lesson} other {# lessons}}"
   }
 }
