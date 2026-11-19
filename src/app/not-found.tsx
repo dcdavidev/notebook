@@ -4,12 +4,13 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { IconHome, IconLayoutDashboard } from '@tabler/icons-react';
+import { IconHome, IconLanguage } from '@tabler/icons-react';
 
 import { FadeIn } from '@/components/landing/fade-in';
 import { LinkButton } from '@/components/link-button';
 import { SleepingCat } from '@/components/not-found/sleeping-cat';
 import { SettingsMenu } from '@/components/settings-menu';
+import { localeNames, locales } from '@/lib/locale';
 
 export const metadata: Metadata = {
   title: 'Page not found · Notebook',
@@ -85,15 +86,20 @@ export default function NotFound() {
             >
               Back to home
             </LinkButton>
-            <LinkButton
-              href="/overview"
-              variant="outlined"
-              size="large"
-              startIcon={<IconLayoutDashboard size={18} />}
-              sx={{ borderRadius: 99, px: 3, textTransform: 'none' }}
-            >
-              Go to overview
-            </LinkButton>
+            {locales.map((locale) => (
+              <LinkButton
+                key={locale}
+                href={`/${locale}/overview`}
+                lang={locale}
+                hrefLang={locale}
+                variant="outlined"
+                size="large"
+                startIcon={<IconLanguage size={18} />}
+                sx={{ borderRadius: 99, px: 3, textTransform: 'none' }}
+              >
+                {localeNames[locale]}
+              </LinkButton>
+            ))}
           </Stack>
         </FadeIn>
       </Stack>

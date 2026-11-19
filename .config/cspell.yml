@@ -6,6 +6,8 @@ version: '0.2'
 
 import:
   - cspell-config-spellbookx
+  # Italian dictionary, enabled only for the Italian translations below.
+  - '@cspell/dict-it-it/cspell-ext.json'
 
 # Paths are relative to this file.
 dictionaryDefinitions:
@@ -15,6 +17,10 @@ dictionaryDefinitions:
 
 dictionaries:
   - custom-dict
+
+overrides:
+  - filename: '**/messages/it.json'
+    language: en,it
 
 ignorePaths:
   - .agents/**

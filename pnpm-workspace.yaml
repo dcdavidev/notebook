@@ -1,2 +1,5 @@
 allowBuilds:
   lefthook: true
+  # Used only by next-intl's optional message extraction: no install scripts.
+  '@parcel/watcher': false
+  '@swc/core': false

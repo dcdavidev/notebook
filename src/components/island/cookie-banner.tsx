@@ -92,7 +92,7 @@ const texts: Record<
       external: {
         title: 'Contenuti esterni',
         description:
-          'Immagini caricate da altri siti, come la foto profilo da GitHub.',
+          'Immagini, video e altri contenuti caricati da siti esterni.',
       },
     },
   },
@@ -123,7 +123,7 @@ const texts: Record<
       external: {
         title: 'External content',
         description:
-          'Images loaded from other sites, such as the profile picture from GitHub.',
+          'Images, videos, and other content loaded from external sites.',
       },
     },
   },

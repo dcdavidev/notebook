@@ -1,0 +1,15 @@
+{
+  "Metadata": {
+    "overviewTitle": "Panoramica · Notebook"
+  },
+  "Shell": {
+    "collapseSidebar": "Comprimi la barra laterale",
+    "expandSidebar": "Espandi la barra laterale",
+    "openNavigation": "Apri la navigazione",
+    "sourceCode": "Codice sorgente",
+    "authorWebsite": "Sito di Davide Di Criscito (si apre in una nuova scheda)"
+  },
+  "Overview": {
+    "title": "Cosa impariamo oggi?"
+  }
+}

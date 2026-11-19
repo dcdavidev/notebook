@@ -2,6 +2,8 @@
 
 import { type MouseEvent, type ReactNode, useState } from 'react';
 
+import { useParams, usePathname, useRouter } from 'next/navigation';
+
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
@@ -19,23 +21,63 @@ import {
   IconChevronDown,
   IconCookie,
   IconDeviceDesktop,
+  IconLanguage,
   IconMoon,
   IconPalette,
   IconSettings,
   IconSun,
 } from '@tabler/icons-react';
 
-import { openCookiePreferences } from '@/lib/consent';
+import { openCookiePreferences, readCookie, writeCookie } from '@/lib/consent';
+import {
+  isLocale,
+  type Locale,
+  localeCookie,
+  localeNames,
+  locales,
+} from '@/lib/locale';
 import { usePalette } from '@/theme/palette-context';
 import { palettes } from '@/theme/palettes';
 
 const modes = [
-  { value: 'light', label: 'Light', Icon: IconSun },
-  { value: 'dark', label: 'Dark', Icon: IconMoon },
-  { value: 'system', label: 'System', Icon: IconDeviceDesktop },
+  { value: 'light', Icon: IconSun },
+  { value: 'dark', Icon: IconMoon },
+  { value: 'system', Icon: IconDeviceDesktop },
 ] as const;
 
-type Section = 'mode' | 'palette';
+/**
+Labels of the menu. It also appears outside the localized pages.
+*/
+const labels: Record<
+  Locale,
+  {
+    settings: string;
+    cookies: string;
+    mode: string;
+    palette: string;
+    language: string;
+    modes: Record<(typeof modes)[number]['value'], string>;
+  }
+> = {
+  it: {
+    settings: 'Impostazioni',
+    cookies: 'Preferenze cookie',
+    mode: 'Modalità',
+    palette: 'Palette',
+    language: 'Lingua',
+    modes: { light: 'Chiara', dark: 'Scura', system: 'Sistema' },
+  },
+  en: {
+    settings: 'Settings',
+    cookies: 'Cookie preferences',
+    mode: 'Mode',
+    palette: 'Palette',
+    language: 'Language',
+    modes: { light: 'Light', dark: 'Dark', system: 'System' },
+  },
+};
+
+type Section = 'language' | 'mode' | 'palette';
 
 function Swatches({ colors }: { colors: readonly string[] }) {
   return (
@@ -91,16 +133,35 @@ function SectionHeader({
 }
 
 /**
- * Settings menu: cookie preferences, color mode, and palette. Mode and
- * palette are sections that expand and collapse.
+ * Settings menu: cookie preferences, language, color
+ * mode, and palette. Each group is a section that expands and collapses.
  */
 export function SettingsMenu() {
   const { mode, setMode } = useColorScheme();
   const { paletteId, selectPalette } = usePalette();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
   const [expanded, setExpanded] = useState<Section | null>(null);
+  const params = useParams<{ lang?: string }>();
+  const pathname = usePathname();
+  const router = useRouter();
+  // Language of the localized page, if this is one.
+  const lang = isLocale(params.lang) ? params.lang : undefined;
+  // Outside the localized pages: the saved choice, or the browser language.
+  const [preferredLang, setPreferredLang] = useState<Locale>('en');
+  const currentLang = lang ?? preferredLang;
+  const text = labels[currentLang];
 
   const open = (event: MouseEvent<HTMLElement>) => {
+    if (!lang) {
+      const stored = readCookie(localeCookie);
+      setPreferredLang(
+        isLocale(stored)
+          ? stored
+          : navigator.language.toLowerCase().startsWith('it')
+            ? 'it'
+            : 'en'
+      );
+    }
     setAnchor(event.currentTarget);
   };
   const close = () => {
@@ -111,15 +172,29 @@ export function SettingsMenu() {
     setExpanded((current) => (current === section ? null : section));
   };
 
+  /**
+   * Saves the language. On a localized page it opens the same page in that
+   * language; elsewhere it opens the overview in that language.
+   */
+  const changeLanguage = (next: Locale) => {
+    writeCookie(localeCookie, next);
+    close();
+    if (!lang) {
+      router.push(`/${next}/overview`);
+    } else if (next !== lang) {
+      router.replace(`/${next}${pathname.slice(lang.length + 1)}`);
+    }
+  };
+
   const currentMode = modes.find((item) => item.value === mode);
   const currentPalette = palettes.find((item) => item.id === paletteId);
 
   return (
     <>
-      <Tooltip title="Settings">
+      <Tooltip title={text.settings}>
         <IconButton
           onClick={open}
-          aria-label="Settings"
+          aria-label={text.settings}
           aria-haspopup="menu"
           aria-expanded={anchor ? 'true' : undefined}
           color="inherit"
@@ -142,16 +217,47 @@ export function SettingsMenu() {
           <ListItemIcon>
             <IconCookie size={20} />
           </ListItemIcon>
-          <ListItemText>Cookie preferences</ListItemText>
+          <ListItemText>{text.cookies}</ListItemText>
         </MenuItem>
         <Divider />
+
+        <SectionHeader
+          icon={<IconLanguage size={20} />}
+          label={text.language}
+          value={localeNames[currentLang]}
+          expanded={expanded === 'language'}
+          controls="settings-language"
+          onToggle={() => {
+            toggle('language');
+          }}
+        />
+        <Collapse
+          in={expanded === 'language'}
+          id="settings-language"
+          unmountOnExit
+        >
+          {locales.map((item) => (
+            <MenuItem
+              key={item}
+              lang={item}
+              selected={currentLang === item}
+              onClick={() => {
+                changeLanguage(item);
+              }}
+              sx={{ pl: 4 }}
+            >
+              <ListItemText inset>{localeNames[item]}</ListItemText>
+              {currentLang === item && <IconCheck size={18} />}
+            </MenuItem>
+          ))}
+        </Collapse>
 
         <SectionHeader
           icon={
             currentMode ? <currentMode.Icon size={20} /> : <IconSun size={20} />
           }
-          label="Mode"
-          value={currentMode?.label ?? ''}
+          label={text.mode}
+          value={currentMode ? text.modes[currentMode.value] : ''}
           expanded={expanded === 'mode'}
           controls="settings-mode"
           onToggle={() => {
@@ -159,7 +265,7 @@ export function SettingsMenu() {
           }}
         />
         <Collapse in={expanded === 'mode'} id="settings-mode" unmountOnExit>
-          {modes.map(({ value, label, Icon }) => (
+          {modes.map(({ value, Icon }) => (
             <MenuItem
               key={value}
               selected={mode === value}
@@ -171,7 +277,7 @@ export function SettingsMenu() {
               <ListItemIcon>
                 <Icon size={20} />
               </ListItemIcon>
-              <ListItemText>{label}</ListItemText>
+              <ListItemText>{text.modes[value]}</ListItemText>
               {mode === value && <IconCheck size={18} />}
             </MenuItem>
           ))}
@@ -179,7 +285,7 @@ export function SettingsMenu() {
 
         <SectionHeader
           icon={<IconPalette size={20} />}
-          label="Palette"
+          label={text.palette}
           value={currentPalette?.name ?? ''}
           expanded={expanded === 'palette'}
           controls="settings-palette"

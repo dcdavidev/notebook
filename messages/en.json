@@ -1,0 +1,15 @@
+{
+  "Metadata": {
+    "overviewTitle": "Overview · Notebook"
+  },
+  "Shell": {
+    "collapseSidebar": "Collapse sidebar",
+    "expandSidebar": "Expand sidebar",
+    "openNavigation": "Open navigation",
+    "sourceCode": "Source code",
+    "authorWebsite": "Davide Di Criscito's website (opens in a new tab)"
+  },
+  "Overview": {
+    "title": "What shall we learn today?"
+  }
+}

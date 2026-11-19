@@ -22,7 +22,7 @@ export function LanguageButtons({ suggested }: { suggested: Locale }) {
     // The cookie lets the server render the site in the chosen language.
     // eslint-disable-next-line unicorn/no-document-cookie -- one simple, non-sensitive preference
     document.cookie = `${localeCookie}=${locale}; path=/; max-age=${oneYear}; samesite=lax`;
-    router.push('/overview');
+    router.push(`/${locale}/overview`);
   };
 
   // The suggested language comes first.
