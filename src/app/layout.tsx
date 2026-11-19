@@ -8,6 +8,7 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
 import './globals.css';
 
+import { AppShell } from '@/components/layout/app-shell';
 import { Providers } from '@/components/providers';
 import {
   createPaletteInitScript,
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       </head>
       <body>
         <InitColorSchemeScript attribute="class" />
-        <Providers>{children}</Providers>
+        <Providers>
+          <AppShell>{children}</AppShell>
+        </Providers>
       </body>
     </html>
   );

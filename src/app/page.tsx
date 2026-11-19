@@ -1,125 +1,71 @@
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
-import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import {
-  IconBook2,
-  IconBrandGithub,
-  IconDownload,
-  IconNotebook,
-} from '@tabler/icons-react';
+import { IconBook2, IconNotes } from '@tabler/icons-react';
 
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import { LinkButton } from '@/components/link-button';
+import { ActivityCard } from '@/components/overview/activity-card';
+import { CoursesCard } from '@/components/overview/courses-card';
+import { GoalsCard } from '@/components/overview/goals-card';
+import { HeroCard } from '@/components/overview/hero-card';
+import { TipsCard } from '@/components/overview/tips-card';
 
 export default function Home() {
   return (
-    <>
-      <AppBar
-        position="sticky"
-        elevation={0}
-        color="transparent"
-        sx={{
-          borderBottom: 1,
-          borderColor: 'divider',
-          backdropFilter: 'blur(8px)',
-        }}
+    <Stack sx={{ gap: 3 }}>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        sx={{ alignItems: { sm: 'flex-end' }, gap: 2 }}
       >
-        <Toolbar sx={{ gap: 1 }}>
-          <IconNotebook />
-          <Typography
-            component="span"
-            sx={{
-              flexGrow: 1,
-              fontFamily: 'var(--nb-font-title)',
-              fontSize: '1.75rem',
-            }}
-          >
-            Notebook
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="h4" component="h1" sx={{ fontWeight: 700 }}>
+            Overview
           </Typography>
-          <ThemeSwitcher />
-        </Toolbar>
-      </AppBar>
-
-      <Container component="main" maxWidth="md" sx={{ py: { xs: 6, md: 10 } }}>
-        <Stack spacing={4}>
-          <Box>
-            <Typography
-              variant="h1"
-              color="primary"
-              sx={{
-                fontFamily: 'var(--nb-font-title)',
-                fontSize: { xs: '3.5rem', md: '5rem' },
-              }}
-            >
-              Notebook
-            </Typography>
-            <Typography variant="h5" component="p" color="text.secondary">
-              Digital notebook for free programming courses, downloadable study
-              notes, and personal hobbies.
-            </Typography>
-          </Box>
-
-          <Stack
-            direction="row"
-            spacing={2}
-            useFlexGap
-            sx={{ flexWrap: 'wrap' }}
+          <Typography sx={{ color: 'text.secondary' }}>
+            Your courses, study notes, and hobbies — all in one place.
+          </Typography>
+        </Box>
+        <Stack direction="row" sx={{ gap: 1 }}>
+          <LinkButton
+            href="/notes"
+            variant="outlined"
+            startIcon={<IconNotes size={18} />}
+            sx={{ borderRadius: 3 }}
           >
-            <Button variant="contained" startIcon={<IconBook2 />}>
-              Courses
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              startIcon={<IconDownload />}
-            >
-              Study notes
-            </Button>
-            <Button
-              variant="outlined"
-              startIcon={<IconBrandGithub />}
-              href="https://github.com/dcdavidev/notebook"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </Button>
-          </Stack>
-
-          <Paper variant="outlined" sx={{ p: 3 }}>
-            <Stack spacing={2}>
-              <Stack direction="row" spacing={1}>
-                <Chip label="Typography" color="primary" size="small" />
-                <Chip label="Preview" variant="outlined" size="small" />
-              </Stack>
-              <Typography>
-                Body text uses Inter. Inline quotes use PT Mono, for example{' '}
-                <q>talk is cheap, show me the code</q>, and so does inline code
-                such as <code>pnpm dev</code>.
-              </Typography>
-              <Box component="blockquote">
-                <Typography>
-                  Blockquotes use PT Mono with an accent border in the secondary
-                  color of the palette.
-                </Typography>
-              </Box>
-              <Box component="pre">
-                <code>
-                  {`export function greet(name: string): string {
-  return \`Hello, \${name}!\`;
-}`}
-                </code>
-              </Box>
-            </Stack>
-          </Paper>
+            Study notes
+          </LinkButton>
+          <LinkButton
+            href="/courses"
+            variant="outlined"
+            startIcon={<IconBook2 size={18} />}
+            sx={{ borderRadius: 3 }}
+          >
+            Courses
+          </LinkButton>
         </Stack>
-      </Container>
-    </>
+      </Stack>
+
+      <Grid container spacing={2}>
+        <Grid size={{ xs: 12, lg: 5 }}>
+          <HeroCard />
+        </Grid>
+        <Grid size={{ xs: 12, lg: 7 }}>
+          <ActivityCard />
+        </Grid>
+        <Grid size={{ xs: 12, lg: 8 }}>
+          <CoursesCard />
+        </Grid>
+        <Grid size={{ xs: 12, lg: 4 }}>
+          <Stack sx={{ gap: 2, height: '100%' }}>
+            <GoalsCard />
+            <Box sx={{ flex: 1 }}>
+              <TipsCard />
+            </Box>
+          </Stack>
+        </Grid>
+      </Grid>
+    </Stack>
   );
 }
