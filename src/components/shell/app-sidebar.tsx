@@ -20,6 +20,7 @@ import {
   IconLayoutSidebarLeftExpand,
 } from '@tabler/icons-react';
 
+import { NotebookLogo } from '@/components/notebook-logo';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { CourseSummary } from '@/lib/courses';
 
@@ -67,29 +68,38 @@ export function AppSidebar({
   return (
     <Stack sx={{ height: '100%', py: 1.5, px: 1, gap: 1.5 }}>
       <Stack
-        direction="row"
+        direction={collapsed ? 'column' : 'row'}
         sx={{
           alignItems: 'center',
           justifyContent: collapsed ? 'center' : 'space-between',
+          gap: collapsed ? 1 : 0,
           px: collapsed ? 0 : 1,
           minHeight: 40,
         }}
       >
-        {!collapsed && (
-          <Typography
-            component={Link}
-            href="/overview"
-            onClick={onNavigate}
-            sx={{
-              fontFamily: 'var(--nb-font-title)',
-              fontSize: '1.6rem',
-              color: 'text.primary',
-              textDecoration: 'none',
-            }}
-          >
-            Notebook
-          </Typography>
-        )}
+        <Stack
+          direction="row"
+          component={Link}
+          href="/overview"
+          onClick={onNavigate}
+          aria-label={collapsed ? 'Notebook' : undefined}
+          sx={{
+            alignItems: 'center',
+            gap: 1,
+            color: 'text.primary',
+            textDecoration: 'none',
+          }}
+        >
+          <NotebookLogo size={collapsed ? 32 : 30} />
+          {!collapsed && (
+            <Typography
+              component="span"
+              sx={{ fontFamily: 'var(--nb-font-title)', fontSize: '1.6rem' }}
+            >
+              Notebook
+            </Typography>
+          )}
+        </Stack>
         {onToggleCollapsed && (
           <Tooltip title={toggleLabel} placement="right">
             <IconButton
