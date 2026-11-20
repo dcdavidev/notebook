@@ -11,7 +11,11 @@ import {
 
 import type { User } from '@supabase/supabase-js';
 
-import { type AuthProviderId, safeNextPath } from '@/lib/auth-providers';
+import {
+  type AuthProviderId,
+  authProviders,
+  safeNextPath,
+} from '@/lib/auth-providers';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
 
@@ -95,9 +99,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         const callback = new URL('/auth/callback', location.origin);
         callback.searchParams.set('next', safeNextPath(location.pathname));
+        const entry = authProviders.find((item) => item.id === provider);
         await supabase.auth.signInWithOAuth({
           provider,
-          options: { redirectTo: callback.href },
+          options: {
+            redirectTo: callback.href,
+            scopes: entry && 'scopes' in entry ? entry.scopes : undefined,
+          },
         });
       },
       async signOut() {

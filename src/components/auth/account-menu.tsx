@@ -27,6 +27,7 @@ import {
   IconBrandFacebook,
   IconBrandGithub,
   IconBrandGoogle,
+  IconBrandWindows,
   IconLogin2,
   IconLogout,
   type IconProps,
@@ -40,6 +41,7 @@ import { type AuthProviderId, authProviders } from '@/lib/auth-providers';
 const providerIcons: Record<AuthProviderId, ComponentType<IconProps>> = {
   google: IconBrandGoogle,
   github: IconBrandGithub,
+  azure: IconBrandWindows,
   facebook: IconBrandFacebook,
 };
 

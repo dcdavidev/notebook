@@ -2,7 +2,7 @@
 
 _Ultimo aggiornamento: 20 novembre 2026_
 
-Questa informativa spiega quali dati personali tratta Notebook (`notebook.dcdavidev.me`), perché e quali sono i tuoi diritti. Notebook è un sito gratuito e non commerciale con corsi di programmazione. Puoi leggere tutti i corsi senza account. Se vuoi un account, puoi accedere con Google, GitHub o Facebook. Non c'è pubblicità.
+Questa informativa spiega quali dati personali tratta Notebook (`notebook.dcdavidev.me`), perché e quali sono i tuoi diritti. Notebook è un sito gratuito e non commerciale con corsi di programmazione. Puoi leggere tutti i corsi senza account. Se vuoi un account, puoi accedere con Google, GitHub, Microsoft o Facebook. Non c'è pubblicità.
 
 ## Chi è il titolare
 
@@ -26,7 +26,7 @@ Notebook ricorda lingua, tema, palette e la tua scelta sui cookie con cookie tec
 
 ### Il tuo account (solo se accedi)
 
-Puoi accedere con un account **Google**, **GitHub** o **Facebook**. Non c'è un accesso con email e password. Quando accedi, il servizio che scegli invia a Notebook il tuo nome, l'indirizzo email e l'immagine del profilo. Notebook li salva insieme a un identificativo del tuo account.
+Puoi accedere con un account **Google**, **GitHub**, **Microsoft** o **Facebook**. Non c'è un accesso con email e password. Quando accedi, il servizio che scegli invia a Notebook il tuo nome, l'indirizzo email e l'immagine del profilo. Notebook li salva insieme a un identificativo del tuo account.
 
 - **Perché:** per creare il tuo account e mostrare chi ha effettuato l'accesso. In seguito, per salvare preferiti e progressi su tutti i tuoi dispositivi.
 - **Base giuridica:** l'esecuzione del servizio che hai richiesto (art. 6, par. 1, lett. b del GDPR).
@@ -46,7 +46,7 @@ Se accetti la categoria **Analitici** nel banner dei cookie, il sito carica **Ve
 
 - **Vercel Inc.**, come fornitore di hosting e di statistiche, tratta i dati per conto del titolare.
 - **Supabase Inc.**, come fornitore degli account e del relativo database, tratta i dati dell'account per conto del titolare.
-- **Google**, **GitHub** o **Meta (Facebook)**: solo quello con cui accedi.
+- **Google**, **GitHub**, **Microsoft** o **Meta (Facebook)**: solo quello con cui accedi.
 - Nessun altro. I dati non vengono venduti né condivisi per la pubblicità.
 
 Vercel e Supabase hanno sede negli Stati Uniti, quindi i dati possono essere trasferiti fuori dallo Spazio economico europeo. Questi trasferimenti si basano sulle garanzie offerte da questi fornitori, come l'EU-U.S. Data Privacy Framework e le clausole contrattuali tipo della Commissione europea.

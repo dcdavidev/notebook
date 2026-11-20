@@ -1,5 +1,5 @@
 -- Public profile of each account, created when a visitor signs in for the
--- first time with Google, GitHub, or Facebook.
+-- first time with Google, GitHub, Microsoft, or Facebook.
 create table public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   display_name text,
