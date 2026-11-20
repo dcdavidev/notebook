@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
   // The courses are Markdown files read from disk: ship them with the build.
   outputFileTracingIncludes: {
     '/[lang]/**': ['./learning-materials/**/*'],
+    // Fonts embedded in the lesson PDFs.
+    '/[lang]/learn/[topic]/course/[version]/[lesson]/pdf': [
+      './node_modules/dejavu-fonts-ttf/ttf/DejaVuSans*.ttf',
+    ],
   },
 };
 

@@ -134,7 +134,8 @@ export default async function LessonPage({ params }: Props) {
       )}
       <LessonActions
         title={data.title}
-        downloadHref={`${basePath}/${lesson}/download`}
+        markdownHref={`${basePath}/${lesson}/download`}
+        pdfHref={`${basePath}/${lesson}/pdf`}
       />
 
       <Divider sx={{ my: 4 }} />

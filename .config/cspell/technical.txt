@@ -20,6 +20,7 @@ dats
 dbacockpit
 ddic
 ddlx
+dejavu
 dynpro
 dynpros
 fibf
