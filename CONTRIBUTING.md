@@ -15,7 +15,7 @@ To report a security vulnerability, follow [SECURITY.md](SECURITY.md). Do not op
 
 ## Writing courses
 
-Courses are Markdown files in the `content/` folder. To add or fix a lesson, you only need to edit a `.md` file. The [content guide](content/README.md) explains the folder structure, the front matter, the file names, and the callout syntax.
+Courses are Markdown files in the `learning-materials/` folder. To add or fix a lesson, you only need to edit a `.md` file. The [content guide](learning-materials/README.md) explains the folder structure, the front matter, the file names, and the callout syntax.
 
 ## Development setup
 

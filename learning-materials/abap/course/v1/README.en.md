@@ -101,4 +101,4 @@ Along the way you'll find these boxes:
 
 This is **v1** of the course. The examples are based on SAP S/4HANA and ABAP releases 7.5x, with the ABAP Cloud model for the last lessons. Organizational codes, numbers, and names in the examples (company codes, sales organizations, material numbers) are samples: they depend on your system's customizing.
 
-Found an error or want to improve a lesson? Every page has an "Edit this page on GitHub" link. See the [content guide](https://github.com/dcdavidev/notebook/blob/main/content/README.md) for how lessons are written.
+Found an error or want to improve a lesson? Every page has an "Edit this page on GitHub" link. See the [content guide](https://github.com/dcdavidev/notebook/blob/main/learning-materials/README.md) for how lessons are written.

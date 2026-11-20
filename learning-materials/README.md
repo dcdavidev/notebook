@@ -5,7 +5,7 @@ Every course on Notebook is a folder of Markdown files. The app reads these file
 ## Folder structure
 
 ```text
-content/
+learning-materials/
 └── <topic>/                       # abap, sap, javascript, typescript, golang, ...
     └── course/
         ├── v1/                    # first version of the course
@@ -30,7 +30,7 @@ URLs:
 | Course home page | `/<lang>/learn/<topic>/course/<version>`             |
 | Lesson           | `/<lang>/learn/<topic>/course/<version>/<NNNN-slug>` |
 
-`<version>` is `latest` or a folder name such as `v1`. For example, `content/abap/course/v1/0005-internal-tables.en.md` is served at `/en/learn/abap/course/v1/0005-internal-tables` and, while `v1` is the highest version, at `/en/learn/abap/course/latest/0005-internal-tables`.
+`<version>` is `latest` or a folder name such as `v1`. For example, `learning-materials/abap/course/v1/0005-internal-tables.en.md` is served at `/en/learn/abap/course/v1/0005-internal-tables` and, while `v1` is the highest version, at `/en/learn/abap/course/latest/0005-internal-tables`.
 
 ## Course home page (`README.<locale>.md`)
 

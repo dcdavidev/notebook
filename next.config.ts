@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   // The courses are Markdown files read from disk: ship them with the build.
   outputFileTracingIncludes: {
-    '/[lang]/**': ['./content/**/*'],
+    '/[lang]/**': ['./learning-materials/**/*'],
   },
 };
 
