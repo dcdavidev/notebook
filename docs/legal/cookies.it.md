@@ -6,12 +6,13 @@ I cookie sono piccoli file di testo che un sito salva nel tuo browser. La memori
 
 ## Necessari
 
-Fanno funzionare il sito e ricordano le tue scelte. Sono sempre attivi e non contengono dati su chi sei.
+Fanno funzionare il sito e ricordano le tue scelte. Sono sempre attivi. Solo i cookie di accesso ti identificano, e solo dopo che hai effettuato l'accesso.
 
 | Nome                                                          | Tipo           | Scopo                                       | Durata                 |
 | ------------------------------------------------------------- | -------------- | ------------------------------------------- | ---------------------- |
 | `nb-cookie-consent`                                           | Cookie         | Ricorda la tua scelta nel banner dei cookie | 1 anno                 |
 | `nb-locale`                                                   | Cookie         | Ricorda la lingua che hai scelto            | 1 anno                 |
+| `sb-…-auth-token`, `sb-…-auth-token-code-verifier`            | Cookie         | Mantengono l'accesso (solo dopo l'accesso)  | Finché non esci        |
 | `nb-palette`                                                  | Memoria locale | Ricorda la palette di colori                | Finché non la cancelli |
 | `mui-mode`, `mui-color-scheme-light`, `mui-color-scheme-dark` | Memoria locale | Ricordano il tema chiaro o scuro            | Finché non la cancelli |
 

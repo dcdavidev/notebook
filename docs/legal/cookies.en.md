@@ -6,14 +6,15 @@ Cookies are small text files that a site stores in your browser. Local storage i
 
 ## Necessary
 
-They make the site work and remember your choices. They're always on, and they contain no data about who you are.
+They make the site work and remember your choices. They're always on. Only the sign-in cookies identify you, and only after you sign in.
 
-| Name                                                          | Type          | Purpose                                    | Duration           |
-| ------------------------------------------------------------- | ------------- | ------------------------------------------ | ------------------ |
-| `nb-cookie-consent`                                           | Cookie        | Remembers your choice in the cookie banner | 1 year             |
-| `nb-locale`                                                   | Cookie        | Remembers the language you chose           | 1 year             |
-| `nb-palette`                                                  | Local storage | Remembers the color palette                | Until you clear it |
-| `mui-mode`, `mui-color-scheme-light`, `mui-color-scheme-dark` | Local storage | Remember the light or dark theme           | Until you clear it |
+| Name                                                          | Type          | Purpose                                     | Duration           |
+| ------------------------------------------------------------- | ------------- | ------------------------------------------- | ------------------ |
+| `nb-cookie-consent`                                           | Cookie        | Remembers your choice in the cookie banner  | 1 year             |
+| `nb-locale`                                                   | Cookie        | Remembers the language you chose            | 1 year             |
+| `sb-…-auth-token`, `sb-…-auth-token-code-verifier`            | Cookie        | Keep you signed in (only after you sign in) | Until you sign out |
+| `nb-palette`                                                  | Local storage | Remembers the color palette                 | Until you clear it |
+| `mui-mode`, `mui-color-scheme-light`, `mui-color-scheme-dark` | Local storage | Remember the light or dark theme            | Until you clear it |
 
 All of them are first-party: only Notebook can read them.
 

@@ -57,6 +57,8 @@
     "@mui/material-nextjs": "^9.5.0",
     "@react-pdf/renderer": "^4.9.0",
     "@shikijs/rehype": "^4.6.0",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.119.2",
     "@tabler/icons-react": "^3.52.0",
     "@vercel/analytics": "^2.0.1",
     "dejavu-fonts-ttf": "^2.37.3",

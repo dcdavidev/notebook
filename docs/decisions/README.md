@@ -62,3 +62,4 @@ What is the change or architecture being adopted? What options were considered a
 | [**ADR-0014**](./0014-offer-multiple-color-palettes-from-coolors.md)      | Offer Multiple Color Palettes from Coolors           | Accepted   | 2026-11-19 |
 | [**ADR-0015**](./0015-self-host-fonts-with-fontsource.md)                 | Self-Host Fonts with Fontsource                      | Accepted   | 2026-11-19 |
 | [**ADR-0016**](./0016-use-tabler-icons.md)                                | Use Tabler Icons                                     | Accepted   | 2026-11-19 |
+| [**ADR-0017**](./0017-use-supabase-for-accounts.md)                       | Use Supabase for Accounts                            | Accepted   | 2026-11-20 |

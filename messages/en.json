@@ -109,5 +109,16 @@
     "licenseSummary": "Notebook's source code and courses are released under the GNU Affero General Public License v3.0 (AGPL-3.0). You can use, study, share, and change them. If you share a changed version, or run it as a service that other people use over a network, you must release its source code under the same license.",
     "licenseTranslation": "Unofficial Italian translation",
     "licenseOfficial": "Official text"
+  },
+  "Auth": {
+    "signIn": "Sign in",
+    "title": "Sign in to Notebook",
+    "description": "With an account, you can save your favorite courses and your progress on every device.",
+    "continueWith": "Continue with {provider}",
+    "privacyNotice": "When you sign in, Notebook saves the name, email, and profile picture of your account. Read the <privacy>privacy policy</privacy>.",
+    "account": "Account",
+    "accountOf": "Account of {name}",
+    "signOut": "Sign out",
+    "error": "Sign-in failed. Try again."
   }
 }
