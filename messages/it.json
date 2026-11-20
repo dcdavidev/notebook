@@ -46,7 +46,12 @@
     "tags": "Tag",
     "overview": "Panoramica",
     "startCourse": "Inizia il corso",
-    "lessonCount": "{count, plural, one {# lezione} other {# lezioni}}"
+    "lessonCount": "{count, plural, one {# lezione} other {# lezioni}}",
+    "share": "Condividi",
+    "download": "Scarica",
+    "linkCopied": "Link copiato negli appunti",
+    "shareFailed": "Non è stato possibile copiare il link",
+    "headingAnchor": "Link a questa sezione"
   },
   "Sponsor": {
     "title": "Sostieni Notebook",
