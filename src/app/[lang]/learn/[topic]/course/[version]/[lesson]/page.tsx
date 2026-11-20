@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 
 import { IconArrowLeft, IconArrowRight, IconPencil } from '@tabler/icons-react';
 
+import { LessonActions } from '@/components/lesson-actions';
 import { LinkButton } from '@/components/link-button';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
 import { routing } from '@/i18n/routing';
@@ -131,10 +132,19 @@ export default async function LessonPage({ params }: Props) {
           {data.description}
         </Typography>
       )}
+      <LessonActions
+        title={data.title}
+        downloadHref={`${basePath}/${lesson}/download`}
+      />
 
       <Divider sx={{ my: 4 }} />
 
-      <MarkdownContent source={data.body} locale={lang} lessonBase={basePath} />
+      <MarkdownContent
+        source={data.body}
+        locale={lang}
+        lessonBase={basePath}
+        anchorLabel={t('headingAnchor')}
+      />
 
       <Divider sx={{ my: 5 }} />
 

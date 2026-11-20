@@ -46,7 +46,12 @@
     "tags": "Tags",
     "overview": "Overview",
     "startCourse": "Start the course",
-    "lessonCount": "{count, plural, one {# lesson} other {# lessons}}"
+    "lessonCount": "{count, plural, one {# lesson} other {# lessons}}",
+    "share": "Share",
+    "download": "Download",
+    "linkCopied": "Link copied to the clipboard",
+    "shareFailed": "The link could not be copied",
+    "headingAnchor": "Link to this section"
   },
   "Sponsor": {
     "title": "Support Notebook",
