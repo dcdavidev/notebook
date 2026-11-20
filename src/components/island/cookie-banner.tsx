@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button, { type ButtonProps } from '@mui/material/Button';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -42,6 +43,13 @@ const confirmationDuration = 1600;
 
 type Status = 'unknown' | 'asking' | 'preferences' | 'saved' | 'done';
 
+/**
+Legal pages linked from the banner, by URL segment.
+*/
+const legalPages = ['privacy', 'cookies', 'terms'] as const;
+
+type LegalPage = (typeof legalPages)[number];
+
 interface CategoryText {
   title: string;
   description: string;
@@ -62,6 +70,11 @@ const texts: Record<
     alwaysOn: string;
     saved: string;
     language: string;
+    /**
+    Label of the list of links to the legal pages.
+    */
+    legalLinks: string;
+    legal: Record<LegalPage, string>;
     categories: Record<ConsentCategory, CategoryText>;
   }
 > = {
@@ -78,6 +91,12 @@ const texts: Record<
     alwaysOn: 'Sempre attivi',
     saved: 'Preferenze salvate',
     language: 'Lingua',
+    legalLinks: 'Note legali',
+    legal: {
+      privacy: 'Privacy',
+      cookies: 'Cookie Policy',
+      terms: 'Termini',
+    },
     categories: {
       necessary: {
         title: 'Necessari',
@@ -109,6 +128,12 @@ const texts: Record<
     alwaysOn: 'Always on',
     saved: 'Preferences saved',
     language: 'Language',
+    legalLinks: 'Legal',
+    legal: {
+      privacy: 'Privacy',
+      cookies: 'Cookie Policy',
+      terms: 'Terms',
+    },
     categories: {
       necessary: {
         title: 'Necessary',
@@ -282,6 +307,37 @@ export function CookieBanner() {
     </Stack>
   );
 
+  const links = (
+    <Stack
+      component="nav"
+      direction="row"
+      aria-label={text.legalLinks}
+      sx={{
+        gap: 0.5,
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        fontSize: '0.75rem',
+        color: 'rgb(255 255 255 / 0.55)',
+      }}
+    >
+      {legalPages.map((page, index) => (
+        <Stack key={page} direction="row" sx={{ gap: 0.5 }}>
+          {index > 0 && <span aria-hidden="true">·</span>}
+          <Link
+            href={`/${locale}/${page}`}
+            sx={{
+              color: 'rgb(255 255 255 / 0.75)',
+              textDecorationColor: 'rgb(255 255 255 / 0.35)',
+              '&:hover': { color: '#f5f5f5' },
+            }}
+          >
+            {text.legal[page]}
+          </Link>
+        </Stack>
+      ))}
+    </Stack>
+  );
+
   let content;
   if (status === 'saved') {
     content = (
@@ -370,6 +426,7 @@ export function CookieBanner() {
             );
           })}
         </Stack>
+        {links}
         <Stack direction="row" sx={{ gap: 1, justifyContent: 'space-between' }}>
           <Button
             size="small"
@@ -403,6 +460,7 @@ export function CookieBanner() {
         >
           {text.body}
         </Typography>
+        {links}
         <Stack
           direction="row"
           sx={{ gap: 1, justifyContent: 'flex-end', flexWrap: 'wrap' }}

@@ -13,14 +13,14 @@ import { type Locale, locales } from '@/lib/locale';
  * Courses are plain files in `content`, so anyone can contribute by editing
  * Markdown:
  *
- * content/&lt;topic>/course/v&lt;N>/README.&lt;locale>.md      home page: title, description, tags
- * content/&lt;topic>/course/v&lt;N>/NNNN-slug.&lt;locale>.md   one lesson per file
+ * learning-materials/&lt;topic>/course/v&lt;N>/README.&lt;locale>.md      home page: title, description, tags
+ * learning-materials/&lt;topic>/course/v&lt;N>/NNNN-slug.&lt;locale>.md   one lesson per file
  *
  * The lesson file name is the same in every language, so the URL
  * `/&lt;locale>/learn/&lt;topic>/course/&lt;version>/NNNN-slug` stays the same when
  * switching language. In the URL, `latest` stands for the highest `vN`.
  */
-const contentRoot = path.join(process.cwd(), 'content');
+const contentRoot = path.join(process.cwd(), 'learning-materials');
 
 /**
  * URL alias of the newest version (the highest `vN` folder). It is never a
@@ -331,7 +331,7 @@ async function readOverview(
     description: data.description ?? '',
     tags: data.tags ?? [],
     body: heading ? body.slice(heading[0].length) : body,
-    sourcePath: `content/${topic}/course/${version}/${names[index]}`,
+    sourcePath: `learning-materials/${topic}/course/${version}/${names[index]}`,
   };
 }
 
@@ -344,7 +344,7 @@ export function getLessonSourcePath(
   version: string,
   slug: string
 ): string {
-  return `content/${topic}/course/${version}/${slug}.${locale}.md`;
+  return `learning-materials/${topic}/course/${version}/${slug}.${locale}.md`;
 }
 
 /**

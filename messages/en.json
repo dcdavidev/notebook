@@ -1,6 +1,8 @@
 {
   "Metadata": {
-    "overviewTitle": "Overview · Notebook"
+    "overviewTitle": "Overview · Notebook",
+    "sponsorTitle": "Sponsor · Notebook",
+    "contributeTitle": "Contribute · Notebook"
   },
   "Shell": {
     "collapseSidebar": "Collapse sidebar",
@@ -8,13 +10,25 @@
     "openNavigation": "Open navigation",
     "sourceCode": "Source code",
     "authorWebsite": "Davide Di Criscito's website (opens in a new tab)",
-    "courses": "Courses",
+    "navigation": "Navigation",
+    "home": "Home",
+    "learn": "Learn",
+    "course": "Course",
+    "sponsor": "Sponsor",
+    "contribute": "Contribute",
     "showLessons": "Show the lessons of {course}",
     "hideLessons": "Hide the lessons of {course}",
     "versionLabel": "Version {version}. Change version",
     "latestVersion": "Latest",
     "readingProgress": "Reading progress",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "footerTagline": "Free, open courses written in Markdown.",
+    "footerSite": "Site",
+    "footerProject": "Project",
+    "contentGuide": "Content guide",
+    "madeBy": "Made by <author>Davide Di Criscito</author>",
+    "opensNewTab": "(opens in a new tab)",
+    "footerLegal": "Legal"
   },
   "Overview": {
     "title": "What shall we learn today?",
@@ -33,5 +47,51 @@
     "overview": "Overview",
     "startCourse": "Start the course",
     "lessonCount": "{count, plural, one {# lesson} other {# lessons}}"
+  },
+  "Sponsor": {
+    "title": "Support Notebook",
+    "subtitle": "Every course on Notebook is free and open source. If one helped you, you can support the time that goes into writing and maintaining them.",
+    "platforms": "Sponsor the project",
+    "githubDescription": "Sponsor through your GitHub account, every month or once.",
+    "kofiDescription": "Leave a one-time tip, or a monthly one.",
+    "buyMeACoffeeDescription": "Buy a coffee, once or every month.",
+    "thanksDevDescription": "Fund the open source projects your own code depends on.",
+    "cta": "Sponsor on {platform}",
+    "opensNewTab": "(opens in a new tab)",
+    "other": "Other ways to help",
+    "star": "Star the repository on GitHub, so more people find it.",
+    "contribute": "Fix a mistake or improve a lesson: every page has an edit link.",
+    "share": "Share a course with someone who's learning.",
+    "starLink": "Open the repository",
+    "contributeLink": "Read the content guide",
+    "thanks": "Thank you!"
+  },
+  "Contribute": {
+    "title": "Contribute to Notebook",
+    "subtitle": "Notebook is open source, and every course is a folder of Markdown files. You can fix a typo, improve a lesson, or write a new course without touching the code.",
+    "start": "Where to start",
+    "bugTitle": "Report a bug",
+    "bugText": "Something on the site is broken or looks wrong.",
+    "bugCta": "Open a bug report",
+    "ideaTitle": "Suggest an idea",
+    "ideaText": "A new course, a topic, or a feature you would like.",
+    "ideaCta": "Suggest an idea",
+    "lessonTitle": "Fix a lesson",
+    "lessonText": "Every lesson has an \"Edit this page on GitHub\" link. Read the content guide first.",
+    "lessonCta": "Read the content guide",
+    "opensNewTab": "(opens in a new tab)",
+    "contributing": "Contributing guide",
+    "contentGuide": "Content guide",
+    "source": "This guide is {file} in the repository.",
+    "sourceLink": "View on GitHub"
+  },
+  "Legal": {
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "terms": "Terms of Use",
+    "license": "License",
+    "licenseSummary": "Notebook's source code and courses are released under the GNU Affero General Public License v3.0 (AGPL-3.0). You can use, study, share, and change them. If you share a changed version, or run it as a service that other people use over a network, you must release its source code under the same license.",
+    "licenseTranslation": "Unofficial Italian translation",
+    "licenseOfficial": "Official text"
   }
 }

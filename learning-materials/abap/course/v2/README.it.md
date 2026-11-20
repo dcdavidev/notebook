@@ -251,4 +251,4 @@ Questa è la **v2** del corso. Rispetto alla [v1](../v1/README.it.md), che era u
 
 Gli esempi si basano su SAP S/4HANA e ABAP 7.5x, con il modello ABAP Cloud nel livello pro. Codici organizzativi, numeri e nomi negli esempi (società, organizzazioni commerciali, numeri materiale) sono di esempio: dipendono dal customizing del tuo sistema.
 
-Hai trovato un errore o vuoi migliorare una lezione? Ogni pagina ha il link "Modifica questa pagina su GitHub". Leggi la [guida ai contenuti](https://github.com/dcdavidev/notebook/blob/main/content/README.md) per sapere come si scrivono le lezioni.
+Hai trovato un errore o vuoi migliorare una lezione? Ogni pagina ha il link "Modifica questa pagina su GitHub". Leggi la [guida ai contenuti](https://github.com/dcdavidev/notebook/blob/main/learning-materials/README.md) per sapere come si scrivono le lezioni.

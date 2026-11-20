@@ -251,4 +251,4 @@ This is **v2** of the course. Compared with [v1](../v1/README.en.md), a 15-day i
 
 The examples are based on SAP S/4HANA and ABAP 7.5x, with the ABAP Cloud model in the pro level. Organizational codes, numbers, and names in the examples (company codes, sales organizations, material numbers) are samples: they depend on your system's customizing.
 
-Found a mistake or want to improve a lesson? Every page has an "Edit this page on GitHub" link. Read the [content guide](https://github.com/dcdavidev/notebook/blob/main/content/README.md) to learn how lessons are written.
+Found a mistake or want to improve a lesson? Every page has an "Edit this page on GitHub" link. Read the [content guide](https://github.com/dcdavidev/notebook/blob/main/learning-materials/README.md) to learn how lessons are written.

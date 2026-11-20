@@ -1,6 +1,8 @@
 {
   "Metadata": {
-    "overviewTitle": "Panoramica · Notebook"
+    "overviewTitle": "Panoramica · Notebook",
+    "sponsorTitle": "Sostieni · Notebook",
+    "contributeTitle": "Contribuisci · Notebook"
   },
   "Shell": {
     "collapseSidebar": "Comprimi la barra laterale",
@@ -8,13 +10,25 @@
     "openNavigation": "Apri la navigazione",
     "sourceCode": "Codice sorgente",
     "authorWebsite": "Sito di Davide Di Criscito (si apre in una nuova scheda)",
-    "courses": "Corsi",
+    "navigation": "Navigazione",
+    "home": "Home",
+    "learn": "Impara",
+    "course": "Corso",
+    "sponsor": "Sostieni",
+    "contribute": "Contribuisci",
     "showLessons": "Mostra le lezioni di {course}",
     "hideLessons": "Nascondi le lezioni di {course}",
     "versionLabel": "Versione {version}. Cambia versione",
     "latestVersion": "Ultima",
     "readingProgress": "Avanzamento della lettura",
-    "backToTop": "Torna su"
+    "backToTop": "Torna su",
+    "footerTagline": "Corsi gratuiti e aperti, scritti in Markdown.",
+    "footerSite": "Sito",
+    "footerProject": "Progetto",
+    "contentGuide": "Guida ai contenuti",
+    "madeBy": "Creato da <author>Davide Di Criscito</author>",
+    "opensNewTab": "(si apre in una nuova scheda)",
+    "footerLegal": "Note legali"
   },
   "Overview": {
     "title": "Cosa impariamo oggi?",
@@ -33,5 +47,51 @@
     "overview": "Panoramica",
     "startCourse": "Inizia il corso",
     "lessonCount": "{count, plural, one {# lezione} other {# lezioni}}"
+  },
+  "Sponsor": {
+    "title": "Sostieni Notebook",
+    "subtitle": "Tutti i corsi di Notebook sono gratuiti e open source. Se ti sono stati utili, puoi sostenere il tempo che serve per scriverli e mantenerli.",
+    "platforms": "Sostieni il progetto",
+    "githubDescription": "Una sponsorizzazione dal tuo account GitHub, ogni mese o una volta sola.",
+    "kofiDescription": "Lascia una mancia una tantum, o una mensile.",
+    "buyMeACoffeeDescription": "Offri un caffè, una volta o ogni mese.",
+    "thanksDevDescription": "Finanzia i progetti open source da cui dipende il tuo codice.",
+    "cta": "Sostieni su {platform}",
+    "opensNewTab": "(si apre in una nuova scheda)",
+    "other": "Altri modi per aiutare",
+    "star": "Metti una stella al repository su GitHub, così più persone lo trovano.",
+    "contribute": "Correggi un errore o migliora una lezione: ogni pagina ha un link per modificarla.",
+    "share": "Condividi un corso con chi sta imparando.",
+    "starLink": "Apri il repository",
+    "contributeLink": "Leggi la guida ai contenuti",
+    "thanks": "Grazie!"
+  },
+  "Contribute": {
+    "title": "Contribuisci a Notebook",
+    "subtitle": "Notebook è open source, e ogni corso è una cartella di file Markdown. Puoi correggere un refuso, migliorare una lezione o scrivere un nuovo corso senza toccare il codice.",
+    "start": "Da dove iniziare",
+    "bugTitle": "Segnala un bug",
+    "bugText": "Qualcosa nel sito non funziona o non si vede bene.",
+    "bugCta": "Apri una segnalazione",
+    "ideaTitle": "Proponi un'idea",
+    "ideaText": "Un nuovo corso, un argomento o una funzione che vorresti.",
+    "ideaCta": "Proponi un'idea",
+    "lessonTitle": "Correggi una lezione",
+    "lessonText": "Ogni lezione ha il link \"Modifica questa pagina su GitHub\". Prima leggi la guida ai contenuti.",
+    "lessonCta": "Leggi la guida ai contenuti",
+    "opensNewTab": "(si apre in una nuova scheda)",
+    "contributing": "Guida per contribuire",
+    "contentGuide": "Guida ai contenuti",
+    "source": "Questa guida è il file {file} del repository.",
+    "sourceLink": "Vedi su GitHub"
+  },
+  "Legal": {
+    "privacy": "Informativa sulla privacy",
+    "cookies": "Cookie Policy",
+    "terms": "Termini e condizioni",
+    "license": "Licenza",
+    "licenseSummary": "Il codice sorgente e i corsi di Notebook sono distribuiti con la GNU Affero General Public License v3.0 (AGPL-3.0). Puoi usarli, studiarli, condividerli e modificarli. Se condividi una versione modificata, o la esegui come servizio che altre persone usano attraverso una rete, devi distribuirne il codice sorgente con la stessa licenza.",
+    "licenseTranslation": "Traduzione italiana non ufficiale",
+    "licenseOfficial": "Testo ufficiale (in inglese)"
   }
 }

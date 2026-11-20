@@ -38,11 +38,12 @@ overrides:
       - project-italian
   # Course lessons: skip code (fenced blocks and inline code), which is full
   # of identifiers in other languages.
-  - filename: '**/content/**/*.md'
+  - filename: '**/learning-materials/**/*.md'
     ignoreRegExpList:
       - '/^\s*```[\s\S]*?^\s*```/gm'
       - '/`[^`\n]+`/g'
-  - filename: '**/content/**/*.it.md'
+  # Italian translations of the repository documents and lessons.
+  - filename: '**/*.it.md'
     language: en,it
     dictionaries:
       - project-italian

@@ -55,6 +55,8 @@ ricordano
 ricordare
 ricucinarlo
 rilevato
+rilicenza
+rilicenziare
 salva
 salvate
 scelta

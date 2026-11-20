@@ -18,13 +18,16 @@ const lessonLinkPattern = /^(?:\.\/)?(\d{4}-[a-z\d-]+)\.[a-z]{2}\.md(#.*)?$/;
  * also work on GitHub, become site URLs under `lessonBase`. External links
  * open in a new tab.
  */
-function createMarkdownLink(lessonBase?: string) {
+function createMarkdownLink(
+  lessonBase?: string,
+  resolveHref?: (href: string) => string
+) {
   return function MarkdownLink({ href = '', ...props }: ComponentProps<'a'>) {
-    const isExternal = /^https?:\/\//.test(href);
     const lesson = lessonBase ? lessonLinkPattern.exec(href) : null;
     const target = lesson
       ? `${lessonBase}/${lesson[1]}${lesson[2] ?? ''}`
-      : href;
+      : (resolveHref?.(href) ?? href);
+    const isExternal = /^https?:\/\//.test(target);
     return (
       <a
         href={target}
@@ -54,6 +57,26 @@ const calloutColors = {
   caution: '#d0393e',
 };
 
+const headingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
+
+/**
+ * Maps each heading to the one `offset` levels below it, capped at `h6`.
+ * The styles below target the rendered tag, so `h2` and `h3` keep their
+ * look relative to the page.
+ */
+function shiftedHeadings(offset: number) {
+  if (offset <= 0) {
+    return {};
+  }
+  return Object.fromEntries(
+    headingTags.map((tag, index) => {
+      const Tag =
+        headingTags[Math.min(index + offset, headingTags.length - 1)] ?? 'h6';
+      return [tag, (props: ComponentProps<'h2'>) => <Tag {...props} />];
+    })
+  );
+}
+
 /**
  * Renders a lesson written in Markdown with the site typography.
  */
@@ -61,6 +84,8 @@ export async function MarkdownContent({
   source,
   locale,
   lessonBase,
+  resolveHref,
+  headingOffset = 0,
 }: {
   source: string;
   locale: Locale;
@@ -68,13 +93,27 @@ export async function MarkdownContent({
   URL of the course version, used to resolve links to lesson files.
   */
   lessonBase?: string;
+  /**
+   * Rewrites any other link, for example a relative link to a file in the
+   * repository. Return the link unchanged to keep it.
+   */
+  resolveHref?: (href: string) => string;
+  /**
+   * Moves the headings down by this many levels, to nest a document under
+   * a heading of the page: with 1, `##` renders as `h3`.
+   */
+  headingOffset?: number;
 }) {
   const tree = await markdownToHast(source, locale);
   const content = toJsxRuntime(tree, {
     Fragment,
     jsx,
     jsxs,
-    components: { a: createMarkdownLink(lessonBase), table: MarkdownTable },
+    components: {
+      a: createMarkdownLink(lessonBase, resolveHref),
+      table: MarkdownTable,
+      ...shiftedHeadings(headingOffset),
+    },
   });
 
   return (
@@ -97,6 +136,14 @@ export async function MarkdownContent({
           fontSize: '1.3rem',
           fontWeight: 700,
           lineHeight: 1.3,
+          scrollMarginTop: '80px',
+        },
+        '& h4': {
+          mt: 3,
+          mb: 1,
+          fontSize: '1.1rem',
+          fontWeight: 700,
+          lineHeight: 1.35,
           scrollMarginTop: '80px',
         },
         '& p, & ul, & ol': { my: 2 },
