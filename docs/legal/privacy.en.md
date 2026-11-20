@@ -20,17 +20,18 @@ The site is hosted by **Vercel Inc.** When you open a page, your browser sends t
 
 ### Your preferences
 
-Notebook remembers your language, theme, palette, and cookie choice with technical cookies and your browser's local storage. These values stay on your device and contain no data about who you are. The [Cookie Policy](./cookies) lists each of them.
+Notebook remembers your language, theme, palette, and cookie choice with technical cookies and your browser's local storage. These values stay on your device and contain no data about who you are. If you sign in, your language, theme, and palette are also saved in your account (see below). The [Cookie Policy](./cookies) lists each of them.
 
 - **Legal basis:** they're strictly necessary to provide the site you asked for, so they don't need consent.
 
 ### Your account (only if you sign in)
 
-You can sign in with a **Google**, **GitHub**, **Microsoft**, or **Facebook** account. There's no sign-in with an email and password. When you sign in, the provider you choose sends Notebook your name, email address, and profile picture. Notebook saves them together with an identifier of your account.
+You can sign in with a **Google**, **GitHub**, **Microsoft**, or **Facebook** account. There's no sign-in with an email and password. When you sign in, the provider you choose sends Notebook your name, email address, and profile picture. Notebook saves them together with an identifier of your account. You can change the name shown on the site on your [account page](/account).
 
-- **Why:** to create your account and show who is signed in. Later, to save your favorites and progress on every device.
+- **Why:** to create your account, show who is signed in, and keep your language, theme, and palette on every device. Later, also to save your favorites and progress.
+- **What else:** the language, theme, and palette you choose, and the other accounts (Google, GitHub, Microsoft, Facebook) you link to your account.
 - **Legal basis:** providing the service you asked for (Art. 6(1)(b) GDPR).
-- **How long:** until you delete your account. To delete it, use the contact details above.
+- **How long:** until you delete your account. On your [account page](/account), you can download a copy of your data and delete your account with all its data. You can also use the contact details above.
 - You sign in on the provider's site, under its own privacy policy. Notebook never sees your password.
 - Your profile picture is loaded from the provider's servers.
 

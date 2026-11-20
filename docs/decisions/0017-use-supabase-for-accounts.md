@@ -18,6 +18,8 @@ We use **Supabase** for accounts and their data:
 2. **Session in the browser**: the browser client from `@supabase/ssr` keeps the session in first-party cookies and refreshes it by itself. The only server code is the `/auth/callback` route handler, which swaps the sign-in code for a session. There is no proxy, and no page reads cookies on the server.
 3. **Row Level Security**: every table has RLS on, and each visitor can read and change only their own rows. The public key is safe to ship to the browser.
 4. **Migrations in the repository**: the database schema lives in `supabase/migrations`.
+5. **One account page at `/account`**, without a language in the URL. The browser picks the saved language and loads the account data, so the page is static too. Visitors can edit their display name, link and unlink providers, download their data, and delete their account. Deletion runs through `delete_own_account()`, a database function that can only delete the caller, so the site needs no secret key.
+6. **Preferences in the profile**: language, color mode, and palette are saved in `profiles` and applied on sign-in, so they follow the visitor on every device.
 
 ## Consequences
 
