@@ -109,5 +109,16 @@
     "licenseSummary": "Il codice sorgente e i corsi di Notebook sono distribuiti con la GNU Affero General Public License v3.0 (AGPL-3.0). Puoi usarli, studiarli, condividerli e modificarli. Se condividi una versione modificata, o la esegui come servizio che altre persone usano attraverso una rete, devi distribuirne il codice sorgente con la stessa licenza.",
     "licenseTranslation": "Traduzione italiana non ufficiale",
     "licenseOfficial": "Testo ufficiale (in inglese)"
+  },
+  "Auth": {
+    "signIn": "Accedi",
+    "title": "Accedi a Notebook",
+    "description": "Con un account puoi salvare i corsi preferiti e i tuoi progressi su tutti i dispositivi.",
+    "continueWith": "Continua con {provider}",
+    "privacyNotice": "Accedendo accetti che Notebook salvi nome, email e immagine del profilo del tuo account. Leggi l’<privacy>informativa sulla privacy</privacy>.",
+    "account": "Account",
+    "accountOf": "Account di {name}",
+    "signOut": "Esci",
+    "error": "Accesso non riuscito. Riprova."
   }
 }

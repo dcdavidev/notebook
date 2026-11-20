@@ -19,6 +19,7 @@ import { AppSidebar } from './app-sidebar';
 import { ReadingProgress } from './reading-progress';
 import { VersionMenu } from './version-menu';
 
+import { AccountMenu } from '@/components/auth/account-menu';
 import { SettingsMenu } from '@/components/settings-menu';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { CourseSummary } from '@/lib/courses';
@@ -189,6 +190,7 @@ export function AppShell({
             </IconButton>
           </Tooltip>
           <SettingsMenu />
+          <AccountMenu />
           {/* On course pages, a bar right under the app bar fills up while
               the reader scrolls to the end of the page. */}
           {currentCourse && <ReadingProgress resetKey={pathname} />}

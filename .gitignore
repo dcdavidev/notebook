@@ -46,3 +46,5 @@ lefthook-local.yaml
 
 # dotLottie engine, copied from node_modules on install
 /public/wasm/
+
+!.env.example

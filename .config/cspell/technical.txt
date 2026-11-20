@@ -35,6 +35,7 @@ numc
 osql
 pcre
 pfcg
+plpgsql
 programmentwicklung
 prozessor
 quan

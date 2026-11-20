@@ -9,6 +9,7 @@ Website: [notebook.dcdavidev.me](https://notebook.dcdavidev.me)
 - [Next.js](https://nextjs.org) (App Router) with React and TypeScript
 - [Material UI](https://mui.com/material-ui/) with CSS theme variables and multiple color palettes from [Coolors](https://coolors.co/palettes/trending)
 - [Tabler Icons](https://tabler.io/icons)
+- [Supabase](https://supabase.com) for accounts (sign-in with Google, GitHub, and Facebook)
 - [Fontsource](https://fontsource.org) fonts: Satisfy (site title), Inter (text), and PT Mono (quotes and code)
 - [pnpm](https://pnpm.io) as package manager
 - [Spellbookx](https://github.com/dcdavidev/spellbookx) toolchain: ESLint, Prettier, CSpell, Commitlint, and cz-git
@@ -24,6 +25,10 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Accounts (optional)
+
+Sign-in uses [Supabase](https://supabase.com). Copy `.env.example` to `.env.local` and fill in the URL and publishable key of your Supabase project. Without them, the site works without accounts. The database schema is in `supabase/migrations`, and the decision is in [ADR-0017](docs/decisions/0017-use-supabase-for-accounts.md).
 
 ## Scripts
 

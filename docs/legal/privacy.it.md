@@ -2,7 +2,7 @@
 
 _Ultimo aggiornamento: 20 novembre 2026_
 
-Questa informativa spiega quali dati personali tratta Notebook (`notebook.dcdavidev.me`), perché e quali sono i tuoi diritti. Notebook è un sito gratuito e non commerciale con corsi di programmazione. Non ha account utente, moduli di registrazione o pubblicità.
+Questa informativa spiega quali dati personali tratta Notebook (`notebook.dcdavidev.me`), perché e quali sono i tuoi diritti. Notebook è un sito gratuito e non commerciale con corsi di programmazione. Puoi leggere tutti i corsi senza account. Se vuoi un account, puoi accedere con Google, GitHub o Facebook. Non c'è pubblicità.
 
 ## Chi è il titolare
 
@@ -24,6 +24,16 @@ Notebook ricorda lingua, tema, palette e la tua scelta sui cookie con cookie tec
 
 - **Base giuridica:** sono strettamente necessari per fornire il sito che hai richiesto, quindi non serve il consenso.
 
+### Il tuo account (solo se accedi)
+
+Puoi accedere con un account **Google**, **GitHub** o **Facebook**. Non c'è un accesso con email e password. Quando accedi, il servizio che scegli invia a Notebook il tuo nome, l'indirizzo email e l'immagine del profilo. Notebook li salva insieme a un identificativo del tuo account.
+
+- **Perché:** per creare il tuo account e mostrare chi ha effettuato l'accesso. In seguito, per salvare preferiti e progressi su tutti i tuoi dispositivi.
+- **Base giuridica:** l'esecuzione del servizio che hai richiesto (art. 6, par. 1, lett. b del GDPR).
+- **Per quanto tempo:** finché non elimini l'account. Per eliminarlo, usa i recapiti indicati sopra.
+- L'accesso avviene sul sito del servizio scelto, secondo la sua informativa sulla privacy. Notebook non vede mai la tua password.
+- L'immagine del profilo viene caricata dai server del servizio scelto.
+
 ### Statistiche anonime (solo con il tuo consenso)
 
 Se accetti la categoria **Analitici** nel banner dei cookie, il sito carica **Vercel Web Analytics**. Registra le pagine che visiti, la pagina da cui arrivi, il tuo paese e il tipo di browser, sistema operativo e dispositivo.
@@ -35,9 +45,11 @@ Se accetti la categoria **Analitici** nel banner dei cookie, il sito carica **Ve
 ## Chi riceve i dati
 
 - **Vercel Inc.**, come fornitore di hosting e di statistiche, tratta i dati per conto del titolare.
+- **Supabase Inc.**, come fornitore degli account e del relativo database, tratta i dati dell'account per conto del titolare.
+- **Google**, **GitHub** o **Meta (Facebook)**: solo quello con cui accedi.
 - Nessun altro. I dati non vengono venduti né condivisi per la pubblicità.
 
-Vercel ha sede negli Stati Uniti, quindi i dati possono essere trasferiti fuori dallo Spazio economico europeo. Questi trasferimenti si basano sulle garanzie offerte da Vercel, come l'EU-U.S. Data Privacy Framework e le clausole contrattuali tipo della Commissione europea.
+Vercel e Supabase hanno sede negli Stati Uniti, quindi i dati possono essere trasferiti fuori dallo Spazio economico europeo. Questi trasferimenti si basano sulle garanzie offerte da questi fornitori, come l'EU-U.S. Data Privacy Framework e le clausole contrattuali tipo della Commissione europea.
 
 ## Link ad altri siti
 
