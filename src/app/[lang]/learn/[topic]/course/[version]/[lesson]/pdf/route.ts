@@ -1,73 +1,14 @@
-import { cacheLife } from 'next/cache';
 import { hasLocale } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
-
-import packageJson from '../../../../../../../../../package.json';
 
 import { routing } from '@/i18n/routing';
-import {
-  findVersion,
-  getAllLessonParams,
-  getCourses,
-  getLesson,
-} from '@/lib/courses';
-import { renderLessonPdf } from '@/lib/lesson-pdf';
-import type { Locale } from '@/lib/locale';
+import { getAllLessonParams } from '@/lib/courses';
+import { getLessonPdf } from '@/lib/lesson-files';
 
 /**
 Prerenders the PDF of every lesson in every language.
 */
 export async function generateStaticParams() {
   return getAllLessonParams();
-}
-
-/**
- * Renders the PDF of one lesson, or returns `null` if the lesson does not
- * exist. The PDF records its creation time, so the result is cached to
- * prerender it once.
- */
-async function buildPdf(
-  lang: Locale,
-  topic: string,
-  version: string,
-  lesson: string
-): Promise<{ file: Uint8Array<ArrayBuffer>; name: string } | null> {
-  'use cache';
-  cacheLife('max');
-
-  const [courses, t] = await Promise.all([
-    getCourses(lang),
-    getTranslations({ locale: lang, namespace: 'Learn' }),
-  ]);
-  const course = courses.find((item) => item.slug === topic);
-  const versionData = findVersion(course?.versions ?? [], version);
-  const data = versionData
-    ? await getLesson(lang, topic, versionData.name, lesson)
-    : null;
-  if (!course || !versionData || !data) {
-    return null;
-  }
-
-  const index = versionData.lessons.findIndex((item) => item.slug === lesson);
-  const baseUrl = new URL(
-    `/${lang}/learn/${topic}/course/${version}`,
-    packageJson.homepage
-  ).href;
-  const pdf = await renderLessonPdf({
-    locale: lang,
-    title: data.title,
-    description: data.description,
-    body: data.body,
-    meta: [
-      course.title,
-      versionData.name,
-      t('lessonOf', { step: index + 1, total: versionData.lessons.length }),
-    ].join(' · '),
-    url: `${baseUrl}/${lesson}`,
-    baseUrl,
-    pageLabel: (page, total) => t('pdfPage', { page, total }),
-  });
-  return { file: new Uint8Array(pdf), name: `${data.slug}.${lang}.pdf` };
 }
 
 /**
@@ -81,7 +22,7 @@ export async function GET(
 ) {
   const { lang, topic, version, lesson } = await params;
   const pdf = hasLocale(routing.locales, lang)
-    ? await buildPdf(lang, topic, version, lesson)
+    ? await getLessonPdf(lang, topic, version, lesson)
     : null;
   if (!pdf) {
     return new Response('Not found', { status: 404 });

@@ -95,6 +95,8 @@ export default async function LessonPage({ params }: Props) {
   const index = lessons.findIndex((item) => item.slug === lesson);
   const previous = lessons[index - 1];
   const next = lessons[index + 1];
+  // Archives exist only for named versions, not for `latest`.
+  const archiveBase = `/${lang}/learn/${topic}/course/${versionData.name}/download`;
   const sourcePath = getLessonSourcePath(lang, topic, versionData.name, lesson);
 
   return (
@@ -134,8 +136,20 @@ export default async function LessonPage({ params }: Props) {
       )}
       <LessonActions
         title={data.title}
-        markdownHref={`${basePath}/${lesson}/download`}
-        pdfHref={`${basePath}/${lesson}/pdf`}
+        downloads={[
+          { scope: 'lesson', format: 'pdf', href: `${basePath}/${lesson}/pdf` },
+          {
+            scope: 'lesson',
+            format: 'markdown',
+            href: `${basePath}/${lesson}/download`,
+          },
+          { scope: 'course', format: 'pdf', href: `${archiveBase}/pdf` },
+          {
+            scope: 'course',
+            format: 'markdown',
+            href: `${archiveBase}/markdown`,
+          },
+        ]}
       />
 
       <Divider sx={{ my: 4 }} />

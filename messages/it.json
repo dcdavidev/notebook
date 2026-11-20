@@ -57,7 +57,12 @@
     "downloadPdf": "PDF",
     "downloadPdfHint": "Pronto da stampare o leggere offline",
     "downloadMenu": "Formati di download",
-    "pdfPage": "Pagina {page} di {total}"
+    "pdfPage": "Pagina {page} di {total}",
+    "downloadCourse": "Scarica il corso",
+    "thisLesson": "Questa lezione",
+    "wholeCourse": "Tutto il corso",
+    "downloadCoursePdfHint": "Tutte le lezioni in PDF, in un file ZIP",
+    "downloadCourseMarkdownHint": "Tutte le lezioni in Markdown, in un file ZIP"
   },
   "Sponsor": {
     "title": "Sostieni Notebook",

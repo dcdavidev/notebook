@@ -217,6 +217,9 @@ importers:
       dejavu-fonts-ttf:
         specifier: ^2.37.3
         version: 2.37.3
+      fflate:
+        specifier: ^0.8.3
+        version: 0.8.3
       hast-util-to-jsx-runtime:
         specifier: ^2.3.7
         version: 2.3.7(supports-color@7.2.0)
