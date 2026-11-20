@@ -1,10 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect x="1" y="1" width="30" height="30" rx="8" fill="#606C38" />
-  <rect x="9" y="5" width="17" height="22" rx="3" fill="#FEFAE0" />
-  <path d="M20 5h4v9.5l-2-1.7-2 1.7z" fill="#DDA15E" />
-  <circle cx="9" cy="10" r="1.9" fill="#283618" />
-  <circle cx="9" cy="16" r="1.9" fill="#283618" />
-  <circle cx="9" cy="22" r="1.9" fill="#283618" />
-  <rect x="13" y="18" width="9" height="1.8" rx=".9" fill="#606C38" />
-  <rect x="13" y="22" width="6" height="1.8" rx=".9" fill="#606C38" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4 4 24 24">
+  <rect
+    x="8.2"
+    y="5"
+    width="17"
+    height="22"
+    rx="3"
+    fill="#FEFAE0"
+    stroke="#283618"
+    stroke-width="1"
+  />
+  <path d="M19.2 5h4v9.5l-2-1.7-2 1.7z" fill="#DDA15E" />
+  <circle cx="8.2" cy="10" r="1.9" fill="#283618" />
+  <circle cx="8.2" cy="16" r="1.9" fill="#283618" />
+  <circle cx="8.2" cy="22" r="1.9" fill="#283618" />
+  <rect x="12.2" y="18" width="9" height="1.8" rx=".9" fill="#606C38" />
+  <rect x="12.2" y="22" width="6" height="1.8" rx=".9" fill="#606C38" />
 </svg>
