@@ -51,7 +51,13 @@
     "download": "Download",
     "linkCopied": "Link copied to the clipboard",
     "shareFailed": "The link could not be copied",
-    "headingAnchor": "Link to this section"
+    "headingAnchor": "Link to this section",
+    "downloadMarkdown": "Markdown",
+    "downloadMarkdownHint": "Plain text, editable",
+    "downloadPdf": "PDF",
+    "downloadPdfHint": "Ready to print or read offline",
+    "downloadMenu": "Download formats",
+    "pdfPage": "Page {page} of {total}"
   },
   "Sponsor": {
     "title": "Support Notebook",

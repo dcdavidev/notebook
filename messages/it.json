@@ -51,7 +51,13 @@
     "download": "Scarica",
     "linkCopied": "Link copiato negli appunti",
     "shareFailed": "Non è stato possibile copiare il link",
-    "headingAnchor": "Link a questa sezione"
+    "headingAnchor": "Link a questa sezione",
+    "downloadMarkdown": "Markdown",
+    "downloadMarkdownHint": "Testo semplice, modificabile",
+    "downloadPdf": "PDF",
+    "downloadPdfHint": "Pronto da stampare o leggere offline",
+    "downloadMenu": "Formati di download",
+    "pdfPage": "Pagina {page} di {total}"
   },
   "Sponsor": {
     "title": "Sostieni Notebook",
