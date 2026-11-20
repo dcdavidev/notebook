@@ -4,8 +4,11 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import { ImageResponse } from 'next/og';
+import { hasLocale } from 'next-intl';
 
 import { NotebookLogo } from '@/components/notebook-logo';
+import { routing } from '@/i18n/routing';
+import type { Locale } from '@/lib/locale';
 import { defaultPaletteId, palettes } from '@/theme/palettes';
 
 /**
@@ -157,4 +160,19 @@ export async function renderOgImage({
       ],
     }
   );
+}
+
+/**
+ * Language of an image route, falling back to the default one for an
+ * unknown segment.
+ */
+export function ogLocale(lang: string): Locale {
+  return hasLocale(routing.locales, lang) ? lang : routing.defaultLocale;
+}
+
+/**
+One `{ lang }` per language, to prerender the images of the localized pages.
+*/
+export function localeParams() {
+  return routing.locales.map((lang) => ({ lang }));
 }

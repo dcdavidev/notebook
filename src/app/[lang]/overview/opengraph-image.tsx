@@ -1,8 +1,6 @@
-import { hasLocale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
-import { routing } from '@/i18n/routing';
-import { renderOgImage } from '@/lib/og-image';
+import { localeParams, ogLocale, renderOgImage } from '@/lib/og-image';
 
 export const alt = 'Notebook';
 export { contentType, size } from '@/lib/og-image';
@@ -11,7 +9,7 @@ export { contentType, size } from '@/lib/og-image';
 Prerenders the image once per language.
 */
 export function generateStaticParams() {
-  return routing.locales.map((lang) => ({ lang }));
+  return localeParams();
 }
 
 /**
@@ -23,9 +21,9 @@ export default async function Image({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const locale = hasLocale(routing.locales, lang)
-    ? lang
-    : routing.defaultLocale;
-  const t = await getTranslations({ locale, namespace: 'Overview' });
+  const t = await getTranslations({
+    locale: ogLocale(lang),
+    namespace: 'Overview',
+  });
   return renderOgImage({ title: t('title'), description: t('subtitle') });
 }
