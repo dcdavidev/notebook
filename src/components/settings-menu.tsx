@@ -28,14 +28,12 @@ import {
   IconSun,
 } from '@tabler/icons-react';
 
-import { openCookiePreferences, readCookie, writeCookie } from '@/lib/consent';
+import { openCookiePreferences } from '@/lib/consent';
+import { isLocale, type Locale, localeNames, locales } from '@/lib/locale';
 import {
-  isLocale,
-  type Locale,
-  localeCookie,
-  localeNames,
-  locales,
-} from '@/lib/locale';
+  readPreferredLocale,
+  savePreferredLocale,
+} from '@/lib/preferred-locale';
 import { usePalette } from '@/theme/palette-context';
 import { palettes } from '@/theme/palettes';
 
@@ -132,11 +130,20 @@ function SectionHeader({
   );
 }
 
+interface SettingsMenuProps {
+  /**
+   * Outside the localized pages, changing the language normally opens the
+   * overview in that language. With this flag, the page stays open and
+   * only the saved language changes, for example on `/account`.
+   */
+  stayOnPage?: boolean;
+}
+
 /**
  * Settings menu: cookie preferences, language, color
  * mode, and palette. Each group is a section that expands and collapses.
  */
-export function SettingsMenu() {
+export function SettingsMenu({ stayOnPage = false }: SettingsMenuProps) {
   const { mode, setMode } = useColorScheme();
   const { paletteId, selectPalette } = usePalette();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
@@ -153,14 +160,7 @@ export function SettingsMenu() {
 
   const open = (event: MouseEvent<HTMLElement>) => {
     if (!lang) {
-      const stored = readCookie(localeCookie);
-      setPreferredLang(
-        isLocale(stored)
-          ? stored
-          : navigator.language.toLowerCase().startsWith('it')
-            ? 'it'
-            : 'en'
-      );
+      setPreferredLang(readPreferredLocale());
     }
     setAnchor(event.currentTarget);
   };
@@ -174,11 +174,16 @@ export function SettingsMenu() {
 
   /**
    * Saves the language. On a localized page it opens the same page in that
-   * language; elsewhere it opens the overview in that language.
+   * language; elsewhere it opens the overview in that language, unless
+   * `stayOnPage` is set.
    */
   const changeLanguage = (next: Locale) => {
-    writeCookie(localeCookie, next);
+    savePreferredLocale(next);
+    setPreferredLang(next);
     close();
+    if (!lang && stayOnPage) {
+      return;
+    }
     if (!lang) {
       router.push(`/${next}/overview`);
     } else if (next !== lang) {

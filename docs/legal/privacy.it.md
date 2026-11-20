@@ -20,17 +20,18 @@ Il sito è ospitato da **Vercel Inc.** Quando apri una pagina, il tuo browser in
 
 ### Le tue preferenze
 
-Notebook ricorda lingua, tema, palette e la tua scelta sui cookie con cookie tecnici e con la memoria locale del browser. Questi valori restano sul tuo dispositivo e non contengono dati su chi sei. La [Cookie Policy](./cookies) li elenca uno per uno.
+Notebook ricorda lingua, tema, palette e la tua scelta sui cookie con cookie tecnici e con la memoria locale del browser. Questi valori restano sul tuo dispositivo e non contengono dati su chi sei. Se accedi, lingua, tema e palette vengono salvati anche nel tuo account (vedi sotto). La [Cookie Policy](./cookies) li elenca uno per uno.
 
 - **Base giuridica:** sono strettamente necessari per fornire il sito che hai richiesto, quindi non serve il consenso.
 
 ### Il tuo account (solo se accedi)
 
-Puoi accedere con un account **Google**, **GitHub**, **Microsoft** o **Facebook**. Non c'è un accesso con email e password. Quando accedi, il servizio che scegli invia a Notebook il tuo nome, l'indirizzo email e l'immagine del profilo. Notebook li salva insieme a un identificativo del tuo account.
+Puoi accedere con un account **Google**, **GitHub**, **Microsoft** o **Facebook**. Non c'è un accesso con email e password. Quando accedi, il servizio che scegli invia a Notebook il tuo nome, l'indirizzo email e l'immagine del profilo. Notebook li salva insieme a un identificativo del tuo account. Puoi cambiare il nome mostrato sul sito dalla [pagina del tuo account](/account).
 
-- **Perché:** per creare il tuo account e mostrare chi ha effettuato l'accesso. In seguito, per salvare preferiti e progressi su tutti i tuoi dispositivi.
+- **Perché:** per creare il tuo account, mostrare chi ha effettuato l'accesso e mantenere lingua, tema e palette su tutti i tuoi dispositivi. In seguito, anche per salvare preferiti e progressi.
+- **Cos'altro:** la lingua, il tema e la palette che scegli, e gli altri account (Google, GitHub, Microsoft, Facebook) che colleghi al tuo.
 - **Base giuridica:** l'esecuzione del servizio che hai richiesto (art. 6, par. 1, lett. b del GDPR).
-- **Per quanto tempo:** finché non elimini l'account. Per eliminarlo, usa i recapiti indicati sopra.
+- **Per quanto tempo:** finché non elimini l'account. Dalla [pagina del tuo account](/account) puoi scaricare una copia dei tuoi dati ed eliminare l'account con tutti i suoi dati. Puoi anche usare i recapiti indicati sopra.
 - L'accesso avviene sul sito del servizio scelto, secondo la sua informativa sulla privacy. Notebook non vede mai la tua password.
 - L'immagine del profilo viene caricata dai server del servizio scelto.
 
