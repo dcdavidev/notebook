@@ -142,6 +142,14 @@ export function AppSidebar({
               );
               const version = pinned ?? course.versions[0];
               const versionPath = `${coursePath}/course/${pinned ? pinned.name : 'latest'}`;
+              // Pad the lesson numbers to the widest one, at least 2 digits,
+              // so they line up: `01` with 20 lessons, `001` with 150.
+              const lessons = version?.lessons ?? [];
+              const digits = Math.max(
+                2,
+                String(lessons.at(-1)?.step ?? 0).length
+              );
+              const numberWidth = digits * 11;
               return (
                 <li key={course.slug}>
                   <Stack
@@ -204,11 +212,16 @@ export function AppSidebar({
                         <ListItemText
                           primary={tLearn('overview')}
                           slotProps={{
-                            primary: { sx: { fontSize: 13.5, pl: '30px' } },
+                            primary: {
+                              sx: {
+                                fontSize: 13.5,
+                                pl: `${numberWidth + 8}px`,
+                              },
+                            },
                           }}
                         />
                       </ListItemButton>
-                      {(version?.lessons ?? []).map((lesson) => {
+                      {lessons.map((lesson) => {
                         const lessonPath = `${versionPath}/${lesson.slug}`;
                         return (
                           <ListItemButton
@@ -226,12 +239,12 @@ export function AppSidebar({
                               component="span"
                               variant="caption"
                               sx={{
-                                minWidth: 22,
+                                minWidth: numberWidth,
                                 color: 'text.secondary',
                                 fontVariantNumeric: 'tabular-nums',
                               }}
                             >
-                              {String(lesson.step).padStart(2, '0')}
+                              {String(lesson.step).padStart(digits, '0')}
                             </Typography>
                             <ListItemText
                               primary={lesson.title}
