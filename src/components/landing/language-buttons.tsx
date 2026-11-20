@@ -2,8 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 
 import { IconArrowRight } from '@tabler/icons-react';
 
@@ -12,53 +12,100 @@ import { type Locale, localeCookie, localeNames, locales } from '@/lib/locale';
 const oneYear = 60 * 60 * 24 * 365;
 
 /**
- * One button per available language. The suggested language is the main
- * button. Choosing a language stores it in a cookie and opens the site.
+ * Returns a function that stores the chosen language in a cookie and opens
+ * the site in that language.
  */
-export function LanguageButtons({ suggested }: { suggested: Locale }) {
+function useChooseLocale() {
   const router = useRouter();
 
-  const choose = (locale: Locale) => {
+  return (locale: Locale) => {
     // The cookie lets the server render the site in the chosen language.
     // eslint-disable-next-line unicorn/no-document-cookie -- one simple, non-sensitive preference
     document.cookie = `${localeCookie}=${locale}; path=/; max-age=${oneYear}; samesite=lax`;
     router.push(`/${locale}/overview`);
   };
+}
 
-  // The suggested language comes first.
-  const ordered = locales.toSorted(
-    (a, b) => Number(b === suggested) - Number(a === suggested)
-  );
+/**
+Label of the main button, written in the suggested language.
+*/
+const continueLabels: Record<Locale, string> = {
+  it: 'Continua in italiano',
+  en: 'Continue in English',
+};
+
+/**
+ * Main button that continues in the suggested language. It sits inside the
+ * locale alert.
+ */
+export function ContinueButton({ locale }: { locale: Locale }) {
+  const choose = useChooseLocale();
 
   return (
-    <Stack
-      direction={{ xs: 'column', sm: 'row' }}
-      sx={{ gap: 1.5, justifyContent: 'center' }}
+    <Button
+      lang={locale}
+      variant="contained"
+      endIcon={<IconArrowRight size={18} />}
+      onClick={() => {
+        choose(locale);
+      }}
+      sx={{
+        borderRadius: 99,
+        px: 2.5,
+        textTransform: 'none',
+        whiteSpace: 'nowrap',
+        fontSize: '0.95rem',
+      }}
     >
-      {ordered.map((locale) => {
-        const isSuggested = locale === suggested;
-        return (
-          <Button
-            key={locale}
-            lang={locale}
-            size="large"
-            variant={isSuggested ? 'contained' : 'outlined'}
-            endIcon={isSuggested ? <IconArrowRight size={18} /> : undefined}
-            onClick={() => {
-              choose(locale);
-            }}
-            sx={{
-              borderRadius: 99,
-              px: 3.5,
-              minWidth: 160,
-              textTransform: 'none',
-              fontSize: '1rem',
-            }}
-          >
-            {localeNames[locale]}
-          </Button>
-        );
-      })}
-    </Stack>
+      {continueLabels[locale]}
+    </Button>
+  );
+}
+
+/**
+ * The other available languages, laid out in a masonry of columns below the
+ * alert.
+ */
+export function OtherLanguages({ suggested }: { suggested: Locale }) {
+  const choose = useChooseLocale();
+  const others = locales.filter((locale) => locale !== suggested);
+
+  if (others.length === 0) {
+    return null;
+  }
+
+  const columns = Math.min(others.length, 3);
+
+  return (
+    <Box
+      sx={{
+        columnCount: { xs: Math.min(columns, 2), sm: columns },
+        columnGap: 1.5,
+        width: { xs: '100%', sm: 'auto' },
+        maxWidth: 520,
+      }}
+    >
+      {others.map((locale) => (
+        <Button
+          key={locale}
+          lang={locale}
+          variant="outlined"
+          fullWidth
+          onClick={() => {
+            choose(locale);
+          }}
+          sx={{
+            breakInside: 'avoid',
+            mb: 1.5,
+            minWidth: 150,
+            borderRadius: 99,
+            textTransform: 'none',
+            fontSize: '1rem',
+          }}
+        >
+          {localeNames[locale]}
+        </Button>
+      ))}
+    </Box>
   );
 }
