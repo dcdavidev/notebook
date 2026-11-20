@@ -9,6 +9,7 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import './globals.css';
 
 import { ConsentedAnalytics } from '@/components/consented-analytics';
+import { InlineScript } from '@/components/inline-script';
 import { CookieBanner } from '@/components/island/cookie-banner';
 import { Providers } from '@/components/providers';
 import {
@@ -28,11 +29,8 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     <html lang="en" data-palette={defaultPaletteId} suppressHydrationWarning>
       <head>
         <style>{createPalettesCss()}</style>
-        <script
-          // Applies the stored palette before the first paint.
-          // eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml -- static script built from our own constants
-          dangerouslySetInnerHTML={{ __html: createPaletteInitScript() }}
-        />
+        {/* Applies the stored palette before the first paint. */}
+        <InlineScript html={createPaletteInitScript()} />
       </head>
       <body>
         <InitColorSchemeScript attribute="class" />
