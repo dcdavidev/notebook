@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 
 import {
   IconChevronDown,
+  IconHome,
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
 } from '@tabler/icons-react';
@@ -49,8 +50,9 @@ const itemSx = {
 
 /**
  * Sidebar with the site title, the button that collapses it into a narrow
- * rail, and the courses in alphabetical order. The open course also lists
- * the lessons of the version being read.
+ * rail, a link to the home page, and the Learn section with the courses in
+ * alphabetical order. The open course also lists the lessons of the
+ * version being read.
  */
 export function AppSidebar({
   courses,
@@ -64,6 +66,8 @@ export function AppSidebar({
   // Courses the user opened or closed with the arrow, by slug.
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const toggleLabel = t(collapsed ? 'expandSidebar' : 'collapseSidebar');
+  const homePath = '/overview';
+  const isHome = pathname === homePath;
 
   return (
     <Stack sx={{ height: '100%', py: 1.5, px: 1, gap: 1.5 }}>
@@ -117,13 +121,62 @@ export function AppSidebar({
         )}
       </Stack>
 
-      {!collapsed && (
+      {collapsed ? (
+        <Stack
+          component="nav"
+          aria-label={t('navigation')}
+          sx={{ alignItems: 'center' }}
+        >
+          <Tooltip title={t('home')} placement="right">
+            <IconButton
+              component={Link}
+              href={homePath}
+              onClick={onNavigate}
+              aria-label={t('home')}
+              aria-current={isHome ? 'page' : undefined}
+            >
+              <IconHome size={20} />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      ) : (
         <Box
           component="nav"
-          aria-label={t('courses')}
+          aria-label={t('navigation')}
           sx={{ flex: 1, minHeight: 0, overflowY: 'auto' }}
         >
           <List dense disablePadding>
+            <li>
+              <ListItemButton
+                component={Link}
+                href={homePath}
+                onClick={onNavigate}
+                selected={isHome}
+                aria-current={isHome ? 'page' : undefined}
+                sx={{ ...itemSx, gap: 1, py: 1 }}
+              >
+                <IconHome size={18} aria-hidden />
+                <Typography sx={{ fontWeight: 600 }}>{t('home')}</Typography>
+              </ListItemButton>
+            </li>
+          </List>
+
+          <Typography
+            id="sidebar-learn"
+            component="h2"
+            variant="overline"
+            sx={{
+              display: 'block',
+              px: 1.5,
+              pt: 2,
+              pb: 0.5,
+              color: 'text.secondary',
+              lineHeight: 1.5,
+            }}
+          >
+            {t('learn')}
+          </Typography>
+          <List dense disablePadding aria-labelledby="sidebar-learn">
             {courses.map((course) => {
               const coursePath = `/learn/${course.slug}`;
               const isActive = pathname.startsWith(`${coursePath}/`);
