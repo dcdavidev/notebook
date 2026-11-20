@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 
 import { IconArrowRight, IconPencil } from '@tabler/icons-react';
 
+import { DownloadMenu } from '@/components/download-menu';
 import { LinkButton } from '@/components/link-button';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
 import { routing } from '@/i18n/routing';
@@ -86,6 +87,8 @@ export default async function VersionPage({ params }: Props) {
 
   const basePath = `/${lang}/learn/${topic}/course/${version}`;
   const first = versionData.lessons[0];
+  // Archives exist only for named versions, not for `latest`.
+  const archiveBase = `/${lang}/learn/${topic}/course/${versionData.name}/download`;
 
   return (
     <Box
@@ -141,16 +144,33 @@ export default async function VersionPage({ params }: Props) {
         </Stack>
       )}
 
-      {first && (
-        <LinkButton
-          href={`${basePath}/${first.slug}`}
-          variant="contained"
-          endIcon={<IconArrowRight size={18} />}
-          sx={{ mt: 3, textTransform: 'none', borderRadius: 3 }}
-        >
-          {t('startCourse')}
-        </LinkButton>
-      )}
+      <Stack
+        direction="row"
+        sx={{ mt: 3, gap: 1.5, flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        {first && (
+          <LinkButton
+            href={`${basePath}/${first.slug}`}
+            variant="contained"
+            endIcon={<IconArrowRight size={18} />}
+            sx={{ textTransform: 'none', borderRadius: 3 }}
+          >
+            {t('startCourse')}
+          </LinkButton>
+        )}
+        <DownloadMenu
+          label={t('downloadCourse')}
+          options={[
+            { scope: 'course', format: 'pdf', href: `${archiveBase}/pdf` },
+            {
+              scope: 'course',
+              format: 'markdown',
+              href: `${archiveBase}/markdown`,
+            },
+          ]}
+          sx={{ textTransform: 'none', borderRadius: 3, py: 0.75 }}
+        />
+      </Stack>
 
       <Divider sx={{ my: 4 }} />
 

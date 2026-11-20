@@ -57,7 +57,12 @@
     "downloadPdf": "PDF",
     "downloadPdfHint": "Ready to print or read offline",
     "downloadMenu": "Download formats",
-    "pdfPage": "Page {page} of {total}"
+    "pdfPage": "Page {page} of {total}",
+    "downloadCourse": "Download the course",
+    "thisLesson": "This lesson",
+    "wholeCourse": "Whole course",
+    "downloadCoursePdfHint": "Every lesson as a PDF, in a ZIP file",
+    "downloadCourseMarkdownHint": "Every lesson as Markdown, in a ZIP file"
   },
   "Sponsor": {
     "title": "Support Notebook",
