@@ -250,7 +250,7 @@ function LinkedAccountsSection({
               direction="row"
               sx={{ alignItems: 'center', gap: 2, flexWrap: 'wrap' }}
             >
-              <Icon size={24} aria-hidden />
+              <Icon size={24} />
               <Stack sx={{ flex: 1, minWidth: 160 }}>
                 <Typography sx={{ fontWeight: 600 }}>{name}</Typography>
                 <Typography variant="body2" color="text.secondary" noWrap>
