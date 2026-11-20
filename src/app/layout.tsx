@@ -6,6 +6,8 @@ import type { Metadata } from 'next';
 
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 
+import packageJson from '../../package.json';
+
 import './globals.css';
 
 import { ConsentedAnalytics } from '@/components/consented-analytics';
@@ -19,6 +21,8 @@ import {
 } from '@/theme/palettes';
 
 export const metadata: Metadata = {
+  // Makes the Open Graph image URLs absolute.
+  metadataBase: new URL(packageJson.homepage),
   title: 'Notebook',
   description:
     'Digital notebook for free programming courses, downloadable study notes, and personal hobbies.',
