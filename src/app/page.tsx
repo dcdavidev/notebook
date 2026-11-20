@@ -61,6 +61,19 @@ export default function LandingPage() {
           </Typography>
         </FadeIn>
 
+        <FadeIn delay={1.2}>
+          <Typography
+            component="h2"
+            sx={{
+              fontSize: { xs: '1.5rem', sm: '1.875rem' },
+              fontWeight: 700,
+              letterSpacing: '-0.01em',
+            }}
+          >
+            Start learning now
+          </Typography>
+        </FadeIn>
+
         <FadeIn delay={1.4}>
           <Suspense fallback={<LocalePromptSkeleton />}>
             <LocalePrompt />
