@@ -4,15 +4,13 @@ import { type ReactNode, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-import { IconBrandGithub, IconMenu2 } from '@tabler/icons-react';
+import { IconMenu2 } from '@tabler/icons-react';
 
 import { AppFooter } from './app-footer';
 import { AppSidebar } from './app-sidebar';
@@ -163,32 +161,6 @@ export function AppShell({
               </>
             )}
           </Stack>
-          <Tooltip title={t('sourceCode')}>
-            <IconButton
-              href="https://github.com/dcdavidev/notebook"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t('sourceCode')}
-              color="inherit"
-            >
-              <IconBrandGithub />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title={t('authorWebsite')}>
-            <IconButton
-              href="https://dcdavidev.me"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t('authorWebsite')}
-              sx={{ p: 0.5 }}
-            >
-              <Avatar
-                src="/images/davide-di-criscito.jpg"
-                alt=""
-                sx={{ width: 32, height: 32 }}
-              />
-            </IconButton>
-          </Tooltip>
           <SettingsMenu />
           <AccountMenu />
           {/* On course pages, a bar right under the app bar fills up while
