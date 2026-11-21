@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 
 import { IconArrowRight } from '@tabler/icons-react';
 
+import { GrainMass } from '@/components/backgrounds/grain-mass';
 import { FavoriteButton } from '@/components/favorites/favorite-button';
 import { LinkButton } from '@/components/link-button';
 import { routing } from '@/i18n/routing';
@@ -193,55 +194,82 @@ export default async function OverviewPage({
         maxWidth: 1100,
         mx: 'auto',
         px: 2,
-        pt: { xs: 6, md: '10vh' },
+        pt: { xs: 3, md: 5 },
         pb: 10,
         gap: { xs: 6, md: 8 },
       }}
     >
-      <Stack sx={{ alignItems: 'center', textAlign: 'center', gap: 2.5 }}>
-        <Typography
-          variant="h3"
-          component="h1"
-          sx={{
-            fontWeight: 400,
-            fontSize: { xs: '1.75rem', sm: '2.4rem' },
-            letterSpacing: '-0.01em',
-            textWrap: 'balance',
-          }}
-        >
-          {t('title')}
-        </Typography>
-        <Typography
-          sx={{
-            maxWidth: 560,
-            color: 'text.secondary',
-            fontSize: '1.1rem',
-            textWrap: 'balance',
-          }}
-        >
-          {t('subtitle')}
-        </Typography>
-        {featured && (
-          <LinkButton
-            href={`/${locale}/learn/${featured.slug}`}
-            variant="contained"
-            size="large"
-            disableElevation
-            endIcon={<IconArrowRight size={20} />}
+      <Box
+        component="section"
+        aria-labelledby="overview-title"
+        sx={{
+          position: 'relative',
+          isolation: 'isolate',
+          overflow: 'hidden',
+          borderRadius: { xs: 5, md: 8 },
+          border: 1,
+          borderColor: 'color-mix(in oklch, var(--nb-text) 10%, transparent)',
+          bgcolor:
+            'color-mix(in oklch, var(--nb-background), var(--nb-text) 3%)',
+          minHeight: { xs: 420, md: 520 },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          px: 3,
+          py: { xs: 8, md: 10 },
+        }}
+      >
+        <GrainMass opacity={0.75} sx={{ zIndex: -1 }} />
+        <Stack sx={{ alignItems: 'center', textAlign: 'center', gap: 2.5 }}>
+          <Typography
+            id="overview-title"
+            variant="h3"
+            component="h1"
             sx={{
-              mt: 1,
-              px: 3.5,
-              py: 1.25,
-              borderRadius: 999,
-              textTransform: 'none',
-              fontSize: '1.05rem',
-              fontWeight: 600,
+              fontWeight: 700,
+              fontSize: { xs: '2.25rem', sm: '3.25rem', md: '4rem' },
+              lineHeight: 1.05,
+              letterSpacing: '-0.03em',
+              textWrap: 'balance',
             }}
           >
-            {t('cta', { topic: featured.title })}
-          </LinkButton>
-        )}
-      </Stack>
+            {t('title')}
+          </Typography>
+          <Typography
+            sx={{
+              maxWidth: 560,
+              color: 'text.primary',
+              fontWeight: 500,
+              textShadow:
+                '0 0 12px var(--nb-background), 0 0 4px var(--nb-background)',
+              fontSize: '1.1rem',
+              textWrap: 'balance',
+            }}
+          >
+            {t('subtitle')}
+          </Typography>
+          {featured && (
+            <LinkButton
+              href={`/${locale}/learn/${featured.slug}`}
+              variant="contained"
+              size="large"
+              disableElevation
+              endIcon={<IconArrowRight size={20} />}
+              sx={{
+                mt: 1,
+                px: 3.5,
+                py: 1.25,
+                borderRadius: 999,
+                textTransform: 'none',
+                fontSize: '1.05rem',
+                fontWeight: 600,
+              }}
+            >
+              {t('cta', { topic: featured.title })}
+            </LinkButton>
+          )}
+        </Stack>
+      </Box>
 
       {courses.length > 0 && (
         <Box component="section" aria-labelledby="topics-title">
