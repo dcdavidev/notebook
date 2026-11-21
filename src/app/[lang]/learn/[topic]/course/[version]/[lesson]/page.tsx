@@ -136,6 +136,7 @@ export default async function LessonPage({ params }: Props) {
       )}
       <LessonActions
         title={data.title}
+        lessonRef={{ course: topic, version: versionData.name, lesson }}
         downloads={[
           { scope: 'lesson', format: 'pdf', href: `${basePath}/${lesson}/pdf` },
           {

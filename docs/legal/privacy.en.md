@@ -1,6 +1,6 @@
 # Privacy Policy
 
-_Last updated: 20 November 2026_
+_Last updated: 21 November 2026_
 
 This policy explains which personal data Notebook (`notebook.dcdavidev.me`) processes, why, and what your rights are. Notebook is a free, non-commercial site with programming courses. You can read every course without an account. If you want one, you can sign in with Google, GitHub, or Facebook. There's no advertising.
 
@@ -28,8 +28,8 @@ Notebook remembers your language, theme, palette, and cookie choice with technic
 
 You can sign in with a **Google**, **GitHub**, or **Facebook** account. There's no sign-in with an email and password. When you sign in, the provider you choose sends Notebook your name, email address, and profile picture. Notebook saves them together with an identifier of your account. You can change the name shown on the site on your [account page](/account).
 
-- **Why:** to create your account, show who is signed in, and keep your favorites, language, theme, and palette on every device. Later, also to save your progress.
-- **What else:** the courses you add to your favorites (with the date you added them), the language, theme, and palette you choose, and the other accounts (Google, GitHub, Facebook) you link to your account.
+- **Why:** to create your account, show who is signed in, and keep your favorites, bookmarks, language, theme, and palette on every device. Later, also to save your progress.
+- **What else:** the courses you add to your favorites and the lessons you bookmark (with the date you added them), the language, theme, and palette you choose, and the other accounts (Google, GitHub, Facebook) you link to your account.
 - **Legal basis:** providing the service you asked for (Art. 6(1)(b) GDPR).
 - **How long:** until you delete your account. On your [account page](/account), you can download a copy of your data and delete your account with all its data. You can also use the contact details above.
 - You sign in on the provider's site, under its own privacy policy. Notebook never sees your password.

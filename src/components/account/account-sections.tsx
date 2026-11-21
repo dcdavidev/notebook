@@ -41,6 +41,11 @@ import {
   providerIcons,
   SignInButtons,
 } from '@/components/auth/sign-in-buttons';
+import { BookmarkButton } from '@/components/bookmarks/bookmark-button';
+import {
+  type Bookmark,
+  useBookmarks,
+} from '@/components/bookmarks/bookmarks-context';
 import { FavoriteButton } from '@/components/favorites/favorite-button';
 import {
   type Favorite,
@@ -379,6 +384,68 @@ function FavoritesSection({
   );
 }
 
+function BookmarksSection({
+  locale,
+  courseTitles,
+  lessonTitles,
+}: {
+  locale: Locale;
+  courseTitles: Record<string, string>;
+  lessonTitles: Record<string, string>;
+}) {
+  const t = useTranslations('Account');
+  const { bookmarks, loading } = useBookmarks();
+
+  return (
+    <Section title={t('bookmarksTitle')} description={t('bookmarksText')}>
+      {loading ? (
+        <CircularProgress size={24} aria-label={t('loading')} />
+      ) : bookmarks.length === 0 ? (
+        <Typography color="text.secondary">{t('bookmarksEmpty')}</Typography>
+      ) : (
+        <Stack
+          component="ul"
+          divider={<Divider component="li" aria-hidden flexItem />}
+          sx={{ m: 0, p: 0, listStyle: 'none', gap: 1 }}
+        >
+          {bookmarks.map(({ course, version, lesson }) => {
+            const path = `${course}/${version}/${lesson}`;
+            const title = lessonTitles[path] ?? lesson;
+            return (
+              <Stack
+                key={path}
+                component="li"
+                direction="row"
+                sx={{ alignItems: 'center', gap: 1 }}
+              >
+                <Stack sx={{ flex: 1, minWidth: 0 }}>
+                  <MuiLink
+                    component={NextLink}
+                    href={`/${locale}/learn/${course}/course/${version}/${lesson}`}
+                    underline="hover"
+                    sx={{ fontWeight: 600, color: 'text.primary' }}
+                  >
+                    {title}
+                  </MuiLink>
+                  <Typography variant="body2" color="text.secondary">
+                    {courseTitles[course] ?? course} · {version}
+                  </Typography>
+                </Stack>
+                <BookmarkButton
+                  course={course}
+                  version={version}
+                  lesson={lesson}
+                  title={title}
+                />
+              </Stack>
+            );
+          })}
+        </Stack>
+      )}
+    </Section>
+  );
+}
+
 function PreferencesSection({ locale }: { locale: Locale }) {
   const t = useTranslations('Account');
   const { mode } = useColorScheme();
@@ -422,7 +489,8 @@ function PreferencesSection({ locale }: { locale: Locale }) {
 function downloadData(
   account: Account,
   profile: unknown,
-  favorites: Favorite[]
+  favorites: Favorite[],
+  bookmarks: Bookmark[]
 ) {
   const data = {
     exportedAt: new Date().toISOString(),
@@ -439,6 +507,12 @@ function downloadData(
     profile,
     favorites: favorites.map(({ course, created_at }) => ({
       course,
+      addedAt: created_at,
+    })),
+    bookmarks: bookmarks.map(({ course, version, lesson, created_at }) => ({
+      course,
+      version,
+      lesson,
       addedAt: created_at,
     })),
   };
@@ -466,6 +540,7 @@ function DataSection({
   const router = useRouter();
   const { profile, deleteAccount, signOut } = useAuth();
   const { favorites } = useFavorites();
+  const { bookmarks } = useBookmarks();
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
@@ -490,7 +565,7 @@ function DataSection({
           variant="outlined"
           startIcon={<IconDownload size={18} />}
           onClick={() => {
-            downloadData(account, profile, favorites);
+            downloadData(account, profile, favorites, bookmarks);
           }}
         >
           {t('download')}
@@ -565,14 +640,17 @@ function DataSection({
 
 /**
  * Content of the account page: a sign-in prompt, or the profile, linked
- * accounts, preferences, and data of the signed-in visitor.
+ * accounts, favorites, bookmarks, preferences, and data of the signed-in
+ * visitor.
  */
 export function AccountSections({
   locale,
   courseTitles,
+  lessonTitles,
 }: {
   locale: Locale;
   courseTitles: Record<string, string>;
+  lessonTitles: Record<string, string>;
 }) {
   const t = useTranslations('Account');
   const { enabled, loading, account } = useAuth();
@@ -625,6 +703,11 @@ export function AccountSections({
       <ProfileSection account={account} notify={setNotice} />
       <LinkedAccountsSection account={account} notify={setNotice} />
       <FavoritesSection locale={locale} courseTitles={courseTitles} />
+      <BookmarksSection
+        locale={locale}
+        courseTitles={courseTitles}
+        lessonTitles={lessonTitles}
+      />
       <PreferencesSection locale={locale} />
       <DataSection account={account} locale={locale} notify={setNotice} />
       {snackbar}

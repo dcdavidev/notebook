@@ -27,7 +27,9 @@
     "contentGuide": "Guida ai contenuti",
     "madeBy": "Creato da <author>Davide Di Criscito</author>",
     "opensNewTab": "(si apre in una nuova scheda)",
-    "footerLegal": "Note legali"
+    "footerLegal": "Note legali",
+    "favorites": "Preferiti",
+    "bookmarks": "Segnalibri"
   },
   "Overview": {
     "title": "Cosa impariamo oggi?",
@@ -164,8 +166,11 @@
     "signOut": "Esci",
     "error": "Qualcosa non ha funzionato. Riprova.",
     "favoritesTitle": "Corsi preferiti",
-    "favoritesText": "I corsi che hai salvato con il cuore. Li ritrovi su tutti i tuoi dispositivi.",
-    "favoritesEmpty": "Non hai ancora corsi preferiti. Tocca il cuore su un corso nella <courses>panoramica</courses> per salvarlo qui."
+    "favoritesText": "I corsi che hai salvato con la stella. Li ritrovi su tutti i tuoi dispositivi.",
+    "favoritesEmpty": "Non hai ancora corsi preferiti. Tocca la stella su un corso nella <courses>panoramica</courses> per salvarlo qui.",
+    "bookmarksTitle": "Lezioni salvate",
+    "bookmarksText": "Le lezioni che hai salvato come importanti. Le ritrovi su tutti i tuoi dispositivi.",
+    "bookmarksEmpty": "Non hai ancora segnalibri. Tocca “Salva” su una lezione per ritrovarla qui."
   },
   "Favorites": {
     "add": "Aggiungi {course} ai preferiti",
@@ -173,5 +178,12 @@
     "save": "Aggiungi ai preferiti",
     "saved": "Nei preferiti",
     "error": "Non è stato possibile aggiornare i preferiti. Riprova."
+  },
+  "Bookmarks": {
+    "add": "Salva {lesson} nei segnalibri",
+    "remove": "Rimuovi {lesson} dai segnalibri",
+    "save": "Salva",
+    "saved": "Salvata",
+    "error": "Non è stato possibile aggiornare i segnalibri. Riprova."
   }
 }

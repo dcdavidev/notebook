@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import {
   AccountPage,
   type CourseTitles,
+  type LessonTitles,
 } from '@/components/account/account-page';
 import { getCourses } from '@/lib/courses';
 import { locales } from '@/lib/locale';
@@ -18,17 +19,37 @@ export const metadata: Metadata = {
  * itself stays static.
  */
 export default async function Page() {
-  // Course titles in every language, for the list of favorites.
+  // Course and lesson titles in every language, for the lists of
+  // favorites and bookmarks.
   const entries = await Promise.all(
     locales.map(async (locale) => {
       const courses = await getCourses(locale);
-      return [
+      const lessons = courses.flatMap(({ slug, versions }) =>
+        versions.flatMap(({ name, lessons: items }) =>
+          items.map((item) => [`${slug}/${name}/${item.slug}`, item.title])
+        )
+      );
+      return {
         locale,
-        Object.fromEntries(courses.map(({ slug, title }) => [slug, title])),
-      ] as const;
+        courses: Object.fromEntries(
+          courses.map(({ slug, title }) => [slug, title])
+        ),
+        lessons: Object.fromEntries(lessons) as Record<string, string>,
+      };
     })
   );
   return (
-    <AccountPage courseTitles={Object.fromEntries(entries) as CourseTitles} />
+    <AccountPage
+      courseTitles={
+        Object.fromEntries(
+          entries.map(({ locale, courses }) => [locale, courses])
+        ) as CourseTitles
+      }
+      lessonTitles={
+        Object.fromEntries(
+          entries.map(({ locale, lessons }) => [locale, lessons])
+        ) as LessonTitles
+      }
+    />
   );
 }
