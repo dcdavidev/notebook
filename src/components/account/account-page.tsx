@@ -27,17 +27,19 @@ Only the namespaces that this page uses reach the provider.
 */
 const pageMessages: Record<
   Locale,
-  Pick<typeof enMessages, 'Auth' | 'Account' | 'Favorites'>
+  Pick<typeof enMessages, 'Auth' | 'Account' | 'Favorites' | 'Bookmarks'>
 > = {
   en: {
     Auth: enMessages.Auth,
     Account: enMessages.Account,
     Favorites: enMessages.Favorites,
+    Bookmarks: enMessages.Bookmarks,
   },
   it: {
     Auth: itMessages.Auth,
     Account: itMessages.Account,
     Favorites: itMessages.Favorites,
+    Bookmarks: itMessages.Bookmarks,
   },
 };
 
@@ -103,14 +105,25 @@ function Layout({ locale, children }: { locale: Locale; children: ReactNode }) {
 }
 
 /**
- * The `/account` page in the visitor's language.
- */
-/**
 Title of each course by language and topic folder.
 */
 export type CourseTitles = Record<Locale, Record<string, string>>;
 
-export function AccountPage({ courseTitles }: { courseTitles: CourseTitles }) {
+/**
+Title of each lesson by language and `course/version/lesson` path.
+*/
+export type LessonTitles = Record<Locale, Record<string, string>>;
+
+/**
+ * The `/account` page in the visitor's language.
+ */
+export function AccountPage({
+  courseTitles,
+  lessonTitles,
+}: {
+  courseTitles: CourseTitles;
+  lessonTitles: LessonTitles;
+}) {
   const locale = usePreferredLocale();
 
   // Only the browser knows the language, so the server renders a spinner.
@@ -129,7 +142,11 @@ export function AccountPage({ courseTitles }: { courseTitles: CourseTitles }) {
       timeZone={new Intl.DateTimeFormat().resolvedOptions().timeZone}
     >
       <Layout locale={locale}>
-        <AccountSections locale={locale} courseTitles={courseTitles[locale]} />
+        <AccountSections
+          locale={locale}
+          courseTitles={courseTitles[locale]}
+          lessonTitles={lessonTitles[locale]}
+        />
       </Layout>
     </NextIntlClientProvider>
   );

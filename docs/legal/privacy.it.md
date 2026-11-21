@@ -1,6 +1,6 @@
 # Informativa sulla privacy
 
-_Ultimo aggiornamento: 20 novembre 2026_
+_Ultimo aggiornamento: 21 novembre 2026_
 
 Questa informativa spiega quali dati personali tratta Notebook (`notebook.dcdavidev.me`), perché e quali sono i tuoi diritti. Notebook è un sito gratuito e non commerciale con corsi di programmazione. Puoi leggere tutti i corsi senza account. Se vuoi un account, puoi accedere con Google, GitHub o Facebook. Non c'è pubblicità.
 
@@ -28,8 +28,8 @@ Notebook ricorda lingua, tema, palette e la tua scelta sui cookie con cookie tec
 
 Puoi accedere con un account **Google**, **GitHub** o **Facebook**. Non c'è un accesso con email e password. Quando accedi, il servizio che scegli invia a Notebook il tuo nome, l'indirizzo email e l'immagine del profilo. Notebook li salva insieme a un identificativo del tuo account. Puoi cambiare il nome mostrato sul sito dalla [pagina del tuo account](/account).
 
-- **Perché:** per creare il tuo account, mostrare chi ha effettuato l'accesso e mantenere preferiti, lingua, tema e palette su tutti i tuoi dispositivi. In seguito, anche per salvare i progressi.
-- **Cos'altro:** i corsi che aggiungi ai preferiti (con la data in cui li hai aggiunti), la lingua, il tema e la palette che scegli, e gli altri account (Google, GitHub, Facebook) che colleghi al tuo.
+- **Perché:** per creare il tuo account, mostrare chi ha effettuato l'accesso e mantenere preferiti, segnalibri, lingua, tema e palette su tutti i tuoi dispositivi. In seguito, anche per salvare i progressi.
+- **Cos'altro:** i corsi che aggiungi ai preferiti e le lezioni che salvi nei segnalibri (con la data in cui li hai aggiunti), la lingua, il tema e la palette che scegli, e gli altri account (Google, GitHub, Facebook) che colleghi al tuo.
 - **Base giuridica:** l'esecuzione del servizio che hai richiesto (art. 6, par. 1, lett. b del GDPR).
 - **Per quanto tempo:** finché non elimini l'account. Dalla [pagina del tuo account](/account) puoi scaricare una copia dei tuoi dati ed eliminare l'account con tutti i suoi dati. Puoi anche usare i recapiti indicati sopra.
 - L'accesso avviene sul sito del servizio scelto, secondo la sua informativa sulla privacy. Notebook non vede mai la tua password.

@@ -16,14 +16,18 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 import {
+  IconBookmark,
   IconChevronDown,
   IconGitPullRequest,
   IconHeart,
   IconHome,
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
+  IconStar,
 } from '@tabler/icons-react';
 
+import { useBookmarks } from '@/components/bookmarks/bookmarks-context';
+import { useFavorites } from '@/components/favorites/favorites-context';
 import { NotebookLogo } from '@/components/notebook-logo';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { CourseSummary } from '@/lib/courses';
@@ -51,9 +55,123 @@ const itemSx = {
   },
 };
 
+const headingSx = {
+  display: 'block',
+  px: 1.5,
+  pt: 2,
+  pb: 0.5,
+  color: 'text.secondary',
+  lineHeight: 1.5,
+} as const;
+
+interface SavedItem {
+  key: string;
+  href: string;
+  label: string;
+  /**
+  Course title, under a bookmarked lesson.
+  */
+  detail?: string;
+}
+
+/**
+ * Favorite courses and bookmarked lessons of the signed-in visitor, newest
+ * first. Each list shows only when it has something in it.
+ */
+function SavedSections({
+  courses,
+  onNavigate,
+}: {
+  courses: CourseSummary[];
+  onNavigate?: () => void;
+}) {
+  const t = useTranslations('Shell');
+  const pathname = usePathname();
+  const { favorites } = useFavorites();
+  const { bookmarks } = useBookmarks();
+  const bySlug = new Map(courses.map((course) => [course.slug, course]));
+
+  const favoriteItems: SavedItem[] = [];
+  for (const { course } of favorites) {
+    const data = bySlug.get(course);
+    if (data) {
+      favoriteItems.push({
+        key: course,
+        href: `/learn/${course}`,
+        label: data.title,
+      });
+    }
+  }
+  const bookmarkItems: SavedItem[] = [];
+  for (const { course, version, lesson } of bookmarks) {
+    const data = bySlug.get(course);
+    const title = data?.versions
+      .find((item) => item.name === version)
+      ?.lessons.find((item) => item.slug === lesson)?.title;
+    if (data && title) {
+      bookmarkItems.push({
+        key: `${course}/${version}/${lesson}`,
+        href: `/learn/${course}/course/${version}/${lesson}`,
+        label: title,
+        detail: data.title,
+      });
+    }
+  }
+
+  const sections = [
+    {
+      id: 'sidebar-favorites',
+      title: t('favorites'),
+      icon: IconStar,
+      items: favoriteItems,
+    },
+    {
+      id: 'sidebar-bookmarks',
+      title: t('bookmarks'),
+      icon: IconBookmark,
+      items: bookmarkItems,
+    },
+  ];
+
+  return sections.map(({ id, title, icon: Icon, items }) =>
+    items.length === 0 ? null : (
+      <Box key={id}>
+        <Typography id={id} component="h2" variant="overline" sx={headingSx}>
+          {title}
+        </Typography>
+        <List dense disablePadding aria-labelledby={id}>
+          {items.map((item) => (
+            <li key={item.key}>
+              <ListItemButton
+                component={Link}
+                href={item.href}
+                onClick={onNavigate}
+                selected={pathname === item.href}
+                aria-current={pathname === item.href ? 'page' : undefined}
+                sx={{ ...itemSx, gap: 1, py: 0.5 }}
+              >
+                <Icon size={16} aria-hidden style={{ flexShrink: 0 }} />
+                <ListItemText
+                  primary={item.label}
+                  secondary={item.detail}
+                  slotProps={{
+                    primary: { sx: { fontSize: 13.5 } },
+                    secondary: { sx: { fontSize: 12 } },
+                  }}
+                />
+              </ListItemButton>
+            </li>
+          ))}
+        </List>
+      </Box>
+    )
+  );
+}
+
 /**
  * Sidebar with the site title, the button that collapses it into a narrow
- * rail, the links to the home, sponsor, and contribute pages, and the Learn section
+ * rail, the links to the home, sponsor, and contribute pages, the
+ * favorite courses and bookmarked lessons, and the Learn section
  * with the courses in
  * alphabetical order. The open course also lists the lessons of the
  * version being read.
@@ -177,18 +295,13 @@ export function AppSidebar({
             ))}
           </List>
 
+          <SavedSections courses={courses} onNavigate={onNavigate} />
+
           <Typography
             id="sidebar-learn"
             component="h2"
             variant="overline"
-            sx={{
-              display: 'block',
-              px: 1.5,
-              pt: 2,
-              pb: 0.5,
-              color: 'text.secondary',
-              lineHeight: 1.5,
-            }}
+            sx={headingSx}
           >
             {t('learn')}
           </Typography>

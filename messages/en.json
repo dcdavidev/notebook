@@ -27,7 +27,9 @@
     "contentGuide": "Content guide",
     "madeBy": "Made by <author>Davide Di Criscito</author>",
     "opensNewTab": "(opens in a new tab)",
-    "footerLegal": "Legal"
+    "footerLegal": "Legal",
+    "favorites": "Favorites",
+    "bookmarks": "Bookmarks"
   },
   "Overview": {
     "title": "What shall we learn today?",
@@ -164,8 +166,11 @@
     "signOut": "Sign out",
     "error": "Something went wrong. Try again.",
     "favoritesTitle": "Favorite courses",
-    "favoritesText": "The courses you saved with the heart. You find them on all your devices.",
-    "favoritesEmpty": "You have no favorite courses yet. Tap the heart on a course in the <courses>overview</courses> to save it here."
+    "favoritesText": "The courses you saved with the star. You find them on all your devices.",
+    "favoritesEmpty": "You have no favorite courses yet. Tap the star on a course in the <courses>overview</courses> to save it here.",
+    "bookmarksTitle": "Bookmarked lessons",
+    "bookmarksText": "The lessons you saved as important. You find them on all your devices.",
+    "bookmarksEmpty": "You have no bookmarks yet. Tap “Bookmark” on a lesson to save it here."
   },
   "Favorites": {
     "add": "Add {course} to favorites",
@@ -173,5 +178,12 @@
     "save": "Add to favorites",
     "saved": "In favorites",
     "error": "Couldn't update your favorites. Try again."
+  },
+  "Bookmarks": {
+    "add": "Bookmark {lesson}",
+    "remove": "Remove {lesson} from bookmarks",
+    "save": "Bookmark",
+    "saved": "Bookmarked",
+    "error": "Couldn't update your bookmarks. Try again."
   }
 }

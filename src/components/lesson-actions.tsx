@@ -10,21 +10,28 @@ import Stack from '@mui/material/Stack';
 
 import { IconShare } from '@tabler/icons-react';
 
+import { BookmarkButton } from '@/components/bookmarks/bookmark-button';
+import type { LessonRef } from '@/components/bookmarks/bookmarks-context';
 import { DownloadMenu, type DownloadOption } from '@/components/download-menu';
 
 const buttonSx = { textTransform: 'none', borderRadius: 3 } as const;
 
 /**
- * Buttons to share a lesson and to download it, or the whole course, as
- * Markdown or PDF. Sharing opens
+ * Buttons to bookmark a lesson, share it, and download it, or the whole
+ * course, as Markdown or PDF. Sharing opens
  * the system share sheet where there is one, and copies the link
  * otherwise.
  */
 export function LessonActions({
   title,
+  lessonRef,
   downloads,
 }: {
   title: string;
+  /**
+  The lesson, for its bookmark.
+  */
+  lessonRef: LessonRef;
   /**
   Files of the lesson and of the whole course.
   */
@@ -68,6 +75,12 @@ export function LessonActions({
           {t('share')}
         </Button>
         <DownloadMenu options={downloads} sx={buttonSx} />
+        <BookmarkButton
+          variant="button"
+          {...lessonRef}
+          title={title}
+          buttonSx={buttonSx}
+        />
       </Stack>
       <Snackbar
         open={message !== null}
