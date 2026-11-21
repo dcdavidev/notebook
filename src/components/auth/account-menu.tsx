@@ -30,6 +30,7 @@ import { SignInButtons } from './sign-in-buttons';
 
 import { Link } from '@/i18n/navigation';
 import type { AuthProviderId } from '@/lib/auth-providers';
+import { onSignInRequest } from '@/lib/sign-in-request';
 
 /**
  * Account button of the app bar. Signed out, it opens a dialog with the
@@ -59,6 +60,16 @@ export function AccountMenu() {
       clearTimeout(timer);
     };
   }, []);
+
+  // Other parts of the page, such as a favorite button, can open the
+  // sign-in dialog.
+  useEffect(
+    () =>
+      onSignInRequest(() => {
+        setDialogOpen(true);
+      }),
+    []
+  );
 
   if (!enabled) {
     return null;

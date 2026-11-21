@@ -2,6 +2,7 @@
 
 import { type FormEvent, type ReactNode, useState } from 'react';
 
+import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useFormatter, useTranslations } from 'next-intl';
 
@@ -15,6 +16,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
+import MuiLink from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
@@ -39,6 +41,11 @@ import {
   providerIcons,
   SignInButtons,
 } from '@/components/auth/sign-in-buttons';
+import { FavoriteButton } from '@/components/favorites/favorite-button';
+import {
+  type Favorite,
+  useFavorites,
+} from '@/components/favorites/favorites-context';
 import { type AuthProviderId, authProviders } from '@/lib/auth-providers';
 import { type Locale, localeNames } from '@/lib/locale';
 import { usePalette } from '@/theme/palette-context';
@@ -315,6 +322,63 @@ function LinkedAccountsSection({
   );
 }
 
+function FavoritesSection({
+  locale,
+  courseTitles,
+}: {
+  locale: Locale;
+  courseTitles: Record<string, string>;
+}) {
+  const t = useTranslations('Account');
+  const { favorites, loading } = useFavorites();
+
+  return (
+    <Section title={t('favoritesTitle')} description={t('favoritesText')}>
+      {loading ? (
+        <CircularProgress size={24} aria-label={t('loading')} />
+      ) : favorites.length === 0 ? (
+        <Typography color="text.secondary">
+          {t.rich('favoritesEmpty', {
+            courses: (chunks) => (
+              <MuiLink component={NextLink} href={`/${locale}/overview`}>
+                {chunks}
+              </MuiLink>
+            ),
+          })}
+        </Typography>
+      ) : (
+        <Stack
+          component="ul"
+          divider={<Divider component="li" aria-hidden flexItem />}
+          sx={{ m: 0, p: 0, listStyle: 'none', gap: 1 }}
+        >
+          {favorites.map(({ course }) => {
+            const title = courseTitles[course] ?? course;
+            return (
+              <Stack
+                key={course}
+                component="li"
+                direction="row"
+                sx={{ alignItems: 'center', gap: 1 }}
+              >
+                <MuiLink
+                  component={NextLink}
+                  href={`/${locale}/learn/${course}`}
+                  underline="hover"
+                  sx={{ flex: 1, fontWeight: 600, color: 'text.primary' }}
+                >
+                  {title}
+                </MuiLink>
+                <FavoriteButton course={course} title={title} />
+              </Stack>
+            );
+          })}
+        </Stack>
+      )}
+    </Section>
+  );
+}
+
 function PreferencesSection({ locale }: { locale: Locale }) {
   const t = useTranslations('Account');
   const { mode } = useColorScheme();
@@ -355,7 +419,11 @@ function PreferencesSection({ locale }: { locale: Locale }) {
 /**
  * Saves a JSON copy of everything Notebook keeps about the visitor.
  */
-function downloadData(account: Account, profile: unknown) {
+function downloadData(
+  account: Account,
+  profile: unknown,
+  favorites: Favorite[]
+) {
   const data = {
     exportedAt: new Date().toISOString(),
     account: {
@@ -369,6 +437,10 @@ function downloadData(account: Account, profile: unknown) {
       })),
     },
     profile,
+    favorites: favorites.map(({ course, created_at }) => ({
+      course,
+      addedAt: created_at,
+    })),
   };
   const blob = new Blob([`${JSON.stringify(data, null, 2)}\n`], {
     type: 'application/json',
@@ -393,6 +465,7 @@ function DataSection({
   const t = useTranslations('Account');
   const router = useRouter();
   const { profile, deleteAccount, signOut } = useAuth();
+  const { favorites } = useFavorites();
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
@@ -417,7 +490,7 @@ function DataSection({
           variant="outlined"
           startIcon={<IconDownload size={18} />}
           onClick={() => {
-            downloadData(account, profile);
+            downloadData(account, profile, favorites);
           }}
         >
           {t('download')}
@@ -494,7 +567,13 @@ function DataSection({
  * Content of the account page: a sign-in prompt, or the profile, linked
  * accounts, preferences, and data of the signed-in visitor.
  */
-export function AccountSections({ locale }: { locale: Locale }) {
+export function AccountSections({
+  locale,
+  courseTitles,
+}: {
+  locale: Locale;
+  courseTitles: Record<string, string>;
+}) {
   const t = useTranslations('Account');
   const { enabled, loading, account } = useAuth();
   const [notice, setNotice] = useState<Notice>(null);
@@ -545,6 +624,7 @@ export function AccountSections({ locale }: { locale: Locale }) {
       </Typography>
       <ProfileSection account={account} notify={setNotice} />
       <LinkedAccountsSection account={account} notify={setNotice} />
+      <FavoritesSection locale={locale} courseTitles={courseTitles} />
       <PreferencesSection locale={locale} />
       <DataSection account={account} locale={locale} notify={setNotice} />
       {snackbar}

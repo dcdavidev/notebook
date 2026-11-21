@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import { IconArrowRight, IconPencil } from '@tabler/icons-react';
 
 import { DownloadMenu } from '@/components/download-menu';
+import { FavoriteButton } from '@/components/favorites/favorite-button';
 import { LinkButton } from '@/components/link-button';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
 import { routing } from '@/i18n/routing';
@@ -169,6 +170,11 @@ export default async function VersionPage({ params }: Props) {
             },
           ]}
           sx={{ textTransform: 'none', borderRadius: 3, py: 0.75 }}
+        />
+        <FavoriteButton
+          variant="button"
+          course={topic}
+          title={overview.title ?? course.title}
         />
       </Stack>
 

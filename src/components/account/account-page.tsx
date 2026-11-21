@@ -27,10 +27,18 @@ Only the namespaces that this page uses reach the provider.
 */
 const pageMessages: Record<
   Locale,
-  Pick<typeof enMessages, 'Auth' | 'Account'>
+  Pick<typeof enMessages, 'Auth' | 'Account' | 'Favorites'>
 > = {
-  en: { Auth: enMessages.Auth, Account: enMessages.Account },
-  it: { Auth: itMessages.Auth, Account: itMessages.Account },
+  en: {
+    Auth: enMessages.Auth,
+    Account: enMessages.Account,
+    Favorites: enMessages.Favorites,
+  },
+  it: {
+    Auth: itMessages.Auth,
+    Account: itMessages.Account,
+    Favorites: itMessages.Favorites,
+  },
 };
 
 function Header({ locale }: { locale: Locale }) {
@@ -97,7 +105,12 @@ function Layout({ locale, children }: { locale: Locale; children: ReactNode }) {
 /**
  * The `/account` page in the visitor's language.
  */
-export function AccountPage() {
+/**
+Title of each course by language and topic folder.
+*/
+export type CourseTitles = Record<Locale, Record<string, string>>;
+
+export function AccountPage({ courseTitles }: { courseTitles: CourseTitles }) {
   const locale = usePreferredLocale();
 
   // Only the browser knows the language, so the server renders a spinner.
@@ -116,7 +129,7 @@ export function AccountPage() {
       timeZone={new Intl.DateTimeFormat().resolvedOptions().timeZone}
     >
       <Layout locale={locale}>
-        <AccountSections locale={locale} />
+        <AccountSections locale={locale} courseTitles={courseTitles[locale]} />
       </Layout>
     </NextIntlClientProvider>
   );
