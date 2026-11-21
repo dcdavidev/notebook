@@ -39,7 +39,7 @@ export const legalSummaries: Record<
         },
         {
           title: 'Account, only if you sign in',
-          text: 'With Google, GitHub, Microsoft, or Facebook, Notebook receives your name, email address, and profile picture. You can download your data or delete your account at any time.',
+          text: 'With Google, GitHub, or Facebook, Notebook receives your name, email address, and profile picture. You can download your data or delete your account at any time.',
         },
         {
           title: 'Statistics, only with your consent',
@@ -66,7 +66,7 @@ export const legalSummaries: Record<
         },
         {
           title: 'Account, solo se accedi',
-          text: 'Con Google, GitHub, Microsoft o Facebook, Notebook riceve nome, indirizzo email e immagine del profilo. Puoi scaricare i tuoi dati o eliminare l’account in qualsiasi momento.',
+          text: 'Con Google, GitHub o Facebook, Notebook riceve nome, indirizzo email e immagine del profilo. Puoi scaricare i tuoi dati o eliminare l’account in qualsiasi momento.',
         },
         {
           title: 'Statistiche, solo con il tuo consenso',
