@@ -14,7 +14,6 @@ import {
   GitHubLogo,
   GoogleLogo,
   type LogoProps,
-  MicrosoftLogo,
   providerLogos,
 } from './provider-logos';
 
@@ -88,7 +87,7 @@ const systemFont =
 
 /**
  * Each provider's own sign-in button. The colors follow the brand
- * guidelines of Google, GitHub, Microsoft, and Meta.
+ * guidelines of Google, GitHub, and Meta.
  */
 const brands: Record<AuthProviderId, Brand> = {
   // White with the multicolor "G"; the dark variant is near-black.
@@ -124,24 +123,6 @@ const brands: Record<AuthProviderId, Brand> = {
       bg: '#24292F',
       hover: '#32383F',
       border: 'rgb(240 246 252 / 0.2)',
-      text: '#FFFFFF',
-    },
-  }),
-  // White with gray text and the four squares; dark gray on dark pages.
-  azure: brand({
-    Logo: MicrosoftLogo,
-    font: `"Segoe UI", ${systemFont}`,
-    radius: '0',
-    light: {
-      bg: '#FFFFFF',
-      hover: '#F3F3F3',
-      border: '#8C8C8C',
-      text: '#5E5E5E',
-    },
-    dark: {
-      bg: '#2F2F2F',
-      hover: '#3B3B3B',
-      border: '#2F2F2F',
       text: '#FFFFFF',
     },
   }),

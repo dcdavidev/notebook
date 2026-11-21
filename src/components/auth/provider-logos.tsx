@@ -68,20 +68,6 @@ export function GitHubLogo({ size }: LogoProps) {
 }
 
 /**
-The four Microsoft squares.
-*/
-export function MicrosoftLogo({ size }: LogoProps) {
-  return (
-    <Svg size={size} viewBox="0 0 21 21">
-      <rect x="1" y="1" width="9" height="9" fill="#F25022" />
-      <rect x="11" y="1" width="9" height="9" fill="#7FBA00" />
-      <rect x="1" y="11" width="9" height="9" fill="#00A4EF" />
-      <rect x="11" y="11" width="9" height="9" fill="#FFB900" />
-    </Svg>
-  );
-}
-
-/**
  * The Facebook "f" in a circle. The circle takes the text color and the
  * "f" is cut out, so it is blue on a light page and white on the blue
  * button.
@@ -102,12 +88,11 @@ export function FacebookLogo({ size }: LogoProps) {
  * Facebook logo is blue there, as on Facebook's own pages.
  */
 export const providerLogos: Record<
-  'google' | 'github' | 'azure' | 'facebook',
+  'google' | 'github' | 'facebook',
   ComponentType<LogoProps>
 > = {
   google: GoogleLogo,
   github: GitHubLogo,
-  azure: MicrosoftLogo,
   facebook: ({ size }) => (
     <span style={{ display: 'inline-flex', color: '#1877F2' }}>
       <FacebookLogo size={size} />

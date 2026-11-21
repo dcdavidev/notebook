@@ -11,11 +11,7 @@ import {
 
 import type { User, UserIdentity } from '@supabase/supabase-js';
 
-import {
-  type AuthProviderId,
-  authProviders,
-  safeNextPath,
-} from '@/lib/auth-providers';
+import { type AuthProviderId, safeNextPath } from '@/lib/auth-providers';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
 
@@ -117,11 +113,6 @@ function callbackUrl(): string {
   return callback.href;
 }
 
-function scopesOf(provider: AuthProviderId): string | undefined {
-  const entry = authProviders.find((item) => item.id === provider);
-  return entry && 'scopes' in entry ? entry.scopes : undefined;
-}
-
 /**
  * Throws the error of a Supabase call, so callers can show it.
  */
@@ -202,7 +193,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         check(
           await client().auth.signInWithOAuth({
             provider,
-            options: { redirectTo: callbackUrl(), scopes: scopesOf(provider) },
+            options: { redirectTo: callbackUrl() },
           })
         );
       },
@@ -213,7 +204,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         check(
           await client().auth.linkIdentity({
             provider,
-            options: { redirectTo: callbackUrl(), scopes: scopesOf(provider) },
+            options: { redirectTo: callbackUrl() },
           })
         );
       },

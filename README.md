@@ -9,7 +9,7 @@ Website: [notebook.dcdavidev.me](https://notebook.dcdavidev.me)
 - [Next.js](https://nextjs.org) (App Router) with React and TypeScript
 - [Material UI](https://mui.com/material-ui/) with CSS theme variables and multiple color palettes from [Coolors](https://coolors.co/palettes/trending)
 - [Tabler Icons](https://tabler.io/icons)
-- [Supabase](https://supabase.com) for accounts (sign-in with Google, GitHub, Microsoft, and Facebook)
+- [Supabase](https://supabase.com) for accounts (sign-in with Google, GitHub, and Facebook)
 - [Fontsource](https://fontsource.org) fonts: Satisfy (site title), Inter (text), and PT Mono (quotes and code)
 - [pnpm](https://pnpm.io) as package manager
 - [Spellbookx](https://github.com/dcdavidev/spellbookx) toolchain: ESLint, Prettier, CSpell, Commitlint, and cz-git

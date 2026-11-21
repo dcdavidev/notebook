@@ -14,7 +14,7 @@ Visitors should be able to save favorites and their progress across devices. Tha
 
 We use **Supabase** for accounts and their data:
 
-1. **Third-party sign-in only**: Google, GitHub, Microsoft, and Facebook. There is no email or password sign-in, so the site stores no passwords and sends no emails.
+1. **Third-party sign-in only**: Google, GitHub, and Facebook. There is no email or password sign-in, so the site stores no passwords and sends no emails.
 2. **Session in the browser**: the browser client from `@supabase/ssr` keeps the session in first-party cookies and refreshes it by itself. The only server code is the `/auth/callback` route handler, which swaps the sign-in code for a session. There is no proxy, and no page reads cookies on the server.
 3. **Row Level Security**: every table has RLS on, and each visitor can read and change only their own rows. The public key is safe to ship to the browser.
 4. **Migrations in the repository**: the database schema lives in `supabase/migrations`.
