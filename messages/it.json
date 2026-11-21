@@ -162,6 +162,16 @@
     "deleted": "Account eliminato.",
     "cancel": "Annulla",
     "signOut": "Esci",
-    "error": "Qualcosa non ha funzionato. Riprova."
+    "error": "Qualcosa non ha funzionato. Riprova.",
+    "favoritesTitle": "Corsi preferiti",
+    "favoritesText": "I corsi che hai salvato con il cuore. Li ritrovi su tutti i tuoi dispositivi.",
+    "favoritesEmpty": "Non hai ancora corsi preferiti. Tocca il cuore su un corso nella <courses>panoramica</courses> per salvarlo qui."
+  },
+  "Favorites": {
+    "add": "Aggiungi {course} ai preferiti",
+    "remove": "Rimuovi {course} dai preferiti",
+    "save": "Aggiungi ai preferiti",
+    "saved": "Nei preferiti",
+    "error": "Non è stato possibile aggiornare i preferiti. Riprova."
   }
 }

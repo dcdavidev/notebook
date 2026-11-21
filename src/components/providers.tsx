@@ -8,6 +8,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 
 import { AuthProvider } from '@/components/auth/auth-context';
 import { PreferencesSync } from '@/components/auth/preferences-sync';
+import { FavoritesProvider } from '@/components/favorites/favorites-context';
 import { PaletteProvider } from '@/theme/palette-context';
 import { theme } from '@/theme/theme';
 
@@ -18,8 +19,10 @@ export function Providers({ children }: { children: ReactNode }) {
         <CssBaseline enableColorScheme />
         <PaletteProvider>
           <AuthProvider>
-            {children}
-            <PreferencesSync />
+            <FavoritesProvider>
+              {children}
+              <PreferencesSync />
+            </FavoritesProvider>
           </AuthProvider>
         </PaletteProvider>
       </ThemeProvider>

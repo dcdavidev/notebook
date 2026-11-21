@@ -162,6 +162,16 @@
     "deleted": "Account deleted.",
     "cancel": "Cancel",
     "signOut": "Sign out",
-    "error": "Something went wrong. Try again."
+    "error": "Something went wrong. Try again.",
+    "favoritesTitle": "Favorite courses",
+    "favoritesText": "The courses you saved with the heart. You find them on all your devices.",
+    "favoritesEmpty": "You have no favorite courses yet. Tap the heart on a course in the <courses>overview</courses> to save it here."
+  },
+  "Favorites": {
+    "add": "Add {course} to favorites",
+    "remove": "Remove {course} from favorites",
+    "save": "Add to favorites",
+    "saved": "In favorites",
+    "error": "Couldn't update your favorites. Try again."
   }
 }

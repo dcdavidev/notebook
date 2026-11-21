@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 
 import { IconArrowRight } from '@tabler/icons-react';
 
+import { FavoriteButton } from '@/components/favorites/favorite-button';
 import { LinkButton } from '@/components/link-button';
 import { routing } from '@/i18n/routing';
 import { type CourseSummary, getCourses } from '@/lib/courses';
@@ -111,6 +112,13 @@ function TopicCard({
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {lessonsLabel}
         </Typography>
+        <Box sx={{ ml: 'auto', alignSelf: 'center', my: -1, mr: -1 }}>
+          <FavoriteButton
+            course={course.slug}
+            title={course.title}
+            color={accent}
+          />
+        </Box>
       </Stack>
       {course.description && (
         <Typography sx={{ color: 'text.secondary' }}>
