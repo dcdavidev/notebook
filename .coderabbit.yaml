@@ -1,0 +1,85 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# CodeRabbit reviews every pull request.
+# Documentation: https://docs.coderabbit.ai/reference/configuration
+
+language: en-US
+
+reviews:
+  # "chill" leaves out nitpicks; "assertive" comments on more.
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  review_status: true
+  poem: false
+  collapse_walkthrough: true
+  auto_review:
+    enabled: true
+    # Pull requests start as drafts here, so review them right away.
+    drafts: true
+
+  # Generated or binary files: nothing to review.
+  path_filters:
+    - '!pnpm-lock.yaml'
+    - '!public/**/*.png'
+    - '!src/app/**/*.png'
+    - '!src/app/favicon.ico'
+
+  path_instructions:
+    - path: '**/*.{ts,tsx}'
+      instructions: |
+        Next.js 16 App Router with Cache Components (`cacheComponents: true`),
+        React 19, TypeScript, and Material UI. APIs differ from older Next.js
+        versions: check `node_modules/next/dist/docs/` before suggesting one.
+        Pages are prerendered: flag reads of cookies, headers, or the clock
+        (`Date.now()`, `new Date()`) during render that are neither cached
+        nor inside a Suspense boundary, because they break the static build.
+        These are allowed: clock reads inside a `"use cache"` function;
+        runtime reads inside a Suspense boundary, in a Client Component or
+        in a Server Component after `await connection()`; and clock reads in
+        effects and event handlers.
+        Account data loads in the browser through the Supabase client; flag
+        server code that needs a secret key.
+    - path: 'src/**/*.tsx'
+      instructions: |
+        Check accessibility: every icon-only button needs an accessible
+        name, decorative icons need `aria-hidden`, and interactive elements
+        must work with the keyboard. Text shown to visitors must come from
+        `messages/en.json` and `messages/it.json`, never hard-coded, except
+        on the landing page and the not-found page.
+    - path: 'messages/*.json'
+      instructions: |
+        `en.json` and `it.json` must have the same keys. Messages use ICU
+        syntax: an apostrophe before `{`, `<`, or `#` starts a quoted
+        literal, so Italian text uses the typographic apostrophe (’) there.
+    - path: 'supabase/migrations/*.sql'
+      instructions: |
+        Every table must enable Row Level Security, with policies limited to
+        `(select auth.uid())`. Rows that belong to an account must reference
+        `auth.users (id) on delete cascade`, so deleting the account deletes
+        them. Migrations that already ran must not be edited.
+    - path: 'docs/legal/*.md'
+      instructions: |
+        Privacy and cookie policies, in English and Italian. The two
+        languages must say the same thing, and new personal data stored by
+        the site must be listed.
+    - path: 'learning-materials/**/*.md'
+      instructions: |
+        Course lessons in English (`.en.md`) and Italian (`.it.md`). Check
+        that code samples are correct and that the two languages match. Do
+        not comment on style choices of the prose.
+    - path: 'docs/decisions/*.md'
+      instructions: |
+        Architecture decision records. A change of decision should add a
+        new record or amend an existing one, and update the index in
+        `docs/decisions/README.md`.
+
+  tools:
+    eslint:
+      enabled: true
+    markdownlint:
+      enabled: true
+    gitleaks:
+      enabled: true
+
+chat:
+  auto_reply: true
