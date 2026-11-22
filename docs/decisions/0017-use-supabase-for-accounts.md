@@ -22,6 +22,7 @@ We use **Supabase** for accounts and their data:
 6. **Preferences in the profile**: language, color mode, and palette are saved in `profiles` and applied on sign-in, so they follow the visitor on every device.
 7. **Favorites per course**: the `favorites` table stores one row per account and course topic (for example `abap`), so a favorite covers every version of the course. The star button updates the page at once and undoes the change if saving fails.
 8. **Bookmarks per lesson**: the `bookmarks` table stores one row per account and lesson, keyed by course topic, named version folder (never the `latest` alias), and lesson slug, so a bookmark keeps pointing at the lesson it was saved on. The bookmark button on the lesson page works like the star button.
+9. **Progress per lesson**: the `lesson_progress` table uses the same lesson key as `bookmarks`. Opening a lesson while signed in saves `last_read_at`, which drives "Continue where you left off"; the "Mark as completed" button at the end of the lesson sets or clears `completed_at`. The course page shows a progress bar, the sidebar checks completed lessons, and `/account` lists every course the visitor started.
 
 ## Consequences
 

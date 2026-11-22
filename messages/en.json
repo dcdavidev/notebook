@@ -170,7 +170,10 @@
     "favoritesEmpty": "You have no favorite courses yet. Tap the star on a course in the <courses>overview</courses> to save it here.",
     "bookmarksTitle": "Bookmarked lessons",
     "bookmarksText": "The lessons you saved as important. You find them on all your devices.",
-    "bookmarksEmpty": "You have no bookmarks yet. Tap “Bookmark” on a lesson to save it here."
+    "bookmarksEmpty": "You have no bookmarks yet. Tap “Bookmark” on a lesson to save it here.",
+    "progressTitle": "Your progress",
+    "progressText": "The courses you started, with the lessons you completed and the last lesson you read.",
+    "progressEmpty": "You haven't started a course yet. Open a lesson and press “Mark as completed” when you finish it."
   },
   "Favorites": {
     "add": "Add {course} to favorites",
@@ -185,5 +188,13 @@
     "save": "Bookmark",
     "saved": "Bookmarked",
     "error": "Couldn't update your bookmarks. Try again."
+  },
+  "Progress": {
+    "markCompleted": "Mark as completed",
+    "completed": "Completed",
+    "summary": "{done} of {total} lessons completed",
+    "resume": "Continue: {lesson}",
+    "completedLesson": "Completed lesson",
+    "error": "Couldn't save your progress. Try again."
   }
 }

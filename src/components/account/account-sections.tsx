@@ -16,6 +16,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
+import LinearProgress from '@mui/material/LinearProgress';
 import MuiLink from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Snackbar from '@mui/material/Snackbar';
@@ -51,6 +52,10 @@ import {
   type Favorite,
   useFavorites,
 } from '@/components/favorites/favorites-context';
+import {
+  type LessonProgress,
+  useProgress,
+} from '@/components/progress/progress-context';
 import { type AuthProviderId, authProviders } from '@/lib/auth-providers';
 import { type Locale, localeNames } from '@/lib/locale';
 import { usePalette } from '@/theme/palette-context';
@@ -446,6 +451,99 @@ function BookmarksSection({
   );
 }
 
+/**
+ * Courses the visitor started, newest first: one entry per course version,
+ * with the share of completed lessons and the lesson read last.
+ */
+function ProgressSection({
+  locale,
+  courseTitles,
+  lessonTitles,
+}: {
+  locale: Locale;
+  courseTitles: Record<string, string>;
+  lessonTitles: Record<string, string>;
+}) {
+  const t = useTranslations('Account');
+  const tProgress = useTranslations('Progress');
+  const { progress, loading } = useProgress();
+
+  // Rows are sorted by last read, so the first row of each group is the
+  // lesson to resume.
+  const groups = new Map<string, LessonProgress[]>();
+  for (const row of progress) {
+    const key = `${row.course}/${row.version}`;
+    groups.set(key, [...(groups.get(key) ?? []), row]);
+  }
+  const lessonKeys = Object.keys(lessonTitles);
+
+  return (
+    <Section title={t('progressTitle')} description={t('progressText')}>
+      {loading ? (
+        <CircularProgress size={24} aria-label={t('loading')} />
+      ) : groups.size === 0 ? (
+        <Typography color="text.secondary">{t('progressEmpty')}</Typography>
+      ) : (
+        <Stack
+          component="ul"
+          divider={<Divider component="li" aria-hidden flexItem />}
+          sx={{ m: 0, p: 0, listStyle: 'none', gap: 2 }}
+        >
+          {[...groups].map(([key, rows]) => {
+            const [last] = rows;
+            if (!last) {
+              return null;
+            }
+            const { course, version } = last;
+            const total = lessonKeys.filter((item) =>
+              item.startsWith(`${key}/`)
+            ).length;
+            const done = rows.filter(
+              (row) => row.completed_at && lessonTitles[`${key}/${row.lesson}`]
+            ).length;
+            const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+            const summary = tProgress('summary', { done, total });
+            return (
+              <Stack key={key} component="li" sx={{ gap: 1 }}>
+                <Stack
+                  direction="row"
+                  sx={{ justifyContent: 'space-between', gap: 1 }}
+                >
+                  <Typography sx={{ fontWeight: 600 }}>
+                    {courseTitles[course] ?? course} · {version}
+                  </Typography>
+                  <Typography color="text.secondary">{percent}%</Typography>
+                </Stack>
+                <LinearProgress
+                  variant="determinate"
+                  value={percent}
+                  color="success"
+                  aria-label={summary}
+                  sx={{ height: 8, borderRadius: 4 }}
+                />
+                <Typography variant="body2" color="text.secondary">
+                  {summary}
+                </Typography>
+                <MuiLink
+                  component={NextLink}
+                  href={`/${locale}/learn/${course}/course/${version}/${last.lesson}`}
+                  underline="hover"
+                  sx={{ fontWeight: 600, alignSelf: 'flex-start' }}
+                >
+                  {tProgress('resume', {
+                    lesson:
+                      lessonTitles[`${key}/${last.lesson}`] ?? last.lesson,
+                  })}
+                </MuiLink>
+              </Stack>
+            );
+          })}
+        </Stack>
+      )}
+    </Section>
+  );
+}
+
 function PreferencesSection({ locale }: { locale: Locale }) {
   const t = useTranslations('Account');
   const { mode } = useColorScheme();
@@ -490,7 +588,8 @@ function downloadData(
   account: Account,
   profile: unknown,
   favorites: Favorite[],
-  bookmarks: Bookmark[]
+  bookmarks: Bookmark[],
+  progress: LessonProgress[]
 ) {
   const data = {
     exportedAt: new Date().toISOString(),
@@ -515,6 +614,15 @@ function downloadData(
       lesson,
       addedAt: created_at,
     })),
+    progress: progress.map(
+      ({ course, version, lesson, last_read_at, completed_at }) => ({
+        course,
+        version,
+        lesson,
+        lastReadAt: last_read_at,
+        completedAt: completed_at,
+      })
+    ),
   };
   const blob = new Blob([`${JSON.stringify(data, null, 2)}\n`], {
     type: 'application/json',
@@ -541,6 +649,7 @@ function DataSection({
   const { profile, deleteAccount, signOut } = useAuth();
   const { favorites } = useFavorites();
   const { bookmarks } = useBookmarks();
+  const { progress } = useProgress();
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
@@ -565,7 +674,7 @@ function DataSection({
           variant="outlined"
           startIcon={<IconDownload size={18} />}
           onClick={() => {
-            downloadData(account, profile, favorites, bookmarks);
+            downloadData(account, profile, favorites, bookmarks, progress);
           }}
         >
           {t('download')}
@@ -703,6 +812,11 @@ export function AccountSections({
       <ProfileSection account={account} notify={setNotice} />
       <LinkedAccountsSection account={account} notify={setNotice} />
       <FavoritesSection locale={locale} courseTitles={courseTitles} />
+      <ProgressSection
+        locale={locale}
+        courseTitles={courseTitles}
+        lessonTitles={lessonTitles}
+      />
       <BookmarksSection
         locale={locale}
         courseTitles={courseTitles}

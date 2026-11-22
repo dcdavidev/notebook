@@ -14,6 +14,7 @@ import { IconArrowLeft, IconArrowRight, IconPencil } from '@tabler/icons-react';
 import { LessonActions } from '@/components/lesson-actions';
 import { LinkButton } from '@/components/link-button';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
+import { LessonCompletion } from '@/components/progress/lesson-completion';
 import { routing } from '@/i18n/routing';
 import {
   findVersion,
@@ -163,6 +164,14 @@ export default async function LessonPage({ params }: Props) {
       />
 
       <Divider sx={{ my: 5 }} />
+
+      <Stack sx={{ mb: 4 }}>
+        <LessonCompletion
+          course={topic}
+          version={versionData.name}
+          lesson={lesson}
+        />
+      </Stack>
 
       <Stack
         direction={{ xs: 'column', sm: 'row' }}

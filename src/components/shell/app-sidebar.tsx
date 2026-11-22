@@ -18,6 +18,7 @@ import Typography from '@mui/material/Typography';
 import {
   IconBookmark,
   IconChevronDown,
+  IconCircleCheckFilled,
   IconGitPullRequest,
   IconHeart,
   IconHome,
@@ -29,6 +30,7 @@ import {
 import { useBookmarks } from '@/components/bookmarks/bookmarks-context';
 import { useFavorites } from '@/components/favorites/favorites-context';
 import { NotebookLogo } from '@/components/notebook-logo';
+import { useProgress } from '@/components/progress/progress-context';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { CourseSummary } from '@/lib/courses';
 
@@ -184,6 +186,8 @@ export function AppSidebar({
 }: AppSidebarProps) {
   const t = useTranslations('Shell');
   const tLearn = useTranslations('Learn');
+  const tProgress = useTranslations('Progress');
+  const progress = useProgress();
   const pathname = usePathname();
   // Courses the user opened or closed with the arrow, by slug.
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -329,6 +333,10 @@ export function AppSidebar({
               // Pad the lesson numbers to the widest one, at least 2 digits,
               // so they line up: `01` with 20 lessons, `001` with 150.
               const lessons = version?.lessons ?? [];
+              // Completed lessons get a check in place of their number.
+              const completed = version
+                ? progress.completedIn(course.slug, version.name)
+                : new Set<string>();
               const digits = Math.max(
                 2,
                 String(lessons.at(-1)?.step ?? 0).length
@@ -478,11 +486,26 @@ export function AppSidebar({
                                 variant="caption"
                                 sx={{
                                   minWidth: numberWidth,
+                                  display: 'flex',
                                   color: 'text.secondary',
                                   fontVariantNumeric: 'tabular-nums',
                                 }}
                               >
-                                {String(lesson.step).padStart(digits, '0')}
+                                {completed.has(lesson.slug) ? (
+                                  <Box
+                                    component="span"
+                                    role="img"
+                                    aria-label={tProgress('completedLesson')}
+                                    sx={{
+                                      display: 'flex',
+                                      color: 'success.main',
+                                    }}
+                                  >
+                                    <IconCircleCheckFilled size={16} />
+                                  </Box>
+                                ) : (
+                                  String(lesson.step).padStart(digits, '0')
+                                )}
                               </Typography>
                               <ListItemText
                                 primary={lesson.title}

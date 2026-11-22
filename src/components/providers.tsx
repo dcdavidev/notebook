@@ -10,6 +10,7 @@ import { AuthProvider } from '@/components/auth/auth-context';
 import { PreferencesSync } from '@/components/auth/preferences-sync';
 import { BookmarksProvider } from '@/components/bookmarks/bookmarks-context';
 import { FavoritesProvider } from '@/components/favorites/favorites-context';
+import { ProgressProvider } from '@/components/progress/progress-context';
 import { PaletteProvider } from '@/theme/palette-context';
 import { theme } from '@/theme/theme';
 
@@ -22,8 +23,10 @@ export function Providers({ children }: { children: ReactNode }) {
           <AuthProvider>
             <FavoritesProvider>
               <BookmarksProvider>
-                {children}
-                <PreferencesSync />
+                <ProgressProvider>
+                  {children}
+                  <PreferencesSync />
+                </ProgressProvider>
               </BookmarksProvider>
             </FavoritesProvider>
           </AuthProvider>
