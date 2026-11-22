@@ -14,7 +14,7 @@ import { useAuth } from '@/components/auth/auth-context';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 
 /**
- * A lesson: its course topic, its named version folder (never `latest`),
+ * A lesson: its course topic, its named edition such as `2026-11` (never `latest`),
  * and its slug.
  */
 export interface LessonRef {

@@ -4,44 +4,48 @@ import { notFound, redirect } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
 import { routing } from '@/i18n/routing';
-import { findVersion, getCourses, latestVersion } from '@/lib/courses';
+import { coursePath, latestEdition } from '@/lib/course-paths';
+import { findEdition, getCourses } from '@/lib/courses';
 
 /**
- * Redirects to the first lesson of a course version. Without a version it
- * opens `latest`, the alias of the newest `vN`.
+ * Redirects to the first lesson of a course edition. Without an edition it
+ * opens `latest`, the alias of the newest one.
  */
 export async function redirectToFirstLesson(
   lang: string,
   topic: string,
-  version: string = latestVersion
+  edition: string = latestEdition
 ): Promise<never> {
   if (!hasLocale(routing.locales, lang)) {
     notFound();
   }
   const courses = await getCourses(lang);
-  const versions = courses.find((item) => item.slug === topic)?.versions ?? [];
-  const first = findVersion(versions, version)?.lessons[0];
+  const editions = courses.find((item) => item.slug === topic)?.editions ?? [];
+  const first = findEdition(editions, edition)?.lessons[0];
   if (!first) {
     notFound();
   }
-  redirect(`/${lang}/learn/${topic}/course/${version}/${first.slug}`);
+  redirect(`/${lang}${coursePath(topic, edition, first.slug)}`);
 }
 
 /**
- * Redirects to the course home page of the newest version.
+ * Redirects to the course home page of an edition, the newest one by
+ * default.
  */
 export async function redirectToOverview(
   lang: string,
-  topic: string
+  topic: string,
+  edition: string = latestEdition
 ): Promise<never> {
   if (!hasLocale(routing.locales, lang)) {
     notFound();
   }
   const courses = await getCourses(lang);
-  if (courses.every((item) => item.slug !== topic)) {
+  const editions = courses.find((item) => item.slug === topic)?.editions ?? [];
+  if (!findEdition(editions, edition)) {
     notFound();
   }
-  redirect(`/${lang}/learn/${topic}/course/${latestVersion}`);
+  redirect(`/${lang}${coursePath(topic, edition)}`);
 }
 
 /**
@@ -54,25 +58,6 @@ export async function getTopicParams(): Promise<
     routing.locales.map(async (lang) => {
       const courses = await getCourses(lang);
       return courses.map((item) => ({ lang, topic: item.slug }));
-    })
-  );
-  return perLocale.flat();
-}
-
-/**
- * Every `{ lang, topic, version }` triple, for static generation.
- */
-export async function getVersionParams(): Promise<
-  { lang: string; topic: string; version: string }[]
-> {
-  const perLocale = await Promise.all(
-    routing.locales.map(async (lang) => {
-      const courses = await getCourses(lang);
-      return courses.flatMap((item) =>
-        [latestVersion, ...item.versions.map((version) => version.name)].map(
-          (version) => ({ lang, topic: item.slug, version })
-        )
-      );
     })
   );
   return perLocale.flat();

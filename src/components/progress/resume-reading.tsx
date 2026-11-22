@@ -11,6 +11,7 @@ import { useProgress } from './progress-context';
 
 import { useAuth } from '@/components/auth/auth-context';
 import { LinkButton } from '@/components/link-button';
+import { coursePath } from '@/lib/course-paths';
 
 /**
 A lesson, by its `course/version/lesson` key.
@@ -65,7 +66,7 @@ export function ResumeReading({ lessons, locale }: ResumeReadingProps) {
   return (
     <Stack sx={{ alignItems: 'center', gap: 0.75, mt: 1 }}>
       <LinkButton
-        href={`/${locale}/learn/${last.course}/course/${last.version}/${slug}`}
+        href={`/${locale}${coursePath(last.course, last.version, slug)}`}
         variant="outlined"
         size="large"
         startIcon={<IconPlayerPlay size={20} />}

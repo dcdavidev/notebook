@@ -7,52 +7,51 @@ import { cacheLife } from 'next/cache';
 
 import { parse } from 'yaml';
 
-import { type Locale, locales } from '@/lib/locale';
+import { latestEdition } from '@/lib/course-paths';
+import { defaultLocale, type Locale, locales } from '@/lib/locale';
+
+export { latestEdition } from '@/lib/course-paths';
 
 /**
- * Courses are plain files in `content`, so anyone can contribute by editing
- * Markdown:
+ * Courses are plain files in `learning-materials`, so anyone can contribute
+ * by editing Markdown:
  *
- * learning-materials/&lt;topic>/course/v&lt;N>/README.&lt;locale>.md      home page: title, description, tags
- * learning-materials/&lt;topic>/course/v&lt;N>/NNNN-slug.&lt;locale>.md   one lesson per file
+ * learning-materials/&lt;topic>/&lt;YYYY.MM>/&lt;locale>/course/README.md        home page: title, description, tags
+ * learning-materials/&lt;topic>/&lt;YYYY.MM>/&lt;locale>/course/NNNN-slug.md     one lesson per file
+ * learning-materials/&lt;topic>/&lt;YYYY.MM>/&lt;locale>/glossary/README.md      glossary home page
+ * learning-materials/&lt;topic>/&lt;YYYY.MM>/&lt;locale>/glossary/term-slug.md   one entry, with related terms
  *
- * The lesson file name is the same in every language, so the URL
- * `/&lt;locale>/learn/&lt;topic>/course/&lt;version>/NNNN-slug` stays the same when
- * switching language. In the URL, `latest` stands for the highest `vN`.
+ * An edition folder such as `2026.11` is `2026-11` in the URL. The file
+ * names are the same in every language, so the URL
+ * `/&lt;locale>/learn/&lt;topic>/2026-11/course/NNNN-slug` stays the same when
+ * switching language. In the URL, `latest` stands for the newest edition.
  */
 const contentRoot = path.join(process.cwd(), 'learning-materials');
 
 /**
- * URL alias of the newest version (the highest `vN` folder). It is never a
- * folder name.
- */
-export const latestVersion = 'latest';
-
-/**
-Version folder name: `v1`, `v2`, ...
+Edition folder name: a year and a month, such as `2026.11`.
 */
-const versionPattern = /^v(\d+)$/;
+const editionFolderPattern = /^(\d{4})\.(0[1-9]|1[0-2])$/;
 
 /**
-Lesson file name: a four-digit step, a kebab-case slug, and the locale.
+Edition URL segment: a year and a month, such as `2026-11`.
 */
-const lessonPattern = /^(\d{4})-([a-z\d]+(?:-[a-z\d]+)*)\.([a-z]{2})\.md$/;
+const editionSlugPattern = /^(\d{4})-(0[1-9]|1[0-2])$/;
 
 /**
-Lesson URL segment: the file name without locale and extension.
+Lesson file name: a four-digit step and a kebab-case slug.
+*/
+const lessonPattern = /^(\d{4})-[a-z\d]+(?:-[a-z\d]+)*\.md$/;
+
+/**
+Lesson URL segment: the file name without the extension.
 */
 const slugPattern = /^\d{4}-[a-z\d]+(?:-[a-z\d]+)*$/;
 
 /**
-Glossary section file name: a two-digit step, a kebab-case slug, and the locale.
+Glossary entry file name, and URL segment without the extension.
 */
-const glossaryFilePattern =
-  /^(\d{2})-([a-z\d]+(?:-[a-z\d]+)*)\.([a-z]{2})\.md$/;
-
-/**
-Glossary section URL segment: the file name without locale and extension.
-*/
-const glossarySlugPattern = /^\d{2}-[a-z\d]+(?:-[a-z\d]+)*$/;
+const termPattern = /^[a-z\d]+(?:-[a-z\d]+)*$/;
 
 /**
 Topic folder name, for example `abap` or `golang`.
@@ -61,16 +60,31 @@ const namePattern = /^[a-z\d]+(?:[.-][a-z\d]+)*$/;
 
 export interface LessonSummary {
   /**
-  URL segment, for example `0001-welcome-to-sap-and-abap`.
+  URL segment, for example `0001-what-is-sap`.
   */
   slug: string;
   step: number;
   title: string;
 }
 
-export interface CourseVersion {
+export interface CourseEdition {
+  /**
+  URL segment and stored name, for example `2026-11`.
+  */
   name: string;
+  /**
+  The folder name, shown to readers: `2026.11`.
+  */
+  label: string;
   lessons: LessonSummary[];
+  /**
+  Whether the edition has a glossary in this language or in English.
+  */
+  hasGlossary: boolean;
+  /**
+  The glossary entries, in alphabetical order, for the course panel.
+  */
+  glossaryEntries: { slug: string; title: string }[];
 }
 
 export interface CourseSummary {
@@ -82,13 +96,9 @@ export interface CourseSummary {
   description: string;
   tags: string[];
   /**
-  Versions with at least one lesson, newest first.
+  Editions with at least one lesson, newest first.
   */
-  versions: CourseVersion[];
-  /**
-  Whether the topic has a glossary in `glossary/README.&lt;locale>.md`.
-  */
-  hasGlossary: boolean;
+  editions: CourseEdition[];
 }
 
 export interface Lesson extends LessonSummary {
@@ -97,6 +107,10 @@ export interface Lesson extends LessonSummary {
   Markdown body, without the front matter.
   */
   body: string;
+  /**
+  Repository path, for the "Edit on GitHub" link.
+  */
+  sourcePath: string;
 }
 
 export interface CourseOverview {
@@ -116,21 +130,23 @@ export interface CourseOverview {
   sourcePath: string;
 }
 
-export interface GlossarySectionSummary {
+export interface GlossaryEntrySummary {
   /**
-  URL segment, for example `04-internal-tables`.
+  URL segment, for example `internal-table`.
   */
   slug: string;
-  step: number;
-  title: string;
-  description: string;
   /**
-  Number of entries: paragraphs that start with a bold term.
+  The main term.
   */
-  termCount: number;
+  title: string;
+  /**
+  Every term the entry explains: its `##` headings.
+  */
+  terms: string[];
 }
 
-export interface GlossarySection extends GlossarySectionSummary {
+export interface GlossaryEntry extends GlossaryEntrySummary {
+  description: string;
   /**
   Markdown body, without the front matter.
   */
@@ -152,11 +168,11 @@ export interface Glossary {
   */
   body: string;
   /**
-  The subject files, in step order.
+  The entries, in alphabetical order of their main term.
   */
-  sections: GlossarySectionSummary[];
+  entries: GlossaryEntrySummary[];
   /**
-  Number of entries in all the sections.
+  Number of terms in all the entries.
   */
   termCount: number;
   /**
@@ -214,52 +230,98 @@ async function listDirectories(directory: string): Promise<string[]> {
 }
 
 /**
- * Orders versions from the newest to the oldest.
+ * Lists the names of the files of a folder, or nothing if it is missing.
  */
-function compareVersions(a: string, b: string): number {
-  return b.localeCompare(a, 'en', { numeric: true });
+async function listFiles(directory: string): Promise<string[]> {
+  try {
+    const entries = await readdir(directory, { withFileTypes: true });
+    return entries.filter((entry) => entry.isFile()).map((entry) => entry.name);
+  } catch {
+    return [];
+  }
 }
 
 /**
- * Finds the version a URL segment points to: `latest` is the newest one.
+ * The folder of an edition from its URL segment: `2026-11` → `2026.11`.
+ * `null` for anything else, so URLs never reach other folders.
  */
-export function findVersion(
-  versions: CourseVersion[],
-  segment: string | undefined
-): CourseVersion | undefined {
-  return segment === latestVersion
-    ? versions[0]
-    : versions.find((item) => item.name === segment);
+function editionFolder(edition: string): string | null {
+  const match = editionSlugPattern.exec(edition);
+  return match ? `${match[1]}.${match[2]}` : null;
 }
 
 /**
- * Reads the lessons of one course version in one language, in step order.
+ * The folder of one area of an edition in one language.
  */
-async function readVersionLessons(
+function areaDirectory(
   topic: string,
-  version: string,
+  folder: string,
+  locale: Locale,
+  area: 'course' | 'glossary'
+): string {
+  return path.join(contentRoot, topic, folder, locale, area);
+}
+
+/**
+ * Reads a file of an edition area in one language, or in English as a
+ * fallback.
+ */
+async function readLocalized(
+  topic: string,
+  folder: string,
+  locale: Locale,
+  area: 'course' | 'glossary',
+  file: string
+): Promise<{ source: string; sourcePath: string } | null> {
+  const languages = new Set([locale, defaultLocale]);
+  for (const lang of languages) {
+    const source = await readOptionalFile(
+      path.join(areaDirectory(topic, folder, lang, area), file)
+    );
+    if (source !== null) {
+      return {
+        source,
+        sourcePath: `learning-materials/${topic}/${folder}/${lang}/${area}/${file}`,
+      };
+    }
+  }
+  return null;
+}
+
+/**
+ * Finds the edition a URL segment points to: `latest` is the newest one.
+ */
+export function findEdition(
+  editions: CourseEdition[],
+  segment: string | undefined
+): CourseEdition | undefined {
+  return segment === latestEdition
+    ? editions[0]
+    : editions.find((item) => item.name === segment);
+}
+
+/**
+ * Reads the lessons of one course edition in one language, in step order.
+ */
+async function readEditionLessons(
+  topic: string,
+  folder: string,
   locale: Locale
 ): Promise<LessonSummary[]> {
-  const directory = path.join(contentRoot, topic, 'course', version);
-  let files: string[] = [];
-  try {
-    files = await readdir(directory);
-  } catch {
-    // The version folder is missing.
-  }
-  const entries = files
-    .map((file) => ({ file, match: lessonPattern.exec(file) }))
-    .filter(
-      (entry): entry is { file: string; match: RegExpExecArray } =>
-        entry.match?.[3] === locale
-    );
+  const directory = areaDirectory(topic, folder, locale, 'course');
+  const allFiles = await listFiles(directory);
+  const files = allFiles.filter((file) => lessonPattern.test(file));
   const lessons = await Promise.all(
-    entries.map(async ({ file, match }) => {
-      const slug = `${match[1]}-${match[2]}`;
+    files.map(async (file) => {
+      const slug = file.slice(0, -'.md'.length);
       const { data } = splitFrontMatter(
         await readFile(path.join(directory, file), 'utf8')
       );
-      return { slug, step: Number(match[1]), title: data.title ?? slug };
+      return {
+        slug,
+        step: Number(slug.slice(0, 4)),
+        title: data.title ?? slug,
+      };
     })
   );
   return lessons.toSorted((a, b) => a.step - b.step);
@@ -278,67 +340,73 @@ export async function getCourses(locale: Locale): Promise<CourseSummary[]> {
       if (!namePattern.test(topic)) {
         return null;
       }
-      const folders = await listDirectories(
-        path.join(contentRoot, topic, 'course')
+      const topicFolders = await listDirectories(path.join(contentRoot, topic));
+      const folders = topicFolders
+        .filter((name) => editionFolderPattern.test(name))
+        // `YYYY.MM` sorts by date as text: newest first.
+        .toSorted((a, b) => b.localeCompare(a, 'en'));
+      const allEditions = await Promise.all(
+        folders.map(async (folder) => {
+          const name = folder.replace('.', '-');
+          const [lessons, glossary] = await Promise.all([
+            readEditionLessons(topic, folder, locale),
+            getGlossary(locale, topic, name),
+          ]);
+          return {
+            name,
+            label: folder,
+            lessons,
+            hasGlossary: glossary !== null,
+            glossaryEntries: (glossary?.entries ?? []).map(
+              ({ slug, title }) => ({ slug, title })
+            ),
+          };
+        })
       );
-      const versionNames = folders
-        .filter((name) => versionPattern.test(name))
-        .toSorted(compareVersions);
-      const allVersions = await Promise.all(
-        versionNames.map(async (name) => ({
-          name,
-          lessons: await readVersionLessons(topic, name, locale),
-        }))
+      const editions = allEditions.filter(
+        (edition) => edition.lessons.length > 0
       );
-      const versions = allVersions.filter(
-        (version) => version.lessons.length > 0
-      );
-      // Title, description, and tags come from the newest version's README.
-      const newest = versions[0];
-      const [overview, glossary] = await Promise.all([
-        newest ? readOverview(locale, topic, newest.name) : null,
-        readGlossary(locale, topic),
-      ]);
+      // Title, description, and tags come from the newest edition's README.
+      const newest = editions[0];
+      const overview = newest
+        ? await readOverview(locale, topic, newest.label)
+        : null;
       return {
         slug: topic,
         title: overview?.title ?? topic,
         description: overview?.description ?? '',
         tags: overview?.tags ?? [],
-        versions,
-        hasGlossary: glossary !== null,
+        editions,
       };
     })
   );
 
   return courses
     .filter((course): course is CourseSummary =>
-      Boolean(course && course.versions.length > 0)
+      Boolean(course && course.editions.length > 0)
     )
     .toSorted((a, b) => a.title.localeCompare(b.title, locale));
 }
 
 /**
  * One lesson with its Markdown body, or `null` if it does not exist.
+ * `edition` is a named edition such as `2026-11`, never `latest`.
  */
 export async function getLesson(
   locale: Locale,
   topic: string,
-  version: string,
+  edition: string,
   slug: string
 ): Promise<Lesson | null> {
   'use cache';
   cacheLife('max');
 
-  if (
-    !namePattern.test(topic) ||
-    !versionPattern.test(version) ||
-    !slugPattern.test(slug)
-  ) {
+  const folder = editionFolder(edition);
+  if (!folder || !namePattern.test(topic) || !slugPattern.test(slug)) {
     return null;
   }
-  const source = await readOptionalFile(
-    path.join(contentRoot, topic, 'course', version, `${slug}.${locale}.md`)
-  );
+  const directory = areaDirectory(topic, folder, locale, 'course');
+  const source = await readOptionalFile(path.join(directory, `${slug}.md`));
   if (source === null) {
     return null;
   }
@@ -349,167 +417,95 @@ export async function getLesson(
     title: data.title ?? slug,
     description: data.description ?? '',
     body,
+    sourcePath: `learning-materials/${topic}/${folder}/${locale}/course/${slug}.md`,
   };
 }
 
 /**
- * The overview of a course version: `README.&lt;locale>.md`, or `README.en.md`
+ * The home page of a course edition: its `README.md`, or the English one
  * as a fallback.
  */
 export async function getCourseOverview(
   locale: Locale,
   topic: string,
-  version: string
+  edition: string
 ): Promise<CourseOverview | null> {
   'use cache';
   cacheLife('max');
 
-  return namePattern.test(topic) && versionPattern.test(version)
-    ? readOverview(locale, topic, version)
+  const folder = editionFolder(edition);
+  return folder && namePattern.test(topic)
+    ? readOverview(locale, topic, folder)
     : null;
 }
 
 /**
- * Reads a version README. Its leading `# Heading` (the topic) becomes the
+ * Splits the leading `# Heading` off a Markdown body.
+ */
+function splitHeading(body: string): { title?: string; body: string } {
+  const heading = /^\s*# (.+)\r?\n/.exec(body);
+  return heading
+    ? { title: heading[1]?.trim(), body: body.slice(heading[0].length) }
+    : { body };
+}
+
+/**
+ * Reads an edition README. Its leading `# Heading` (the topic) becomes the
  * title and is removed from the body; the front matter holds `description`
  * and `tags`.
  */
 async function readOverview(
   locale: Locale,
   topic: string,
-  version: string
+  folder: string
 ): Promise<CourseOverview | null> {
-  const names = [...new Set([`README.${locale}.md`, 'README.en.md'])];
-  const sources = await Promise.all(
-    names.map((name) =>
-      readOptionalFile(path.join(contentRoot, topic, 'course', version, name))
-    )
+  const file = await readLocalized(
+    topic,
+    folder,
+    locale,
+    'course',
+    'README.md'
   );
-  const index = sources.findIndex((source) => source !== null);
-  const source = sources[index];
-  if (source === undefined || source === null) {
+  if (!file) {
     return null;
   }
-  const { data, body } = splitFrontMatter(source);
-  const heading = /^\s*# (.+)\r?\n/.exec(body);
+  const { data, body } = splitFrontMatter(file.source);
+  const content = splitHeading(body);
   return {
-    title: heading?.[1]?.trim(),
+    title: content.title,
     description: data.description ?? '',
     tags: data.tags ?? [],
-    body: heading ? body.slice(heading[0].length) : body,
-    sourcePath: `learning-materials/${topic}/course/${version}/${names[index]}`,
+    body: content.body,
+    sourcePath: file.sourcePath,
   };
 }
 
 /**
- * The glossary of a topic: `glossary/README.&lt;locale>.md` with the list of
- * its sections, or `null` if the topic has none.
+ * The terms an entry explains: its `##` headings.
  */
-export async function getGlossary(
-  locale: Locale,
-  topic: string
-): Promise<Glossary | null> {
-  'use cache';
-  cacheLife('max');
-
-  return namePattern.test(topic) ? readGlossary(locale, topic) : null;
+function readTerms(body: string): string[] {
+  return body
+    .matchAll(/^## (.+)$/gm)
+    .map((match) => (match[1] ?? '').trim())
+    .toArray();
 }
 
 /**
- * One section of a glossary with its Markdown body, or `null` if it does
- * not exist.
+ * Reads one glossary entry. Its front matter holds the main term as
+ * `title` and a `description`.
  */
-export async function getGlossarySection(
+async function readGlossaryEntry(
   locale: Locale,
   topic: string,
+  folder: string,
   slug: string
-): Promise<GlossarySection | null> {
-  'use cache';
-  cacheLife('max');
-
-  return namePattern.test(topic) && glossarySlugPattern.test(slug)
-    ? readGlossarySection(locale, topic, slug)
-    : null;
-}
-
-/**
- * Every `{ lang, topic }` pair with a glossary, for static generation.
- */
-export async function getGlossaryParams(): Promise<
-  { lang: Locale; topic: string }[]
-> {
-  const perLocale = await Promise.all(
-    locales.map(async (lang) => {
-      const courses = await getCourses(lang);
-      return courses
-        .filter((course) => course.hasGlossary)
-        .map((course) => ({ lang, topic: course.slug }));
-    })
-  );
-  return perLocale.flat();
-}
-
-/**
- * Every `{ lang, topic, section }` triple, for static generation.
- */
-export async function getGlossarySectionParams(): Promise<
-  { lang: Locale; topic: string; section: string }[]
-> {
-  const pairs = await getGlossaryParams();
-  const perPair = await Promise.all(
-    pairs.map(async ({ lang, topic }) => {
-      const glossary = await getGlossary(lang, topic);
-      return (glossary?.sections ?? []).map((section) => ({
-        lang,
-        topic,
-        section: section.slug,
-      }));
-    })
-  );
-  return perPair.flat();
-}
-
-/**
- * Reads `&lt;base>.&lt;locale>.md`, or `&lt;base>.en.md` as a fallback.
- */
-async function readLocalized(
-  directory: string,
-  base: string,
-  locale: Locale
-): Promise<{ source: string; name: string } | null> {
-  const names = [...new Set([`${base}.${locale}.md`, `${base}.en.md`])];
-  const sources = await Promise.all(
-    names.map((name) => readOptionalFile(path.join(directory, name)))
-  );
-  const index = sources.findIndex((source) => source !== null);
-  const source = sources[index];
-  const name = names[index];
-  return source === undefined || source === null || name === undefined
-    ? null
-    : { source, name };
-}
-
-/**
- * Counts the entries of a glossary file: paragraphs that start with a bold
- * term.
- */
-function countTerms(body: string): number {
-  return body.match(/^\*\*/gm)?.length ?? 0;
-}
-
-/**
- * Reads one glossary section. Its front matter holds the title and the
- * description.
- */
-async function readGlossarySection(
-  locale: Locale,
-  topic: string,
-  slug: string
-): Promise<GlossarySection | null> {
+): Promise<GlossaryEntry | null> {
   const file = await readLocalized(
-    path.join(contentRoot, topic, 'glossary'),
-    slug,
-    locale
+    topic,
+    folder,
+    locale,
+    'glossary',
+    `${slug}.md`
   );
   if (!file) {
     return null;
@@ -517,109 +513,209 @@ async function readGlossarySection(
   const { data, body } = splitFrontMatter(file.source);
   return {
     slug,
-    step: Number(slug.slice(0, 2)),
     title: data.title ?? slug,
+    terms: readTerms(body),
     description: data.description ?? '',
-    termCount: countTerms(body),
     body,
-    sourcePath: `learning-materials/${topic}/glossary/${file.name}`,
+    sourcePath: file.sourcePath,
   };
 }
 
 /**
- * Reads a glossary README and lists its sections. Like a course README, its
- * leading `# Heading` becomes the title and its front matter holds the
- * description.
+ * The glossary of a course edition: its `README.md` and the list of its
+ * entries, or `null` if the edition has none.
  */
-async function readGlossary(
+export async function getGlossary(
   locale: Locale,
-  topic: string
+  topic: string,
+  edition: string
 ): Promise<Glossary | null> {
-  const directory = path.join(contentRoot, topic, 'glossary');
-  const readme = await readLocalized(directory, 'README', locale);
+  'use cache';
+  cacheLife('max');
+
+  const folder = editionFolder(edition);
+  if (!folder || !namePattern.test(topic)) {
+    return null;
+  }
+  const readme = await readLocalized(
+    topic,
+    folder,
+    locale,
+    'glossary',
+    'README.md'
+  );
   if (!readme) {
     return null;
   }
-  let files: string[] = [];
-  try {
-    files = await readdir(directory);
-  } catch {
-    // The glossary folder is missing.
-  }
-  // A section exists if it has a file in any language.
+  // An entry exists if it has a file in this language or in English.
+  const names = await Promise.all(
+    [...new Set([locale, defaultLocale])].map((lang) =>
+      listFiles(areaDirectory(topic, folder, lang, 'glossary'))
+    )
+  );
   const slugs = [
     ...new Set(
-      files
-        .map((file) => glossaryFilePattern.exec(file))
-        .filter((match) => match !== null)
-        .map((match) => `${match[1]}-${match[2]}`)
+      names
+        .flat()
+        .filter((file) => file.endsWith('.md'))
+        .map((file) => file.slice(0, -'.md'.length))
+        .filter((slug) => termPattern.test(slug))
     ),
-  ].toSorted((a, b) => a.localeCompare(b, 'en'));
+  ];
   const read = await Promise.all(
-    slugs.map((slug) => readGlossarySection(locale, topic, slug))
+    slugs.map((slug) => readGlossaryEntry(locale, topic, folder, slug))
   );
-  const sections = read
-    .filter((section): section is GlossarySection => section !== null)
-    .map(({ slug, step, title, description, termCount }) => ({
-      slug,
-      step,
-      title,
-      description,
-      termCount,
-    }));
+  const entries = read
+    .filter((entry): entry is GlossaryEntry => entry !== null)
+    .map(({ slug, title, terms }) => ({ slug, title, terms }))
+    .toSorted((a, b) =>
+      a.title
+        .replaceAll('`', '')
+        .localeCompare(b.title.replaceAll('`', ''), 'en', {
+          sensitivity: 'base',
+        })
+    );
 
   const { data, body } = splitFrontMatter(readme.source);
-  const heading = /^\s*# (.+)\r?\n/.exec(body);
+  const content = splitHeading(body);
   return {
-    title: heading?.[1]?.trim() ?? data.title,
+    title: content.title ?? data.title,
     description: data.description ?? '',
-    body: heading ? body.slice(heading[0].length) : body,
-    sections,
-    termCount: sections.reduce(
-      (sum, section) => sum + section.termCount,
-      countTerms(body)
-    ),
-    sourcePath: `learning-materials/${topic}/glossary/${readme.name}`,
+    body: content.body,
+    entries,
+    termCount: entries.reduce((sum, entry) => sum + entry.terms.length, 0),
+    sourcePath: readme.sourcePath,
   };
 }
 
 /**
- * The repository path of a lesson file, for the "Edit on GitHub" link.
+ * One glossary entry with its Markdown body, or `null` if it does not
+ * exist.
  */
-export function getLessonSourcePath(
+export async function getGlossaryEntry(
   locale: Locale,
   topic: string,
-  version: string,
+  edition: string,
   slug: string
-): string {
-  return `learning-materials/${topic}/course/${version}/${slug}.${locale}.md`;
+): Promise<GlossaryEntry | null> {
+  'use cache';
+  cacheLife('max');
+
+  const folder = editionFolder(edition);
+  return folder && namePattern.test(topic) && termPattern.test(slug)
+    ? readGlossaryEntry(locale, topic, folder, slug)
+    : null;
 }
 
 /**
- * Every lesson URL in every language, for static generation, including the
- * `latest` alias of the newest version.
+ * The URL segments of the editions of a course: `latest` and every named
+ * edition.
  */
-export async function getAllLessonParams(): Promise<
-  { lang: Locale; topic: string; version: string; lesson: string }[]
+function editionSegments(course: CourseSummary) {
+  return [
+    ...(course.editions[0]
+      ? [{ segment: latestEdition, edition: course.editions[0] }]
+      : []),
+    ...course.editions.map((edition) => ({ segment: edition.name, edition })),
+  ];
+}
+
+/**
+ * Every `{ lang, topic, edition }` triple, `latest` included, for static
+ * generation.
+ */
+export async function getEditionParams(): Promise<
+  { lang: Locale; topic: string; edition: string }[]
 > {
   const perLocale = await Promise.all(
     locales.map(async (lang) => {
       const courses = await getCourses(lang);
       return courses.flatMap((course) =>
-        course.versions.flatMap((version, index) => {
-          const segments =
-            index === 0 ? [latestVersion, version.name] : [version.name];
-          return segments.flatMap((segment) =>
-            version.lessons.map((lesson) => ({
-              lang,
-              topic: course.slug,
-              version: segment,
-              lesson: lesson.slug,
-            }))
-          );
-        })
+        editionSegments(course).map(({ segment }) => ({
+          lang,
+          topic: course.slug,
+          edition: segment,
+        }))
       );
     })
   );
   return perLocale.flat();
+}
+
+/**
+ * Every lesson URL in every language, `latest` included, for static
+ * generation.
+ */
+export async function getAllLessonParams(): Promise<
+  { lang: Locale; topic: string; edition: string; lesson: string }[]
+> {
+  const perLocale = await Promise.all(
+    locales.map(async (lang) => {
+      const courses = await getCourses(lang);
+      return courses.flatMap((course) =>
+        editionSegments(course).flatMap(({ segment, edition }) =>
+          edition.lessons.map((lesson) => ({
+            lang,
+            topic: course.slug,
+            edition: segment,
+            lesson: lesson.slug,
+          }))
+        )
+      );
+    })
+  );
+  return perLocale.flat();
+}
+
+/**
+ * Every `{ lang, topic, edition }` triple with a glossary, `latest`
+ * included, for static generation.
+ */
+export async function getGlossaryParams(): Promise<
+  { lang: Locale; topic: string; edition: string }[]
+> {
+  const perLocale = await Promise.all(
+    locales.map(async (lang) => {
+      const courses = await getCourses(lang);
+      return courses.flatMap((course) =>
+        editionSegments(course)
+          .filter(({ edition }) => edition.hasGlossary)
+          .map(({ segment }) => ({
+            lang,
+            topic: course.slug,
+            edition: segment,
+          }))
+      );
+    })
+  );
+  return perLocale.flat();
+}
+
+/**
+ * Every glossary entry URL in every language, `latest` included, for
+ * static generation.
+ */
+export async function getGlossaryEntryParams(): Promise<
+  { lang: Locale; topic: string; edition: string; term: string }[]
+> {
+  const triples = await getGlossaryParams();
+  const perTriple = await Promise.all(
+    triples.map(async ({ lang, topic, edition }) => {
+      const courses = await getCourses(lang);
+      const named = findEdition(
+        courses.find((course) => course.slug === topic)?.editions ?? [],
+        edition
+      );
+      const glossary = named
+        ? await getGlossary(lang, topic, named.name)
+        : null;
+      return (glossary?.entries ?? []).map((entry) => ({
+        lang,
+        topic,
+        edition,
+        term: entry.slug,
+      }));
+    })
+  );
+  return perTriple.flat();
 }

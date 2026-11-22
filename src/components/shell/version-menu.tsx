@@ -13,17 +13,19 @@ import MenuItem from '@mui/material/MenuItem';
 import { IconChevronDown } from '@tabler/icons-react';
 
 import { useRouter } from '@/i18n/navigation';
+import {
+  coursePath,
+  glossaryPath,
+  latestEdition,
+  parseLearnPath,
+} from '@/lib/course-paths';
 import type { CourseSummary } from '@/lib/courses';
 
 /**
-URL alias of the newest version (mirrors `latestVersion` in `lib/courses`).
-*/
-const latest = 'latest';
-
-/**
- * Chip with the course version being read. Without a version in the URL, or
- * with `latest`, it shows the newest one. Choosing another version opens the
- * same lesson in it when it exists there, otherwise its home page.
+ * Chip with the course edition being read. Without an edition in the URL,
+ * or with `latest`, it shows the newest one. Choosing another edition opens
+ * the same lesson or glossary entry in it when it exists there, otherwise
+ * its home page.
  */
 export function VersionMenu({
   course,
@@ -31,7 +33,7 @@ export function VersionMenu({
 }: {
   course: CourseSummary;
   /**
-  Path without the locale: `/learn/<topic>/course/<version>/<lesson>`.
+  Path without the locale: `/learn/<topic>/<edition>/<course|glossary>/<item>`.
   */
   pathname: string;
 }) {
@@ -39,17 +41,15 @@ export function VersionMenu({
   const router = useRouter();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
 
-  const parts = pathname.split('/', 6);
-  const segment = parts[4];
-  const lesson = parts[5];
-  const newest = course.versions[0];
+  const { edition: segment, area, item } = parseLearnPath(pathname);
+  const newest = course.editions[0];
   const current =
-    course.versions.find((item) => item.name === segment) ?? newest;
+    course.editions.find((edition) => edition.name === segment) ?? newest;
   if (!newest || !current) {
     return null;
   }
 
-  const label = t('versionLabel', { version: current.name });
+  const label = t('versionLabel', { version: current.label });
 
   return (
     <>
@@ -59,7 +59,7 @@ export function VersionMenu({
             component="span"
             sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}
           >
-            {current.name}
+            {current.label}
             <IconChevronDown size={14} />
           </Box>
         }
@@ -81,26 +81,34 @@ export function VersionMenu({
           setAnchor(null);
         }}
       >
-        {course.versions.map((version) => {
-          const isNewest = version.name === newest.name;
-          const urlVersion = isNewest ? latest : version.name;
-          const hasLesson = version.lessons.some(
-            (item) => item.slug === lesson
-          );
-          const target = `/learn/${course.slug}/course/${urlVersion}${
-            hasLesson ? `/${lesson ?? ''}` : ''
-          }`;
+        {course.editions.map((edition) => {
+          const isNewest = edition.name === newest.name;
+          const urlEdition = isNewest ? latestEdition : edition.name;
+          // The same lesson or glossary entry, when the edition has it.
+          let target = coursePath(course.slug, urlEdition);
+          if (area === 'glossary' && edition.hasGlossary) {
+            const hasEntry = edition.glossaryEntries.some(
+              (entry) => entry.slug === item
+            );
+            target = glossaryPath(
+              course.slug,
+              urlEdition,
+              hasEntry ? item : undefined
+            );
+          } else if (edition.lessons.some((lesson) => lesson.slug === item)) {
+            target = coursePath(course.slug, urlEdition, item);
+          }
           return (
             <MenuItem
-              key={version.name}
-              selected={version.name === current.name}
+              key={edition.name}
+              selected={edition.name === current.name}
               onClick={() => {
                 setAnchor(null);
                 router.push(target);
               }}
             >
               <ListItemText
-                primary={version.name}
+                primary={edition.label}
                 secondary={isNewest ? t('latestVersion') : undefined}
               />
             </MenuItem>

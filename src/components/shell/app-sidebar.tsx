@@ -28,6 +28,7 @@ import { useFavorites } from '@/components/favorites/favorites-context';
 import { NotebookLogo } from '@/components/notebook-logo';
 import { Link, usePathname } from '@/i18n/navigation';
 import { accentFor } from '@/lib/accent';
+import { coursePath } from '@/lib/course-paths';
 import type { CourseSummary } from '@/lib/courses';
 
 interface AppSidebarProps {
@@ -103,13 +104,13 @@ function SavedSections({
   const bookmarkItems: SavedItem[] = [];
   for (const { course, version, lesson } of bookmarks) {
     const data = bySlug.get(course);
-    const title = data?.versions
+    const title = data?.editions
       .find((item) => item.name === version)
       ?.lessons.find((item) => item.slug === lesson)?.title;
     if (data && title) {
       bookmarkItems.push({
         key: `${course}/${version}/${lesson}`,
-        href: `/learn/${course}/course/${version}/${lesson}`,
+        href: coursePath(course, version, lesson),
         label: title,
         detail: data.title,
       });

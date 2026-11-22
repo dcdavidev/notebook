@@ -66,9 +66,12 @@ reviews:
         the site must be listed.
     - path: 'learning-materials/**/*.md'
       instructions: |
-        Course lessons in English (`.en.md`) and Italian (`.it.md`). Check
-        that code samples are correct and that the two languages match. Do
-        not comment on style choices of the prose.
+        Course editions in `<topic>/<YYYY.MM>/<lang>/`: lessons in
+        `course/`, glossary entries in `glossary/`, with the same file names
+        in English (`en/`) and Italian (`it/`). Check that code samples are
+        correct, that the two languages match, and that relative links point
+        to existing files. Glossary terms stay in English in both languages.
+        Do not comment on style choices of the prose.
     - path: 'docs/decisions/*.md'
       instructions: |
         Architecture decision records. A change of decision should add a

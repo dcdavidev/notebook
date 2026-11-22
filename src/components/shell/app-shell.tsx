@@ -324,7 +324,7 @@ export function AppShell({
       <AppFooter
         courseCount={courses.length}
         lessonCount={courses.reduce(
-          (sum, course) => sum + (course.versions[0]?.lessons.length ?? 0),
+          (sum, course) => sum + (course.editions[0]?.lessons.length ?? 0),
           0
         )}
       />

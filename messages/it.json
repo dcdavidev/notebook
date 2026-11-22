@@ -17,7 +17,7 @@
     "contribute": "Contribuisci",
     "showLessons": "Mostra le lezioni di {course}",
     "hideLessons": "Nascondi le lezioni di {course}",
-    "versionLabel": "Versione {version}. Cambia versione",
+    "versionLabel": "Edizione {version}. Cambia edizione",
     "latestVersion": "Ultima",
     "readingProgress": "Avanzamento della lettura",
     "backToTop": "Torna su",
@@ -75,10 +75,15 @@
     "downloadCourseMarkdownHint": "Tutte le lezioni in Markdown, in un file ZIP",
     "glossary": "Glossario",
     "glossaryTermCount": "{count, plural, one {# termine} other {# termini}}",
-    "glossarySectionOf": "Argomento {step} di {total}",
     "downloadGlossaryPdfHint": "Tutti i termini in un PDF",
     "downloadGlossaryMarkdownHint": "Tutti i termini in un file Markdown",
-    "downloadGlossary": "Scarica il glossario"
+    "downloadGlossary": "Scarica il glossario",
+    "glossaryOneFile": "Un solo file",
+    "glossaryBySubject": "Un file per voce",
+    "downloadGlossarySectionsPdfHint": "Un PDF per voce, in un file ZIP",
+    "downloadGlossarySectionsMarkdownHint": "Un file Markdown per voce, in un file ZIP",
+    "glossaryIndex": "Indice",
+    "glossaryEntryCount": "{count, plural, one {# voce} other {# voci}}"
   },
   "Sponsor": {
     "title": "Sostieni Notebook",

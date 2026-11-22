@@ -63,6 +63,7 @@ srtcm
 stauthtrace
 subrc
 swlt
+tabix
 timn
 tvarvc
 xsdbool

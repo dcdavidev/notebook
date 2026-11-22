@@ -6,47 +6,53 @@ Ogni corso di Notebook è una cartella di file Markdown. L'app legge questi file
 
 ```text
 learning-materials/
-└── <topic>/                       # abap, sap, javascript, typescript, golang, ...
-    └── course/
-        ├── v1/                    # prima versione del corso
-        │   ├── README.en.md       # home page del corso, in inglese
-        │   ├── README.it.md       # home page del corso, in italiano
-        │   ├── 0001-<slug>.en.md  # lezione 1, inglese
-        │   ├── 0001-<slug>.it.md  # lezione 1, italiano
-        │   └── 0002-<slug>.en.md
-        └── v2/                    # una nuova edizione del corso
-            └── ...
+└── <topic>/                         # abap, sap, javascript, typescript, golang, ...
+    └── <edition>/                   # 2026.11: anno e mese dell'edizione
+        ├── en/                      # inglese
+        │   ├── course/
+        │   │   ├── README.md        # home page del corso
+        │   │   ├── 0001-<slug>.md   # lezione 1
+        │   │   └── 0002-<slug>.md
+        │   └── glossary/            # facoltativo
+        │       ├── README.md        # home page del glossario, con l'indice
+        │       ├── abap.md          # una voce: un termine e quelli simili
+        │       └── internal-table.md
+        └── it/                      # italiano, con gli stessi nomi di file
+            ├── course/
+            └── glossary/
 ```
 
 - Il nome della cartella dell'argomento compare nell'URL. Usa lettere minuscole, cifre e trattini.
-- Le cartelle delle versioni si chiamano sempre `v1`, `v2`, `v3`, ... Non creare mai una cartella `latest`: `latest` esiste solo nell'URL, come alias della versione più alta. La sidebar e `/learn/<topic>` aprono `latest`.
-- Ogni lezione ha un file per lingua, con la lingua prima di `.md`. Le traduzioni hanno **lo stesso nome base**, così il selettore della lingua le trova.
+- La cartella di un'edizione ha come nome l'anno e il mese, `YYYY.MM`, per esempio `2026.11`. Nell'URL si scrive `YYYY-MM`. Non creare mai una cartella `latest`: `latest` esiste solo nell'URL, come alias dell'edizione più recente. La sidebar e `/learn/<topic>` aprono `latest`.
+- Ogni lingua ha la sua cartella. Le traduzioni di un file hanno **lo stesso nome di file**, così il selettore della lingua le trova. Se in una lingua manca un file, il sito mostra quello inglese.
 - La sidebar elenca i corsi in ordine alfabetico per titolo.
 
 URL:
 
-| Pagina              | URL                                                  |
-| ------------------- | ---------------------------------------------------- |
-| Home page del corso | `/<lang>/learn/<topic>/course/<version>`             |
-| Lezione             | `/<lang>/learn/<topic>/course/<version>/<NNNN-slug>` |
+| Pagina                  | URL                                                  |
+| ----------------------- | ---------------------------------------------------- |
+| Home page del corso     | `/<lang>/learn/<topic>/<edition>/course`             |
+| Lezione                 | `/<lang>/learn/<topic>/<edition>/course/<NNNN-slug>` |
+| Home page del glossario | `/<lang>/learn/<topic>/<edition>/glossary`           |
+| Voce del glossario      | `/<lang>/learn/<topic>/<edition>/glossary/<term>`    |
 
-`<version>` è `latest` oppure il nome di una cartella come `v1`. Per esempio, `learning-materials/abap/course/v1/0005-internal-tables.en.md` si apre a `/en/learn/abap/course/v1/0005-internal-tables` e, finché `v1` è la versione più alta, anche a `/en/learn/abap/course/latest/0005-internal-tables`.
+`<edition>` è `latest` oppure un'edizione come `2026-11`. Per esempio, `learning-materials/abap/2026.11/it/course/0033-internal-tables-intro.md` si apre a `/it/learn/abap/2026-11/course/0033-internal-tables-intro` e, finché `2026.11` è l'edizione più recente, anche a `/it/learn/abap/latest/course/0033-internal-tables-intro`.
 
-## Home page del corso (`README.<locale>.md`)
+## Home page del corso (`course/README.md`)
 
-Ogni cartella di versione ha un `README.<locale>.md` per lingua: `README.en.md` e `README.it.md`. È la home page del corso sul sito; se manca una lingua, il sito mostra quella inglese. Scrivi qui:
+Ogni lingua di un'edizione ha un `course/README.md`. È la home page del corso sul sito. Scrivi qui:
 
 - a chi è rivolto il corso;
-- come è organizzato il corso (settimane, livelli, struttura di una lezione);
+- come è organizzato il corso (livelli, struttura di una lezione);
 - l'indice, con un link a ogni lezione;
 - che cosa serve per seguirlo (sistemi, strumenti, dati di esempio);
-- che cosa ha di specifico questa versione.
+- che cosa ha di specifico questa edizione.
 
 Il README contiene anche i metadati del corso. Inizialo con un blocco di front matter per la descrizione e i tag, poi l'argomento come titolo `#`: il sito usa il titolo come nome del corso, nella sidebar e nella pagina.
 
 ```markdown
 ---
-description: Corso intensivo di 15 giorni su SAP e ABAP.
+description: Un corso ABAP completo, al tuo ritmo.
 tags:
   - SAP
   - ABAP
@@ -55,23 +61,22 @@ tags:
 # ABAP
 ```
 
-La sidebar usa il README della versione più alta. I tag descrivono il corso e collegano i corsi simili: riusa i tag che hanno già gli altri corsi, quando vanno bene.
+La sidebar usa il README dell'edizione più recente. I tag descrivono il corso e collegano i corsi simili: riusa i tag che hanno già gli altri corsi, quando vanno bene.
 
 Collega le lezioni con un percorso relativo al file, così i link funzionano sia su GitHub sia sul sito:
 
 ```markdown
-1. [Le tabelle interne](./0005-internal-tables.it.md): elenchi di dati in memoria.
+1. [Le tabelle interne](./0033-internal-tables-intro.md): elenchi di dati in memoria.
 ```
 
 ## Lezioni
 
 ### Nome del file
 
-`NNNN-slug.<locale>.md`, dove:
+`NNNN-slug.md`, nella cartella `course/` della sua lingua, dove:
 
 - `NNNN` è il passo a quattro cifre: `0001`, `0002`, ... Stabilisce l'ordine delle lezioni.
 - `slug` è un nome breve in inglese, in minuscolo con i trattini, per esempio `internal-tables`.
-- `locale` è la lingua: `en` o `it`.
 
 ### Front matter
 
@@ -121,22 +126,13 @@ Funzionano anche le tabelle, le liste di attività e le note a piè di pagina di
 
 ## Glossario (facoltativo)
 
-Un argomento può avere un glossario accanto ai corsi, in `learning-materials/<topic>/glossary/`:
+Un'edizione può avere un glossario accanto al corso, in `<edition>/<lang>/glossary/`.
 
-```text
-learning-materials/abap/glossary/
-├── README.en.md                 # home page del glossario, in inglese
-├── README.it.md                 # home page del glossario, in italiano
-├── 01-sap-system.en.md          # un argomento, inglese
-├── 01-sap-system.it.md          # un argomento, italiano
-└── ...
-```
+- `README.md` inizia con la `description` nel front matter e un titolo `#`, come il README del corso. Scrivi una breve introduzione e l'indice delle voci in ordine alfabetico, con link relativi (`./internal-table.md`).
+- Ogni voce è un file `<term>.md`, con il nome del termine principale in inglese, in minuscolo con i trattini. Il front matter contiene `title` (il termine principale) e `description` (i termini che spiega).
+- Una voce spiega il termine principale e quelli simili, per esempio `sap.md` spiega SAP, SAP GUI, SAP HANA e SAP S/4HANA. Scrivi un titolo `##` per termine, con il termine in inglese in tutte le lingue, seguito dalla definizione e dal link alla lezione: `Lezione [33](../course/0033-internal-tables-intro.md).`
 
-- `README.<locale>.md` inizia con la `description` nel front matter e un titolo `#`, come il README di un corso. Scrivi una breve introduzione e l'elenco degli argomenti, con link relativi (`./01-sap-system.it.md`).
-- Ogni argomento è un file `NN-slug.<locale>.md`, dove `NN` è un passo a due cifre che stabilisce l'ordine. Il front matter contiene `title` e `description`.
-- In un argomento scrivi un paragrafo per termine, in ordine alfabetico: `**Termine**: definizione. Lezione [33](../course/v2/0033-internal-tables-intro.it.md).` Collega le lezioni con un percorso relativo, così i link funzionano su GitHub e sul sito.
-
-Il sito mostra il glossario a `/<lang>/learn/<topic>/glossary` e ogni argomento a `/<lang>/learn/<topic>/glossary/<NN-slug>`. Il glossario si può scaricare come un unico file PDF o Markdown, e gli archivi del corso lo includono.
+Il glossario si può scaricare come un unico file PDF o Markdown, oppure come ZIP con un file per voce, e gli archivi del corso lo includono.
 
 ## Prima di aprire una pull request
 
