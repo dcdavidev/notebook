@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import { useTranslations } from 'next-intl';
 
 import Box from '@mui/material/Box';
@@ -23,7 +25,27 @@ import { accentFor } from '@/lib/accent';
 import type { CourseSummary } from '@/lib/courses';
 
 /**
- * Bar at the bottom of the page, styled like a music player: the lesson to
+Height of the player bar, in px.
+*/
+const playerHeight = 72;
+
+/**
+ * Tells the app shell, through `--nb-player-height`, that the player is
+ * showing, so the page and the sidebar leave room for it.
+ */
+function ReservePlayerSpace() {
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--nb-player-height', `${playerHeight}px`);
+    return () => {
+      root.style.removeProperty('--nb-player-height');
+    };
+  }, []);
+  return null;
+}
+
+/**
+ * Bar fixed to the bottom of the window, styled like a music player: the lesson to
  * pick up (the one read last, or the next one when that is completed),
  * buttons for the previous lesson, resume, and the next lesson, and how
  * much of the course is left. It shows only to signed-in visitors who have
@@ -114,20 +136,26 @@ export function LessonPlayer({ courses }: { courses: CourseSummary[] }) {
       component="section"
       aria-label={t('label')}
       sx={{
-        position: 'sticky',
+        position: 'fixed',
+        left: 0,
+        right: 0,
         bottom: 0,
         zIndex: 'appBar',
+        height: playerHeight,
+        display: 'flex',
+        alignItems: 'center',
         px: { xs: 1, md: 2 },
-        py: 1,
-        borderTop: 1,
-        borderColor: 'divider',
-        bgcolor: 'color-mix(in oklch, var(--nb-background) 88%, transparent)',
-        backdropFilter: 'blur(14px)',
+        bgcolor: { xs: 'background.default', md: 'var(--nb-canvas)' },
+        boxShadow: {
+          xs: '0 -1px 0 var(--nb-divider)',
+          md: 'none',
+        },
       }}
     >
+      <ReservePlayerSpace />
       <Stack
         direction="row"
-        sx={{ alignItems: 'center', gap: { xs: 1.5, md: 3 }, minHeight: 56 }}
+        sx={{ flex: 1, alignItems: 'center', gap: { xs: 1.5, md: 3 } }}
       >
         {/* Lesson: a cover in the course color, the title, the course. */}
         <Stack

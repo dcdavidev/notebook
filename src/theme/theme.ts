@@ -59,9 +59,13 @@ export const theme = createTheme({
             'color-mix(in oklch, var(--nb-text) 72%, transparent)',
           '--nb-divider':
             'color-mix(in oklch, var(--nb-text) 16%, transparent)',
+          // The surface around the rounded panels of the app shell.
+          '--nb-canvas':
+            'color-mix(in oklch, var(--nb-background), var(--nb-text) 7%)',
         },
         ':root.dark': {
           '--nb-paper': 'color-mix(in oklch, var(--nb-background), #fff 7%)',
+          '--nb-canvas': 'color-mix(in oklch, var(--nb-background), #000 45%)',
         },
         'blockquote, q, code, kbd, samp, pre': {
           fontFamily: fonts.mono,
@@ -83,11 +87,24 @@ export const theme = createTheme({
           margin: 0,
           padding: '1rem',
           overflowX: 'auto',
-          borderRadius: 10,
+          borderRadius: 14,
           backgroundColor:
             'color-mix(in oklch, var(--nb-text) 8%, transparent)',
         },
       },
+    },
+    // Soft, rounded controls instead of square ones.
+    MuiButton: {
+      styleOverrides: { root: { borderRadius: 999 } },
+    },
+    MuiDialog: {
+      styleOverrides: { paper: { borderRadius: 24 } },
+    },
+    MuiMenu: {
+      styleOverrides: { paper: { borderRadius: 16 } },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: { root: { borderRadius: 14 } },
     },
   },
 });

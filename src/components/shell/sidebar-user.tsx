@@ -30,7 +30,7 @@ export function SidebarUser(props: {
   }
   // Sits at the bottom of the sidebar, below a divider.
   return (
-    <Stack sx={{ mt: 'auto', pt: 1, borderTop: 1, borderColor: 'divider' }}>
+    <Stack sx={{ mt: 'auto', pt: 1 }}>
       <SidebarUserContent {...props} />
     </Stack>
   );

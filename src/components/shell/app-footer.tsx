@@ -96,8 +96,6 @@ export function AppFooter({
         px: { xs: 2, md: 4 },
         pt: 5,
         pb: 3,
-        borderTop: 1,
-        borderColor: 'divider',
       }}
     >
       {/* The promise of the site, with its numbers. */}
