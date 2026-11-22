@@ -14,8 +14,66 @@ import {
   LocalePromptSkeleton,
 } from '@/components/landing/locale-prompt';
 import { SettingsMenu } from '@/components/settings-menu';
+import { getCourses } from '@/lib/courses';
+import { locales } from '@/lib/locale';
 
-export default function LandingPage() {
+/**
+ * What the site offers, in numbers. Plain labels, not buttons. The landing
+ * page is in English, like the rest of its text.
+ */
+function SiteStats({ labels }: { labels: string[] }) {
+  return (
+    <Stack
+      component="ul"
+      direction="row"
+      aria-label="Notebook in numbers"
+      sx={{
+        m: 0,
+        p: 0,
+        listStyle: 'none',
+        gap: 1,
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+      }}
+    >
+      {labels.map((label) => (
+        <Box
+          key={label}
+          component="li"
+          sx={{
+            px: 1.5,
+            py: 0.5,
+            borderRadius: 999,
+            border: 1,
+            borderColor: 'divider',
+            bgcolor:
+              'color-mix(in oklch, var(--nb-background) 70%, transparent)',
+            fontSize: 14,
+            fontWeight: 600,
+          }}
+        >
+          {label}
+        </Box>
+      ))}
+    </Stack>
+  );
+}
+
+export default async function LandingPage() {
+  // The courses read from disk at build time; the newest version of each
+  // course counts.
+  const courses = await getCourses('en');
+  const lessonCount = courses.reduce(
+    (sum, course) => sum + (course.versions[0]?.lessons.length ?? 0),
+    0
+  );
+  const stats = [
+    `${lessonCount} ${lessonCount === 1 ? 'lesson' : 'lessons'}`,
+    `${courses.length} ${courses.length === 1 ? 'course' : 'courses'}`,
+    `${locales.length} languages`,
+    'Free forever',
+  ];
+
   return (
     <Box
       component="main"
@@ -59,6 +117,10 @@ export default function LandingPage() {
           >
             {packageJson.description}
           </Typography>
+        </FadeIn>
+
+        <FadeIn delay={1.1}>
+          <SiteStats labels={stats} />
         </FadeIn>
 
         <FadeIn delay={1.2}>

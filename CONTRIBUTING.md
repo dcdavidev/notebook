@@ -21,7 +21,7 @@ Courses are Markdown files in the `learning-materials/` folder. To add or fix a 
 
 Requirements:
 
-- Node.js 24 or later
+- Node.js 26 (the version in `.nvmrc`)
 - pnpm (the version is set in the `packageManager` field of `package.json`)
 
 Steps:

@@ -1,13 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useTranslations } from 'next-intl';
 
-import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
 
 import { IconCircle, IconCircleCheckFilled } from '@tabler/icons-react';
 
@@ -15,6 +13,7 @@ import { useProgress } from './progress-context';
 
 import { useAuth } from '@/components/auth/auth-context';
 import type { LessonRef } from '@/components/bookmarks/bookmarks-context';
+import { notify } from '@/lib/island-notify';
 import { requestSignIn } from '@/lib/sign-in-request';
 
 /**
@@ -39,8 +38,6 @@ export function LessonCompletion({ course, version, lesson }: LessonRef) {
     isCompleted: isLessonCompleted,
   } = progress;
   const isProgressLoading = progress.loading;
-  const [failed, setFailed] = useState(false);
-  const [autoCompleted, setAutoCompleted] = useState(false);
   const accountId = account?.id;
   const sentinelRef = useRef<HTMLDivElement>(null);
   const lessonKey = `${course}/${version}/${lesson}`;
@@ -76,6 +73,15 @@ export function LessonCompletion({ course, version, lesson }: LessonRef) {
       opened.handled = true;
       return;
     }
+    // Undoing keeps the lesson handled, so it is not completed again
+    // on this visit.
+    const undo = async () => {
+      try {
+        await setCompleted(ref, false);
+      } catch {
+        notify({ message: t('error'), severity: 'error' });
+      }
+    };
     let timer: ReturnType<typeof setTimeout> | undefined;
     const observer = new IntersectionObserver(([entry]) => {
       clearTimeout(timer);
@@ -92,7 +98,16 @@ export function LessonCompletion({ course, version, lesson }: LessonRef) {
           const complete = async () => {
             try {
               await setCompleted(ref, true);
-              setAutoCompleted(true);
+              notify({
+                message: t('autoCompleted'),
+                severity: 'success',
+                action: {
+                  label: t('undo'),
+                  onClick: () => {
+                    void undo();
+                  },
+                },
+              });
             } catch {
               opened.handled = false;
             }
@@ -115,6 +130,7 @@ export function LessonCompletion({ course, version, lesson }: LessonRef) {
     lesson,
     lessonKey,
     setCompleted,
+    t,
     version,
   ]);
 
@@ -126,17 +142,6 @@ export function LessonCompletion({ course, version, lesson }: LessonRef) {
   const isCompleted = account !== null && progress.isCompleted(ref);
   const isBusy = loading || (account !== null && progress.loading);
 
-  // Undoes the automatic completion. The lesson stays handled, so it is
-  // not completed again on this visit.
-  const undo = async () => {
-    setAutoCompleted(false);
-    try {
-      await setCompleted(ref, false);
-    } catch {
-      setFailed(true);
-    }
-  };
-
   const toggle = async () => {
     if (!account) {
       requestSignIn();
@@ -145,7 +150,7 @@ export function LessonCompletion({ course, version, lesson }: LessonRef) {
     try {
       await progress.toggleCompleted(ref);
     } catch {
-      setFailed(true);
+      notify({ message: t('error'), severity: 'error' });
     }
   };
 
@@ -174,44 +179,6 @@ export function LessonCompletion({ course, version, lesson }: LessonRef) {
       >
         {t(isCompleted ? 'completed' : 'markCompleted')}
       </Button>
-      <Snackbar
-        open={failed}
-        autoHideDuration={5000}
-        onClose={() => {
-          setFailed(false);
-        }}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      >
-        <Alert
-          severity="error"
-          variant="filled"
-          onClose={() => {
-            setFailed(false);
-          }}
-        >
-          {t('error')}
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        open={autoCompleted}
-        autoHideDuration={6000}
-        onClose={() => {
-          setAutoCompleted(false);
-        }}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        message={t('autoCompleted')}
-        action={
-          <Button
-            color="inherit"
-            size="small"
-            onClick={() => {
-              void undo();
-            }}
-          >
-            {t('undo')}
-          </Button>
-        }
-      />
     </>
   );
 }

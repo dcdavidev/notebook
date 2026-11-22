@@ -13,6 +13,7 @@ import './globals.css';
 import { ConsentedAnalytics } from '@/components/consented-analytics';
 import { InlineScript } from '@/components/inline-script';
 import { CookieBanner } from '@/components/island/cookie-banner';
+import { IslandNotifications } from '@/components/island/island-notifications';
 import { Providers } from '@/components/providers';
 import {
   createPaletteInitScript,
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <Providers>
           {children}
           <CookieBanner />
+          <IslandNotifications />
           <ConsentedAnalytics />
         </Providers>
       </body>

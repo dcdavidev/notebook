@@ -36,7 +36,7 @@
     "footerStatLessons": "{count} lezioni",
     "footerStatCourses": "{count, plural, one {# corso} other {# corsi}}",
     "footerStatLanguages": "2 lingue",
-    "footerStatPrice": "0 € per sempre",
+    "footerStatPrice": "Gratis per sempre",
     "footerCtaSponsor": "Sostieni il progetto",
     "footerCtaContribute": "Scrivi una lezione"
   },

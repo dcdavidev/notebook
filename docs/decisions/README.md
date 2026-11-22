@@ -63,3 +63,4 @@ What is the change or architecture being adopted? What options were considered a
 | [**ADR-0015**](./0015-self-host-fonts-with-fontsource.md)                 | Self-Host Fonts with Fontsource                      | Accepted   | 2026-11-19 |
 | [**ADR-0016**](./0016-use-tabler-icons.md)                                | Use Tabler Icons                                     | Accepted   | 2026-11-19 |
 | [**ADR-0017**](./0017-use-supabase-for-accounts.md)                       | Use Supabase for Accounts                            | Accepted   | 2026-11-20 |
+| [**ADR-0018**](./0018-pin-the-nodejs-major-version-on-vercel.md)          | Pin the Node.js Major Version on Vercel              | Accepted   | 2026-11-22 |

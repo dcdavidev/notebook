@@ -1,13 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-
 import { useTranslations } from 'next-intl';
 
-import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import Snackbar from '@mui/material/Snackbar';
 import Tooltip from '@mui/material/Tooltip';
 
 import { IconStar, IconStarFilled } from '@tabler/icons-react';
@@ -15,6 +11,7 @@ import { IconStar, IconStarFilled } from '@tabler/icons-react';
 import { useFavorites } from './favorites-context';
 
 import { useAuth } from '@/components/auth/auth-context';
+import { notify } from '@/lib/island-notify';
 import { requestSignIn } from '@/lib/sign-in-request';
 
 interface FavoriteButtonProps {
@@ -50,7 +47,6 @@ export function FavoriteButton({
   const t = useTranslations('Favorites');
   const { enabled, loading, account } = useAuth();
   const favorites = useFavorites();
-  const [failed, setFailed] = useState(false);
 
   if (!enabled) {
     return null;
@@ -69,7 +65,7 @@ export function FavoriteButton({
     try {
       await favorites.toggleFavorite(course);
     } catch {
-      setFailed(true);
+      notify({ message: t('error'), severity: 'error' });
     }
   };
 
@@ -77,27 +73,6 @@ export function FavoriteButton({
     <IconStarFilled size={20} />
   ) : (
     <IconStar size={20} />
-  );
-
-  const snackbar = (
-    <Snackbar
-      open={failed}
-      autoHideDuration={5000}
-      onClose={() => {
-        setFailed(false);
-      }}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-    >
-      <Alert
-        severity="error"
-        variant="filled"
-        onClose={() => {
-          setFailed(false);
-        }}
-      >
-        {t('error')}
-      </Alert>
-    </Snackbar>
   );
 
   if (variant === 'button') {
@@ -124,7 +99,6 @@ export function FavoriteButton({
         >
           {shortLabel}
         </Button>
-        {snackbar}
       </>
     );
   }
@@ -147,7 +121,6 @@ export function FavoriteButton({
           </IconButton>
         </span>
       </Tooltip>
-      {snackbar}
     </>
   );
 }

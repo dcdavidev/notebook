@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import NextLink from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import CircularProgress from '@mui/material/CircularProgress';
 import Dialog from '@mui/material/Dialog';
@@ -18,7 +17,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
@@ -35,6 +33,7 @@ import { SignInButtons } from './sign-in-buttons';
 
 import { Link } from '@/i18n/navigation';
 import type { AuthProviderId } from '@/lib/auth-providers';
+import { notify } from '@/lib/island-notify';
 import { onSignInRequest } from '@/lib/sign-in-request';
 
 /**
@@ -48,7 +47,6 @@ export function AccountMenu() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [pending, setPending] = useState<AuthProviderId | null>(null);
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
-  const [failed, setFailed] = useState(false);
 
   // The sign-in callback adds `?auth=error` when it cannot open a session.
   useEffect(() => {
@@ -59,7 +57,7 @@ export function AccountMenu() {
     url.searchParams.delete('auth');
     history.replaceState(history.state, '', url);
     const timer = setTimeout(() => {
-      setFailed(true);
+      notify({ message: t('error'), severity: 'error' });
     }, 0);
     return () => {
       clearTimeout(timer);
@@ -79,37 +77,6 @@ export function AccountMenu() {
   if (!enabled) {
     return null;
   }
-
-  const startSignIn = async (provider: AuthProviderId) => {
-    setPending(provider);
-    try {
-      await signIn(provider);
-    } catch {
-      setPending(null);
-      setFailed(true);
-    }
-  };
-
-  const errorSnackbar = (
-    <Snackbar
-      open={failed}
-      autoHideDuration={6000}
-      onClose={() => {
-        setFailed(false);
-      }}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-    >
-      <Alert
-        severity="error"
-        variant="filled"
-        onClose={() => {
-          setFailed(false);
-        }}
-      >
-        {t('error')}
-      </Alert>
-    </Snackbar>
-  );
 
   if (loading) {
     return (
@@ -197,10 +164,19 @@ export function AccountMenu() {
             <ListItemText>{t('signOut')}</ListItemText>
           </MenuItem>
         </Menu>
-        {errorSnackbar}
       </>
     );
   }
+
+  const startSignIn = async (provider: AuthProviderId) => {
+    setPending(provider);
+    try {
+      await signIn(provider);
+    } catch {
+      setPending(null);
+      notify({ message: t('error'), severity: 'error' });
+    }
+  };
 
   return (
     <>
@@ -254,7 +230,6 @@ export function AccountMenu() {
           </Typography>
         </DialogContent>
       </Dialog>
-      {errorSnackbar}
     </>
   );
 }

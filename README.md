@@ -17,7 +17,7 @@ Website: [notebook.dcdavidev.me](https://notebook.dcdavidev.me)
 
 ## Getting started
 
-Requirements: Node.js 24 or later and pnpm.
+Requirements: Node.js 26 (the version in `.nvmrc`) and pnpm.
 
 ```bash
 pnpm install
