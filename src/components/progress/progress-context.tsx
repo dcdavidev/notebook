@@ -50,6 +50,10 @@ interface ProgressState {
    * undone if saving fails, in which case the promise rejects.
    */
   toggleCompleted: (ref: LessonRef) => Promise<void>;
+  /**
+  Marks a lesson as completed or not, like `toggleCompleted`.
+  */
+  setCompleted: (ref: LessonRef, isCompleted: boolean) => Promise<void>;
 }
 
 const ProgressContext = createContext<ProgressState | null>(null);
@@ -142,8 +146,8 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     [userId]
   );
 
-  const toggleCompleted = useCallback(
-    async (ref: LessonRef) => {
+  const setCompleted = useCallback(
+    async (ref: LessonRef, isCompleted: boolean) => {
       const supabase = getSupabaseBrowserClient();
       if (!supabase || !userId) {
         return;
@@ -151,9 +155,10 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       const { course, version, lesson } = ref;
       const previous = progressRef.current;
       const existing = previous.find((item) => isSame(item, ref));
-      const completedAt = existing?.completed_at
-        ? null
-        : new Date().toISOString();
+      if (Boolean(existing?.completed_at) === isCompleted) {
+        return;
+      }
+      const completedAt = isCompleted ? new Date().toISOString() : null;
       const lastReadAt = existing?.last_read_at ?? new Date().toISOString();
       setProgress(
         withRow(previous, {
@@ -182,6 +187,14 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     [userId]
   );
 
+  const toggleCompleted = useCallback(
+    async (ref: LessonRef) => {
+      const existing = progressRef.current.find((item) => isSame(item, ref));
+      await setCompleted(ref, !existing?.completed_at);
+    },
+    [setCompleted]
+  );
+
   const value = useMemo<ProgressState>(
     () => ({
       progress,
@@ -202,8 +215,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       lastRead: (course) => progress.find((item) => item.course === course),
       recordVisit,
       toggleCompleted,
+      setCompleted,
     }),
-    [loadedFor, progress, recordVisit, toggleCompleted, userId]
+    [loadedFor, progress, recordVisit, setCompleted, toggleCompleted, userId]
   );
 
   return <ProgressContext value={value}>{children}</ProgressContext>;

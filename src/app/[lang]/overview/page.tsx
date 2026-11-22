@@ -12,6 +12,10 @@ import { IconArrowRight } from '@tabler/icons-react';
 import { GrainMass } from '@/components/backgrounds/grain-mass';
 import { FavoriteButton } from '@/components/favorites/favorite-button';
 import { LinkButton } from '@/components/link-button';
+import {
+  type ResumeLesson,
+  ResumeReading,
+} from '@/components/progress/resume-reading';
 import { routing } from '@/i18n/routing';
 import { type CourseSummary, getCourses } from '@/lib/courses';
 
@@ -185,6 +189,19 @@ export default async function OverviewPage({
   ]);
   const featured =
     courses.find((item) => item.slug === featuredTopic) ?? courses[0];
+  // Every lesson, for the "continue" button of signed-in visitors.
+  const resumeLessons: Record<string, ResumeLesson> = {};
+  for (const course of courses) {
+    for (const version of course.versions) {
+      for (const [index, lesson] of version.lessons.entries()) {
+        resumeLessons[`${course.slug}/${version.name}/${lesson.slug}`] = {
+          title: lesson.title,
+          courseTitle: course.title,
+          next: version.lessons[index + 1]?.slug,
+        };
+      }
+    }
+  }
 
   return (
     <Stack
@@ -268,6 +285,7 @@ export default async function OverviewPage({
               {t('cta', { topic: featured.title })}
             </LinkButton>
           )}
+          <ResumeReading lessons={resumeLessons} locale={locale} />
         </Stack>
       </Box>
 
