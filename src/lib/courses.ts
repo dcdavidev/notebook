@@ -44,6 +44,17 @@ Lesson URL segment: the file name without locale and extension.
 const slugPattern = /^\d{4}-[a-z\d]+(?:-[a-z\d]+)*$/;
 
 /**
+Glossary section file name: a two-digit step, a kebab-case slug, and the locale.
+*/
+const glossaryFilePattern =
+  /^(\d{2})-([a-z\d]+(?:-[a-z\d]+)*)\.([a-z]{2})\.md$/;
+
+/**
+Glossary section URL segment: the file name without locale and extension.
+*/
+const glossarySlugPattern = /^\d{2}-[a-z\d]+(?:-[a-z\d]+)*$/;
+
+/**
 Topic folder name, for example `abap` or `golang`.
 */
 const namePattern = /^[a-z\d]+(?:[.-][a-z\d]+)*$/;
@@ -105,6 +116,31 @@ export interface CourseOverview {
   sourcePath: string;
 }
 
+export interface GlossarySectionSummary {
+  /**
+  URL segment, for example `04-internal-tables`.
+  */
+  slug: string;
+  step: number;
+  title: string;
+  description: string;
+  /**
+  Number of entries: paragraphs that start with a bold term.
+  */
+  termCount: number;
+}
+
+export interface GlossarySection extends GlossarySectionSummary {
+  /**
+  Markdown body, without the front matter.
+  */
+  body: string;
+  /**
+  Repository path, for the "Edit on GitHub" link.
+  */
+  sourcePath: string;
+}
+
 export interface Glossary {
   /**
   The leading `# Heading` of the README.
@@ -116,7 +152,11 @@ export interface Glossary {
   */
   body: string;
   /**
-  Number of entries: paragraphs that start with a bold term.
+  The subject files, in step order.
+  */
+  sections: GlossarySectionSummary[];
+  /**
+  Number of entries in all the sections.
   */
   termCount: number;
   /**
@@ -362,8 +402,8 @@ async function readOverview(
 }
 
 /**
- * The glossary of a topic: `glossary/README.&lt;locale>.md`, or
- * `README.en.md` as a fallback. `null` if the topic has none.
+ * The glossary of a topic: `glossary/README.&lt;locale>.md` with the list of
+ * its sections, or `null` if the topic has none.
  */
 export async function getGlossary(
   locale: Locale,
@@ -373,6 +413,23 @@ export async function getGlossary(
   cacheLife('max');
 
   return namePattern.test(topic) ? readGlossary(locale, topic) : null;
+}
+
+/**
+ * One section of a glossary with its Markdown body, or `null` if it does
+ * not exist.
+ */
+export async function getGlossarySection(
+  locale: Locale,
+  topic: string,
+  slug: string
+): Promise<GlossarySection | null> {
+  'use cache';
+  cacheLife('max');
+
+  return namePattern.test(topic) && glossarySlugPattern.test(slug)
+    ? readGlossarySection(locale, topic, slug)
+    : null;
 }
 
 /**
@@ -393,32 +450,136 @@ export async function getGlossaryParams(): Promise<
 }
 
 /**
- * Reads a glossary README. Like a course README, its leading `# Heading`
- * becomes the title and its front matter holds the description.
+ * Every `{ lang, topic, section }` triple, for static generation.
+ */
+export async function getGlossarySectionParams(): Promise<
+  { lang: Locale; topic: string; section: string }[]
+> {
+  const pairs = await getGlossaryParams();
+  const perPair = await Promise.all(
+    pairs.map(async ({ lang, topic }) => {
+      const glossary = await getGlossary(lang, topic);
+      return (glossary?.sections ?? []).map((section) => ({
+        lang,
+        topic,
+        section: section.slug,
+      }));
+    })
+  );
+  return perPair.flat();
+}
+
+/**
+ * Reads `&lt;base>.&lt;locale>.md`, or `&lt;base>.en.md` as a fallback.
+ */
+async function readLocalized(
+  directory: string,
+  base: string,
+  locale: Locale
+): Promise<{ source: string; name: string } | null> {
+  const names = [...new Set([`${base}.${locale}.md`, `${base}.en.md`])];
+  const sources = await Promise.all(
+    names.map((name) => readOptionalFile(path.join(directory, name)))
+  );
+  const index = sources.findIndex((source) => source !== null);
+  const source = sources[index];
+  const name = names[index];
+  return source === undefined || source === null || name === undefined
+    ? null
+    : { source, name };
+}
+
+/**
+ * Counts the entries of a glossary file: paragraphs that start with a bold
+ * term.
+ */
+function countTerms(body: string): number {
+  return body.match(/^\*\*/gm)?.length ?? 0;
+}
+
+/**
+ * Reads one glossary section. Its front matter holds the title and the
+ * description.
+ */
+async function readGlossarySection(
+  locale: Locale,
+  topic: string,
+  slug: string
+): Promise<GlossarySection | null> {
+  const file = await readLocalized(
+    path.join(contentRoot, topic, 'glossary'),
+    slug,
+    locale
+  );
+  if (!file) {
+    return null;
+  }
+  const { data, body } = splitFrontMatter(file.source);
+  return {
+    slug,
+    step: Number(slug.slice(0, 2)),
+    title: data.title ?? slug,
+    description: data.description ?? '',
+    termCount: countTerms(body),
+    body,
+    sourcePath: `learning-materials/${topic}/glossary/${file.name}`,
+  };
+}
+
+/**
+ * Reads a glossary README and lists its sections. Like a course README, its
+ * leading `# Heading` becomes the title and its front matter holds the
+ * description.
  */
 async function readGlossary(
   locale: Locale,
   topic: string
 ): Promise<Glossary | null> {
-  const names = [...new Set([`README.${locale}.md`, 'README.en.md'])];
-  const sources = await Promise.all(
-    names.map((name) =>
-      readOptionalFile(path.join(contentRoot, topic, 'glossary', name))
-    )
-  );
-  const index = sources.findIndex((source) => source !== null);
-  const source = sources[index];
-  if (source === undefined || source === null) {
+  const directory = path.join(contentRoot, topic, 'glossary');
+  const readme = await readLocalized(directory, 'README', locale);
+  if (!readme) {
     return null;
   }
-  const { data, body } = splitFrontMatter(source);
+  let files: string[] = [];
+  try {
+    files = await readdir(directory);
+  } catch {
+    // The glossary folder is missing.
+  }
+  // A section exists if it has a file in any language.
+  const slugs = [
+    ...new Set(
+      files
+        .map((file) => glossaryFilePattern.exec(file))
+        .filter((match) => match !== null)
+        .map((match) => `${match[1]}-${match[2]}`)
+    ),
+  ].toSorted((a, b) => a.localeCompare(b, 'en'));
+  const read = await Promise.all(
+    slugs.map((slug) => readGlossarySection(locale, topic, slug))
+  );
+  const sections = read
+    .filter((section): section is GlossarySection => section !== null)
+    .map(({ slug, step, title, description, termCount }) => ({
+      slug,
+      step,
+      title,
+      description,
+      termCount,
+    }));
+
+  const { data, body } = splitFrontMatter(readme.source);
   const heading = /^\s*# (.+)\r?\n/.exec(body);
   return {
     title: heading?.[1]?.trim() ?? data.title,
     description: data.description ?? '',
     body: heading ? body.slice(heading[0].length) : body,
-    termCount: body.match(/^\*\*/gm)?.length ?? 0,
-    sourcePath: `learning-materials/${topic}/glossary/${names[index]}`,
+    sections,
+    termCount: sections.reduce(
+      (sum, section) => sum + section.termCount,
+      countTerms(body)
+    ),
+    sourcePath: `learning-materials/${topic}/glossary/${readme.name}`,
   };
 }
 

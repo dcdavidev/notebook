@@ -74,7 +74,11 @@
     "downloadCoursePdfHint": "Tutte le lezioni in PDF, in un file ZIP",
     "downloadCourseMarkdownHint": "Tutte le lezioni in Markdown, in un file ZIP",
     "glossary": "Glossario",
-    "glossaryTermCount": "{count, plural, one {# termine} other {# termini}}"
+    "glossaryTermCount": "{count, plural, one {# termine} other {# termini}}",
+    "glossarySectionOf": "Argomento {step} di {total}",
+    "downloadGlossaryPdfHint": "Tutti i termini in un PDF",
+    "downloadGlossaryMarkdownHint": "Tutti i termini in un file Markdown",
+    "downloadGlossary": "Scarica il glossario"
   },
   "Sponsor": {
     "title": "Sostieni Notebook",

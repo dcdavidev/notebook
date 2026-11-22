@@ -74,7 +74,11 @@
     "downloadCoursePdfHint": "Every lesson as a PDF, in a ZIP file",
     "downloadCourseMarkdownHint": "Every lesson as Markdown, in a ZIP file",
     "glossary": "Glossary",
-    "glossaryTermCount": "{count, plural, one {# term} other {# terms}}"
+    "glossaryTermCount": "{count, plural, one {# term} other {# terms}}",
+    "glossarySectionOf": "Subject {step} of {total}",
+    "downloadGlossaryPdfHint": "All the terms in one PDF",
+    "downloadGlossaryMarkdownHint": "All the terms in one Markdown file",
+    "downloadGlossary": "Download the glossary"
   },
   "Sponsor": {
     "title": "Support Notebook",

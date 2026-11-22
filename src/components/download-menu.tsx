@@ -23,9 +23,9 @@ export interface DownloadOption {
   href: string;
   format: 'pdf' | 'markdown';
   /**
-  One lesson, or the whole course in a ZIP file.
+  One lesson, the whole course in a ZIP file, or the whole glossary.
   */
-  scope: 'lesson' | 'course';
+  scope: 'lesson' | 'course' | 'glossary';
 }
 
 const hintKeys = {
@@ -34,13 +34,23 @@ const hintKeys = {
     pdf: 'downloadCoursePdfHint',
     markdown: 'downloadCourseMarkdownHint',
   },
+  glossary: {
+    pdf: 'downloadGlossaryPdfHint',
+    markdown: 'downloadGlossaryMarkdownHint',
+  },
 } as const;
 
-const scopes = ['lesson', 'course'] as const;
+const scopes = ['lesson', 'glossary', 'course'] as const;
+
+const scopeTitles = {
+  lesson: 'thisLesson',
+  glossary: 'glossary',
+  course: 'wholeCourse',
+} as const;
 
 /**
  * A button that opens a menu of files to download, grouped by scope when
- * it offers both a lesson and the whole course.
+ * it offers more than one.
  */
 export function DownloadMenu({
   options,
@@ -60,9 +70,7 @@ export function DownloadMenu({
   const id = useId();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
   const close = () => setAnchor(null);
-  const isGrouped =
-    options.some((option) => option.scope === 'lesson') &&
-    options.some((option) => option.scope === 'course');
+  const isGrouped = new Set(options.map((option) => option.scope)).size > 1;
 
   return (
     <>
@@ -101,7 +109,7 @@ export function DownloadMenu({
             <Fragment key={scope}>
               {isGrouped && (
                 <ListSubheader sx={{ lineHeight: 2.5, bgcolor: 'inherit' }}>
-                  {t(scope === 'lesson' ? 'thisLesson' : 'wholeCourse')}
+                  {t(scopeTitles[scope])}
                 </ListSubheader>
               )}
               {items.map((option) => {

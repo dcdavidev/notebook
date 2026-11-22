@@ -73,6 +73,9 @@ export function CourseLessons({
   const version = pinned ?? course.versions[0];
   const versionPath = `${coursePath}/course/${pinned ? pinned.name : 'latest'}`;
   const glossaryPath = `${coursePath}/glossary`;
+  // The glossary entry stays highlighted on its section pages too.
+  const isGlossary =
+    pathname === glossaryPath || pathname.startsWith(`${glossaryPath}/`);
   const lessons = version?.lessons ?? [];
   const completed = version
     ? progress.completedIn(course.slug, version.name)
@@ -198,9 +201,9 @@ export function CourseLessons({
             component={Link}
             href={glossaryPath}
             onClick={onNavigate}
-            selected={pathname === glossaryPath}
+            selected={isGlossary}
             aria-current={pathname === glossaryPath ? 'page' : undefined}
-            ref={pathname === glossaryPath ? currentRef : undefined}
+            ref={isGlossary ? currentRef : undefined}
             sx={itemSx}
           >
             <Box

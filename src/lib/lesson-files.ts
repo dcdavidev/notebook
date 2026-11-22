@@ -11,8 +11,11 @@ import {
   findVersion,
   getCourseOverview,
   getCourses,
+  getGlossary,
+  getGlossarySection,
   getLesson,
 } from '@/lib/courses';
+import { createGlossaryHrefResolver } from '@/lib/glossary-links';
 import { renderLessonPdf } from '@/lib/lesson-pdf';
 import type { Locale } from '@/lib/locale';
 
@@ -109,10 +112,139 @@ export async function getLessonPdf(
 }
 
 /**
+ * Rewrites the targets of the Markdown links in a text.
+ */
+function rewriteLinks(text: string, resolve: (href: string) => string) {
+  return text.replaceAll(
+    /\]\(([^)\s]+)\)/g,
+    (_match, href: string) => `](${resolve(href)})`
+  );
+}
+
+/**
+ * Makes the links of a glossary file absolute URLs of the site, so they
+ * work outside it.
+ */
+function absoluteGlossaryResolver(lang: Locale, topic: string) {
+  const toSitePath = createGlossaryHrefResolver(lang, topic);
+  return (href: string): string => {
+    const target = toSitePath(href);
+    return target.startsWith('/')
+      ? new URL(target, packageJson.homepage).href
+      : target;
+  };
+}
+
+/**
+ * The whole glossary of a topic as one Markdown text: the title, then
+ * every section with its heading and its terms. `null` if the topic has no
+ * glossary.
+ */
+async function buildGlossaryMarkdown(
+  lang: Locale,
+  topic: string,
+  resolve: (href: string) => string
+): Promise<{
+  title: string;
+  description: string;
+  body: string;
+  termCount: number;
+} | null> {
+  const glossary = await getGlossary(lang, topic);
+  if (!glossary) {
+    return null;
+  }
+  const sections = await Promise.all(
+    glossary.sections.map((item) => getGlossarySection(lang, topic, item.slug))
+  );
+  const parts = sections.flatMap((section) =>
+    section
+      ? [
+          `## ${section.title}`,
+          section.description,
+          rewriteLinks(section.body.trim(), resolve),
+        ].filter(Boolean)
+      : []
+  );
+  const t = await getTranslations({ locale: lang, namespace: 'Learn' });
+  return {
+    title: glossary.title ?? t('glossary'),
+    description: glossary.description,
+    body: parts.join('\n\n'),
+    termCount: glossary.termCount,
+  };
+}
+
+/**
+ * The glossary of a topic as one Markdown file, with absolute links to the
+ * lessons.
+ */
+export async function getGlossaryMarkdown(
+  lang: Locale,
+  topic: string
+): Promise<DownloadFile<string> | null> {
+  const data = await buildGlossaryMarkdown(
+    lang,
+    topic,
+    absoluteGlossaryResolver(lang, topic)
+  );
+  if (!data) {
+    return null;
+  }
+  const parts = [`# ${data.title}`, data.description, data.body];
+  return {
+    file: `${parts.filter(Boolean).join('\n\n')}\n`,
+    name: `${topic}-glossary.${lang}.md`,
+  };
+}
+
+/**
+ * The glossary of a topic as an A4 PDF. Cached, like the lesson PDFs, to
+ * prerender it once.
+ */
+export async function getGlossaryPdf(
+  lang: Locale,
+  topic: string
+): Promise<DownloadFile<Uint8Array<ArrayBuffer>> | null> {
+  'use cache';
+  cacheLife('max');
+
+  const [courses, t, data] = await Promise.all([
+    getCourses(lang),
+    getTranslations({ locale: lang, namespace: 'Learn' }),
+    buildGlossaryMarkdown(lang, topic, absoluteGlossaryResolver(lang, topic)),
+  ]);
+  const course = courses.find((item) => item.slug === topic);
+  if (!course || !data) {
+    return null;
+  }
+
+  const url = new URL(`/${lang}/learn/${topic}/glossary`, packageJson.homepage)
+    .href;
+  const pdf = await renderLessonPdf({
+    locale: lang,
+    title: data.title,
+    description: data.description,
+    body: data.body,
+    meta: [
+      course.title,
+      t('glossaryTermCount', { count: data.termCount }),
+    ].join(' · '),
+    url,
+    baseUrl: url,
+    pageLabel: (page, total) => t('pdfPage', { page, total }),
+  });
+  return { file: new Uint8Array(pdf), name: `${topic}-glossary.${lang}.pdf` };
+}
+
+/**
  * Every lesson of a course version in one ZIP file, in one format. The
  * files sit in a folder named after the course and version, and keep the
  * step number in their names, so they sort in order. The Markdown archive
- * also holds the course overview as `README.md`.
+ * also holds the course overview as `README.md`. When the topic has a
+ * glossary, the archive holds it too, as `glossary.&lt;lang>.md` or `.pdf`;
+ * in Markdown, its links to lessons of the same version point to the files
+ * next to it.
  */
 export async function getCourseArchive(
   lang: Locale,
@@ -167,6 +299,39 @@ export async function getCourseArchive(
       );
       if (markdown) {
         files[markdown.name] = [strToU8(markdown.file), { mtime: archiveDate }];
+      }
+    }
+  }
+
+  if (course.hasGlossary) {
+    if (format === 'pdf') {
+      const pdf = await getGlossaryPdf(lang, topic);
+      if (pdf) {
+        files[`glossary.${lang}.pdf`] = [
+          pdf.file,
+          { level: 0, mtime: archiveDate },
+        ];
+      }
+    } else {
+      const toAbsolute = absoluteGlossaryResolver(lang, topic);
+      const lessons = new Set(versionData.lessons.map((item) => item.slug));
+      // `../course/<version>/<lesson>.<lang>.md` of this version: the file
+      // next to the glossary in the archive.
+      const sameVersion = new RegExp(
+        String.raw`^\.\./course/${versionData.name}/(\d{4}-[a-z\d-]+)\.[a-z]{2}\.md(#.*)?$`
+      );
+      const data = await buildGlossaryMarkdown(lang, topic, (href) => {
+        const match = sameVersion.exec(href);
+        return match?.[1] && lessons.has(match[1])
+          ? `./${match[1]}.${lang}.md${match[2] ?? ''}`
+          : toAbsolute(href);
+      });
+      if (data) {
+        const parts = [`# ${data.title}`, data.description, data.body];
+        files[`glossary.${lang}.md`] = [
+          strToU8(`${parts.filter(Boolean).join('\n\n')}\n`),
+          { mtime: archiveDate },
+        ];
       }
     }
   }
