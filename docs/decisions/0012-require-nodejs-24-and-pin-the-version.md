@@ -4,7 +4,7 @@ Date: 2026-11-19
 
 ## Status
 
-Accepted
+Accepted, amended by [ADR-0018](./0018-pin-the-nodejs-major-version-on-vercel.md)
 
 ## Context
 

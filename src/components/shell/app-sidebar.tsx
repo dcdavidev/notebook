@@ -1,12 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-
 import { useTranslations } from 'next-intl';
 
 import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
-import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -17,8 +13,6 @@ import Typography from '@mui/material/Typography';
 
 import {
   IconBookmark,
-  IconChevronDown,
-  IconCircleCheckFilled,
   IconGitPullRequest,
   IconHeart,
   IconHome,
@@ -32,8 +26,8 @@ import { SidebarUser } from './sidebar-user';
 import { useBookmarks } from '@/components/bookmarks/bookmarks-context';
 import { useFavorites } from '@/components/favorites/favorites-context';
 import { NotebookLogo } from '@/components/notebook-logo';
-import { useProgress } from '@/components/progress/progress-context';
 import { Link, usePathname } from '@/i18n/navigation';
+import { accentFor } from '@/lib/accent';
 import type { CourseSummary } from '@/lib/courses';
 
 interface AppSidebarProps {
@@ -187,16 +181,7 @@ export function AppSidebar({
   onNavigate,
 }: AppSidebarProps) {
   const t = useTranslations('Shell');
-  const tLearn = useTranslations('Learn');
-  const tProgress = useTranslations('Progress');
-  const progress = useProgress();
   const pathname = usePathname();
-  // Courses the user opened or closed with the arrow, by slug.
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
-  // Course sections the user closed, by course slug. They start open.
-  const [closedSections, setClosedSections] = useState<Record<string, boolean>>(
-    {}
-  );
   const toggleLabel = t(collapsed ? 'expandSidebar' : 'collapseSidebar');
   // Top-level pages, above the Learn section.
   const pages = [
@@ -314,213 +299,34 @@ export function AppSidebar({
           <List dense disablePadding aria-labelledby="sidebar-learn">
             {courses.map((course) => {
               const coursePath = `/learn/${course.slug}`;
-              const isActive = pathname.startsWith(`${coursePath}/`);
-              // The course being read starts open; the arrow overrides it.
-              const isOpen = expanded[course.slug] ?? isActive;
-              const listId = `course-${course.slug}-lessons`;
-              const sectionId = `${listId}-course`;
-              const isSectionOpen = !closedSections[course.slug];
-              const arrowLabel = t(isOpen ? 'hideLessons' : 'showLessons', {
-                course: course.title,
-              });
-              // `/learn/<topic>/course/<version>/<lesson>`: show the lessons
-              // of the version being read. `latest` (the default) is the
-              // newest one, which comes first.
-              const segment = isActive ? pathname.split('/', 5)[4] : undefined;
-              const pinned = course.versions.find(
-                (item) => item.name === segment
-              );
-              const version = pinned ?? course.versions[0];
-              const versionPath = `${coursePath}/course/${pinned ? pinned.name : 'latest'}`;
-              // Pad the lesson numbers to the widest one, at least 2 digits,
-              // so they line up: `01` with 20 lessons, `001` with 150.
-              const lessons = version?.lessons ?? [];
-              // Completed lessons get a check in place of their number.
-              const completed = version
-                ? progress.completedIn(course.slug, version.name)
-                : new Set<string>();
-              const digits = Math.max(
-                2,
-                String(lessons.at(-1)?.step ?? 0).length
-              );
-              const numberWidth = digits * 11;
+              const isActive =
+                pathname === coursePath ||
+                pathname.startsWith(`${coursePath}/`);
               return (
                 <li key={course.slug}>
-                  <Stack
-                    direction="row"
-                    sx={{ alignItems: 'center', gap: 0.5 }}
+                  {/* The lessons open next to the sidebar, in the course
+                      panel, or in the lessons sheet on phones. */}
+                  <ListItemButton
+                    component={Link}
+                    href={coursePath}
+                    onClick={onNavigate}
+                    selected={isActive}
+                    sx={{ ...itemSx, gap: 1, py: 1 }}
                   >
-                    <ListItemButton
-                      component={Link}
-                      href={coursePath}
-                      onClick={() => {
-                        setExpanded((state) => ({
-                          ...state,
-                          [course.slug]: true,
-                        }));
-                        onNavigate?.();
-                      }}
-                      selected={isActive}
-                      sx={{ ...itemSx, py: 1 }}
-                    >
-                      <Typography sx={{ fontWeight: 600 }}>
-                        {course.title}
-                      </Typography>
-                    </ListItemButton>
-                    <Tooltip title={arrowLabel} placement="right">
-                      <IconButton
-                        size="small"
-                        aria-label={arrowLabel}
-                        aria-expanded={isOpen}
-                        aria-controls={listId}
-                        onClick={() =>
-                          setExpanded((state) => ({
-                            ...state,
-                            [course.slug]: !isOpen,
-                          }))
-                        }
-                      >
-                        <IconChevronDown
-                          size={18}
-                          style={{
-                            transform: isOpen ? 'none' : 'rotate(-90deg)',
-                            transition: 'transform 150ms ease',
-                          }}
-                        />
-                      </IconButton>
-                    </Tooltip>
-                  </Stack>
-
-                  <Collapse id={listId} in={isOpen} unmountOnExit>
-                    {/* The lessons live in `learning-materials/<topic>/course/`, so
-                        they're grouped under a Course heading. */}
-                    <Typography
-                      component="h3"
-                      variant="overline"
+                    <Box
+                      aria-hidden
                       sx={{
-                        m: 0,
-                        fontSize: 13,
-                        fontWeight: 600,
-                        lineHeight: 2.2,
+                        width: 10,
+                        height: 10,
+                        borderRadius: '50%',
+                        flexShrink: 0,
+                        bgcolor: accentFor(course.slug),
                       }}
-                    >
-                      <ButtonBase
-                        aria-expanded={isSectionOpen}
-                        aria-controls={sectionId}
-                        onClick={() =>
-                          setClosedSections((state) => ({
-                            ...state,
-                            [course.slug]: isSectionOpen,
-                          }))
-                        }
-                        sx={{
-                          width: '100%',
-                          justifyContent: 'flex-start',
-                          gap: 0.5,
-                          pl: 2,
-                          pr: 1,
-                          borderRadius: 2,
-                          color: 'text.secondary',
-                          font: 'inherit',
-                          letterSpacing: 'inherit',
-                          textTransform: 'inherit',
-                          '&:hover': { color: 'text.primary' },
-                        }}
-                      >
-                        <IconChevronDown
-                          size={16}
-                          aria-hidden
-                          style={{
-                            transform: isSectionOpen
-                              ? 'none'
-                              : 'rotate(-90deg)',
-                            transition: 'transform 150ms ease',
-                          }}
-                        />
-                        {t('course')}
-                      </ButtonBase>
+                    />
+                    <Typography sx={{ fontWeight: 600 }}>
+                      {course.title}
                     </Typography>
-                    <Collapse id={sectionId} in={isSectionOpen}>
-                      <List
-                        dense
-                        disablePadding
-                        aria-label={t('course')}
-                        sx={{ pb: 0.5, pl: 1 }}
-                      >
-                        <ListItemButton
-                          component={Link}
-                          href={versionPath}
-                          onClick={onNavigate}
-                          selected={pathname === versionPath}
-                          aria-current={
-                            pathname === versionPath ? 'page' : undefined
-                          }
-                          sx={{ ...itemSx, gap: 1, py: 0.5 }}
-                        >
-                          <ListItemText
-                            primary={tLearn('overview')}
-                            slotProps={{
-                              primary: {
-                                sx: {
-                                  fontSize: 13.5,
-                                  pl: `${numberWidth + 8}px`,
-                                },
-                              },
-                            }}
-                          />
-                        </ListItemButton>
-                        {lessons.map((lesson) => {
-                          const lessonPath = `${versionPath}/${lesson.slug}`;
-                          return (
-                            <ListItemButton
-                              key={lesson.slug}
-                              component={Link}
-                              href={lessonPath}
-                              onClick={onNavigate}
-                              selected={pathname === lessonPath}
-                              aria-current={
-                                pathname === lessonPath ? 'page' : undefined
-                              }
-                              sx={{ ...itemSx, gap: 1, py: 0.5 }}
-                            >
-                              <Typography
-                                component="span"
-                                variant="caption"
-                                sx={{
-                                  minWidth: numberWidth,
-                                  display: 'flex',
-                                  color: 'text.secondary',
-                                  fontVariantNumeric: 'tabular-nums',
-                                }}
-                              >
-                                {completed.has(lesson.slug) ? (
-                                  <Box
-                                    component="span"
-                                    role="img"
-                                    aria-label={tProgress('completedLesson')}
-                                    sx={{
-                                      display: 'flex',
-                                      color: 'success.main',
-                                    }}
-                                  >
-                                    <IconCircleCheckFilled size={16} />
-                                  </Box>
-                                ) : (
-                                  String(lesson.step).padStart(digits, '0')
-                                )}
-                              </Typography>
-                              <ListItemText
-                                primary={lesson.title}
-                                slotProps={{
-                                  primary: { sx: { fontSize: 13.5 } },
-                                }}
-                              />
-                            </ListItemButton>
-                          );
-                        })}
-                      </List>
-                    </Collapse>
-                  </Collapse>
+                  </ListItemButton>
                 </li>
               );
             })}

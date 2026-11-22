@@ -8,12 +8,16 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { IconMenu2 } from '@tabler/icons-react';
+import { IconListNumbers, IconMenu2 } from '@tabler/icons-react';
 
 import { AppFooter } from './app-footer';
 import { AppSidebar } from './app-sidebar';
+import { CourseLessons } from './course-lessons';
 import { ReadingProgress } from './reading-progress';
 import { VersionMenu } from './version-menu';
 
@@ -41,6 +45,11 @@ export function AppShell({
   const t = useTranslations('Shell');
   const [collapsed, setCollapsed] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  // Desktop: the course panel next to the sidebar, open until closed.
+  const [isCoursePanelOpen, setIsCoursePanelOpen] = useState(true);
+  // Phones: the lessons sheet, opened from the app bar.
+  const [isLessonsSheetOpen, setIsLessonsSheetOpen] = useState(false);
+  const isDesktop = useMediaQuery(useTheme().breakpoints.up('md'));
 
   const pathname = usePathname();
   // `/learn/<topic>/...`: the topic shown on the left of the app bar.
@@ -90,6 +99,76 @@ export function AppShell({
           }}
         />
       </Box>
+
+      {/* Desktop: every lesson of the open course, in a second panel. */}
+      {currentCourse && isCoursePanelOpen && (
+        <Box
+          component="aside"
+          aria-label={currentCourse.title}
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            position: 'sticky',
+            top: 8,
+            height: 'calc(100dvh - 16px - var(--nb-player-height, 0px))',
+            width: 320,
+            flexShrink: 0,
+            overflow: 'hidden',
+            bgcolor: 'background.default',
+            borderRadius: '20px',
+          }}
+        >
+          <CourseLessons
+            course={currentCourse}
+            onClose={() => {
+              setIsCoursePanelOpen(false);
+            }}
+          />
+        </Box>
+      )}
+
+      {/* Phones: the same list in a sheet that slides up from the bottom. */}
+      {currentCourse && (
+        <Drawer
+          anchor="bottom"
+          open={isLessonsSheetOpen && !isDesktop}
+          onClose={() => {
+            setIsLessonsSheetOpen(false);
+          }}
+          slotProps={{
+            paper: {
+              sx: {
+                height: '85dvh',
+                borderTopLeftRadius: 24,
+                borderTopRightRadius: 24,
+                bgcolor: 'background.default',
+                display: 'flex',
+              },
+            },
+          }}
+        >
+          <Box
+            aria-hidden
+            sx={{
+              width: 40,
+              height: 4,
+              borderRadius: 2,
+              mx: 'auto',
+              mt: 1,
+              flexShrink: 0,
+              bgcolor: 'divider',
+            }}
+          />
+          <CourseLessons
+            course={currentCourse}
+            onNavigate={() => {
+              setIsLessonsSheetOpen(false);
+            }}
+            onClose={() => {
+              setIsLessonsSheetOpen(false);
+            }}
+          />
+        </Drawer>
+      )}
 
       <Drawer
         open={drawerOpen}
@@ -177,6 +256,25 @@ export function AppShell({
               </>
             )}
           </Stack>
+          {/* Opens the lessons sheet on phones, and reopens the course panel
+              on desktop after it was closed. */}
+          {currentCourse && (!isDesktop || !isCoursePanelOpen) && (
+            <Tooltip title={t('showLessons', { course: currentCourse.title })}>
+              <IconButton
+                onClick={() => {
+                  if (isDesktop) {
+                    setIsCoursePanelOpen(true);
+                  } else {
+                    setIsLessonsSheetOpen(true);
+                  }
+                }}
+                aria-label={t('showLessons', { course: currentCourse.title })}
+                color="inherit"
+              >
+                <IconListNumbers />
+              </IconButton>
+            </Tooltip>
+          )}
           <SettingsMenu />
           <AccountMenu />
           {/* On course pages, a bar right under the app bar fills up while
