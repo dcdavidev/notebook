@@ -31,12 +31,14 @@ reviews:
         React 19, TypeScript, and Material UI. APIs differ from older Next.js
         versions: check `node_modules/next/dist/docs/` before suggesting one.
         Pages are prerendered: flag reads of cookies, headers, or the clock
-        (`Date.now()`, `new Date()`) during render that are neither cached
-        nor inside a Suspense boundary, because they break the static build.
-        These are allowed: clock reads inside a `"use cache"` function;
-        runtime reads inside a Suspense boundary, in a Client Component or
-        in a Server Component after `await connection()`; and clock reads in
-        effects and event handlers.
+        (`Date.now()`, `new Date()`) during render outside a Suspense
+        boundary, because they break the static build. These are allowed:
+        clock reads inside a `"use cache"` function; runtime reads inside a
+        Suspense boundary, in a Client Component or in a Server Component
+        (clock reads there come after `await connection()`); and clock reads
+        in effects and event handlers. Always flag `cookies()` and
+        `headers()` inside a `"use cache"` scope, even under Suspense: read
+        them outside and pass the values in as arguments.
         Account data loads in the browser through the Supabase client; flag
         server code that needs a secret key.
     - path: 'src/**/*.tsx'
