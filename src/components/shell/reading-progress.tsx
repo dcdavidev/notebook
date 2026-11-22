@@ -6,16 +6,7 @@ import { useTranslations } from 'next-intl';
 
 import LinearProgress from '@mui/material/LinearProgress';
 
-/**
- * How far the page has been scrolled, from 0 to 100.
- */
-function readScrollProgress(): number {
-  const { scrollHeight, clientHeight } = document.documentElement;
-  const scrollable = scrollHeight - clientHeight;
-  return scrollable <= 0
-    ? 100
-    : Math.min(100, Math.max(0, (window.scrollY / scrollable) * 100));
-}
+import { getMainScroller, readScrollProgress } from '@/lib/main-scroll';
 
 /**
  * Determinate progress bar that follows the reading: it fills up as the page
@@ -32,12 +23,19 @@ export function ReadingProgress({ resetKey }: { resetKey: string }) {
       setValue(readScrollProgress());
     };
     update();
+    // Desktop scrolls the `main` panel, phones scroll the window.
+    const scroller = getMainScroller();
+    scroller?.addEventListener('scroll', update, { passive: true });
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     // The content can grow after the first paint (fonts, highlighted code).
     const observer = new ResizeObserver(update);
     observer.observe(document.body);
+    if (scroller?.firstElementChild) {
+      observer.observe(scroller.firstElementChild);
+    }
     return () => {
+      scroller?.removeEventListener('scroll', update);
       window.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
       observer.disconnect();

@@ -1,11 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-
 import { useTranslations } from 'next-intl';
 
 import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
 
 import { IconShare } from '@tabler/icons-react';
@@ -13,6 +10,7 @@ import { IconShare } from '@tabler/icons-react';
 import { BookmarkButton } from '@/components/bookmarks/bookmark-button';
 import type { LessonRef } from '@/components/bookmarks/bookmarks-context';
 import { DownloadMenu, type DownloadOption } from '@/components/download-menu';
+import { notify } from '@/lib/island-notify';
 
 const buttonSx = { textTransform: 'none', borderRadius: 3 } as const;
 
@@ -38,7 +36,6 @@ export function LessonActions({
   downloads: DownloadOption[];
 }) {
   const t = useTranslations('Learn');
-  const [message, setMessage] = useState<string | null>(null);
 
   const share = async () => {
     const url = new URL(location.href);
@@ -56,9 +53,9 @@ export function LessonActions({
     }
     try {
       await navigator.clipboard.writeText(url.href);
-      setMessage(t('linkCopied'));
+      notify({ message: t('linkCopied'), severity: 'success' });
     } catch {
-      setMessage(t('shareFailed'));
+      notify({ message: t('shareFailed'), severity: 'error' });
     }
   };
 
@@ -82,13 +79,6 @@ export function LessonActions({
           buttonSx={buttonSx}
         />
       </Stack>
-      <Snackbar
-        open={message !== null}
-        autoHideDuration={3000}
-        onClose={() => setMessage(null)}
-        message={message}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      />
     </>
   );
 }

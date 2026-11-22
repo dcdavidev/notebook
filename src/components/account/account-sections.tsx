@@ -20,7 +20,6 @@ import Divider from '@mui/material/Divider';
 import LinearProgress from '@mui/material/LinearProgress';
 import MuiLink from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
-import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
 import { useColorScheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -61,11 +60,21 @@ import {
   useProgress,
 } from '@/components/progress/progress-context';
 import { type AuthProviderId, authProviders } from '@/lib/auth-providers';
+import { notify } from '@/lib/island-notify';
 import { type Locale, localeNames } from '@/lib/locale';
 import { usePalette } from '@/theme/palette-context';
 import { palettes } from '@/theme/palettes';
 
 type Notice = { severity: 'success' | 'error'; message: string } | null;
+
+/**
+Shows a notice in the Dynamic Island.
+*/
+function showNotice(notice: Notice) {
+  if (notice) {
+    notify(notice);
+  }
+}
 
 function Section({
   title,
@@ -808,7 +817,6 @@ export function AccountSections({ locale }: { locale: Locale }) {
   const t = useTranslations('Account');
   const { enabled, loading, account } = useAuth();
   const isSupporter = useSupporter();
-  const [notice, setNotice] = useState<Notice>(null);
 
   if (!enabled) {
     return <Alert severity="info">{t('unavailable')}</Alert>;
@@ -817,34 +825,10 @@ export function AccountSections({ locale }: { locale: Locale }) {
     return <PageSpinner label={t('loading')} />;
   }
 
-  const snackbar = (
-    <Snackbar
-      open={notice !== null}
-      autoHideDuration={5000}
-      onClose={() => {
-        setNotice(null);
-      }}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-    >
-      {notice ? (
-        <Alert
-          severity={notice.severity}
-          variant="filled"
-          onClose={() => {
-            setNotice(null);
-          }}
-        >
-          {notice.message}
-        </Alert>
-      ) : undefined}
-    </Snackbar>
-  );
-
   if (!account) {
     return (
       <>
         <SignedOut />
-        {snackbar}
       </>
     );
   }
@@ -857,12 +841,11 @@ export function AccountSections({ locale }: { locale: Locale }) {
       <ProfileSection
         account={account}
         isSupporter={isSupporter === true}
-        notify={setNotice}
+        notify={showNotice}
       />
-      <LinkedAccountsSection account={account} notify={setNotice} />
+      <LinkedAccountsSection account={account} notify={showNotice} />
       <PreferencesSection locale={locale} />
-      <DataSection account={account} locale={locale} notify={setNotice} />
-      {snackbar}
+      <DataSection account={account} locale={locale} notify={showNotice} />
     </Stack>
   );
 }

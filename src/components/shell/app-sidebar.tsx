@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import {
   IconBookmark,
   IconGitPullRequest,
-  IconHeart,
+  IconHeartHandshake,
   IconHome,
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
@@ -186,7 +186,7 @@ export function AppSidebar({
   // Top-level pages, above the Learn section.
   const pages = [
     { href: '/overview', label: t('home'), icon: IconHome },
-    { href: '/sponsor', label: t('sponsor'), icon: IconHeart },
+    { href: '/sponsor', label: t('sponsor'), icon: IconHeartHandshake },
     { href: '/contribute', label: t('contribute'), icon: IconGitPullRequest },
   ];
 

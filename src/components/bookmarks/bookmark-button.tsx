@@ -1,13 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-
 import { useTranslations } from 'next-intl';
 
-import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import Snackbar from '@mui/material/Snackbar';
 import Tooltip from '@mui/material/Tooltip';
 
 import { IconBookmark, IconBookmarkFilled } from '@tabler/icons-react';
@@ -15,6 +11,7 @@ import { IconBookmark, IconBookmarkFilled } from '@tabler/icons-react';
 import { type LessonRef, useBookmarks } from './bookmarks-context';
 
 import { useAuth } from '@/components/auth/auth-context';
+import { notify } from '@/lib/island-notify';
 import { requestSignIn } from '@/lib/sign-in-request';
 
 interface BookmarkButtonProps extends LessonRef {
@@ -48,7 +45,6 @@ export function BookmarkButton({
   const t = useTranslations('Bookmarks');
   const { enabled, loading, account } = useAuth();
   const bookmarks = useBookmarks();
-  const [failed, setFailed] = useState(false);
 
   if (!enabled) {
     return null;
@@ -68,30 +64,9 @@ export function BookmarkButton({
     try {
       await bookmarks.toggleBookmark(ref);
     } catch {
-      setFailed(true);
+      notify({ message: t('error'), severity: 'error' });
     }
   };
-
-  const snackbar = (
-    <Snackbar
-      open={failed}
-      autoHideDuration={5000}
-      onClose={() => {
-        setFailed(false);
-      }}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-    >
-      <Alert
-        severity="error"
-        variant="filled"
-        onClose={() => {
-          setFailed(false);
-        }}
-      >
-        {t('error')}
-      </Alert>
-    </Snackbar>
-  );
 
   if (variant === 'button') {
     return (
@@ -116,7 +91,6 @@ export function BookmarkButton({
         >
           {shortLabel}
         </Button>
-        {snackbar}
       </>
     );
   }
@@ -143,7 +117,6 @@ export function BookmarkButton({
           </IconButton>
         </span>
       </Tooltip>
-      {snackbar}
     </>
   );
 }

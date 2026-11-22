@@ -13,12 +13,12 @@ import Typography from '@mui/material/Typography';
 import {
   IconArrowUp,
   IconGitPullRequest,
-  IconHeart,
+  IconHeartHandshake,
 } from '@tabler/icons-react';
 
-import { LinkButton } from '@/components/link-button';
 import { visuallyHidden } from '@/components/visually-hidden';
 import { Link } from '@/i18n/navigation';
+import { scrollToTop } from '@/lib/main-scroll';
 
 const repositoryUrl = 'https://github.com/dcdavidev/notebook';
 
@@ -154,23 +154,25 @@ export function AppFooter({
           ))}
         </Stack>
         <Stack direction="row" sx={{ gap: 1.5, flexWrap: 'wrap' }}>
-          <LinkButton
+          <Button
+            component={Link}
             href="/sponsor"
             variant="contained"
             disableElevation
-            startIcon={<IconHeart size={18} />}
+            startIcon={<IconHeartHandshake size={18} />}
             sx={{ borderRadius: 999, textTransform: 'none', fontWeight: 600 }}
           >
             {t('footerCtaSponsor')}
-          </LinkButton>
-          <LinkButton
+          </Button>
+          <Button
+            component={Link}
             href="/contribute"
             variant="outlined"
             startIcon={<IconGitPullRequest size={18} />}
             sx={{ borderRadius: 999, textTransform: 'none', fontWeight: 600 }}
           >
             {t('footerCtaContribute')}
-          </LinkButton>
+          </Button>
         </Stack>
       </Stack>
 
@@ -313,10 +315,7 @@ export function AppFooter({
             const isReduceMotion = matchMedia(
               '(prefers-reduced-motion: reduce)'
             ).matches;
-            window.scrollTo({
-              top: 0,
-              behavior: isReduceMotion ? 'auto' : 'smooth',
-            });
+            scrollToTop(isReduceMotion ? 'auto' : 'smooth');
             // Move keyboard focus back to the top of the page too.
             document.querySelector<HTMLElement>('main')?.focus({
               preventScroll: true,
