@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   // The courses are Markdown files read from disk: ship them with the build.
   outputFileTracingIncludes: {
     '/[lang]/**': ['./learning-materials/**/*'],
+    // The logo embedded in the Open Graph images.
+    '/**/opengraph-image': ['./public/brand/logo-128.png'],
+    '/**/twitter-image': ['./public/brand/logo-128.png'],
     // Fonts embedded in the lesson PDFs.
     '/[lang]/learn/[topic]/course/[version]/[lesson]/pdf': [
       './node_modules/dejavu-fonts-ttf/ttf/DejaVuSans*.ttf',

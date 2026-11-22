@@ -1,41 +1,36 @@
-import type { SVGProps } from 'react';
+import type { ImgHTMLAttributes } from 'react';
 
 /**
- * The Notebook mark: a ring-bound notebook with a bookmark, outlined and
- * centered on a transparent background. The same drawing is the favicon
- * (`src/app/icon.svg`, also rendered to `apple-icon.png` and
- * `favicon.ico`), so keep them in sync. The colors come from the Olive
- * Garden palette and stay the same in every theme.
+Small copy of the logo, sharp up to 64 px on 2x screens.
+*/
+export const logoSrc = '/brand/logo-128.png';
+
+/**
+ * The Notebook logo: a ring-bound notebook on a rounded square with a blue
+ * to orange gradient. The source is `public/brand/logo.png`; the favicon,
+ * `src/app/icon.png`, and `src/app/apple-icon.png` are made from it.
+ *
+ * It is a plain `img` because the Open Graph images render it with satori,
+ * which needs an absolute or data URL: they pass `src`.
  */
 export function NotebookLogo({
   size = 32,
+  src = logoSrc,
   ...props
-}: SVGProps<SVGSVGElement> & { size?: number }) {
+}: Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
+  size?: number;
+  src?: string;
+}) {
   return (
-    <svg
-      viewBox="4 4 24 24"
+    // eslint-disable-next-line @next/next/no-img-element -- tiny static logo, also rendered by satori
+    <img
+      src={src}
       width={size}
       height={size}
+      alt=""
       aria-hidden="true"
-      focusable="false"
+      draggable={false}
       {...props}
-    >
-      <rect
-        x="8.2"
-        y="5"
-        width="17"
-        height="22"
-        rx="3"
-        fill="#FEFAE0"
-        stroke="#283618"
-        strokeWidth="1"
-      />
-      <path d="M19.2 5h4v9.5l-2-1.7-2 1.7z" fill="#DDA15E" />
-      <circle cx="8.2" cy="10" r="1.9" fill="#283618" />
-      <circle cx="8.2" cy="16" r="1.9" fill="#283618" />
-      <circle cx="8.2" cy="22" r="1.9" fill="#283618" />
-      <rect x="12.2" y="18" width="9" height="1.8" rx=".9" fill="#606C38" />
-      <rect x="12.2" y="22" width="6" height="1.8" rx=".9" fill="#606C38" />
-    </svg>
+    />
   );
 }
