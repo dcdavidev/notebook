@@ -18,6 +18,7 @@ import { ReadingProgress } from './reading-progress';
 import { VersionMenu } from './version-menu';
 
 import { AccountMenu } from '@/components/auth/account-menu';
+import { LessonPlayer } from '@/components/player/lesson-player';
 import { SettingsMenu } from '@/components/settings-menu';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { CourseSummary } from '@/lib/courses';
@@ -54,25 +55,31 @@ export function AppShell({
     <Box
       sx={{
         display: 'flex',
+        gap: 1,
         minHeight: '100dvh',
-        bgcolor: 'background.default',
+        p: { xs: 0, md: 1 },
+        // Room for the player, which is fixed to the bottom of the window.
+        pb: {
+          xs: 'var(--nb-player-height, 0px)',
+          md: 'calc(8px + var(--nb-player-height, 0px))',
+        },
+        bgcolor: { xs: 'background.default', md: 'var(--nb-canvas)' },
       }}
     >
+      {/* The sidebar floats as a rounded panel on the canvas. */}
       <Box
         component="aside"
         sx={{
           display: { xs: 'none', md: 'block' },
           position: 'sticky',
-          top: 0,
-          height: '100dvh',
+          top: 8,
+          height: 'calc(100dvh - 16px - var(--nb-player-height, 0px))',
           width,
           flexShrink: 0,
           overflow: 'hidden',
           transition: 'width 220ms cubic-bezier(0.22, 1, 0.36, 1)',
-          bgcolor:
-            'color-mix(in oklch, var(--nb-background), var(--nb-text) 4%)',
-          borderRight: 1,
-          borderColor: 'divider',
+          bgcolor: 'background.default',
+          borderRadius: '20px',
         }}
       >
         <AppSidebar
@@ -94,8 +101,9 @@ export function AppShell({
           paper: {
             sx: {
               width: expandedWidth,
-              bgcolor:
-                'color-mix(in oklch, var(--nb-background), var(--nb-text) 4%)',
+              bgcolor: 'background.default',
+              borderTopRightRadius: 20,
+              borderBottomRightRadius: 20,
             },
           },
         }}
@@ -109,7 +117,17 @@ export function AppShell({
         />
       </Drawer>
 
-      <Stack sx={{ flex: 1, minWidth: 0 }}>
+      {/* The page is one big rounded panel. `clip` rounds its corners
+          without breaking the sticky header. */}
+      <Stack
+        sx={{
+          flex: 1,
+          minWidth: 0,
+          bgcolor: 'background.default',
+          borderRadius: { xs: 0, md: '20px' },
+          overflow: 'clip',
+        }}
+      >
         <Stack
           direction="row"
           component="header"
@@ -125,8 +143,6 @@ export function AppShell({
             bgcolor:
               'color-mix(in oklch, var(--nb-background) 85%, transparent)',
             backdropFilter: 'blur(12px)',
-            borderBottom: 1,
-            borderColor: 'divider',
           }}
         >
           <IconButton
@@ -174,7 +190,15 @@ export function AppShell({
         >
           {children}
         </Box>
-        <AppFooter />
+        {/* Fixed to the bottom of the window, across the whole width. */}
+        <LessonPlayer courses={courses} />
+        <AppFooter
+          courseCount={courses.length}
+          lessonCount={courses.reduce(
+            (sum, course) => sum + (course.versions[0]?.lessons.length ?? 0),
+            0
+          )}
+        />
       </Stack>
     </Box>
   );

@@ -23,7 +23,12 @@ import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-import { IconLogin2, IconLogout, IconUserCircle } from '@tabler/icons-react';
+import {
+  IconId,
+  IconLogin2,
+  IconLogout,
+  IconUserCircle,
+} from '@tabler/icons-react';
 
 import { useAuth } from './auth-context';
 import { SignInButtons } from './sign-in-buttons';
@@ -156,6 +161,18 @@ export function AccountMenu() {
             )}
           </Stack>
           <Divider />
+          <MenuItem
+            component={NextLink}
+            href="/profile"
+            onClick={() => {
+              setAnchor(null);
+            }}
+          >
+            <ListItemIcon>
+              <IconId size={20} />
+            </ListItemIcon>
+            <ListItemText>{t('myProfile')}</ListItemText>
+          </MenuItem>
           <MenuItem
             component={NextLink}
             href="/account"

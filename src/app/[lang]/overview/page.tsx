@@ -17,6 +17,7 @@ import {
   ResumeReading,
 } from '@/components/progress/resume-reading';
 import { routing } from '@/i18n/routing';
+import { accentFor } from '@/lib/accent';
 import { type CourseSummary, getCourses } from '@/lib/courses';
 
 /**
@@ -30,31 +31,6 @@ export const instant = false;
 The topic promoted by the call to action.
 */
 const featuredTopic = 'abap';
-
-/**
- * Accent colors for the topic cards. Each topic always gets the same one,
- * picked from its slug.
- */
-const accents = [
-  '#2e7d5b',
-  '#c2410c',
-  '#6d28d9',
-  '#0e7490',
-  '#be185d',
-  '#a16207',
-  '#1d4ed8',
-];
-
-/**
- * Picks a stable accent color for a topic.
- */
-function accentFor(slug: string): string {
-  let hash = 0;
-  for (const char of slug) {
-    hash = (hash * 31 + (char.codePointAt(0) ?? 0)) % 997;
-  }
-  return accents[hash % accents.length] ?? accents[0] ?? 'currentColor';
-}
 
 export async function generateMetadata({
   params,
@@ -98,10 +74,20 @@ function TopicCard({
         breakInside: 'avoid',
         mb: 2,
         p: 2.5,
-        borderRadius: 5,
-        border: 1,
-        borderColor: `color-mix(in oklch, ${accent} 30%, transparent)`,
-        bgcolor: `color-mix(in oklch, ${accent} 10%, var(--nb-background))`,
+        borderRadius: '12px',
+        border: '1.5px solid',
+        borderColor: `color-mix(in oklch, ${accent} 55%, transparent)`,
+        bgcolor: `color-mix(in oklch, ${accent} 16%, var(--nb-background))`,
+        boxShadow: `0 1px 2px rgb(0 0 0 / 0.08), 0 12px 28px -14px color-mix(in oklch, ${accent} 70%, transparent)`,
+        transition: 'transform 160ms ease, box-shadow 160ms ease',
+        '&:hover': {
+          transform: 'translateY(-2px)',
+          boxShadow: `0 1px 2px rgb(0 0 0 / 0.08), 0 18px 36px -14px color-mix(in oklch, ${accent} 80%, transparent)`,
+        },
+        '@media (prefers-reduced-motion: reduce)': {
+          transition: 'none',
+          '&:hover': { transform: 'none' },
+        },
         display: 'flex',
         flexDirection: 'column',
         gap: 1.5,
@@ -208,24 +194,26 @@ export default async function OverviewPage({
       sx={{
         flex: 1,
         width: '100%',
-        maxWidth: 1100,
-        mx: 'auto',
-        px: 2,
-        pt: { xs: 3, md: 5 },
         pb: 10,
         gap: { xs: 6, md: 8 },
+        // The hero spans the whole panel; the sections under it are centered.
+        '& > :not(.nb-hero)': {
+          width: '100%',
+          maxWidth: 1100,
+          mx: 'auto',
+          px: 2,
+          boxSizing: 'border-box',
+        },
       }}
     >
       <Box
         component="section"
+        className="nb-hero"
         aria-labelledby="overview-title"
         sx={{
           position: 'relative',
           isolation: 'isolate',
           overflow: 'hidden',
-          borderRadius: { xs: 5, md: 8 },
-          border: 1,
-          borderColor: 'color-mix(in oklch, var(--nb-text) 10%, transparent)',
           bgcolor:
             'color-mix(in oklch, var(--nb-background), var(--nb-text) 3%)',
           minHeight: { xs: 420, md: 520 },

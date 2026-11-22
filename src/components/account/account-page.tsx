@@ -110,25 +110,9 @@ function Layout({ locale, children }: { locale: Locale; children: ReactNode }) {
 }
 
 /**
-Title of each course by language and topic folder.
-*/
-export type CourseTitles = Record<Locale, Record<string, string>>;
-
-/**
-Title of each lesson by language and `course/version/lesson` path.
-*/
-export type LessonTitles = Record<Locale, Record<string, string>>;
-
-/**
  * The `/account` page in the visitor's language.
  */
-export function AccountPage({
-  courseTitles,
-  lessonTitles,
-}: {
-  courseTitles: CourseTitles;
-  lessonTitles: LessonTitles;
-}) {
+export function AccountPage() {
   const locale = usePreferredLocale();
 
   // Only the browser knows the language, so the server renders a spinner.
@@ -147,11 +131,7 @@ export function AccountPage({
       timeZone={new Intl.DateTimeFormat().resolvedOptions().timeZone}
     >
       <Layout locale={locale}>
-        <AccountSections
-          locale={locale}
-          courseTitles={courseTitles[locale]}
-          lessonTitles={lessonTitles[locale]}
-        />
+        <AccountSections locale={locale} />
       </Layout>
     </NextIntlClientProvider>
   );

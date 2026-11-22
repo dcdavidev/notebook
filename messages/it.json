@@ -29,7 +29,16 @@
     "opensNewTab": "(si apre in una nuova scheda)",
     "footerLegal": "Note legali",
     "favorites": "Preferiti",
-    "bookmarks": "Segnalibri"
+    "bookmarks": "Segnalibri",
+    "profile": "Profilo",
+    "footerPromise": "Impara gratis.",
+    "footerPromiseForever": "Per sempre.",
+    "footerStatLessons": "{count} lezioni",
+    "footerStatCourses": "{count, plural, one {# corso} other {# corsi}}",
+    "footerStatLanguages": "2 lingue",
+    "footerStatPrice": "0 € per sempre",
+    "footerCtaSponsor": "Sostieni il progetto",
+    "footerCtaContribute": "Scrivi una lezione"
   },
   "Overview": {
     "title": "Cosa impariamo oggi?",
@@ -121,7 +130,8 @@
     "accountOf": "Account di {name}",
     "signOut": "Esci",
     "error": "Accesso non riuscito. Riprova.",
-    "myAccount": "Il mio account"
+    "myAccount": "Il mio account",
+    "myProfile": "Il mio profilo"
   },
   "Account": {
     "title": "Il mio account",
@@ -173,7 +183,39 @@
     "bookmarksEmpty": "Non hai ancora segnalibri. Tocca “Salva” su una lezione per ritrovarla qui.",
     "progressTitle": "I tuoi progressi",
     "progressText": "I corsi che hai iniziato, con le lezioni completate e l'ultima lezione che hai letto.",
-    "progressEmpty": "Non hai ancora iniziato nessun corso. Apri una lezione e premi «Segna come completata» quando l'hai finita."
+    "progressEmpty": "Non hai ancora iniziato nessun corso. Apri una lezione e premi «Segna come completata» quando l'hai finita.",
+    "badges": {
+      "title": "Badge",
+      "text": "Si sbloccano mentre studi. Quello da sostenitore arriva quando sostieni Notebook.",
+      "earned": "Ottenuto",
+      "locked": "Da sbloccare",
+      "lessonsLeft": "{done} di {total} lezioni",
+      "supporterChip": "Sostenitore",
+      "supporter": {
+        "name": "Sostenitore",
+        "description": "Sostieni Notebook e aiuti a tenere i corsi gratuiti per tutti."
+      },
+      "lessons-1": {
+        "name": "Primo passo",
+        "description": "Completa la tua prima lezione."
+      },
+      "lessons-10": {
+        "name": "Ci hai preso gusto",
+        "description": "Completa 10 lezioni."
+      },
+      "lessons-50": {
+        "name": "Inarrestabile",
+        "description": "Completa 50 lezioni."
+      },
+      "lessons-100": {
+        "name": "Centurione",
+        "description": "Completa 100 lezioni."
+      },
+      "course": {
+        "name": "Corso completato",
+        "description": "Completa tutte le lezioni di un corso."
+      }
+    }
   },
   "Favorites": {
     "add": "Aggiungi {course} ai preferiti",
@@ -199,5 +241,29 @@
     "autoCompleted": "Lezione segnata come completata",
     "undo": "Annulla",
     "continueNext": "Continua: {lesson}"
+  },
+  "Player": {
+    "label": "Lettore della lezione",
+    "previous": "Lezione precedente",
+    "next": "Lezione successiva",
+    "resume": "Riprendi",
+    "reading": "Stai leggendo questa lezione",
+    "left": "{left, plural, one {Manca # lezione} other {Mancano # lezioni}} su {total}",
+    "finished": "Corso completato!",
+    "percent": "{percent}% completato"
+  },
+  "Profile": {
+    "editProfile": "Modifica profilo",
+    "statLessons": "lezioni completate",
+    "statCourses": "corsi iniziati",
+    "statBadges": "badge",
+    "statFavorites": "preferiti",
+    "statBookmarks": "segnalibri",
+    "tabs": {
+      "badges": "Badge",
+      "progress": "Progressi",
+      "favorites": "Preferiti",
+      "bookmarks": "Segnalibri"
+    }
   }
 }

@@ -27,6 +27,8 @@ import {
   IconStar,
 } from '@tabler/icons-react';
 
+import { SidebarUser } from './sidebar-user';
+
 import { useBookmarks } from '@/components/bookmarks/bookmarks-context';
 import { useFavorites } from '@/components/favorites/favorites-context';
 import { NotebookLogo } from '@/components/notebook-logo';
@@ -525,6 +527,7 @@ export function AppSidebar({
           </List>
         </Box>
       )}
+      <SidebarUser collapsed={collapsed} onNavigate={onNavigate} />
     </Stack>
   );
 }
