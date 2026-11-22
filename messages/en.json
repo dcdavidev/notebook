@@ -78,7 +78,11 @@
     "glossarySectionOf": "Subject {step} of {total}",
     "downloadGlossaryPdfHint": "All the terms in one PDF",
     "downloadGlossaryMarkdownHint": "All the terms in one Markdown file",
-    "downloadGlossary": "Download the glossary"
+    "downloadGlossary": "Download the glossary",
+    "glossaryOneFile": "One file",
+    "glossaryBySubject": "By subject",
+    "downloadGlossarySectionsPdfHint": "One PDF per subject, in a ZIP file",
+    "downloadGlossarySectionsMarkdownHint": "One Markdown file per subject, in a ZIP file"
   },
   "Sponsor": {
     "title": "Support Notebook",

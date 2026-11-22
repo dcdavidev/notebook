@@ -238,6 +238,134 @@ export async function getGlossaryPdf(
 }
 
 /**
+ * One section of a glossary as an A4 PDF, cached to prerender it once.
+ */
+async function getGlossarySectionPdf(
+  lang: Locale,
+  topic: string,
+  slug: string
+): Promise<DownloadFile<Uint8Array<ArrayBuffer>> | null> {
+  'use cache';
+  cacheLife('max');
+
+  const [glossary, section, t] = await Promise.all([
+    getGlossary(lang, topic),
+    getGlossarySection(lang, topic, slug),
+    getTranslations({ locale: lang, namespace: 'Learn' }),
+  ]);
+  if (!glossary || !section) {
+    return null;
+  }
+
+  const index = glossary.sections.findIndex((item) => item.slug === slug);
+  const url = new URL(
+    `/${lang}/learn/${topic}/glossary/${slug}`,
+    packageJson.homepage
+  ).href;
+  const pdf = await renderLessonPdf({
+    locale: lang,
+    title: section.title,
+    description: section.description,
+    body: rewriteLinks(section.body, absoluteGlossaryResolver(lang, topic)),
+    meta: [
+      glossary.title ?? t('glossary'),
+      t('glossarySectionOf', {
+        step: index + 1,
+        total: glossary.sections.length,
+      }),
+      t('glossaryTermCount', { count: section.termCount }),
+    ].join(' · '),
+    url,
+    baseUrl: url,
+    pageLabel: (page, total) => t('pdfPage', { page, total }),
+  });
+  return { file: new Uint8Array(pdf), name: `${slug}.${lang}.pdf` };
+}
+
+/**
+ * The glossary of a topic in one ZIP file, one file per section. The
+ * Markdown archive also holds the index as `README.md`; links between the
+ * files of the archive stay relative, links to lessons become absolute.
+ */
+export async function getGlossaryArchive(
+  lang: Locale,
+  topic: string,
+  format: ArchiveFormat
+): Promise<DownloadFile<Uint8Array<ArrayBuffer>> | null> {
+  'use cache';
+  cacheLife('max');
+
+  const glossary = await getGlossary(lang, topic);
+  if (!glossary) {
+    return null;
+  }
+
+  const folder = `${topic}-glossary-${lang}`;
+  const files: Zippable = {};
+  if (format === 'pdf') {
+    // One section at a time, like the course archive, to save memory.
+    for (const item of glossary.sections) {
+      const pdf = await getGlossarySectionPdf(lang, topic, item.slug);
+      if (pdf) {
+        files[pdf.name] = [pdf.file, { level: 0, mtime: archiveDate }];
+      }
+    }
+  } else {
+    const toAbsolute = absoluteGlossaryResolver(lang, topic);
+    const sectionNames = new Set(
+      glossary.sections.map((item) => `${item.slug}.${lang}.md`)
+    );
+    const resolve = (href: string): string => {
+      const [file = '', hash] = href.replace(/^\.\//, '').split('#', 2);
+      if (sectionNames.has(file)) {
+        return href;
+      }
+      if (file === `README.${lang}.md`) {
+        return `./README.md${hash === undefined ? '' : `#${hash}`}`;
+      }
+      return toAbsolute(href);
+    };
+    const t = await getTranslations({ locale: lang, namespace: 'Learn' });
+    const index = [
+      `# ${glossary.title ?? t('glossary')}`,
+      rewriteLinks(glossary.body.trim(), resolve),
+    ];
+    files['README.md'] = [
+      strToU8(`${index.join('\n\n')}\n`),
+      { mtime: archiveDate },
+    ];
+    const sections = await Promise.all(
+      glossary.sections.map((item) =>
+        getGlossarySection(lang, topic, item.slug)
+      )
+    );
+    for (const section of sections) {
+      if (!section) {
+        continue;
+      }
+      const parts = [
+        `# ${section.title}`,
+        section.description,
+        rewriteLinks(section.body.trim(), resolve),
+      ];
+      files[`${section.slug}.${lang}.md`] = [
+        strToU8(`${parts.filter(Boolean).join('\n\n')}\n`),
+        { mtime: archiveDate },
+      ];
+    }
+  }
+
+  const zip = zipSync(
+    { [folder]: [files, { mtime: archiveDate }] },
+    { level: 9 }
+  );
+  return {
+    file: new Uint8Array(zip),
+    name: `${folder}-${format === 'pdf' ? 'pdf' : 'md'}.zip`,
+  };
+}
+
+/**
  * Every lesson of a course version in one ZIP file, in one format. The
  * files sit in a folder named after the course and version, and keep the
  * step number in their names, so they sort in order. The Markdown archive

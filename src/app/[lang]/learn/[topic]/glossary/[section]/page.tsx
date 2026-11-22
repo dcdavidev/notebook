@@ -153,6 +153,16 @@ export default async function GlossarySectionPage({ params }: Props) {
               format: 'markdown',
               href: `/${lang}/learn/${topic}/glossary/download/markdown`,
             },
+            {
+              scope: 'glossarySections',
+              format: 'pdf',
+              href: `/${lang}/learn/${topic}/glossary/archive/pdf`,
+            },
+            {
+              scope: 'glossarySections',
+              format: 'markdown',
+              href: `/${lang}/learn/${topic}/glossary/archive/markdown`,
+            },
           ]}
           sx={{ textTransform: 'none', borderRadius: 3, py: 0.75 }}
         />

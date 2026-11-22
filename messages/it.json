@@ -78,7 +78,11 @@
     "glossarySectionOf": "Argomento {step} di {total}",
     "downloadGlossaryPdfHint": "Tutti i termini in un PDF",
     "downloadGlossaryMarkdownHint": "Tutti i termini in un file Markdown",
-    "downloadGlossary": "Scarica il glossario"
+    "downloadGlossary": "Scarica il glossario",
+    "glossaryOneFile": "Un solo file",
+    "glossaryBySubject": "Per argomento",
+    "downloadGlossarySectionsPdfHint": "Un PDF per argomento, in un file ZIP",
+    "downloadGlossarySectionsMarkdownHint": "Un file Markdown per argomento, in un file ZIP"
   },
   "Sponsor": {
     "title": "Sostieni Notebook",

@@ -23,9 +23,10 @@ export interface DownloadOption {
   href: string;
   format: 'pdf' | 'markdown';
   /**
-  One lesson, the whole course in a ZIP file, or the whole glossary.
+  One lesson, the whole course in a ZIP file, the whole glossary in one
+  file, or the glossary in a ZIP file with one file per subject.
   */
-  scope: 'lesson' | 'course' | 'glossary';
+  scope: 'lesson' | 'course' | 'glossary' | 'glossarySections';
 }
 
 const hintKeys = {
@@ -38,15 +39,28 @@ const hintKeys = {
     pdf: 'downloadGlossaryPdfHint',
     markdown: 'downloadGlossaryMarkdownHint',
   },
+  glossarySections: {
+    pdf: 'downloadGlossarySectionsPdfHint',
+    markdown: 'downloadGlossarySectionsMarkdownHint',
+  },
 } as const;
 
-const scopes = ['lesson', 'glossary', 'course'] as const;
+const scopes = ['lesson', 'glossary', 'glossarySections', 'course'] as const;
 
 const scopeTitles = {
   lesson: 'thisLesson',
-  glossary: 'glossary',
+  glossary: 'glossaryOneFile',
+  glossarySections: 'glossaryBySubject',
   course: 'wholeCourse',
 } as const;
+
+/**
+Scopes whose files come in a ZIP archive.
+*/
+const archiveScopes = new Set<DownloadOption['scope']>([
+  'course',
+  'glossarySections',
+]);
 
 /**
  * A button that opens a menu of files to download, grouped by scope when
@@ -114,7 +128,7 @@ export function DownloadMenu({
               )}
               {items.map((option) => {
                 let icon = <IconMarkdown size={20} />;
-                if (scope === 'course') {
+                if (archiveScopes.has(scope)) {
                   icon = <IconFileZip size={20} />;
                 } else if (option.format === 'pdf') {
                   icon = <IconFileText size={20} />;
