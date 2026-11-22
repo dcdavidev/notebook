@@ -195,6 +195,9 @@
     "summary": "{done} di {total} lezioni completate",
     "resume": "Riprendi: {lesson}",
     "completedLesson": "Lezione completata",
-    "error": "Non è stato possibile salvare i progressi. Riprova."
+    "error": "Non è stato possibile salvare i progressi. Riprova.",
+    "autoCompleted": "Lezione segnata come completata",
+    "undo": "Annulla",
+    "continueNext": "Continua: {lesson}"
   }
 }

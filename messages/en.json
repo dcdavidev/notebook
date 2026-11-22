@@ -195,6 +195,9 @@
     "summary": "{done} of {total} lessons completed",
     "resume": "Continue: {lesson}",
     "completedLesson": "Completed lesson",
-    "error": "Couldn't save your progress. Try again."
+    "error": "Couldn't save your progress. Try again.",
+    "autoCompleted": "Lesson marked as completed",
+    "undo": "Undo",
+    "continueNext": "Next up: {lesson}"
   }
 }
