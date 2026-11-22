@@ -27,19 +27,24 @@ Only the namespaces that this page uses reach the provider.
 */
 const pageMessages: Record<
   Locale,
-  Pick<typeof enMessages, 'Auth' | 'Account' | 'Favorites' | 'Bookmarks'>
+  Pick<
+    typeof enMessages,
+    'Auth' | 'Account' | 'Favorites' | 'Bookmarks' | 'Progress'
+  >
 > = {
   en: {
     Auth: enMessages.Auth,
     Account: enMessages.Account,
     Favorites: enMessages.Favorites,
     Bookmarks: enMessages.Bookmarks,
+    Progress: enMessages.Progress,
   },
   it: {
     Auth: itMessages.Auth,
     Account: itMessages.Account,
     Favorites: itMessages.Favorites,
     Bookmarks: itMessages.Bookmarks,
+    Progress: itMessages.Progress,
   },
 };
 

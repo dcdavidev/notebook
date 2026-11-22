@@ -170,7 +170,10 @@
     "favoritesEmpty": "Non hai ancora corsi preferiti. Tocca la stella su un corso nella <courses>panoramica</courses> per salvarlo qui.",
     "bookmarksTitle": "Lezioni salvate",
     "bookmarksText": "Le lezioni che hai salvato come importanti. Le ritrovi su tutti i tuoi dispositivi.",
-    "bookmarksEmpty": "Non hai ancora segnalibri. Tocca “Salva” su una lezione per ritrovarla qui."
+    "bookmarksEmpty": "Non hai ancora segnalibri. Tocca “Salva” su una lezione per ritrovarla qui.",
+    "progressTitle": "I tuoi progressi",
+    "progressText": "I corsi che hai iniziato, con le lezioni completate e l'ultima lezione che hai letto.",
+    "progressEmpty": "Non hai ancora iniziato nessun corso. Apri una lezione e premi «Segna come completata» quando l'hai finita."
   },
   "Favorites": {
     "add": "Aggiungi {course} ai preferiti",
@@ -185,5 +188,13 @@
     "save": "Salva",
     "saved": "Salvata",
     "error": "Non è stato possibile aggiornare i segnalibri. Riprova."
+  },
+  "Progress": {
+    "markCompleted": "Segna come completata",
+    "completed": "Completata",
+    "summary": "{done} di {total} lezioni completate",
+    "resume": "Riprendi: {lesson}",
+    "completedLesson": "Lezione completata",
+    "error": "Non è stato possibile salvare i progressi. Riprova."
   }
 }

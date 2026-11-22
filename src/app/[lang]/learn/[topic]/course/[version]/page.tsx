@@ -15,6 +15,7 @@ import { DownloadMenu } from '@/components/download-menu';
 import { FavoriteButton } from '@/components/favorites/favorite-button';
 import { LinkButton } from '@/components/link-button';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
+import { CourseProgress } from '@/components/progress/course-progress';
 import { routing } from '@/i18n/routing';
 import { getVersionParams, redirectToFirstLesson } from '@/lib/course-redirect';
 import { findVersion, getCourseOverview, getCourses } from '@/lib/courses';
@@ -177,6 +178,16 @@ export default async function VersionPage({ params }: Props) {
           title={overview.title ?? course.title}
         />
       </Stack>
+
+      <CourseProgress
+        course={topic}
+        version={versionData.name}
+        lessons={versionData.lessons.map(({ slug, title }) => ({
+          slug,
+          title,
+        }))}
+        basePath={basePath}
+      />
 
       <Divider sx={{ my: 4 }} />
 
