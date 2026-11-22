@@ -18,6 +18,7 @@ import { ReadingProgress } from './reading-progress';
 import { VersionMenu } from './version-menu';
 
 import { AccountMenu } from '@/components/auth/account-menu';
+import { LessonPlayer } from '@/components/player/lesson-player';
 import { SettingsMenu } from '@/components/settings-menu';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { CourseSummary } from '@/lib/courses';
@@ -174,7 +175,15 @@ export function AppShell({
         >
           {children}
         </Box>
-        <AppFooter />
+        {/* Sticks to the bottom of the window, and stops above the footer. */}
+        <LessonPlayer courses={courses} />
+        <AppFooter
+          courseCount={courses.length}
+          lessonCount={courses.reduce(
+            (sum, course) => sum + (course.versions[0]?.lessons.length ?? 0),
+            0
+          )}
+        />
       </Stack>
     </Box>
   );

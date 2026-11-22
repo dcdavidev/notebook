@@ -29,7 +29,16 @@
     "opensNewTab": "(opens in a new tab)",
     "footerLegal": "Legal",
     "favorites": "Favorites",
-    "bookmarks": "Bookmarks"
+    "bookmarks": "Bookmarks",
+    "profile": "Profile",
+    "footerPromise": "Learn for free.",
+    "footerPromiseForever": "Forever.",
+    "footerStatLessons": "{count} lessons",
+    "footerStatCourses": "{count, plural, one {# course} other {# courses}}",
+    "footerStatLanguages": "2 languages",
+    "footerStatPrice": "€0 forever",
+    "footerCtaSponsor": "Support the project",
+    "footerCtaContribute": "Write a lesson"
   },
   "Overview": {
     "title": "What shall we learn today?",
@@ -121,7 +130,8 @@
     "accountOf": "Account of {name}",
     "signOut": "Sign out",
     "error": "Sign-in failed. Try again.",
-    "myAccount": "My account"
+    "myAccount": "My account",
+    "myProfile": "My profile"
   },
   "Account": {
     "title": "My account",
@@ -173,7 +183,39 @@
     "bookmarksEmpty": "You have no bookmarks yet. Tap “Bookmark” on a lesson to save it here.",
     "progressTitle": "Your progress",
     "progressText": "The courses you started, with the lessons you completed and the last lesson you read.",
-    "progressEmpty": "You haven't started a course yet. Open a lesson and press “Mark as completed” when you finish it."
+    "progressEmpty": "You haven't started a course yet. Open a lesson and press “Mark as completed” when you finish it.",
+    "badges": {
+      "title": "Badges",
+      "text": "You unlock them as you study. The supporter badge comes when you support Notebook.",
+      "earned": "Earned",
+      "locked": "Locked",
+      "lessonsLeft": "{done} of {total} lessons",
+      "supporterChip": "Supporter",
+      "supporter": {
+        "name": "Supporter",
+        "description": "You support Notebook and help keep the courses free for everyone."
+      },
+      "lessons-1": {
+        "name": "First step",
+        "description": "Complete your first lesson."
+      },
+      "lessons-10": {
+        "name": "Getting into it",
+        "description": "Complete 10 lessons."
+      },
+      "lessons-50": {
+        "name": "Unstoppable",
+        "description": "Complete 50 lessons."
+      },
+      "lessons-100": {
+        "name": "Centurion",
+        "description": "Complete 100 lessons."
+      },
+      "course": {
+        "name": "Course completed",
+        "description": "Complete every lesson of a course."
+      }
+    }
   },
   "Favorites": {
     "add": "Add {course} to favorites",
@@ -199,5 +241,29 @@
     "autoCompleted": "Lesson marked as completed",
     "undo": "Undo",
     "continueNext": "Next up: {lesson}"
+  },
+  "Player": {
+    "label": "Lesson player",
+    "previous": "Previous lesson",
+    "next": "Next lesson",
+    "resume": "Resume",
+    "reading": "You are reading this lesson",
+    "left": "{left, plural, one {# lesson} other {# lessons}} left of {total}",
+    "finished": "Course completed!",
+    "percent": "{percent}% completed"
+  },
+  "Profile": {
+    "editProfile": "Edit profile",
+    "statLessons": "lessons completed",
+    "statCourses": "courses started",
+    "statBadges": "badges",
+    "statFavorites": "favorites",
+    "statBookmarks": "bookmarks",
+    "tabs": {
+      "badges": "Badges",
+      "progress": "Progress",
+      "favorites": "Favorites",
+      "bookmarks": "Bookmarks"
+    }
   }
 }

@@ -10,9 +10,13 @@ import MuiLink from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { IconArrowUp } from '@tabler/icons-react';
+import {
+  IconArrowUp,
+  IconGitPullRequest,
+  IconHeart,
+} from '@tabler/icons-react';
 
-import { NotebookLogo } from '@/components/notebook-logo';
+import { LinkButton } from '@/components/link-button';
 import { visuallyHidden } from '@/components/visually-hidden';
 import { Link } from '@/i18n/navigation';
 
@@ -54,10 +58,17 @@ function FooterColumn({
 }
 
 /**
- * Page footer: the site name and tagline, links to the site pages and the
- * project, the author and license, and the "back to top" button.
+ * Page footer: a big promise with the numbers of the site and two calls to
+ * action, the links to the site pages and the project, a giant wordmark in
+ * the palette colors, the author, and the "back to top" button.
  */
-export function AppFooter() {
+export function AppFooter({
+  lessonCount,
+  courseCount,
+}: {
+  lessonCount: number;
+  courseCount: number;
+}) {
   const t = useTranslations('Shell');
   const tLegal = useTranslations('Legal');
   const newTab = t('opensNewTab');
@@ -89,6 +100,82 @@ export function AppFooter() {
         borderColor: 'divider',
       }}
     >
+      {/* The promise of the site, with its numbers. */}
+      <Stack
+        sx={{
+          maxWidth: 1100,
+          mx: 'auto',
+          mb: { xs: 5, md: 7 },
+          gap: 2.5,
+          alignItems: 'flex-start',
+        }}
+      >
+        <Typography
+          component="p"
+          sx={{
+            fontWeight: 800,
+            fontSize: { xs: '2.4rem', sm: '3.2rem', md: '4rem' },
+            lineHeight: 1,
+            letterSpacing: '-0.035em',
+          }}
+        >
+          {t('footerPromise')}
+          <Box
+            component="span"
+            sx={{ display: 'block', color: 'var(--nb-secondary)' }}
+          >
+            {t('footerPromiseForever')}
+          </Box>
+        </Typography>
+        <Stack
+          component="ul"
+          direction="row"
+          sx={{ m: 0, p: 0, listStyle: 'none', gap: 1, flexWrap: 'wrap' }}
+        >
+          {[
+            t('footerStatLessons', { count: lessonCount }),
+            t('footerStatCourses', { count: courseCount }),
+            t('footerStatLanguages'),
+            t('footerStatPrice'),
+          ].map((label) => (
+            <Box
+              key={label}
+              component="li"
+              sx={{
+                px: 1.5,
+                py: 0.5,
+                borderRadius: 999,
+                border: 1,
+                borderColor: 'divider',
+                fontSize: 14,
+                fontWeight: 600,
+              }}
+            >
+              {label}
+            </Box>
+          ))}
+        </Stack>
+        <Stack direction="row" sx={{ gap: 1.5, flexWrap: 'wrap' }}>
+          <LinkButton
+            href="/sponsor"
+            variant="contained"
+            disableElevation
+            startIcon={<IconHeart size={18} />}
+            sx={{ borderRadius: 999, textTransform: 'none', fontWeight: 600 }}
+          >
+            {t('footerCtaSponsor')}
+          </LinkButton>
+          <LinkButton
+            href="/contribute"
+            variant="outlined"
+            startIcon={<IconGitPullRequest size={18} />}
+            sx={{ borderRadius: 999, textTransform: 'none', fontWeight: 600 }}
+          >
+            {t('footerCtaContribute')}
+          </LinkButton>
+        </Stack>
+      </Stack>
+
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         sx={{
@@ -98,31 +185,12 @@ export function AppFooter() {
           justifyContent: 'space-between',
         }}
       >
-        <Stack sx={{ gap: 1, maxWidth: 320 }}>
-          <Stack
-            direction="row"
-            component={Link}
-            href="/overview"
-            sx={{
-              alignItems: 'center',
-              gap: 1,
-              color: 'text.primary',
-              textDecoration: 'none',
-              alignSelf: 'flex-start',
-            }}
-          >
-            <NotebookLogo size={28} />
-            <Typography
-              component="span"
-              sx={{ fontFamily: 'var(--nb-font-title)', fontSize: '1.5rem' }}
-            >
-              Notebook
-            </Typography>
-          </Stack>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            {t('footerTagline')}
-          </Typography>
-        </Stack>
+        <Typography
+          variant="body2"
+          sx={{ color: 'text.secondary', maxWidth: 320 }}
+        >
+          {t('footerTagline')}
+        </Typography>
 
         <Stack
           direction="row"
@@ -177,12 +245,44 @@ export function AppFooter() {
         </Stack>
       </Stack>
 
+      {/* A giant wordmark in the palette colors, cut by the bottom edge. */}
+      <Box
+        aria-hidden
+        sx={{
+          maxWidth: 1100,
+          mx: 'auto',
+          mt: { xs: 5, md: 7 },
+          overflow: 'hidden',
+          userSelect: 'none',
+        }}
+      >
+        <Typography
+          component="span"
+          sx={{
+            display: 'block',
+            fontFamily: 'var(--nb-font-title)',
+            fontSize: 'clamp(5rem, 21vw, 15rem)',
+            lineHeight: 1,
+            mb: '-0.28em',
+            textAlign: 'center',
+            whiteSpace: 'nowrap',
+            backgroundImage:
+              'linear-gradient(100deg, var(--nb-primary), var(--nb-secondary))',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+          }}
+        >
+          Notebook
+        </Typography>
+      </Box>
+
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         sx={{
           maxWidth: 1100,
           mx: 'auto',
-          mt: 4,
+          mt: 0,
           pt: 2,
           gap: 1,
           borderTop: 1,

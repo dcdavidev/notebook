@@ -29,7 +29,7 @@ Notebook remembers your language, theme, palette, and cookie choice with technic
 You can sign in with a **Google**, **GitHub**, or **Facebook** account. There's no sign-in with an email and password. When you sign in, the provider you choose sends Notebook your name, email address, and profile picture. Notebook saves them together with an identifier of your account. You can change the name shown on the site on your [account page](/account).
 
 - **Why:** to create your account, show who is signed in, and keep your favorites, bookmarks, progress, language, theme, and palette on every device.
-- **What else:** the courses you add to your favorites and the lessons you bookmark (with the date you added them), the lessons you open and the ones you mark as completed (with the date you last read and completed them), the language, theme, and palette you choose, and the other accounts (Google, GitHub, Facebook) you link to your account.
+- **What else:** if you support the project, that you are a supporter and since when; the courses you add to your favorites and the lessons you bookmark (with the date you added them), the lessons you open and the ones you mark as completed (with the date you last read and completed them), the language, theme, and palette you choose, and the other accounts (Google, GitHub, Facebook) you link to your account.
 - **Legal basis:** providing the service you asked for (Art. 6(1)(b) GDPR).
 - **How long:** until you delete your account. On your [account page](/account), you can download a copy of your data and delete your account with all its data. You can also use the contact details above.
 - You sign in on the provider's site, under its own privacy policy. Notebook never sees your password.

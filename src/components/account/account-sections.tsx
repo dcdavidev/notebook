@@ -9,6 +9,7 @@ import { useFormatter, useTranslations } from 'next-intl';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -42,6 +43,9 @@ import {
   providerIcons,
   SignInButtons,
 } from '@/components/auth/sign-in-buttons';
+import { computeBadges } from '@/components/badges/badges';
+import { BadgeGrid } from '@/components/badges/badges-section-content';
+import { useSupporter } from '@/components/badges/use-supporter';
 import { BookmarkButton } from '@/components/bookmarks/bookmark-button';
 import {
   type Bookmark,
@@ -94,7 +98,7 @@ function Section({
 /**
  * Asks the visitor to sign in when the account page opens signed out.
  */
-function SignedOut() {
+export function SignedOut() {
   const t = useTranslations('Account');
   const { signIn } = useAuth();
   const [pending, setPending] = useState<AuthProviderId | null>(null);
@@ -128,9 +132,11 @@ function SignedOut() {
 
 function ProfileSection({
   account,
+  isSupporter,
   notify,
 }: {
   account: Account;
+  isSupporter: boolean;
   notify: (notice: Notice) => void;
 }) {
   const t = useTranslations('Account');
@@ -173,9 +179,18 @@ function ProfileSection({
           {account.name.charAt(0).toUpperCase()}
         </Avatar>
         <Stack sx={{ minWidth: 0 }}>
-          <Typography sx={{ fontWeight: 600, fontSize: '1.125rem' }} noWrap>
-            {account.name}
-          </Typography>
+          <Stack direction="row" sx={{ alignItems: 'center', gap: 1 }}>
+            <Typography sx={{ fontWeight: 600, fontSize: '1.125rem' }} noWrap>
+              {account.name}
+            </Typography>
+            {isSupporter && (
+              <Chip
+                label={t('badges.supporterChip')}
+                size="small"
+                sx={{ bgcolor: '#e11d48', color: '#fff', fontWeight: 600 }}
+              />
+            )}
+          </Stack>
           {account.email && (
             <Typography color="text.secondary" noWrap>
               {account.email}
@@ -332,7 +347,7 @@ function LinkedAccountsSection({
   );
 }
 
-function FavoritesSection({
+export function FavoritesSection({
   locale,
   courseTitles,
 }: {
@@ -389,7 +404,7 @@ function FavoritesSection({
   );
 }
 
-function BookmarksSection({
+export function BookmarksSection({
   locale,
   courseTitles,
   lessonTitles,
@@ -455,7 +470,7 @@ function BookmarksSection({
  * Courses the visitor started, newest first: one entry per course version,
  * with the share of completed lessons and the lesson read last.
  */
-function ProgressSection({
+export function ProgressSection({
   locale,
   courseTitles,
   lessonTitles,
@@ -540,6 +555,43 @@ function ProgressSection({
           })}
         </Stack>
       )}
+    </Section>
+  );
+}
+
+/**
+ * Badges earned with progress and support, and the ones still to unlock.
+ */
+export function BadgesSection({
+  isSupporter,
+  courseTitles,
+  lessonTitles,
+}: {
+  isSupporter: boolean | null;
+  courseTitles: Record<string, string>;
+  lessonTitles: Record<string, string>;
+}) {
+  const t = useTranslations('Account');
+  const { progress, loading } = useProgress();
+
+  if (loading || isSupporter === null) {
+    return (
+      <Section title={t('badges.title')} description={t('badges.text')}>
+        <CircularProgress size={24} aria-label={t('loading')} />
+      </Section>
+    );
+  }
+
+  const { badges, completedLessons } = computeBadges({
+    progress,
+    isSupporter,
+    lessonTitles,
+    courseTitles,
+  });
+
+  return (
+    <Section title={t('badges.title')} description={t('badges.text')}>
+      <BadgeGrid badges={badges} completedLessons={completedLessons} />
     </Section>
   );
 }
@@ -748,21 +800,14 @@ function DataSection({
 }
 
 /**
- * Content of the account page: a sign-in prompt, or the profile, linked
- * accounts, favorites, bookmarks, preferences, and data of the signed-in
- * visitor.
+ * Content of the account page: a sign-in prompt, or the settings of the
+ * signed-in visitor: profile, linked accounts, preferences, and data.
+ * Badges, progress, favorites, and bookmarks are on `/profile`.
  */
-export function AccountSections({
-  locale,
-  courseTitles,
-  lessonTitles,
-}: {
-  locale: Locale;
-  courseTitles: Record<string, string>;
-  lessonTitles: Record<string, string>;
-}) {
+export function AccountSections({ locale }: { locale: Locale }) {
   const t = useTranslations('Account');
   const { enabled, loading, account } = useAuth();
+  const isSupporter = useSupporter();
   const [notice, setNotice] = useState<Notice>(null);
 
   if (!enabled) {
@@ -809,19 +854,12 @@ export function AccountSections({
       <Typography variant="h4" component="h1" sx={{ fontWeight: 700 }}>
         {t('title')}
       </Typography>
-      <ProfileSection account={account} notify={setNotice} />
+      <ProfileSection
+        account={account}
+        isSupporter={isSupporter === true}
+        notify={setNotice}
+      />
       <LinkedAccountsSection account={account} notify={setNotice} />
-      <FavoritesSection locale={locale} courseTitles={courseTitles} />
-      <ProgressSection
-        locale={locale}
-        courseTitles={courseTitles}
-        lessonTitles={lessonTitles}
-      />
-      <BookmarksSection
-        locale={locale}
-        courseTitles={courseTitles}
-        lessonTitles={lessonTitles}
-      />
       <PreferencesSection locale={locale} />
       <DataSection account={account} locale={locale} notify={setNotice} />
       {snackbar}
