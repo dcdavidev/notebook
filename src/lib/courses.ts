@@ -74,6 +74,10 @@ export interface CourseSummary {
   Versions with at least one lesson, newest first.
   */
   versions: CourseVersion[];
+  /**
+  Whether the topic has a glossary in `glossary/README.&lt;locale>.md`.
+  */
+  hasGlossary: boolean;
 }
 
 export interface Lesson extends LessonSummary {
@@ -95,6 +99,26 @@ export interface CourseOverview {
   Markdown body, without front matter and heading.
   */
   body: string;
+  /**
+  Repository path, for the "Edit on GitHub" link.
+  */
+  sourcePath: string;
+}
+
+export interface Glossary {
+  /**
+  The leading `# Heading` of the README.
+  */
+  title?: string;
+  description: string;
+  /**
+  Markdown body, without front matter and heading.
+  */
+  body: string;
+  /**
+  Number of entries: paragraphs that start with a bold term.
+  */
+  termCount: number;
   /**
   Repository path, for the "Edit on GitHub" link.
   */
@@ -231,15 +255,17 @@ export async function getCourses(locale: Locale): Promise<CourseSummary[]> {
       );
       // Title, description, and tags come from the newest version's README.
       const newest = versions[0];
-      const overview = newest
-        ? await readOverview(locale, topic, newest.name)
-        : null;
+      const [overview, glossary] = await Promise.all([
+        newest ? readOverview(locale, topic, newest.name) : null,
+        readGlossary(locale, topic),
+      ]);
       return {
         slug: topic,
         title: overview?.title ?? topic,
         description: overview?.description ?? '',
         tags: overview?.tags ?? [],
         versions,
+        hasGlossary: glossary !== null,
       };
     })
   );
@@ -332,6 +358,67 @@ async function readOverview(
     tags: data.tags ?? [],
     body: heading ? body.slice(heading[0].length) : body,
     sourcePath: `learning-materials/${topic}/course/${version}/${names[index]}`,
+  };
+}
+
+/**
+ * The glossary of a topic: `glossary/README.&lt;locale>.md`, or
+ * `README.en.md` as a fallback. `null` if the topic has none.
+ */
+export async function getGlossary(
+  locale: Locale,
+  topic: string
+): Promise<Glossary | null> {
+  'use cache';
+  cacheLife('max');
+
+  return namePattern.test(topic) ? readGlossary(locale, topic) : null;
+}
+
+/**
+ * Every `{ lang, topic }` pair with a glossary, for static generation.
+ */
+export async function getGlossaryParams(): Promise<
+  { lang: Locale; topic: string }[]
+> {
+  const perLocale = await Promise.all(
+    locales.map(async (lang) => {
+      const courses = await getCourses(lang);
+      return courses
+        .filter((course) => course.hasGlossary)
+        .map((course) => ({ lang, topic: course.slug }));
+    })
+  );
+  return perLocale.flat();
+}
+
+/**
+ * Reads a glossary README. Like a course README, its leading `# Heading`
+ * becomes the title and its front matter holds the description.
+ */
+async function readGlossary(
+  locale: Locale,
+  topic: string
+): Promise<Glossary | null> {
+  const names = [...new Set([`README.${locale}.md`, 'README.en.md'])];
+  const sources = await Promise.all(
+    names.map((name) =>
+      readOptionalFile(path.join(contentRoot, topic, 'glossary', name))
+    )
+  );
+  const index = sources.findIndex((source) => source !== null);
+  const source = sources[index];
+  if (source === undefined || source === null) {
+    return null;
+  }
+  const { data, body } = splitFrontMatter(source);
+  const heading = /^\s*# (.+)\r?\n/.exec(body);
+  return {
+    title: heading?.[1]?.trim() ?? data.title,
+    description: data.description ?? '',
+    body: heading ? body.slice(heading[0].length) : body,
+    termCount: body.match(/^\*\*/gm)?.length ?? 0,
+    sourcePath: `learning-materials/${topic}/glossary/${names[index]}`,
   };
 }
 

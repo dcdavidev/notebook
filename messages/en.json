@@ -72,7 +72,9 @@
     "thisLesson": "This lesson",
     "wholeCourse": "Whole course",
     "downloadCoursePdfHint": "Every lesson as a PDF, in a ZIP file",
-    "downloadCourseMarkdownHint": "Every lesson as Markdown, in a ZIP file"
+    "downloadCourseMarkdownHint": "Every lesson as Markdown, in a ZIP file",
+    "glossary": "Glossary",
+    "glossaryTermCount": "{count, plural, one {# term} other {# terms}}"
   },
   "Sponsor": {
     "title": "Support Notebook",
