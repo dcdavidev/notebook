@@ -41,6 +41,13 @@ const satisfy = readFile(
  * The text font. Passing any font replaces the default of `next/og`, so it
  * loads that default (Geist) again and lists it first.
  */
+/**
+The logo as a data URL: satori cannot load site-relative images.
+*/
+const logo = readFile(
+  path.join(process.cwd(), 'public', 'brand', 'logo-128.png')
+);
+
 const geist = readFile(
   path.join(
     process.cwd(),
@@ -79,6 +86,8 @@ export async function renderOgImage({
   meta,
 }: OgImageContent): Promise<ImageResponse> {
   const titleSize = title.length > 60 ? 60 : title.length > 32 ? 72 : 88;
+  const logoBytes = await logo;
+  const logoData = `data:image/png;base64,${logoBytes.toString('base64')}`;
 
   return new ImageResponse(
     <div
@@ -96,7 +105,7 @@ export async function renderOgImage({
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-        <NotebookLogo size={64} />
+        <NotebookLogo size={64} src={logoData} />
         <div style={{ fontFamily: 'Satisfy', fontSize: 52, lineHeight: 1 }}>
           Notebook
         </div>

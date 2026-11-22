@@ -16,7 +16,7 @@ We write the project in **TypeScript** (`tsconfig.json`, `.ts` and `.tsx` files)
 
 1. **Consistency Across Projects**: TypeScript is the standard language of all the author's projects, so code, conventions, and tooling stay the same everywhere.
 
-The `typecheck` script (`next typegen && tsc --noEmit`) runs in the `pre-commit` and `pre-push` Git hooks and in CI.
+The `typecheck` script (`next typegen && tsc --noEmit`) runs in the `pre-commit` Git hook and in CI.
 
 ## Consequences
 

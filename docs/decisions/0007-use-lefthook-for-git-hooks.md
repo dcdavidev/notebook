@@ -20,7 +20,7 @@ We adopted **Lefthook**, configured in `.config/lefthook.yml`:
 2. **Simple and Robust**: One YAML file, with no hand-written hook scripts in `.git/hooks`.
 3. **Fast**: Jobs run in parallel, for example spellcheck and type-check alongside ESLint and Prettier.
 4. **Highly Configurable**: Built-in staged-file filtering (`{staged_files}`, `glob`, `stage_fixed`) without lint-staged.
-5. **Beyond Commits**: The same file manages `pre-commit`, `commit-msg`, `pre-push`, `post-checkout`, `post-merge`, and `post-rewrite`.
+5. **Beyond Commits**: The same file manages `pre-commit`, `commit-msg`, `post-checkout`, `post-merge`, and `post-rewrite`. There is no `pre-push` hook: the full checks and the production build run in CI, so pushing stays fast.
 
 ## Consequences
 

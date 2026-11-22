@@ -55,25 +55,6 @@ commit-msg:
       fail_text: 'Use Conventional Commits, for example "feat: add notes page". Run "pnpm commit" for a guided prompt.'
 
 # ------------------------------------------------------------------------------
-# Before pushing: run the full project checks and the production build.
-# ------------------------------------------------------------------------------
-pre-push:
-  piped: true
-  jobs:
-    - name: lint
-      run: pnpm run lint:check
-    - name: format
-      run: pnpm run fmt:check
-      fail_text: Some files are not formatted. Run "pnpm fmt".
-    - name: spellcheck
-      run: pnpm run spellcheck
-    - name: typecheck
-      run: pnpm run typecheck
-    - name: build
-      run: pnpm run build
-      fail_text: The production build failed.
-
-# ------------------------------------------------------------------------------
 # After the working tree changes: reinstall dependencies when they changed.
 # ------------------------------------------------------------------------------
 post-checkout:
