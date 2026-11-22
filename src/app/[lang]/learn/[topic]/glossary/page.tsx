@@ -11,10 +11,12 @@ import Typography from '@mui/material/Typography';
 
 import { IconPencil } from '@tabler/icons-react';
 
+import { DownloadMenu } from '@/components/download-menu';
 import { LinkButton } from '@/components/link-button';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
 import { routing } from '@/i18n/routing';
 import { getGlossary, getGlossaryParams } from '@/lib/courses';
+import { createGlossaryHrefResolver } from '@/lib/glossary-links';
 
 /**
 Prerenders the glossary of every topic that has one, in every language.
@@ -31,35 +33,6 @@ export async function generateStaticParams() {
 export const instant = false;
 
 const repository = 'https://github.com/dcdavidev/notebook';
-
-/**
-A link to a course file: `../course/v2/0005-slug.en.md#part` or `../course/v2/README.en.md`.
-*/
-const courseLinkPattern =
-  /^\.\.\/course\/(v\d+)\/(?:(\d{4}-[a-z\d-]+)|README)\.[a-z]{2}\.md(#.*)?$/;
-
-/**
-A link to this glossary in another language: `./README.it.md`.
-*/
-const glossaryLinkPattern = /^(?:\.\/)?README\.([a-z]{2})\.md(#.*)?$/;
-
-/**
- * Turns the relative links of the glossary, written so that they also work
- * on GitHub, into site URLs.
- */
-function createHrefResolver(lang: string, topic: string) {
-  return (href: string): string => {
-    const course = courseLinkPattern.exec(href);
-    if (course) {
-      const [, version, lesson, hash = ''] = course;
-      return `/${lang}/learn/${topic}/course/${version}${lesson ? `/${lesson}` : ''}${hash}`;
-    }
-    const glossary = glossaryLinkPattern.exec(href);
-    return glossary
-      ? `/${glossary[1]}/learn/${topic}/glossary${glossary[2] ?? ''}`
-      : href;
-  };
-}
 
 type Props = PageProps<'/[lang]/learn/[topic]/glossary'>;
 
@@ -86,8 +59,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 /**
- * `/<lang>/learn/<topic>/glossary`: the terms of a topic's courses, in
- * alphabetical order, from `learning-materials/<topic>/glossary`.
+ * `/<lang>/learn/<topic>/glossary`: the glossary home page, with the list of
+ * its sections, from `learning-materials/<topic>/glossary/README.<lang>.md`.
  */
 export default async function GlossaryPage({ params }: Props) {
   const { lang, topic } = await params;
@@ -139,12 +112,31 @@ export default async function GlossaryPage({ params }: Props) {
         </Typography>
       )}
 
+      <Stack direction="row" sx={{ mt: 3, gap: 1.5, flexWrap: 'wrap' }}>
+        <DownloadMenu
+          label={t('downloadGlossary')}
+          options={[
+            {
+              scope: 'glossary',
+              format: 'pdf',
+              href: `/${lang}/learn/${topic}/glossary/download/pdf`,
+            },
+            {
+              scope: 'glossary',
+              format: 'markdown',
+              href: `/${lang}/learn/${topic}/glossary/download/markdown`,
+            },
+          ]}
+          sx={{ textTransform: 'none', borderRadius: 3, py: 0.75 }}
+        />
+      </Stack>
+
       <Divider sx={{ my: 4 }} />
 
       <MarkdownContent
         source={glossary.body}
         locale={lang}
-        resolveHref={createHrefResolver(lang, topic)}
+        resolveHref={createGlossaryHrefResolver(lang, topic)}
         anchorLabel={t('headingAnchor')}
       />
 

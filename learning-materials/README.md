@@ -119,6 +119,25 @@ Use GitHub alert syntax. Each type gets a translated title:
 
 Tables, task lists, and footnotes from GitHub Flavored Markdown work too.
 
+## Glossary (optional)
+
+A topic can have a glossary next to its courses, in `learning-materials/<topic>/glossary/`:
+
+```text
+learning-materials/abap/glossary/
+├── README.en.md                 # glossary home page, in English
+├── README.it.md                 # glossary home page, in Italian
+├── 01-sap-system.en.md          # one subject, English
+├── 01-sap-system.it.md          # one subject, Italian
+└── ...
+```
+
+- `README.<locale>.md` starts with a front matter `description` and a `#` title, like a course README. Write a short introduction and the list of subjects, with relative links (`./01-sap-system.en.md`).
+- Each subject is a file `NN-slug.<locale>.md`, where `NN` is a two-digit step that sets the order. Its front matter has `title` and `description`.
+- In a subject, write one paragraph per term, in alphabetical order: `**Term**: definition. Lesson [33](../course/v2/0033-internal-tables-intro.en.md).` Link the lessons with a relative path, so the links work on GitHub and on the site.
+
+The site serves the glossary at `/<lang>/learn/<topic>/glossary`, and each subject at `/<lang>/learn/<topic>/glossary/<NN-slug>`. The glossary can be downloaded as one PDF or Markdown file, and the course archives include it.
+
 ## Before you open a pull request
 
 Run the checks. They also lint, format, and spell-check the Markdown files:

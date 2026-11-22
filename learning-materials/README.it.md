@@ -119,6 +119,25 @@ Usa la sintassi degli avvisi di GitHub. Ogni tipo ha un titolo tradotto:
 
 Funzionano anche le tabelle, le liste di attività e le note a piè di pagina di GitHub Flavored Markdown.
 
+## Glossario (facoltativo)
+
+Un argomento può avere un glossario accanto ai corsi, in `learning-materials/<topic>/glossary/`:
+
+```text
+learning-materials/abap/glossary/
+├── README.en.md                 # home page del glossario, in inglese
+├── README.it.md                 # home page del glossario, in italiano
+├── 01-sap-system.en.md          # un argomento, inglese
+├── 01-sap-system.it.md          # un argomento, italiano
+└── ...
+```
+
+- `README.<locale>.md` inizia con la `description` nel front matter e un titolo `#`, come il README di un corso. Scrivi una breve introduzione e l'elenco degli argomenti, con link relativi (`./01-sap-system.it.md`).
+- Ogni argomento è un file `NN-slug.<locale>.md`, dove `NN` è un passo a due cifre che stabilisce l'ordine. Il front matter contiene `title` e `description`.
+- In un argomento scrivi un paragrafo per termine, in ordine alfabetico: `**Termine**: definizione. Lezione [33](../course/v2/0033-internal-tables-intro.it.md).` Collega le lezioni con un percorso relativo, così i link funzionano su GitHub e sul sito.
+
+Il sito mostra il glossario a `/<lang>/learn/<topic>/glossary` e ogni argomento a `/<lang>/learn/<topic>/glossary/<NN-slug>`. Il glossario si può scaricare come un unico file PDF o Markdown, e gli archivi del corso lo includono.
+
 ## Prima di aprire una pull request
 
 Esegui i controlli. Fanno anche il lint, la formattazione e il controllo ortografico dei file Markdown:
