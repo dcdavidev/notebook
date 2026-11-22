@@ -16,20 +16,20 @@ import { LinkButton } from '@/components/link-button';
 interface CourseProgressProps {
   course: string;
   /**
-  Named version folder, for example `v2`.
+  Named edition, for example `2026-11`, as stored with the progress.
   */
   version: string;
   lessons: { slug: string; title: string }[];
   /**
-  Path of the version, for example `/it/learn/abap/course/latest`.
+  Path of the course edition, for example `/it/learn/abap/latest/course`.
   */
   basePath: string;
 }
 
 /**
- * How much of a course version the signed-in visitor completed, with a
+ * How much of a course edition the signed-in visitor completed, with a
  * button to open the lesson they read last. Nothing shows until they open
- * a lesson of this version.
+ * a lesson of this edition.
  */
 export function CourseProgress({
   course,

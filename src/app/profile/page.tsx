@@ -22,8 +22,8 @@ export default async function Page() {
     locales.map(async (locale) => {
       const courses = await getCourses(locale);
       const lessonTitles = Object.fromEntries(
-        courses.flatMap(({ slug, versions }) =>
-          versions.flatMap(({ name, lessons }) =>
+        courses.flatMap(({ slug, editions }) =>
+          editions.flatMap(({ name, lessons }) =>
             lessons.map((item) => [`${slug}/${name}/${item.slug}`, item.title])
           )
         )

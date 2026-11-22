@@ -6,47 +6,53 @@ Every course on Notebook is a folder of Markdown files. The app reads these file
 
 ```text
 learning-materials/
-└── <topic>/                       # abap, sap, javascript, typescript, golang, ...
-    └── course/
-        ├── v1/                    # first version of the course
-        │   ├── README.en.md       # course home page, in English
-        │   ├── README.it.md       # course home page, in Italian
-        │   ├── 0001-<slug>.en.md  # lesson 1, English
-        │   ├── 0001-<slug>.it.md  # lesson 1, Italian
-        │   └── 0002-<slug>.en.md
-        └── v2/                    # a new edition of the course
-            └── ...
+└── <topic>/                         # abap, sap, javascript, typescript, golang, ...
+    └── <edition>/                   # 2026.11: the year and month of the edition
+        ├── en/                      # English
+        │   ├── course/
+        │   │   ├── README.md        # course home page
+        │   │   ├── 0001-<slug>.md   # lesson 1
+        │   │   └── 0002-<slug>.md
+        │   └── glossary/            # optional
+        │       ├── README.md        # glossary home page, with the index
+        │       ├── abap.md          # one entry: a term and the similar ones
+        │       └── internal-table.md
+        └── it/                      # Italian, with the same file names
+            ├── course/
+            └── glossary/
 ```
 
 - The topic folder name is used in the URL. Use lowercase letters, digits, and hyphens.
-- Version folders are always named `v1`, `v2`, `v3`, ... Never create a `latest` folder: `latest` exists only in the URL, as an alias of the highest version. The sidebar and `/learn/<topic>` open `latest`.
-- Each lesson has one file per language, with the locale before `.md`. The translations share **the same base name**, so the language switcher finds them.
+- An edition folder is named after its year and month, `YYYY.MM`, for example `2026.11`. In the URL it is written `YYYY-MM`. Never create a `latest` folder: `latest` exists only in the URL, as an alias of the newest edition. The sidebar and `/learn/<topic>` open `latest`.
+- Each language has its own folder. The translations of a file share **the same file name**, so the language switcher finds them. If a file is missing in a language, the site shows the English one.
 - The sidebar lists the courses in alphabetical order by title.
 
 URLs:
 
-| Page             | URL                                                  |
-| ---------------- | ---------------------------------------------------- |
-| Course home page | `/<lang>/learn/<topic>/course/<version>`             |
-| Lesson           | `/<lang>/learn/<topic>/course/<version>/<NNNN-slug>` |
+| Page               | URL                                                  |
+| ------------------ | ---------------------------------------------------- |
+| Course home page   | `/<lang>/learn/<topic>/<edition>/course`             |
+| Lesson             | `/<lang>/learn/<topic>/<edition>/course/<NNNN-slug>` |
+| Glossary home page | `/<lang>/learn/<topic>/<edition>/glossary`           |
+| Glossary entry     | `/<lang>/learn/<topic>/<edition>/glossary/<term>`    |
 
-`<version>` is `latest` or a folder name such as `v1`. For example, `learning-materials/abap/course/v1/0005-internal-tables.en.md` is served at `/en/learn/abap/course/v1/0005-internal-tables` and, while `v1` is the highest version, at `/en/learn/abap/course/latest/0005-internal-tables`.
+`<edition>` is `latest` or an edition such as `2026-11`. For example, `learning-materials/abap/2026.11/en/course/0033-internal-tables-intro.md` is served at `/en/learn/abap/2026-11/course/0033-internal-tables-intro` and, while `2026.11` is the newest edition, at `/en/learn/abap/latest/course/0033-internal-tables-intro`.
 
-## Course home page (`README.<locale>.md`)
+## Course home page (`course/README.md`)
 
-Every version folder has one `README.<locale>.md` per language: `README.en.md` and `README.it.md`. It is the course home page on the site; if a language is missing, the site shows the English one. Write in it:
+Every language of an edition has one `course/README.md`. It is the course home page on the site. Write in it:
 
 - who the course is for;
-- how the course is organized (weeks, levels, the structure of a lesson);
+- how the course is organized (levels, the structure of a lesson);
 - the table of contents, with a link to every lesson;
 - what you need to follow it (systems, tools, sample data);
-- what is specific to this version.
+- what is specific to this edition.
 
 The README also holds the course metadata. Start it with a front matter block for the description and the tags, then the topic as a `#` heading: the site uses the heading as the course title, in the sidebar and on the page.
 
 ```markdown
 ---
-description: A 15-day intensive course on SAP and ABAP.
+description: A complete, self-paced ABAP course.
 tags:
   - SAP
   - ABAP
@@ -55,23 +61,22 @@ tags:
 # ABAP
 ```
 
-The sidebar uses the README of the highest version. Tags describe the course and link related courses: reuse the tags that other courses already have when they fit.
+The sidebar uses the README of the newest edition. Tags describe the course and link related courses: reuse the tags that other courses already have when they fit.
 
 Link the lessons with a relative path to the file, so the links work both on GitHub and on the site:
 
 ```markdown
-1. [Internal tables](./0005-internal-tables.en.md): lists of data in memory.
+1. [Internal tables](./0033-internal-tables-intro.md): lists of data in memory.
 ```
 
 ## Lessons
 
 ### File name
 
-`NNNN-slug.<locale>.md`, where:
+`NNNN-slug.md`, in the `course/` folder of its language, where:
 
 - `NNNN` is the four-digit step: `0001`, `0002`, ... It sets the order of the lessons.
 - `slug` is a short name in English, in lowercase with hyphens, for example `internal-tables`.
-- `locale` is the language: `en` or `it`.
 
 ### Front matter
 
@@ -121,22 +126,13 @@ Tables, task lists, and footnotes from GitHub Flavored Markdown work too.
 
 ## Glossary (optional)
 
-A topic can have a glossary next to its courses, in `learning-materials/<topic>/glossary/`:
+An edition can have a glossary next to its course, in `<edition>/<lang>/glossary/`.
 
-```text
-learning-materials/abap/glossary/
-├── README.en.md                 # glossary home page, in English
-├── README.it.md                 # glossary home page, in Italian
-├── 01-sap-system.en.md          # one subject, English
-├── 01-sap-system.it.md          # one subject, Italian
-└── ...
-```
+- `README.md` starts with a front matter `description` and a `#` title, like the course README. Write a short introduction and the index of the entries in alphabetical order, with relative links (`./internal-table.md`).
+- Each entry is a file `<term>.md`, named after its main term in English, in lowercase with hyphens. Its front matter has `title` (the main term) and `description` (the terms it explains).
+- An entry explains its main term and the similar ones, for example `sap.md` explains SAP, SAP GUI, SAP HANA, and SAP S/4HANA. Write one `##` heading per term, with the term in English in every language, followed by the definition and the link to the lesson: `Lesson [33](../course/0033-internal-tables-intro.md).`
 
-- `README.<locale>.md` starts with a front matter `description` and a `#` title, like a course README. Write a short introduction and the list of subjects, with relative links (`./01-sap-system.en.md`).
-- Each subject is a file `NN-slug.<locale>.md`, where `NN` is a two-digit step that sets the order. Its front matter has `title` and `description`.
-- In a subject, write one paragraph per term, in alphabetical order: `**Term**: definition. Lesson [33](../course/v2/0033-internal-tables-intro.en.md).` Link the lessons with a relative path, so the links work on GitHub and on the site.
-
-The site serves the glossary at `/<lang>/learn/<topic>/glossary`, and each subject at `/<lang>/learn/<topic>/glossary/<NN-slug>`. The glossary can be downloaded as one PDF or Markdown file, and the course archives include it.
+The glossary can be downloaded as one PDF or Markdown file, or as a ZIP with one file per entry, and the course archives include it.
 
 ## Before you open a pull request
 

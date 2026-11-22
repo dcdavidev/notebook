@@ -64,7 +64,7 @@ export default async function LandingPage() {
   // course counts.
   const courses = await getCourses('en');
   const lessonCount = courses.reduce(
-    (sum, course) => sum + (course.versions[0]?.lessons.length ?? 0),
+    (sum, course) => sum + (course.editions[0]?.lessons.length ?? 0),
     0
   );
   const stats = [

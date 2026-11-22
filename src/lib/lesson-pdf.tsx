@@ -291,7 +291,9 @@ function resolveLink(href: string, context: RenderContext): string | null {
   if (!href || href.startsWith('#')) {
     return null;
   }
-  const lesson = /^(?:\.\/)?(\d{4}-[a-z\d-]+)\.[a-z]{2}\.md(#.*)?$/.exec(href);
+  const lesson = /^(?:\.\/)?(\d{4}-[a-z\d-]+)(?:\.[a-z]{2})?\.md(#.*)?$/.exec(
+    href
+  );
   if (lesson) {
     return `${context.baseUrl}/${lesson[1]}${lesson[2] ?? ''}`;
   }

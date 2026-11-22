@@ -60,6 +60,7 @@ import {
   useProgress,
 } from '@/components/progress/progress-context';
 import { type AuthProviderId, authProviders } from '@/lib/auth-providers';
+import { coursePath } from '@/lib/course-paths';
 import { notify } from '@/lib/island-notify';
 import { type Locale, localeNames } from '@/lib/locale';
 import { usePalette } from '@/theme/palette-context';
@@ -450,7 +451,7 @@ export function BookmarksSection({
                 <Stack sx={{ flex: 1, minWidth: 0 }}>
                   <MuiLink
                     component={NextLink}
-                    href={`/${locale}/learn/${course}/course/${version}/${lesson}`}
+                    href={`/${locale}${coursePath(course, version, lesson)}`}
                     underline="hover"
                     sx={{ fontWeight: 600, color: 'text.primary' }}
                   >
@@ -550,7 +551,7 @@ export function ProgressSection({
                 </Typography>
                 <MuiLink
                   component={NextLink}
-                  href={`/${locale}/learn/${course}/course/${version}/${last.lesson}`}
+                  href={`/${locale}${coursePath(course, version, last.lesson)}`}
                   underline="hover"
                   sx={{ fontWeight: 600, alignSelf: 'flex-start' }}
                 >

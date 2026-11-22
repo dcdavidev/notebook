@@ -22,6 +22,7 @@ import { useAuth } from '@/components/auth/auth-context';
 import { useProgress } from '@/components/progress/progress-context';
 import { Link, usePathname } from '@/i18n/navigation';
 import { accentFor } from '@/lib/accent';
+import { coursePath, latestEdition } from '@/lib/course-paths';
 import type { CourseSummary } from '@/lib/courses';
 
 /**
@@ -65,14 +66,14 @@ export function LessonPlayer({ courses }: { courses: CourseSummary[] }) {
   let found:
     | {
         course: CourseSummary;
-        version: CourseSummary['versions'][number];
+        version: CourseSummary['editions'][number];
         index: number;
         isCompleted: boolean;
       }
     | undefined;
   for (const row of progress.progress) {
     const course = courses.find((item) => item.slug === row.course);
-    const version = course?.versions.find((item) => item.name === row.version);
+    const version = course?.editions.find((item) => item.name === row.version);
     const index =
       version?.lessons.findIndex((item) => item.slug === row.lesson) ?? -1;
     if (course && version && index !== -1) {
@@ -97,12 +98,12 @@ export function LessonPlayer({ courses }: { courses: CourseSummary[] }) {
   }
   const previous = lessons[index - 1];
   const next = lessons[index + 1];
-  const versionPath = `/learn/${course.slug}/course/${version.name}`;
-  const isNewest = course.versions[0]?.name === version.name;
+  const versionPath = coursePath(course.slug, version.name);
+  const isNewest = course.editions[0]?.name === version.name;
   const isReading =
     pathname === `${versionPath}/${lesson.slug}` ||
     (isNewest &&
-      pathname === `/learn/${course.slug}/course/latest/${lesson.slug}`);
+      pathname === coursePath(course.slug, latestEdition, lesson.slug));
 
   const completed = progress.completedIn(course.slug, version.name);
   const done = lessons.filter((item) => completed.has(item.slug)).length;
@@ -201,7 +202,7 @@ export function LessonPlayer({ courses }: { courses: CourseSummary[] }) {
               {lesson.title}
             </Typography>
             <Typography variant="caption" color="text.secondary" noWrap>
-              {course.title} · {version.name}
+              {course.title} · {version.label}
             </Typography>
           </Stack>
         </Stack>

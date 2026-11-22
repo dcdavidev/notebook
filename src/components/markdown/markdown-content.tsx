@@ -10,24 +10,13 @@ import type { Locale } from '@/lib/locale';
 import { markdownToHast } from '@/lib/markdown';
 
 /**
-A relative link to a lesson file, such as `./0001-intro.en.md#setup`.
-*/
-const lessonLinkPattern = /^(?:\.\/)?(\d{4}-[a-z\d-]+)\.[a-z]{2}\.md(#.*)?$/;
-
-/**
- * Builds the link component. Links to lesson files, written so that they
- * also work on GitHub, become site URLs under `lessonBase`. External links
- * open in a new tab.
+ * Builds the link component. `resolveHref` turns relative links, written so
+ * that they also work on GitHub, into site URLs. External links open in a
+ * new tab.
  */
-function createMarkdownLink(
-  lessonBase?: string,
-  resolveHref?: (href: string) => string
-) {
+function createMarkdownLink(resolveHref?: (href: string) => string) {
   return function MarkdownLink({ href = '', ...props }: ComponentProps<'a'>) {
-    const lesson = lessonBase ? lessonLinkPattern.exec(href) : null;
-    const target = lesson
-      ? `${lessonBase}/${lesson[1]}${lesson[2] ?? ''}`
-      : (resolveHref?.(href) ?? href);
+    const target = resolveHref?.(href) ?? href;
     const isExternal = /^https?:\/\//.test(target);
     return (
       <a
@@ -92,7 +81,6 @@ function headingComponents(offset: number, anchorLabel?: string) {
 export async function MarkdownContent({
   source,
   locale,
-  lessonBase,
   resolveHref,
   headingOffset = 0,
   anchorLabel,
@@ -100,12 +88,8 @@ export async function MarkdownContent({
   source: string;
   locale: Locale;
   /**
-  URL of the course version, used to resolve links to lesson files.
-  */
-  lessonBase?: string;
-  /**
-   * Rewrites any other link, for example a relative link to a file in the
-   * repository. Return the link unchanged to keep it.
+   * Rewrites links, for example a relative link to a lesson or to a file in
+   * the repository. Return the link unchanged to keep it.
    */
   resolveHref?: (href: string) => string;
   /**
@@ -125,7 +109,7 @@ export async function MarkdownContent({
     jsx,
     jsxs,
     components: {
-      a: createMarkdownLink(lessonBase, resolveHref),
+      a: createMarkdownLink(resolveHref),
       table: MarkdownTable,
       ...headingComponents(headingOffset, anchorLabel),
     },

@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 export const instant = false;
 
 /**
- * `/<lang>/learn/<topic>` opens the course home page of the newest version.
+ * `/<lang>/learn/<topic>` opens the course home page of the newest edition.
  */
 export default async function TopicPage({
   params,

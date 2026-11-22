@@ -178,12 +178,12 @@ export default async function OverviewPage({
   // Every lesson, for the "continue" button of signed-in visitors.
   const resumeLessons: Record<string, ResumeLesson> = {};
   for (const course of courses) {
-    for (const version of course.versions) {
-      for (const [index, lesson] of version.lessons.entries()) {
-        resumeLessons[`${course.slug}/${version.name}/${lesson.slug}`] = {
+    for (const edition of course.editions) {
+      for (const [index, lesson] of edition.lessons.entries()) {
+        resumeLessons[`${course.slug}/${edition.name}/${lesson.slug}`] = {
           title: lesson.title,
           courseTitle: course.title,
-          next: version.lessons[index + 1]?.slug,
+          next: edition.lessons[index + 1]?.slug,
         };
       }
     }
@@ -303,7 +303,7 @@ export default async function OverviewPage({
                 href={`/${locale}/learn/${course.slug}`}
                 openLabel={t('openCourse')}
                 lessonsLabel={tLearn('lessonCount', {
-                  count: course.versions[0]?.lessons.length ?? 0,
+                  count: course.editions[0]?.lessons.length ?? 0,
                 })}
               />
             ))}

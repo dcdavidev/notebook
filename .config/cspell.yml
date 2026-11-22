@@ -42,8 +42,11 @@ overrides:
     ignoreRegExpList:
       - '/^\s*```[\s\S]*?^\s*```/gm'
       - '/`[^`\n]+`/g'
-  # Italian translations of the repository documents and lessons.
-  - filename: '**/*.it.md'
+  # Italian translations of the repository documents, and the Italian
+  # lessons and glossary of every course edition.
+  - filename:
+      - '**/*.it.md'
+      - '**/learning-materials/*/*/it/**/*.md'
     language: en,it
     dictionaries:
       - project-italian
