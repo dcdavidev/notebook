@@ -9,7 +9,11 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { IconArrowRight, IconPencil } from '@tabler/icons-react';
+import {
+  IconArrowRight,
+  IconPencil,
+  IconVocabulary,
+} from '@tabler/icons-react';
 
 import { DownloadMenu } from '@/components/download-menu';
 import { FavoriteButton } from '@/components/favorites/favorite-button';
@@ -172,6 +176,16 @@ export default async function VersionPage({ params }: Props) {
           ]}
           sx={{ textTransform: 'none', borderRadius: 3, py: 0.75 }}
         />
+        {course.hasGlossary && (
+          <LinkButton
+            href={`/${lang}/learn/${topic}/glossary`}
+            variant="outlined"
+            startIcon={<IconVocabulary size={18} />}
+            sx={{ textTransform: 'none', borderRadius: 3 }}
+          >
+            {t('glossary')}
+          </LinkButton>
+        )}
         <FavoriteButton
           variant="button"
           course={topic}

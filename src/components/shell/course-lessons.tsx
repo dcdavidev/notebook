@@ -15,7 +15,11 @@ import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-import { IconCircleCheckFilled, IconX } from '@tabler/icons-react';
+import {
+  IconCircleCheckFilled,
+  IconVocabulary,
+  IconX,
+} from '@tabler/icons-react';
 
 import { useAuth } from '@/components/auth/auth-context';
 import { useProgress } from '@/components/progress/progress-context';
@@ -68,6 +72,7 @@ export function CourseLessons({
   const pinned = course.versions.find((item) => item.name === segment);
   const version = pinned ?? course.versions[0];
   const versionPath = `${coursePath}/course/${pinned ? pinned.name : 'latest'}`;
+  const glossaryPath = `${coursePath}/glossary`;
   const lessons = version?.lessons ?? [];
   const completed = version
     ? progress.completedIn(course.slug, version.name)
@@ -188,6 +193,35 @@ export function CourseLessons({
             }}
           />
         </ListItemButton>
+        {course.hasGlossary && (
+          <ListItemButton
+            component={Link}
+            href={glossaryPath}
+            onClick={onNavigate}
+            selected={pathname === glossaryPath}
+            aria-current={pathname === glossaryPath ? 'page' : undefined}
+            ref={pathname === glossaryPath ? currentRef : undefined}
+            sx={itemSx}
+          >
+            <Box
+              component="span"
+              aria-hidden
+              sx={{
+                minWidth: digits * 11,
+                display: 'flex',
+                color: 'text.secondary',
+              }}
+            >
+              <IconVocabulary size={16} />
+            </Box>
+            <ListItemText
+              primary={tLearn('glossary')}
+              slotProps={{
+                primary: { sx: { fontSize: 14, fontWeight: 600 } },
+              }}
+            />
+          </ListItemButton>
+        )}
         {lessons.map((lesson) => {
           const lessonPath = `${versionPath}/${lesson.slug}`;
           const isCurrent = pathname === lessonPath;

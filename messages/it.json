@@ -72,7 +72,9 @@
     "thisLesson": "Questa lezione",
     "wholeCourse": "Tutto il corso",
     "downloadCoursePdfHint": "Tutte le lezioni in PDF, in un file ZIP",
-    "downloadCourseMarkdownHint": "Tutte le lezioni in Markdown, in un file ZIP"
+    "downloadCourseMarkdownHint": "Tutte le lezioni in Markdown, in un file ZIP",
+    "glossary": "Glossario",
+    "glossaryTermCount": "{count, plural, one {# termine} other {# termini}}"
   },
   "Sponsor": {
     "title": "Sostieni Notebook",
