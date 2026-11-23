@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import { IconArrowRight } from '@tabler/icons-react';
 
 import { GrainMass } from '@/components/backgrounds/grain-mass';
+import { CourseMark } from '@/components/course-mark';
 import { FavoriteButton } from '@/components/favorites/favorite-button';
 import { LinkButton } from '@/components/link-button';
 import {
@@ -18,6 +19,7 @@ import {
 } from '@/components/progress/resume-reading';
 import { routing } from '@/i18n/routing';
 import { accentFor } from '@/lib/accent';
+import { courseLogoFor } from '@/lib/course-logos';
 import { type CourseSummary, getCourses } from '@/lib/courses';
 
 /**
@@ -94,6 +96,11 @@ function TopicCard({
       }}
     >
       <Stack direction="row" sx={{ alignItems: 'baseline', gap: 1 }}>
+        {courseLogoFor(course.slug) && (
+          <Box sx={{ alignSelf: 'center' }}>
+            <CourseMark slug={course.slug} size={32} />
+          </Box>
+        )}
         <Typography
           component="h3"
           sx={{ fontWeight: 700, fontSize: '1.4rem', color: accent }}

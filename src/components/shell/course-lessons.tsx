@@ -27,6 +27,7 @@ import {
 } from '@tabler/icons-react';
 
 import { useAuth } from '@/components/auth/auth-context';
+import { CourseMark } from '@/components/course-mark';
 import {
   buyNotesHref,
   DownloadMenu,
@@ -86,7 +87,22 @@ function PanelSection({
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={id}
-        sx={{ borderRadius: 2.5, gap: 1, py: 0.75 }}
+        sx={{
+          borderRadius: 2.5,
+          gap: 1,
+          py: 0.75,
+          // The header stays at the top of the panel while its links
+          // scroll, until the next group pushes it away. The negative
+          // offset covers the top padding of the list.
+          position: 'sticky',
+          top: '-8px',
+          zIndex: 1,
+          bgcolor: 'background.default',
+          '&:hover': {
+            bgcolor:
+              'color-mix(in oklch, var(--nb-background), var(--nb-text) 6%)',
+          },
+        }}
       >
         <Box
           component="span"
@@ -264,16 +280,7 @@ export function CourseLessons({
         }}
       >
         <Stack direction="row" sx={{ alignItems: 'center', gap: 1 }}>
-          <Box
-            aria-hidden
-            sx={{
-              width: 36,
-              height: 36,
-              flexShrink: 0,
-              borderRadius: '10px',
-              background: `linear-gradient(135deg, ${accent}, color-mix(in oklch, ${accent}, black 35%))`,
-            }}
-          />
+          <CourseMark slug={course.slug} />
           <Stack sx={{ flex: 1, minWidth: 0 }}>
             <Typography
               component={Link}

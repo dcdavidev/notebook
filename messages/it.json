@@ -222,6 +222,10 @@
       "course": {
         "name": "Corso completato",
         "description": "Completa tutte le lezioni di un corso."
+      },
+      "course-abap": {
+        "name": "Sviluppatore ABAP",
+        "description": "Completa tutte le lezioni del corso ABAP."
       }
     }
   },

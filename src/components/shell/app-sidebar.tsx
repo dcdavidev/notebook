@@ -24,10 +24,12 @@ import {
 import { SidebarUser } from './sidebar-user';
 
 import { useBookmarks } from '@/components/bookmarks/bookmarks-context';
+import { CourseMark } from '@/components/course-mark';
 import { useFavorites } from '@/components/favorites/favorites-context';
 import { NotebookLogo } from '@/components/notebook-logo';
 import { Link, usePathname } from '@/i18n/navigation';
 import { accentFor } from '@/lib/accent';
+import { courseLogoFor } from '@/lib/course-logos';
 import { coursePath } from '@/lib/course-paths';
 import type { CourseSummary } from '@/lib/courses';
 
@@ -314,16 +316,20 @@ export function AppSidebar({
                     selected={isActive}
                     sx={{ ...itemSx, gap: 1, py: 1 }}
                   >
-                    <Box
-                      aria-hidden
-                      sx={{
-                        width: 10,
-                        height: 10,
-                        borderRadius: '50%',
-                        flexShrink: 0,
-                        bgcolor: accentFor(course.slug),
-                      }}
-                    />
+                    {courseLogoFor(course.slug) ? (
+                      <CourseMark slug={course.slug} size={22} />
+                    ) : (
+                      <Box
+                        aria-hidden
+                        sx={{
+                          width: 10,
+                          height: 10,
+                          borderRadius: '50%',
+                          flexShrink: 0,
+                          bgcolor: accentFor(course.slug),
+                        }}
+                      />
+                    )}
                     <Typography sx={{ fontWeight: 600 }}>
                       {course.title}
                     </Typography>

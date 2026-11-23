@@ -1,24 +1,17 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-
-import { IconShare } from '@tabler/icons-react';
 
 import { BookmarkButton } from '@/components/bookmarks/bookmark-button';
 import type { LessonRef } from '@/components/bookmarks/bookmarks-context';
 import { DownloadMenu, type DownloadOption } from '@/components/download-menu';
-import { notify } from '@/lib/island-notify';
+import { ShareButton } from '@/components/share-button';
 
 const buttonSx = { textTransform: 'none', borderRadius: 3 } as const;
 
 /**
  * Buttons to bookmark a lesson, share it, and download it, or the whole
- * course, as Markdown. Sharing opens
- * the system share sheet where there is one, and copies the link
- * otherwise.
+ * course, as Markdown.
  */
 export function LessonActions({
   title,
@@ -35,50 +28,16 @@ export function LessonActions({
   */
   downloads: DownloadOption[];
 }) {
-  const t = useTranslations('Learn');
-
-  const share = async () => {
-    const url = new URL(location.href);
-    url.hash = '';
-    if (typeof navigator.share === 'function') {
-      try {
-        await navigator.share({ title, url: url.href });
-        return;
-      } catch (error) {
-        // The visitor closed the share sheet.
-        if (error instanceof DOMException && error.name === 'AbortError') {
-          return;
-        }
-      }
-    }
-    try {
-      await navigator.clipboard.writeText(url.href);
-      notify({ message: t('linkCopied'), severity: 'success' });
-    } catch {
-      notify({ message: t('shareFailed'), severity: 'error' });
-    }
-  };
-
   return (
-    <>
-      <Stack direction="row" sx={{ gap: 1, flexWrap: 'wrap', mt: 3 }}>
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<IconShare size={16} />}
-          onClick={share}
-          sx={buttonSx}
-        >
-          {t('share')}
-        </Button>
-        <DownloadMenu options={downloads} sx={buttonSx} />
-        <BookmarkButton
-          variant="button"
-          {...lessonRef}
-          title={title}
-          buttonSx={buttonSx}
-        />
-      </Stack>
-    </>
+    <Stack direction="row" sx={{ gap: 1, flexWrap: 'wrap', mt: 3 }}>
+      <ShareButton title={title} sx={buttonSx} />
+      <DownloadMenu options={downloads} sx={buttonSx} />
+      <BookmarkButton
+        variant="button"
+        {...lessonRef}
+        title={title}
+        buttonSx={buttonSx}
+      />
+    </Stack>
   );
 }
