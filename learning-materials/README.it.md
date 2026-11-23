@@ -71,6 +71,8 @@ Collega le lezioni con un percorso relativo al file, così i link funzionano sia
 
 ## Lezioni
 
+Le sezioni che ogni lezione deve avere, in ordine, sono descritte in [Come scrivere una lezione](../docs/contributing/lesson-structure.it.md).
+
 ### Nome del file
 
 `NNNN-slug.md`, nella cartella `course/` della sua lingua, dove:

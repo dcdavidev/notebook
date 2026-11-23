@@ -71,6 +71,8 @@ Link the lessons with a relative path to the file, so the links work both on Git
 
 ## Lessons
 
+The sections every lesson must have, in order, are described in [How to write a lesson](../docs/contributing/lesson-structure.md).
+
 ### File name
 
 `NNNN-slug.md`, in the `course/` folder of its language, where:
