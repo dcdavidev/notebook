@@ -21,13 +21,17 @@ import {
 
 import type { Badge, BadgeId } from './badges';
 
+import { type CourseLogo, sapLogo } from '@/lib/course-logos';
+
 /**
 Icon and color of each badge.
 */
 const looks: Record<
   BadgeId,
-  { Icon: ComponentType<IconProps>; color: string }
+  | { Icon: ComponentType<IconProps>; color: string }
+  | { logo: CourseLogo; color: string }
 > = {
+  'course-abap': { logo: sapLogo, color: '#004990' },
   supporter: { Icon: IconHeartHandshake, color: '#e11d48' },
   'lessons-1': { Icon: IconFlag, color: '#0891b2' },
   'lessons-10': { Icon: IconFlame, color: '#ea580c' },
@@ -49,7 +53,34 @@ export function BadgeMedal({
   earned: boolean;
   size?: number;
 }) {
-  const { Icon, color } = looks[id];
+  const look = looks[id];
+  const { color } = look;
+  const hasLogo = 'logo' in look;
+  let content;
+  if (hasLogo) {
+    const width = Math.round(size * 0.66);
+    content = (
+      // eslint-disable-next-line @next/next/no-img-element -- small static SVG
+      <img
+        src={look.logo.src}
+        alt=""
+        width={width}
+        height={Math.round(width / look.logo.aspectRatio)}
+        style={{
+          display: 'block',
+          filter: earned ? 'none' : 'grayscale(1)',
+          opacity: earned ? 1 : 0.45,
+        }}
+      />
+    );
+  } else {
+    const { Icon } = look;
+    content = <Icon size={size * 0.5} />;
+  }
+  let background = 'color-mix(in oklch, var(--nb-text) 8%, transparent)';
+  if (earned) {
+    background = hasLogo ? '#fff' : color;
+  }
   return (
     <Box
       aria-hidden
@@ -62,15 +93,13 @@ export function BadgeMedal({
         display: 'grid',
         placeItems: 'center',
         color: earned ? '#fff' : 'text.disabled',
-        bgcolor: earned
-          ? color
-          : 'color-mix(in oklch, var(--nb-text) 8%, transparent)',
+        bgcolor: background,
         boxShadow: earned
-          ? `0 0 0 3px color-mix(in oklch, ${color} 25%, transparent)`
+          ? `0 0 0 3px color-mix(in oklch, ${color} ${hasLogo ? 70 : 25}%, transparent)`
           : 'none',
       }}
     >
-      <Icon size={size * 0.5} />
+      {content}
       {!earned && (
         <Box
           sx={{

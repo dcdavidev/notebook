@@ -15,11 +15,13 @@ import {
   IconVocabulary,
 } from '@tabler/icons-react';
 
+import { CourseMark } from '@/components/course-mark';
 import { DownloadMenu } from '@/components/download-menu';
 import { FavoriteButton } from '@/components/favorites/favorite-button';
 import { LinkButton } from '@/components/link-button';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
 import { CourseProgress } from '@/components/progress/course-progress';
+import { ShareButton } from '@/components/share-button';
 import { routing } from '@/i18n/routing';
 import { coursePath, glossaryPath } from '@/lib/course-paths';
 import { redirectToFirstLesson } from '@/lib/course-redirect';
@@ -119,18 +121,21 @@ export default async function CourseHomePage({ params }: Props) {
         </Typography>
       </Stack>
 
-      <Typography
-        variant="h3"
-        component="h1"
-        sx={{
-          fontWeight: 700,
-          fontSize: { xs: '2rem', sm: '2.6rem' },
-          lineHeight: 1.15,
-          letterSpacing: '-0.01em',
-        }}
-      >
-        {overview.title ?? course.title}
-      </Typography>
+      <Stack direction="row" sx={{ alignItems: 'center', gap: 2 }}>
+        <CourseMark slug={topic} size={56} />
+        <Typography
+          variant="h3"
+          component="h1"
+          sx={{
+            fontWeight: 700,
+            fontSize: { xs: '2rem', sm: '2.6rem' },
+            lineHeight: 1.15,
+            letterSpacing: '-0.01em',
+          }}
+        >
+          {overview.title ?? course.title}
+        </Typography>
+      </Stack>
       {overview.description && (
         <Typography
           sx={{ mt: 1.5, fontSize: '1.2rem', color: 'text.secondary' }}
@@ -196,6 +201,11 @@ export default async function CourseHomePage({ params }: Props) {
           variant="button"
           course={topic}
           title={overview.title ?? course.title}
+        />
+        <ShareButton
+          title={`${overview.title ?? course.title} · Notebook`}
+          size="medium"
+          sx={{ textTransform: 'none', borderRadius: 3 }}
         />
       </Stack>
 

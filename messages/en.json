@@ -222,6 +222,10 @@
       "course": {
         "name": "Course completed",
         "description": "Complete every lesson of a course."
+      },
+      "course-abap": {
+        "name": "ABAP developer",
+        "description": "Complete every lesson of the ABAP course."
       }
     }
   },

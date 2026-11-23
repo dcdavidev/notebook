@@ -5,8 +5,17 @@ Milestones of completed lessons, each with its own badge.
 */
 export const lessonMilestones = [1, 10, 50, 100] as const;
 
+/**
+Courses with a badge of their own, earned by completing every lesson of
+one of their editions. The badge shows the course logo.
+*/
+export const courseBadgeTopics = ['abap'] as const;
+
 export type BadgeId =
-  'supporter' | `lessons-${(typeof lessonMilestones)[number]}` | 'course';
+  | 'supporter'
+  | `lessons-${(typeof lessonMilestones)[number]}`
+  | 'course'
+  | `course-${(typeof courseBadgeTopics)[number]}`;
 
 export interface Badge {
   id: BadgeId;
@@ -52,6 +61,7 @@ export function computeBadges({
     versions.set(version, [...(versions.get(version) ?? []), key]);
   }
   const finished: string[] = [];
+  const finishedTopics = new Set<string>();
   for (const [version, keys] of versions) {
     if (keys.some((key) => !completed.has(key))) {
       continue;
@@ -59,6 +69,7 @@ export function computeBadges({
 
     const [course = '', name = ''] = version.split('/', 2);
     finished.push(`${courseTitles[course] ?? course} · ${name}`);
+    finishedTopics.add(course);
   }
 
   return {
@@ -70,6 +81,10 @@ export function computeBadges({
         count,
       })),
       { id: 'course', earned: finished.length > 0, courses: finished },
+      ...courseBadgeTopics.map((topic) => ({
+        id: `course-${topic}` as const,
+        earned: finishedTopics.has(topic),
+      })),
     ],
     completedLessons: completed.size,
   };
