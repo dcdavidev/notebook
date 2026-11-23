@@ -30,7 +30,7 @@ function isArchiveFormat(value: string): value is ArchiveFormat {
 }
 
 /**
- * Serves every entry of a glossary in one ZIP file, as PDF or as
+ * Serves every entry of a glossary in one ZIP file, as
  * Markdown.
  */
 export async function GET(
@@ -42,7 +42,7 @@ export async function GET(
   const { lang, topic, edition, format } = await params;
   const archive =
     hasLocale(routing.locales, lang) && isArchiveFormat(format)
-      ? await getGlossaryArchive(lang, topic, edition, format)
+      ? await getGlossaryArchive(lang, topic, edition)
       : null;
   if (!archive) {
     return new Response('Not found', { status: 404 });

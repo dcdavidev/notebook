@@ -2,9 +2,10 @@
 
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -19,12 +20,18 @@ import Typography from '@mui/material/Typography';
 import {
   IconChevronDown,
   IconCircleCheckFilled,
+  IconHeart,
   IconSchool,
   IconVocabulary,
   IconX,
 } from '@tabler/icons-react';
 
 import { useAuth } from '@/components/auth/auth-context';
+import {
+  buyNotesHref,
+  DownloadMenu,
+  type DownloadOption,
+} from '@/components/download-menu';
 import { useProgress } from '@/components/progress/progress-context';
 import { Link, usePathname } from '@/i18n/navigation';
 import { accentFor } from '@/lib/accent';
@@ -46,6 +53,12 @@ const itemSx = {
 } as const;
 
 type Area = 'course' | 'glossary';
+
+const footerButtonSx = {
+  flex: 1,
+  textTransform: 'none',
+  borderRadius: 3,
+} as const;
 
 /**
  * A collapsible group of the course panel: a header button and its links.
@@ -122,7 +135,8 @@ function PanelSection({
 /**
  * The course panel: the title, the edition, how much the visitor
  * completed, and two groups, the course with its lessons and the glossary
- * with its index. The page being read is highlighted and scrolled into
+ * with its index, then buttons to download the course and to buy the
+ * printed notes. The page being read is highlighted and scrolled into
  * view, and its group opens. It fills the course panel on desktop and the
  * lessons sheet on phones.
  */
@@ -144,6 +158,7 @@ export function CourseLessons({
   const t = useTranslations('Shell');
   const tLearn = useTranslations('Learn');
   const tProgress = useTranslations('Progress');
+  const locale = useLocale();
   const { account } = useAuth();
   const progress = useProgress();
   const pathname = usePathname();
@@ -173,6 +188,31 @@ export function CourseLessons({
   const toggle = (name: Area) => {
     setToggled((current) => ({ ...current, [name]: !isOpen(name) }));
   };
+
+  // The files of the named edition, like the download menus of the pages.
+  const downloads: DownloadOption[] = edition
+    ? [
+        {
+          scope: 'course',
+          format: 'markdown',
+          href: `/${locale}${coursePath(course.slug, edition.name)}/download/markdown`,
+        },
+        ...(edition.hasGlossary
+          ? ([
+              {
+                scope: 'glossary',
+                format: 'markdown',
+                href: `/${locale}${glossaryPath(course.slug, edition.name)}/download/markdown`,
+              },
+              {
+                scope: 'glossarySections',
+                format: 'markdown',
+                href: `/${locale}${glossaryPath(course.slug, edition.name)}/archive/markdown`,
+              },
+            ] satisfies DownloadOption[])
+          : []),
+      ]
+    : [];
 
   // Keep the page being read in view.
   useEffect(() => {
@@ -385,6 +425,31 @@ export function CourseLessons({
           </PanelSection>
         )}
       </List>
+
+      <Stack
+        direction="row"
+        sx={{ gap: 1, p: 1.5, borderTop: 1, borderColor: 'divider' }}
+      >
+        {downloads.length > 0 && (
+          <DownloadMenu
+            options={downloads}
+            showBuyNotes={false}
+            sx={footerButtonSx}
+          />
+        )}
+        <Button
+          variant="contained"
+          size="small"
+          href={buyNotesHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          startIcon={<IconHeart size={16} />}
+          title={tLearn('buyNotesHint')}
+          sx={footerButtonSx}
+        >
+          {tLearn('buy')}
+        </Button>
+      </Stack>
     </Stack>
   );
 }

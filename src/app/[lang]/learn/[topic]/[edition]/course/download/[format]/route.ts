@@ -40,7 +40,7 @@ function isArchiveFormat(value: string): value is ArchiveFormat {
 }
 
 /**
- * Serves every lesson of a course edition in one ZIP file, as PDF or as
+ * Serves every lesson of a course edition in one ZIP file, as
  * Markdown.
  */
 export async function GET(
@@ -52,7 +52,7 @@ export async function GET(
   const { lang, topic, edition, format } = await params;
   const archive =
     hasLocale(routing.locales, lang) && isArchiveFormat(format)
-      ? await getCourseArchive(lang, topic, edition, format)
+      ? await getCourseArchive(lang, topic, edition)
       : null;
   if (!archive) {
     return new Response('Not found', { status: 404 });

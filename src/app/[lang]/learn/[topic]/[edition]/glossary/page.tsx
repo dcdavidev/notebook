@@ -141,18 +141,8 @@ export default async function GlossaryPage({ params }: Props) {
           options={[
             {
               scope: 'glossary',
-              format: 'pdf',
-              href: `${filesBase}/download/pdf`,
-            },
-            {
-              scope: 'glossary',
               format: 'markdown',
               href: `${filesBase}/download/markdown`,
-            },
-            {
-              scope: 'glossarySections',
-              format: 'pdf',
-              href: `${filesBase}/archive/pdf`,
             },
             {
               scope: 'glossarySections',
