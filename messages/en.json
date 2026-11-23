@@ -40,6 +40,22 @@
     "footerCtaSponsor": "Support the project",
     "footerCtaContribute": "Write a lesson"
   },
+  "Search": {
+    "button": "Search…",
+    "open": "Search the courses",
+    "title": "Search",
+    "inputLabel": "Search lessons and glossary terms",
+    "placeholder": "Search lessons and glossary terms",
+    "results": "Results",
+    "resultCount": "{count, plural, one {# result} other {# results}}",
+    "noResults": "No results for “{query}”.",
+    "hint": "Type a word, a keyword such as SELECT, or a glossary term.",
+    "loading": "Loading the search…",
+    "loadFailed": "The search could not be loaded. Check the connection and try again.",
+    "retry": "Try again",
+    "close": "Close the search",
+    "keys": "↑ ↓ to move · Enter to open · Esc to close"
+  },
   "Overview": {
     "title": "What shall we learn today?",
     "subtitle": "Free, open courses written in Markdown. Pick a topic and start from the first lesson.",

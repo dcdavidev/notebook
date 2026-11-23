@@ -220,9 +220,15 @@ importers:
       fflate:
         specifier: ^0.8.3
         version: 0.8.3
+      github-slugger:
+        specifier: ^2.0.0
+        version: 2.0.0
       hast-util-to-jsx-runtime:
         specifier: ^2.3.7
         version: 2.3.7(supports-color@7.2.0)
+      minisearch:
+        specifier: ^7.2.0
+        version: 7.2.0
       motion:
         specifier: ^14.14.0
         version: 14.14.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -4105,6 +4111,9 @@ packages:
 
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
+
+  minisearch@7.2.0:
+    resolution: {integrity: sha512-dqT2XBYUOZOiC5t2HRnwADjhNS2cecp9u+TJRiJ1Qp/f5qjkeT5APcGPjHw+bz89Ms8Jp+cG4AlE+QZ/QnDglg==}
 
   moo@0.5.3:
     resolution: {integrity: sha512-m2fmM2dDm7GZQsY7KK2cme8agi+AAljILjQnof7p1ZMDe6dQ4bdnSMx0cPppudoeNv5hEFQirN6u+O4fDE0IWA==}
@@ -9366,6 +9375,8 @@ snapshots:
       brace-expansion: 1.1.22
 
   minimist@1.2.8: {}
+
+  minisearch@7.2.0: {}
 
   moo@0.5.3: {}
 

@@ -40,6 +40,22 @@
     "footerCtaSponsor": "Sostieni il progetto",
     "footerCtaContribute": "Scrivi una lezione"
   },
+  "Search": {
+    "button": "Cerca…",
+    "open": "Cerca nei corsi",
+    "title": "Cerca",
+    "inputLabel": "Cerca lezioni e termini del glossario",
+    "placeholder": "Cerca lezioni e termini del glossario",
+    "results": "Risultati",
+    "resultCount": "{count, plural, one {# risultato} other {# risultati}}",
+    "noResults": "Nessun risultato per “{query}”.",
+    "hint": "Scrivi una parola, una parola chiave come SELECT o un termine del glossario.",
+    "loading": "Caricamento della ricerca…",
+    "loadFailed": "Non è stato possibile caricare la ricerca. Controlla la connessione e riprova.",
+    "retry": "Riprova",
+    "close": "Chiudi la ricerca",
+    "keys": "↑ ↓ per spostarti · Invio per aprire · Esc per chiudere"
+  },
   "Overview": {
     "title": "Cosa impariamo oggi?",
     "subtitle": "Corsi liberi e aperti, scritti in Markdown. Scegli un argomento e parti dalla prima lezione.",
