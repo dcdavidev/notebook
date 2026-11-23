@@ -6,7 +6,6 @@ import {
   type ArchiveFormat,
   archiveFormats,
   getGlossaryMarkdown,
-  getGlossaryPdf,
 } from '@/lib/lesson-files';
 
 /**
@@ -31,7 +30,7 @@ function isFormat(value: string): value is ArchiveFormat {
 }
 
 /**
- * Serves the whole glossary of a course edition as one PDF or Markdown file.
+ * Serves the whole glossary of a course edition as one Markdown file.
  */
 export async function GET(
   _request: Request,
@@ -42,17 +41,6 @@ export async function GET(
   const { lang, topic, edition, format } = await params;
   if (!hasLocale(routing.locales, lang) || !isFormat(format)) {
     return new Response('Not found', { status: 404 });
-  }
-  if (format === 'pdf') {
-    const pdf = await getGlossaryPdf(lang, topic, edition);
-    return pdf
-      ? new Response(pdf.file, {
-          headers: {
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="${pdf.name}"`,
-          },
-        })
-      : new Response('Not found', { status: 404 });
   }
   const markdown = await getGlossaryMarkdown(lang, topic, edition);
   return markdown

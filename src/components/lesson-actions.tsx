@@ -16,7 +16,7 @@ const buttonSx = { textTransform: 'none', borderRadius: 3 } as const;
 
 /**
  * Buttons to bookmark a lesson, share it, and download it, or the whole
- * course, as Markdown or PDF. Sharing opens
+ * course, as Markdown. Sharing opens
  * the system share sheet where there is one, and copies the link
  * otherwise.
  */

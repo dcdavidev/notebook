@@ -174,7 +174,6 @@ export default async function CourseHomePage({ params }: Props) {
         <DownloadMenu
           label={t('downloadCourse')}
           options={[
-            { scope: 'course', format: 'pdf', href: `${archiveBase}/pdf` },
             {
               scope: 'course',
               format: 'markdown',

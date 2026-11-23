@@ -140,13 +140,11 @@ export default async function LessonPage({ params }: Props) {
         title={data.title}
         lessonRef={{ course: topic, version: editionData.name, lesson }}
         downloads={[
-          { scope: 'lesson', format: 'pdf', href: `${basePath}/${lesson}/pdf` },
           {
             scope: 'lesson',
             format: 'markdown',
             href: `${basePath}/${lesson}/download`,
           },
-          { scope: 'course', format: 'pdf', href: `${archiveBase}/pdf` },
           {
             scope: 'course',
             format: 'markdown',
