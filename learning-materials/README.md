@@ -139,6 +139,15 @@ An edition can have a glossary next to its course, in `<edition>/<lang>/glossary
 
 The glossary can be downloaded as one PDF or Markdown file, or as a ZIP with one file per entry, and the course archives include it.
 
+## Search
+
+The search field of the site searches the newest edition of every course, in the reader's language. The index is built from the files, so there is nothing to register:
+
+- lessons: `title`, `description`, the `##` and `###` headings, and the text; code blocks count less, and the result shows the `level`;
+- glossary entries: `title`, `description`, the `##` headings, and the text.
+
+A result opens the page at the heading that matches the search. Headings that name the topic of their section, and glossary headings for every name of a term, help readers find it.
+
 ## Before you open a pull request
 
 Run the checks. They also lint, format, and spell-check the Markdown files:

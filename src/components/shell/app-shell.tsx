@@ -23,6 +23,7 @@ import { VersionMenu } from './version-menu';
 
 import { AccountMenu } from '@/components/auth/account-menu';
 import { LessonPlayer } from '@/components/player/lesson-player';
+import { SearchButton } from '@/components/search/search-button';
 import { SettingsMenu } from '@/components/settings-menu';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { CourseSummary } from '@/lib/courses';
@@ -296,6 +297,7 @@ export function AppShell({
                 </IconButton>
               </Tooltip>
             )}
+            <SearchButton />
             <SettingsMenu />
             <AccountMenu />
             {/* On course pages, a bar right under the app bar fills up while

@@ -139,6 +139,15 @@ Un'edizione può avere un glossario accanto al corso, in `<edition>/<lang>/gloss
 
 Il glossario si può scaricare come un unico file PDF o Markdown, oppure come ZIP con un file per voce, e gli archivi del corso lo includono.
 
+## Ricerca
+
+Il campo di ricerca del sito cerca nell'edizione più recente di ogni corso, nella lingua del lettore. L'indice si costruisce dai file, quindi non c'è niente da registrare:
+
+- lezioni: `title`, `description`, i titoli `##` e `###` e il testo; i blocchi di codice contano meno, e il risultato mostra il `level`;
+- voci del glossario: `title`, `description`, i titoli `##` e il testo.
+
+Un risultato apre la pagina al titolo che corrisponde alla ricerca. Titoli che nominano l'argomento della sezione, e titoli del glossario per ogni nome di un termine, aiutano i lettori a trovarlo.
+
 ## Prima di aprire una pull request
 
 Esegui i controlli. Fanno anche il lint, la formattazione e il controllo ortografico dei file Markdown:
