@@ -26,7 +26,13 @@ export { latestEdition } from '@/lib/course-paths';
  * `/&lt;locale>/learn/&lt;topic>/2026-11/course/NNNN-slug` stays the same when
  * switching language. In the URL, `latest` stands for the newest edition.
  */
-const contentRoot = path.join(process.cwd(), 'learning-materials');
+// Turbopack skips tracing this path: the dynamic joins below would match
+// every file in the project. `outputFileTracingIncludes` in
+// `next.config.ts` ships `learning-materials` with the build instead.
+const contentRoot = path.join(
+  /* turbopackIgnore: true */ process.cwd(),
+  'learning-materials'
+);
 
 /**
 Edition folder name: a year and a month, such as `2026.11`.
