@@ -1,9 +1,8 @@
 ---
 title: Chiavi primarie e secondarie
 description: Chiavi uniche e non uniche, chiavi vuote e chiavi secondarie.
+level: basic
 ---
-
-_Livello base_
 
 Una **chiave di tabella** è un insieme di campi che il sistema usa per trovare le righe in una tabella interna. Ogni tabella ha una **chiave primaria** e può avere fino a 15 **chiavi secondarie** per altri modi di leggerla.
 

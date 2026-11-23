@@ -1,9 +1,8 @@
 ---
 title: Gli eventi dei report
 description: INITIALIZATION, AT SELECTION-SCREEN, START-OF-SELECTION e altri.
+level: basic
 ---
-
-_Livello base_
 
 Un report non viene eseguito dall'alto in basso come uno script. Il runtime lo richiama in momenti precisi, chiamati **eventi**: prima che appaia la schermata di selezione, quando l'utente preme Invio, quando preme Esegui e così via. Per ogni momento a cui vuoi reagire scrivi un **blocco evento**.
 

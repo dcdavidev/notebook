@@ -1,9 +1,8 @@
 ---
 title: WHERE e ORDER BY
 description: Filtrare e ordinare le righe che il database restituisce.
+level: basic
 ---
-
-_Livello base_
 
 La clausola `WHERE` dice al database quali righe vuoi; la clausola `ORDER BY` gli dice in che ordine restituirle. Entrambe vengono eseguite sul database, prima che i dati arrivino al tuo programma.
 

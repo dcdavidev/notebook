@@ -1,9 +1,8 @@
 ---
 title: Elaborazione parallela e in background
 description: RFC asincrona, bgRFC e il background processing framework.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Normalmente un programma fa una cosa dopo l'altra in un solo work process. Quando il lavoro è grande (milioni di documenti, una chiamata lenta per ogni cliente), puoi dividerlo in pacchetti ed eseguirli **in parallelo** in più work process, oppure affidarlo al sistema perché lo esegua **in background** dopo la fine della tua transazione.
 

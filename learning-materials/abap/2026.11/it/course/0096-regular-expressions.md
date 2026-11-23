@@ -1,9 +1,8 @@
 ---
 title: FIND, REPLACE e le espressioni regolari
 description: Cercare e modificare testi con i pattern.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 [Lavorare con le stringhe](./0021-working-with-strings.md) ti ha mostrato come concatenare, dividere e cambiare il maiuscolo di un testo. Questa lezione riguarda la ricerca al suo interno: trovare una parola, sostituirne tutte le occorrenze e, con le **espressioni regolari**, trovare il testo che corrisponde a un pattern, come "due lettere seguite da quattro cifre". Ti servirà per validare l'input, ripulire i file caricati ed estrarre valori da un testo libero.
 

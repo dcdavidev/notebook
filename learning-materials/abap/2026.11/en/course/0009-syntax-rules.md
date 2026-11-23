@@ -1,9 +1,8 @@
 ---
 title: ABAP syntax rules
 description: Statements, periods, keywords, chained statements, and naming.
+level: beginner
 ---
-
-_Beginner level_
 
 ABAP has few syntax rules, and you met most of them in [Your first program](./0008-hello-world.md) without noticing. Knowing them precisely saves you a lot of time with the syntax check: most beginner errors are a missing period, a missing space, or a comma where a period should be.
 

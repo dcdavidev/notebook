@@ -1,9 +1,8 @@
 ---
 title: Il data model RAP
 description: Tabelle di database, entità root e child, e composizioni.
+level: pro
 ---
-
-_Livello pro_
 
 Ogni business object RAP parte dal suo **data model**: le tabelle di database che conservano i dati e le CDS view entity che descrivono il business object come un albero. Questa lezione costruisce il data model dell'app dei viaggi: un viaggio con le sue prenotazioni.
 

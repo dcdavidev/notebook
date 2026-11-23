@@ -1,9 +1,8 @@
 ---
 title: ALV with CL_SALV_TABLE
 description: Show any internal table as a professional grid in a few lines.
+level: intermediate
 ---
-
-_Intermediate level_
 
 The **ALV** (ABAP List Viewer) is the standard way to show tabular data in SAP GUI. Users get sorting, filters, totals, Excel export, and saved layouts for free, and you don't write a single `WRITE`.
 

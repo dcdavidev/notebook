@@ -1,9 +1,8 @@
 ---
 title: Classic screens (Dynpro)
 description: Screen Painter, dialog programs, and transaction codes.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A **dynpro** (dynamic program) is a classic SAP GUI screen: the fields, buttons, and controls the user sees, plus a small piece of code that tells the system what to do before and after the screen is shown. Selection screens and ALV lists are dynpros too, generated for you. When you need a screen with your own layout, such as an entry form with several tabs, you draw it yourself.
 

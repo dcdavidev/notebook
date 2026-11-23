@@ -1,9 +1,8 @@
 ---
 title: Smart Forms and Adobe forms
 description: Print invoices, labels, and other documents.
+level: pro
 ---
-
-_Pro level_
 
 Sooner or later every SAP project has to print something: an invoice, a delivery note, a shipping label, a boarding pass. SAP has three form technologies for this. This lesson shows what each one is, how a **print program** calls a form, and how to get a PDF back instead of a printout.
 

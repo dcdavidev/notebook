@@ -1,9 +1,8 @@
 ---
 title: Lavorare con le stringhe
 description: Concatenare, dividere, misurare, spostare e cambiare il maiuscolo del testo.
+level: beginner
 ---
-
-_Livello principiante_
 
 Nomi, città, codici, messaggi, righe di file: tantissimi dati aziendali sono testo. ABAP ti dà istruzioni e funzioni predefinite per unire pezzi di testo, tagliarli, misurarli, togliere gli spazi e cambiare maiuscole e minuscole.
 

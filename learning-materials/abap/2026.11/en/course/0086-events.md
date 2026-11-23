@@ -1,9 +1,8 @@
 ---
 title: Events
 description: EVENTS, RAISE EVENT, and SET HANDLER.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Usually an object that wants something done calls a method of another object, so it has to know that object. With **events** it works the other way around: an object announces that something happened, and any number of other objects can react, without the first one knowing who they are. That keeps classes independent: a flight doesn't need to know about the sales office, the log, or the email service that care when it fills up.
 

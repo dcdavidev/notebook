@@ -1,9 +1,8 @@
 ---
 title: IF and logical expressions
 description: Comparisons, AND, OR, NOT, and predicates such as IS INITIAL.
+level: beginner
 ---
-
-_Beginner level_
 
 A program that always does the same thing isn't very useful. With `IF`, your code takes decisions: print a warning when a flight is full, apply a discount above a certain amount, stop when a value is missing.
 

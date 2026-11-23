@@ -1,9 +1,8 @@
 ---
 title: Landscape di sistema e mandanti
 description: Sistemi di sviluppo, qualità e produzione, e che cos'è un mandante.
+level: beginner
 ---
-
-_Livello principiante_
 
 Un'azienda non ha mai un solo sistema SAP. Ha una catena di sistemi, e il codice si sposta lungo questa catena dal punto in cui lo scrivi a quello in cui le persone lo usano. Dentro ogni sistema, poi, i dati sono divisi in **mandanti** separati.
 

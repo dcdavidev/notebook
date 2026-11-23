@@ -16,6 +16,7 @@ import {
   getGlossary,
   getGlossaryEntry,
   getLesson,
+  type Lesson,
 } from '@/lib/courses';
 import {
   type EditionArea,
@@ -82,6 +83,21 @@ function editionLinks(
 }
 
 /**
+ * The text of a downloaded lesson: its title as a heading, its description
+ * and level as lead paragraphs, then the body.
+ */
+async function lessonFileText(
+  lang: Locale,
+  data: Lesson,
+  body: string
+): Promise<string> {
+  const t = await getTranslations({ locale: lang, namespace: 'Learn' });
+  const level = data.level ? `_${t('level', { level: data.level })}_` : '';
+  const parts = [`# ${data.title}`, data.description, level, body];
+  return `${parts.filter(Boolean).join('\n\n')}\n`;
+}
+
+/**
  * Finds a course and one of its editions; `latest` is the newest one.
  */
 async function findCourseEdition(
@@ -119,9 +135,8 @@ export async function getLessonMarkdown(
     found.edition.name,
     'course'
   );
-  const parts = [`# ${data.title}`, data.description, body];
   return {
-    file: `${parts.filter(Boolean).join('\n\n')}\n`,
+    file: await lessonFileText(lang, data, body),
     name: `${data.slug}.${lang}.md`,
   };
 }
@@ -342,9 +357,8 @@ export async function getCourseArchive(
       'course',
       local
     );
-    const parts = [`# ${data.title}`, data.description, body];
     files[`${data.slug}.md`] = [
-      strToU8(`${parts.filter(Boolean).join('\n\n')}\n`),
+      strToU8(await lessonFileText(lang, data, body)),
       { mtime: archiveDate },
     ];
   }

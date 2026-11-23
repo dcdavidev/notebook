@@ -1,9 +1,8 @@
 ---
 title: Proiezioni, service definition e binding
 description: Esporre un business object RAP come servizio OData.
+level: pro
 ---
-
-_Livello pro_
 
 Il business object dei viaggi ora ha un [data model](./0140-rap-data-model.md), un [comportamento](./0141-rap-behavior-definition.md) e una [logica di business](./0142-rap-validations-determinations-actions.md), ma nessuno fuori da ABAP può raggiungerlo. Altri tre livelli lo trasformano in un servizio OData: la **proiezione**, che sceglie che cosa una certa app può vedere e fare; la **service definition**, che elenca le entità esposte; e il **service binding**, che sceglie il protocollo e pubblica il servizio.
 

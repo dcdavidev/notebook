@@ -1,9 +1,8 @@
 ---
 title: ABAP Unit
 description: Write and run automated tests for your classes.
+level: intermediate
 ---
-
-_Intermediate level_
 
 **ABAP Unit** is the test framework built into the ABAP language. You write **test classes** next to your code; each test method calls the code, checks the result, and reports a failure if it's wrong. You run all of them with one key, as often as you like, in seconds.
 

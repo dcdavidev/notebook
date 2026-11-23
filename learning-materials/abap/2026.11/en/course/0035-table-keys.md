@@ -1,9 +1,8 @@
 ---
 title: Primary and secondary table keys
 description: Unique and non-unique keys, empty keys, and secondary keys.
+level: basic
 ---
-
-_Basic level_
 
 A **table key** is a set of fields that the system uses to find rows in an internal table. Every table has one **primary key**, and it can have up to 15 **secondary keys** for other ways of reading it.
 

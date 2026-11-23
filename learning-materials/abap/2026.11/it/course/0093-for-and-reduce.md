@@ -1,9 +1,8 @@
 ---
 title: FOR e REDUCE
 description: Costruire e riassumere tabelle in una sola espressione.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Molto codice ABAP cicla su una tabella solo per costruirne un'altra, o per calcolare un solo numero da tutte le righe. Una **table comprehension** fa il primo lavoro in una sola espressione: `VALUE` o `NEW` con dentro un ciclo `FOR`. Una **riduzione di tabella** fa il secondo: `REDUCE` esegue un ciclo `FOR` e restituisce un solo valore. Sono entrambe [espressioni costruttore](./0091-constructor-expressions.md), quindi possono stare ovunque sia atteso un valore.
 

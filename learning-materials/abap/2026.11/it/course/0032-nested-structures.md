@@ -1,9 +1,8 @@
 ---
 title: Strutture annidate e include
 description: Strutture dentro strutture, e INCLUDE TYPE.
+level: basic
 ---
-
-_Livello base_
 
 Una prenotazione ha i suoi dati (compagnia, volo, data, numero di prenotazione) e i dati del cliente (numero, nome, città). Potresti mettere tutti questi campi uno accanto all'altro in una sola [struttura](./0031-structures.md), ma i dati del cliente formano un gruppo a sé, e vorrai riusarlo altrove.
 

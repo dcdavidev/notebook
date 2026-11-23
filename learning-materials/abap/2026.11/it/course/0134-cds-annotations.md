@@ -1,9 +1,8 @@
 ---
 title: Le annotazioni CDS
 description: Metadati per semantica, UI, analisi e ricerca.
+level: pro
 ---
-
-_Livello pro_
 
 Un'**annotazione** aggiunge metadati a un'entità CDS o a uno dei suoi elementi. Non cambia l'SQL che gira nel database. Dice al compilatore e ai framework che cosa significano i dati: questo campo è un importo in quella valuta, questo è il testo di quella chiave, questa vista è un cubo analitico, mostra questa colonna per prima nell'elenco.
 

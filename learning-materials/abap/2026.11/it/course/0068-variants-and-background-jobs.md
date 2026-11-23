@@ -1,9 +1,8 @@
 ---
 title: Varianti e job in background
 description: Salvare i valori di input e pianificare i programmi con SM36 e SM37.
+level: basic
 ---
-
-_Livello base_
 
 Spesso gli utenti eseguono lo stesso report con lo stesso input tutti i giorni. Una **variante** salva i valori di una schermata di selezione con un nome, così nessuno deve riscriverli. Le varianti sono anche ciò che rende possibili i **job in background**: un job esegue un report senza un utente davanti allo schermo, quindi prende i valori di input da una variante.
 

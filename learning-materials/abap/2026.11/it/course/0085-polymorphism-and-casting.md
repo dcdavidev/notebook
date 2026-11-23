@@ -1,9 +1,8 @@
 ---
 title: Polimorfismo e casting
 description: Una chiamata, tanti comportamenti; up cast, down cast e IS INSTANCE OF.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 **Polimorfismo** significa che la stessa chiamata di metodo fa cose diverse a seconda dell'oggetto che sta dietro al riferimento. L'hai già visto all'opera con l'[ereditarietà](./0082-inheritance.md) e le [interfacce](./0084-interfaces.md): un ciclo su una tabella di riferimenti chiamava `get_price( )`, e ogni oggetto rispondeva a modo suo. Questa lezione spiega le regole che stanno sotto, e come spostare un riferimento fra tipi generici e specifici con i **cast**.
 

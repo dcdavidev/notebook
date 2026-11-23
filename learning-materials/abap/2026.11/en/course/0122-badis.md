@@ -1,9 +1,8 @@
 ---
 title: BAdIs
 description: Find, implement, and filter Business Add-Ins.
+level: pro
 ---
-
-_Pro level_
 
 A **BAdI** (Business Add-In) is an object-oriented extension point. SAP defines an [interface](./0084-interfaces.md) and calls its methods at a planned place in the standard code; you write a class that implements the interface, and SAP calls your class. BAdIs are the preferred way to extend standard SAP: the interface tells you exactly what you get and what you may change, and your code survives upgrades.
 

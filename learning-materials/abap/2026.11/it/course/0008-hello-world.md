@@ -1,9 +1,8 @@
 ---
 title: Il tuo primo programma
 description: Creare, controllare, attivare ed eseguire un report che saluta.
+level: beginner
 ---
-
-_Livello principiante_
 
 È il momento di scrivere codice. Il tuo primo programma è un **report**, detto anche **programma eseguibile**: un programma che avvii direttamente e che mostra il suo output sullo schermo. Saluta, e strada facendo attraversi il ciclo che ripeterai per ogni oggetto che scriverai in ABAP: **creare, salvare, controllare, attivare, eseguire**.
 

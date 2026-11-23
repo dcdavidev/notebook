@@ -1,9 +1,8 @@
 ---
 title: Includes and subroutines
 description: Split a program into files, and read FORM and PERFORM in legacy code.
+level: basic
 ---
-
-_Basic level_
 
 A report that grows to thousands of lines is hard to navigate. Classic ABAP has two tools to split it: **includes** split the source code into several files, and **subroutines** split the logic into named blocks that you call with `PERFORM`.
 

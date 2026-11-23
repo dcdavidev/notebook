@@ -1,9 +1,8 @@
 ---
 title: Il batch input
 description: Compilare automaticamente le transazioni con BDC e SHDB.
+level: pro
 ---
-
-_Livello pro_
 
 Il **batch input** (detto anche **BDC**, _batch data communication_) esegue una transazione di dialogo come se un utente stesse digitando: compila i campi schermata per schermata e preme i pulsanti. La transazione esegue tutti i suoi controlli normali, quindi i dati che arrivano nel database sono coerenti come se li avesse inseriti una persona a mano.
 

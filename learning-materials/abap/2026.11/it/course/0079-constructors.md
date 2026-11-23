@@ -1,9 +1,8 @@
 ---
 title: I costruttori
 description: Costruttori di istanza e statici.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Creare un oggetto e poi valorizzarne gli attributi uno per uno, come in [classi e oggetti](./0076-classes-and-objects.md), è scomodo e rischioso: qualcuno può dimenticare un attributo e usare un oggetto costruito a metà. Un **costruttore** è un metodo speciale che gira automaticamente quando un oggetto viene creato, così ogni oggetto parte in uno stato valido.
 

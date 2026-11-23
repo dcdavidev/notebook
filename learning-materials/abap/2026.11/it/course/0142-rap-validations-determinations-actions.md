@@ -1,9 +1,8 @@
 ---
 title: Validazioni, determinazioni e azioni
 description: La logica di business nel behavior pool.
+level: pro
 ---
-
-_Livello pro_
 
 Il framework managed crea, modifica, cancella e salva già i viaggi. Quello che non può sapere sono le tue regole di business: la data di fine non può precedere quella di inizio, un nuovo viaggio parte con lo stato "aperto", un viaggio riceve il prossimo numero libero, e un agente può accettare un viaggio con un clic. Queste regole sono **validazioni**, **determinazioni** e **azioni**. Le dichiari nella [behavior definition](./0141-rap-behavior-definition.md) e le implementi nel **behavior pool**.
 

@@ -1,9 +1,8 @@
 ---
 title: I join
 description: INNER JOIN e LEFT OUTER JOIN fra più tabelle.
+level: basic
 ---
-
-_Livello base_
 
 I dati di business sono distribuiti su più tabelle. Il nome della compagnia aerea sta in `SCARR`, i suoi collegamenti in `SPFLI` e i singoli voli in `SFLIGHT`. Un **join** combina le righe di due o più tabelle in una sola `SELECT`, facendo corrispondere le colonne che hanno in comune.
 

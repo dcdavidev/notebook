@@ -1,9 +1,8 @@
 ---
 title: Le liste interattive
 description: TOP-OF-PAGE, AT LINE-SELECTION, HIDE e le liste di dettaglio.
+level: basic
 ---
-
-_Livello base_
 
 La lista che costruisci con [`WRITE`](./0011-output-with-write.md) può fare di più che mostrare del testo. Può avere un'intestazione di pagina che si ripete su ogni pagina, e può reagire quando l'utente fa doppio clic su una riga, aprendo una **lista di dettaglio** con altri dati su quella riga.
 

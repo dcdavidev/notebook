@@ -1,9 +1,8 @@
 ---
 title: IDoc e ALE
 description: Scambiare documenti di business fra sistemi.
+level: pro
 ---
-
-_Livello pro_
 
 Un **IDoc** (intermediate document) è il contenitore standard di SAP per i dati di business che viaggiano fra sistemi: un ordine d'acquisto inviato a un fornitore, un'anagrafica materiale copiata in un altro sistema SAP, una fattura ricevuta da un provider EDI. **ALE** (Application Link Enabling) è il framework che distribuisce gli IDoc fra sistemi SAP, in modo asincrono e affidabile. Molte piattaforme di integrazione (SAP Integration Suite, SAP PI/PO, strumenti EDI) parlano ancora IDoc, quindi li incontrerai in quasi ogni progetto.
 

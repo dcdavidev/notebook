@@ -1,9 +1,8 @@
 ---
 title: GUI status, titles, and popups
 description: Menus, toolbars, function keys, and confirmation dialogs.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A screen without a **GUI status** has gray Back and Exit buttons and no menu: the user is stuck. The GUI status defines the menu bar, the toolbars, and the function keys of a screen, and links each of them to a function code that arrives in the [OK code](./0102-dynpro-flow-logic.md). The **title** is the text in the window's title bar.
 

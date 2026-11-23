@@ -1,9 +1,8 @@
 ---
 title: ABAP on SAP HANA and code pushdown
 description: Move data-intensive logic from the application server to the database.
+level: pro
 ---
-
-_Pro level_
 
 Classic ABAP was written for databases that were slow at anything beyond simple reads, so programs copied rows to the application server and did the work there. SAP HANA turns this around: it's an in-memory, column-oriented database that can aggregate and calculate over millions of rows faster than any loop in ABAP.
 

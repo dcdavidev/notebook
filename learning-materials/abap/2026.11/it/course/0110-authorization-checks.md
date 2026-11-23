@@ -1,9 +1,8 @@
 ---
 title: I controlli di autorizzazione
 description: Oggetti di autorizzazione, AUTHORITY-CHECK e ruoli.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 In un sistema SAP, fare il logon non significa poter fare tutto. Ogni utente ha delle **autorizzazioni** che dicono quali dati può visualizzare, modificare o cancellare: un impiegato di Roma può modificare le prenotazioni di Alitalia ma solo visualizzare quelle di Lufthansa. Le transazioni standard controllano queste autorizzazioni ovunque.
 

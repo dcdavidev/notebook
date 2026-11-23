@@ -1,9 +1,8 @@
 ---
 title: Authorization checks
 description: Authorization objects, AUTHORITY-CHECK, and roles.
+level: intermediate
 ---
-
-_Intermediate level_
 
 In an SAP system, logging on doesn't mean you can do everything. Every user has **authorizations** that say which data they may display, change, or delete: a clerk in Rome may change the bookings of Alitalia but only display those of Lufthansa. Standard transactions check these authorizations everywhere.
 

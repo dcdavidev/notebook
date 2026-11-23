@@ -1,9 +1,8 @@
 ---
 title: Packages and transport requests
 description: Where your objects live and how they travel from development to production.
+level: beginner
 ---
-
-_Beginner level_
 
 Every object you create in an SAP system (a program, a class, a table) belongs to a **package**, and every change you make to it in a real project is recorded in a **transport request**. The package says where the object lives; the transport request carries the change from development to quality and production, along the landscape you saw in [System landscape and clients](./0004-system-landscape-and-clients.md).
 

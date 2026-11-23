@@ -1,9 +1,8 @@
 ---
 title: L'output con WRITE
 description: Stampare testi e valori su una lista classica, con posizioni e formati.
+level: beginner
 ---
-
-_Livello principiante_
 
 `WRITE` stampa testi e valori su una **lista classica**: la semplice schermata di output, simile a una pagina, che hai visto eseguendo [il tuo primo programma](./0008-hello-world.md). Le applicazioni moderne mostrano i dati in griglie e app Fiori, ma `WRITE` resta il modo più rapido per vedere che cosa fa un piccolo programma, e lo troverai in migliaia di report esistenti.
 

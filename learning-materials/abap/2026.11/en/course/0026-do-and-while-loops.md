@@ -1,9 +1,8 @@
 ---
 title: DO and WHILE loops
 description: Repeat code a fixed number of times or while a condition holds.
+level: beginner
 ---
-
-_Beginner level_
 
 A **loop** runs the same block of code several times. ABAP has two loops that don't depend on a table: `DO` repeats the code a number of times, and `WHILE` repeats it as long as a condition is true. (To go through the rows of a table, you'll use `LOOP AT`, in [Looping over internal tables](./0038-looping-internal-tables.md).)
 

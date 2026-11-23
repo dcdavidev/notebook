@@ -1,9 +1,8 @@
 ---
 title: Perché la programmazione a oggetti
 description: 'Dalle procedure agli oggetti: che cosa cambia e perché aiuta.'
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Finora hai diviso i programmi in [subroutine](./0069-includes-and-subroutines.md) e [moduli funzione](./0070-function-modules.md): blocchi di codice che lavorano sui dati che ricevono o che stanno in variabili globali. Questa è la **programmazione procedurale**. Funziona, ma quando i programmi crescono si perde il legame tra i dati e il codice che li modifica.
 

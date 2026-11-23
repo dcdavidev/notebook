@@ -1,9 +1,8 @@
 ---
 title: Pacchetti e richieste di trasporto
 description: Dove vivono i tuoi oggetti e come viaggiano dallo sviluppo alla produzione.
+level: beginner
 ---
-
-_Livello principiante_
 
 Ogni oggetto che crei in un sistema SAP (un programma, una classe, una tabella) appartiene a un **pacchetto**, e ogni modifica che ci fai in un progetto reale viene registrata in una **richiesta di trasporto**. Il pacchetto dice dove vive l'oggetto; la richiesta di trasporto porta la modifica dallo sviluppo alla qualità e alla produzione, lungo il landscape che hai visto in [Landscape di sistema e mandanti](./0004-system-landscape-and-clients.md).
 

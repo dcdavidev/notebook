@@ -1,9 +1,8 @@
 ---
 title: SELECT SINGLE and UP TO n ROWS
 description: Read one row, or only the first rows.
+level: basic
 ---
-
-_Basic level_
 
 Often you don't need a whole table. You want the one airline whose code the user entered, or the five most expensive flights. Reading everything and throwing most of it away wastes time on the database and on the network.
 

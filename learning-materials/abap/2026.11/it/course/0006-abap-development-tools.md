@@ -1,9 +1,8 @@
 ---
 title: Gli ABAP Development Tools in Eclipse
 description: Installare ADT, collegarsi a un sistema e orientarsi nell'IDE.
+level: beginner
 ---
-
-_Livello principiante_
 
 Gli **ABAP Development Tools** (ADT) sono un insieme di plug-in che trasformano l'IDE Eclipse in un editor ABAP. Sono lo strumento consigliato da SAP per lo sviluppo ABAP, e per alcuni oggetti l'unico: viste CDS, behavior definition e tutto ciò che riguarda ABAP Cloud si modificano solo in ADT.
 

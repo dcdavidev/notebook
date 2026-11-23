@@ -1,9 +1,8 @@
 ---
 title: Scrivere ABAP veloce
 description: Le regole che rendono veloci i programmi sul database e in memoria.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 La maggior parte dei programmi ABAP lenti è lenta per gli stessi pochi motivi: leggono troppi dati, chiamano il database troppo spesso o cercano riga per riga in grandi tabelle interne. Una manciata di regole evita quasi tutti questi problemi, e quando scrivi codice nuovo non costano nulla.
 

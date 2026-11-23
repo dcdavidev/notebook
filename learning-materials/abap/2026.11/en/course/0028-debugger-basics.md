@@ -1,9 +1,8 @@
 ---
 title: 'The debugger: first steps'
 description: Start the debugger, step through code, and inspect variables.
+level: beginner
 ---
-
-_Beginner level_
 
 When a program gives the wrong result, reading the code again isn't always enough. The **debugger** lets you stop the program while it runs, execute it one statement at a time, and look at the value of every variable at that moment. You see what the program really does, not what you think it does.
 

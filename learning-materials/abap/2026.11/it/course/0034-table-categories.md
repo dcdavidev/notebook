@@ -1,9 +1,8 @@
 ---
 title: Tabelle standard, sorted e hashed
 description: Le tre categorie di tabella e quando usare ciascuna.
+level: basic
 ---
-
-_Livello base_
 
 Ogni tabella interna appartiene a una **categoria di tabella**: standard, sorted o hashed. La categoria decide come vengono conservate le righe e quanto velocemente il sistema trova una riga. Il contenuto può essere lo stesso; cambiano la velocità di lettura e le regole per aggiungere righe.
 

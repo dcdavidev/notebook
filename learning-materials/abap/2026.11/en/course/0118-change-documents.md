@@ -1,9 +1,8 @@
 ---
 title: Change documents
 description: Record who changed what and when, with SCDO.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Auditors, key users, and support teams keep asking the same question: who changed this price, and when? SAP answers it with **change documents**: a log of field changes, with old value, new value, user, date, time, and transaction. Standard objects such as materials, customers, and sales orders write them already. With transaction `SCDO` you can do the same for your own tables.
 

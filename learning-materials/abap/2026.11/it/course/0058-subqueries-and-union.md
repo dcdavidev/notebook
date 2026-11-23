@@ -1,9 +1,8 @@
 ---
 title: Subquery e UNION
 description: EXISTS, IN con una subquery e la combinazione di risultati.
+level: basic
 ---
-
-_Livello base_
 
 Una **subquery** è una `SELECT` dentro la clausola `WHERE` o `HAVING` di un'altra `SELECT`. Ti permette di filtrare in base a una domanda su un'altra tabella: "le compagnie che hanno almeno un collegamento", "i voli più cari della media". Il database risponde a tutto con una sola istruzione.
 

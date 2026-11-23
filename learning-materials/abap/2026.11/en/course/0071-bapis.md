@@ -1,9 +1,8 @@
 ---
 title: BAPIs
 description: Call standard business APIs and handle BAPIRET2.
+level: basic
 ---
-
-_Basic level_
 
 When your program has to create a sales order, post an invoice, or book a flight, you shouldn't write directly into SAP's tables: the standard transactions do many checks and updates that you'd miss. Instead, you call a **BAPI** (Business Application Programming Interface): a standard [function module](./0070-function-modules.md) that performs a business operation with all the checks of the transaction.
 

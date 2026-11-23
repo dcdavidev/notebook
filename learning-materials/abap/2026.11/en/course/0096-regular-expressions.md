@@ -1,9 +1,8 @@
 ---
 title: FIND, REPLACE, and regular expressions
 description: Search and change text with patterns.
+level: intermediate
 ---
-
-_Intermediate level_
 
 [Working with strings](./0021-working-with-strings.md) covered concatenating, splitting, and changing the case of text. This lesson is about searching inside it: finding a word, replacing every occurrence of it, and, with **regular expressions**, finding text that matches a pattern, such as "two letters followed by four digits". You'll use this to validate input, clean up uploaded files, and pull values out of free text.
 

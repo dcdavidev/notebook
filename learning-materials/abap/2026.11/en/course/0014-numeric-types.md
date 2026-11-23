@@ -1,9 +1,8 @@
 ---
 title: Numeric types
 description: Integers, packed numbers, decimal floating point, and binary floating point.
+level: beginner
 ---
-
-_Beginner level_
 
 Seat counts, prices, weights, and exchange rates are all numbers, but they don't all need the same type. ABAP has whole-number types for counters, **packed numbers** for money and quantities, and two kinds of floating-point numbers for values with many digits. Picking the right one decides whether your totals are exact.
 

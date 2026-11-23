@@ -1,9 +1,8 @@
 ---
 title: Modern ABAP SQL
 description: Host variables, inline declarations, SQL expressions, and CASE.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Since ABAP 7.40 SP05, ABAP SQL has a new, stricter syntax. It marks every ABAP variable with `@`, separates fields with commas, declares the target table inline, and lets the database calculate values with **SQL expressions** instead of loops in ABAP.
 

@@ -1,9 +1,8 @@
 ---
 title: Constructor expressions
 description: VALUE, NEW, CONV, CAST, REF, EXACT, and LET.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A **constructor expression** creates a value of a given type right where you need it: in an assignment, as a method argument, or inside another expression. It replaces the helper variables and multi-line blocks of older ABAP with a single expression. You've already used two of them, `VALUE` for [filling internal tables](./0036-filling-internal-tables.md) and `NEW` for [creating objects](./0076-classes-and-objects.md). This lesson covers the whole family of basic constructors.
 

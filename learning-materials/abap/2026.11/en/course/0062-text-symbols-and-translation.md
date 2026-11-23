@@ -1,9 +1,8 @@
 ---
 title: Text symbols and translation
 description: Keep texts out of the code and translate them.
+level: basic
 ---
-
-_Basic level_
 
 An SAP system is used in many languages at once: a user in Milan logs on in Italian, a colleague in Munich in German. A text literal such as `'Total'` in the code is shown in English to everyone. To show each user their own language, the texts must live outside the code, where translators can reach them.
 

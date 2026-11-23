@@ -1,9 +1,8 @@
 ---
 title: FILTER and CORRESPONDING
 description: Filter tables by key and map fields between structures.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Two jobs come up in almost every program: taking the rows of a table that match a condition, and copying data between structures or tables whose fields have the same names. `FILTER` does the first, `CORRESPONDING` the second. Both are [constructor expressions](./0091-constructor-expressions.md) and replace loops you'd otherwise write by hand.
 

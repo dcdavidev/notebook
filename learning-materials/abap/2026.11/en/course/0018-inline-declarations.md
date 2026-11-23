@@ -1,9 +1,8 @@
 ---
 title: Inline declarations
 description: 'DATA(...) and FINAL(...): declare a variable where you first fill it.'
+level: beginner
 ---
-
-_Beginner level_
 
 With `DATA` at the top of the program, you declare a variable in one place and fill it somewhere else, often many lines below. An **inline declaration** does both in one step: you declare the variable at the exact point where it gets its first value, and ABAP derives its type from that value.
 

@@ -1,9 +1,8 @@
 ---
 title: Number ranges
 description: Generate unique document numbers with SNRO.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Every sales order, invoice, and booking in SAP has a unique number. Many users create documents at the same time, so the number can't come from "the highest number in the table plus one": two users would read the same maximum and get the same number. SAP solves this with **number ranges**: a central counter that hands out each number exactly once.
 

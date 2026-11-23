@@ -1,9 +1,8 @@
 ---
 title: Class-based exceptions
 description: TRY, CATCH, CLEANUP, RAISE EXCEPTION, and the exception hierarchy.
+level: intermediate
 ---
-
-_Intermediate level_
 
 When something goes wrong at runtime, such as a division by zero, a table row that isn't there, or text that isn't a number, ABAP raises an **exception**. If nobody handles it, the program stops with a short dump, as you saw in [runtime errors](./0030-runtime-errors.md). A **class-based exception** is an object of an exception class: it carries information about the error, travels up the call stack until someone catches it, and lets your code react instead of crashing.
 

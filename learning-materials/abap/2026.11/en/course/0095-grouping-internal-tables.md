@@ -1,9 +1,8 @@
 ---
 title: Grouping internal tables
 description: LOOP AT ... GROUP BY and LOOP AT GROUP.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Reports often need data per group: bookings per customer, flights per carrier, seats per month. The control level statements `AT NEW` and `AT END OF` from [looping over internal tables](./0038-looping-internal-tables.md) can do it, but only if the table is sorted the right way and the group fields are at the start of the row. **Grouping** with `LOOP AT ... GROUP BY` has neither limit: you name the group key, ABAP builds the groups, and you process each group and its rows.
 

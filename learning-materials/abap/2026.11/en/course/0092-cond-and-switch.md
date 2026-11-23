@@ -1,9 +1,8 @@
 ---
 title: COND and SWITCH
 description: Conditional expressions that return a value.
+level: intermediate
 ---
-
-_Intermediate level_
 
 [`IF`](./0024-if-and-logical-expressions.md) and [`CASE`](./0025-case.md) are statements: they choose which code runs. Very often that code does only one thing, assigning a value to a variable. `COND` and `SWITCH` are **conditional expressions**: they choose a value and return it, so you can write the choice right where the value is needed, in an assignment, a method argument, or a string template.
 

@@ -1,9 +1,8 @@
 ---
 title: FILTER e CORRESPONDING
 description: Filtrare tabelle per chiave e mappare campi fra strutture.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Due lavori ricorrono in quasi ogni programma: prendere le righe di una tabella che soddisfano una condizione, e copiare dati fra strutture o tabelle i cui campi hanno lo stesso nome. `FILTER` fa il primo, `CORRESPONDING` il secondo. Sono entrambe [espressioni costruttore](./0091-constructor-expressions.md) e sostituiscono cicli che altrimenti scriveresti a mano.
 

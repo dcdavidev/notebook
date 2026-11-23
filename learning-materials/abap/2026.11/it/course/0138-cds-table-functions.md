@@ -1,9 +1,8 @@
 ---
 title: Le CDS table function
 description: Usare un'AMDP come sorgente dati di un'entità CDS.
+level: pro
 ---
-
-_Livello pro_
 
 Una procedura [AMDP](./0137-amdp.md) si chiama da ABAP, come un metodo. Ma a volte ti serve logica SQLScript **dentro un modello di dati**: come sorgente di una CDS view, in un join, in un'app Fiori. Una **CDS table function** dà a SQLScript una faccia CDS. Ne definisci la firma in CDS, la implementi con una funzione AMDP e poi la leggi come qualsiasi entità CDS, da ABAP SQL o da altre viste.
 

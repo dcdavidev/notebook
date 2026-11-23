@@ -1,9 +1,8 @@
 ---
 title: Breakpoint e watchpoint
 description: Fermare il programma esattamente dove e quando vuoi.
+level: beginner
 ---
-
-_Livello principiante_
 
 In [Il debugger: primi passi](./0028-debugger-basics.md) hai fermato un programma su una riga e l'hai eseguito passo per passo. Nei programmi veri, con migliaia di righe e cicli su migliaia di righe di dati, premere F5 non basta. Vuoi che il programma si fermi **esattamente** dove succede qualcosa di interessante: a una certa istruzione, in un certo passo di un ciclo, o nel momento in cui una variabile cambia.
 

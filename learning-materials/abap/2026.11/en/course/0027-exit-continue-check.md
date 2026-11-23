@@ -1,9 +1,8 @@
 ---
 title: EXIT, CONTINUE, and CHECK
 description: Leave a loop or skip to the next pass.
+level: beginner
 ---
-
-_Beginner level_
 
 Sometimes a loop shouldn't run all its passes: you've found what you were looking for, or the current pass has nothing to do. ABAP has three statements to control a loop from the inside: `EXIT` leaves the loop, `CONTINUE` skips to the next pass, and `CHECK` skips to the next pass when a condition is false.
 

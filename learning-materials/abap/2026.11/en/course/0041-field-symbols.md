@@ -1,9 +1,8 @@
 ---
 title: Field symbols
 description: Work directly on a row or a variable without copying it.
+level: basic
 ---
-
-_Basic level_
 
 A **field symbol** is a placeholder name for a data object that already exists. It doesn't hold its own value: it points to another variable or to a row of a table, and everything you do with the field symbol happens directly on that data object.
 

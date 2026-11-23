@@ -1,9 +1,8 @@
 ---
 title: Chiamare programmi, memoria SAP e memoria ABAP
 description: SUBMIT, CALL TRANSACTION, SET/GET PARAMETER, EXPORT/IMPORT.
+level: basic
 ---
-
-_Livello base_
 
 Un programma può avviare altri programmi: eseguire un report con `SUBMIT`, oppure aprire una transazione con `CALL TRANSACTION`. Spesso i due programmi devono condividere dei dati, per esempio per aprire una transazione già compilata con la compagnia aerea che l'utente ha appena selezionato.
 

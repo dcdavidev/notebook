@@ -1,9 +1,8 @@
 ---
 title: User exit e customer exit
 description: Le tecniche di estensione più vecchie, presenti in ogni sistema.
+level: pro
 ---
-
-_Livello pro_
 
 Molto prima delle BAdI, SAP lasciava nei suoi programmi dei punti vuoti dove i clienti potevano aggiungere codice. Ce ne sono di due tipi: le **user exit**, subroutine vuote negli include SAP, soprattutto nel modulo vendite; e le **customer exit**, chiamate a moduli funzione il cui corpo è un include del cliente. Il codice nuovo dovrebbe usare le [BAdI](./0122-badis.md) quando ce n'è una, ma queste exit sono ancora in ogni sistema ECC e S/4HANA, e in molti punti sono ancora l'unico aggancio disponibile.
 

@@ -1,9 +1,8 @@
 ---
 title: Include e subroutine
 description: Dividere un programma in file, e leggere FORM e PERFORM nel codice legacy.
+level: basic
 ---
-
-_Livello base_
 
 Un report che arriva a migliaia di righe è difficile da navigare. L'ABAP classico ha due strumenti per dividerlo: gli **include** dividono il codice sorgente in più file, e le **subroutine** dividono la logica in blocchi con un nome che chiami con `PERFORM`.
 

@@ -1,9 +1,8 @@
 ---
 title: ABAP Unit
 description: Scrivere ed eseguire test automatici per le tue classi.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 **ABAP Unit** è il framework di test integrato nel linguaggio ABAP. Scrivi delle **classi di test** accanto al tuo codice; ogni metodo di test chiama il codice, controlla il risultato e segnala un errore se è sbagliato. Li esegui tutti con un tasto, quante volte vuoi, in pochi secondi.
 

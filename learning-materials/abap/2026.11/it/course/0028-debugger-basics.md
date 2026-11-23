@@ -1,9 +1,8 @@
 ---
 title: 'Il debugger: primi passi'
 description: Avviare il debugger, eseguire il codice passo per passo e ispezionare le variabili.
+level: beginner
 ---
-
-_Livello principiante_
 
 Quando un programma dà il risultato sbagliato, rileggere il codice non sempre basta. Il **debugger** ti permette di fermare il programma mentre gira, eseguirlo un'istruzione alla volta e guardare il valore di ogni variabile in quel momento. Vedi che cosa fa davvero il programma, non che cosa pensi che faccia.
 

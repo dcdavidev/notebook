@@ -1,9 +1,8 @@
 ---
 title: Le CDS view entity
 description: Definire modelli di dati nel database con i Core Data Services.
+level: pro
 ---
-
-_Livello pro_
 
 I **Core Data Services (CDS)** ti permettono di definire modelli di dati in un linguaggio dedicato, vicino all'SQL, e di salvarli nel repository ABAP. Quando attivi una CDS view, il sistema crea la vista corrispondente nel database, quindi la logica gira lì: le CDS sono lo strumento principale del [code pushdown](./0131-code-pushdown.md) e la base delle app Fiori, dell'analisi dei dati e di RAP.
 

@@ -1,9 +1,8 @@
 ---
 title: SQL dinamico e chiamate dinamiche
 description: Costruire query e chiamare metodi di cui conosci il nome solo a runtime.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 In ABAP SQL quasi ogni clausola può essere un **token dinamico**: una stringa di caratteri fra parentesi che il runtime analizza quando l'istruzione gira. La stessa idea vale per le chiamate: il nome di una classe, di un metodo o di un modulo funzione può arrivare da una variabile. È così che i framework leggono le tabelle di configurazione e decidono a runtime che cosa selezionare e quale codice eseguire.
 

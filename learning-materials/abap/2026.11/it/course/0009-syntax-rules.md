@@ -1,9 +1,8 @@
 ---
 title: Le regole della sintassi ABAP
 description: Istruzioni, punti, parole chiave, istruzioni concatenate e nomi.
+level: beginner
 ---
-
-_Livello principiante_
 
 ABAP ha poche regole di sintassi, e la maggior parte l'hai già incontrata in [Il tuo primo programma](./0008-hello-world.md) senza accorgertene. Conoscerle bene ti fa risparmiare molto tempo con il controllo di sintassi: quasi tutti gli errori dei principianti sono un punto mancante, uno spazio mancante o una virgola al posto di un punto.
 

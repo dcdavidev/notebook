@@ -1,9 +1,8 @@
 ---
 title: Type conversions
 description: What happens when you assign a value to a variable of another type.
+level: beginner
 ---
-
-_Beginner level_
 
 In many languages, assigning a text to a number variable is an error. ABAP is more tolerant: when source and target have different types, it **converts** the value automatically, following a fixed set of **conversion rules**. Most of the time the result is what you expect. Sometimes the value is truncated, rounded, or padded, and sometimes the program stops with a runtime error.
 

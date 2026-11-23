@@ -1,9 +1,8 @@
 ---
 title: I tipi numerici
 description: Interi, numeri packed, virgola mobile decimale e binaria.
+level: beginner
 ---
-
-_Livello principiante_
 
 Posti a sedere, prezzi, pesi e tassi di cambio sono tutti numeri, ma non a tutti serve lo stesso tipo. ABAP ha tipi interi per i contatori, **numeri packed** per importi e quantità e due tipi di numeri in virgola mobile per i valori con molte cifre. Scegliere quello giusto decide se i tuoi totali sono esatti.
 

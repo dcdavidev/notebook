@@ -1,9 +1,8 @@
 ---
 title: La behavior definition
 description: Implementazione managed, operazioni, controlli sui campi e blocchi.
+level: pro
 ---
-
-_Livello pro_
 
 Il [data model](./0140-rap-data-model.md) dice com'è fatto un viaggio. La **behavior definition** (BDEF) dice che cosa puoi farci: creare, modificare, cancellare, quali campi sono di sola lettura, come si bloccano le istanze e dove vive la logica di business. È un sorgente dichiarativo, scritto nel **behavior definition language**, con lo stesso nome dell'entità root.
 

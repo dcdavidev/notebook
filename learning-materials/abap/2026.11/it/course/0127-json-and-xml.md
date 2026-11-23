@@ -1,9 +1,8 @@
 ---
 title: JSON e XML
 description: Serializzare e leggere dati con CALL TRANSFORMATION e XCO.
+level: pro
 ---
-
-_Livello pro_
 
 Quando ABAP parla con altri sistemi tramite [HTTP](./0126-http-and-rest.md), file o code, i dati devono diventare testo: XML o JSON. Trasformare dati ABAP in testo è la **serializzazione**; rileggere il testo in dati ABAP è la **deserializzazione** (o parsing). Il kernel fa entrambe le cose con `CALL TRANSFORMATION`, e in ABAP Cloud la libreria XCO aggiunge una comoda API per JSON.
 

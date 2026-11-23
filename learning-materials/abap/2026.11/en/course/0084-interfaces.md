@@ -1,9 +1,8 @@
 ---
 title: Interfaces
 description: Contracts that unrelated classes can implement.
+level: intermediate
 ---
-
-_Intermediate level_
 
 [Inheritance](./0082-inheritance.md) works when classes are related: a business ticket is a ticket. But a flight and a hotel room have nothing in common except that both have a price. An **interface** describes what a class can do, without saying how. Any class can implement it, whatever its superclass, and a class can implement as many interfaces as it needs.
 

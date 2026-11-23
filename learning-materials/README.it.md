@@ -71,6 +71,8 @@ Collega le lezioni con un percorso relativo al file, così i link funzionano sia
 
 ## Lezioni
 
+Le sezioni che ogni lezione deve avere, in ordine, sono descritte in [Come scrivere una lezione](../docs/contributing/lesson-structure.it.md).
+
 ### Nome del file
 
 `NNNN-slug.md`, nella cartella `course/` della sua lingua, dove:
@@ -86,8 +88,11 @@ Ogni lezione inizia con un blocco di front matter YAML:
 ---
 title: Le tabelle interne
 description: Conservare ed elaborare elenchi di dati in memoria.
+level: basic
 ---
 ```
+
+`level` è uno fra `beginner`, `basic`, `intermediate` e `pro`, in inglese in tutte le lingue. Vedi [Come scrivere una lezione](../docs/contributing/lesson-structure.it.md#1-front-matter).
 
 Metti il titolo fra apici se contiene i due punti, per esempio `title: 'Modularizzazione: dividere il codice in blocchi'`.
 

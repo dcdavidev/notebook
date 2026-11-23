@@ -1,9 +1,8 @@
 ---
 title: Chiavi esterne e tabelle di controllo
 description: Collegare le tabelle e controllare i valori inseriti.
+level: basic
 ---
-
-_Livello base_
 
 Una **chiave esterna** collega un campo di una tabella alla chiave primaria di un'altra tabella, la **tabella di controllo**. Dice: "un valore in questo campo è valido solo se esiste nella tabella di controllo". Il Dizionario usa le chiavi esterne per controllare l'input dell'utente sulle schermate, per offrire l'aiuto F4 e per descrivere come le tabelle sono collegate fra loro.
 

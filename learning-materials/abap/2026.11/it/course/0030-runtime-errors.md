@@ -1,9 +1,8 @@
 ---
 title: Gli errori a runtime e la ST22
 description: Leggere un dump e trovare la causa di un crash.
+level: beginner
 ---
-
-_Livello principiante_
 
 Il controllo di sintassi scopre molti errori prima che un programma giri, ma non tutti. Una divisione per zero, un testo che non è un numero, un ciclo che non finisce mai: questi errori compaiono solo mentre il programma gira. Quando ABAP ne incontra uno che non sa gestire, ferma il programma e scrive un rapporto di **errore a runtime**, chiamato **short dump** o semplicemente dump.
 

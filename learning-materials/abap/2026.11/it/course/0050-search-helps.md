@@ -1,9 +1,8 @@
 ---
 title: Gli aiuti di ricerca
 description: "L'aiuto F4: aiuti di ricerca elementari e collettivi."
+level: basic
 ---
-
-_Livello base_
 
 Quando un utente preme F4 su un campo di input, SAP mostra un elenco di valori possibili. Un **aiuto di ricerca** (_search help_) è l'oggetto del Dizionario che definisce quell'elenco: da dove arrivano i valori, quali colonne vede l'utente e quale valore torna nel campo.
 

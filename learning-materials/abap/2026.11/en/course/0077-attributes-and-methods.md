@@ -1,9 +1,8 @@
 ---
 title: Attributes and methods
 description: Data and behavior of an object, and the self-reference me.
+level: intermediate
 ---
-
-_Intermediate level_
 
 An object has two kinds of components: **attributes**, which hold its data, and **methods**, which contain its behavior. Methods work on the attributes of the object they're called on, so every object behaves according to its own data.
 

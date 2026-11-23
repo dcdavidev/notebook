@@ -1,9 +1,8 @@
 ---
 title: Le BAdI
 description: Trovare, implementare e filtrare i Business Add-In.
+level: pro
 ---
-
-_Livello pro_
 
 Una **BAdI** (Business Add-In) è un punto di estensione orientato agli oggetti. SAP definisce un'[interfaccia](./0084-interfaces.md) e chiama i suoi metodi in un punto previsto del codice standard; tu scrivi una classe che implementa l'interfaccia, e SAP chiama la tua classe. Le BAdI sono il modo preferito per estendere lo standard SAP: l'interfaccia ti dice esattamente che cosa ricevi e che cosa puoi cambiare, e il tuo codice sopravvive agli upgrade.
 

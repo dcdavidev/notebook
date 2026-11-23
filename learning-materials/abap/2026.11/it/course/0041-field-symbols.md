@@ -1,9 +1,8 @@
 ---
 title: I field symbol
 description: Lavorare direttamente su una riga o una variabile senza copiarla.
+level: basic
 ---
-
-_Livello base_
 
 Un **field symbol** è un nome segnaposto per un oggetto dati che esiste già. Non contiene un valore proprio: punta a un'altra variabile o a una riga di una tabella, e tutto quello che fai con il field symbol avviene direttamente su quell'oggetto dati.
 

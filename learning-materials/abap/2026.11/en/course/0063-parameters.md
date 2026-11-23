@@ -1,9 +1,8 @@
 ---
 title: 'Selection screens: PARAMETERS'
 description: Input fields, checkboxes, radio buttons, and list boxes.
+level: basic
 ---
-
-_Basic level_
 
 Most reports start by asking the user what to do: which airline, which date, show a list or a grid. The screen where they enter these values is the **selection screen**. In a report, you don't draw it: you declare its fields in the code, and the system builds the screen for you.
 

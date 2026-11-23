@@ -1,9 +1,8 @@
 ---
 title: Variabili e costanti
 description: Dichiarare oggetti dati con DATA e CONSTANTS e usare i letterali.
+level: beginner
 ---
-
-_Livello principiante_
 
 I programmi lavorano con dei valori: un numero di posti, un codice di compagnia aerea, un prezzo. In ABAP ogni valore vive in un **oggetto dati**: un pezzo di memoria con un nome e un tipo fisso. Una **variabile** è un oggetto dati il cui valore può cambiare mentre il programma gira; una **costante** è un oggetto dati il cui valore è fisso. Un **letterale** è un valore scritto direttamente nel codice, come `'LH'` o `42`.
 

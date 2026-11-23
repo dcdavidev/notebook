@@ -1,9 +1,8 @@
 ---
 title: 'Character types: c, n, string'
 description: Fixed-length text, numeric text, and strings of any length.
+level: beginner
 ---
-
-_Beginner level_
 
 Most business data is text: names, cities, airline codes, document numbers. ABAP has three types for it, and choosing the right one matters more than in other languages, because the type decides the length, the start value, and how blanks and digits are treated.
 

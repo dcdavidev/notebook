@@ -1,9 +1,8 @@
 ---
 title: FOR and REDUCE
 description: Build and summarize tables in a single expression.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A lot of ABAP code loops over a table only to build another table, or to compute one number from all the rows. A **table comprehension** does the first job in one expression: `VALUE` or `NEW` with a `FOR` loop inside. A **table reduction** does the second: `REDUCE` runs a `FOR` loop and returns a single value. Both are [constructor expressions](./0091-constructor-expressions.md), so they can go anywhere a value is expected.
 

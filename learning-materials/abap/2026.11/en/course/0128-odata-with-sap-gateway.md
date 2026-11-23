@@ -1,9 +1,8 @@
 ---
 title: OData with SAP Gateway
 description: Build an OData V2 service with SEGW.
+level: pro
 ---
-
-_Pro level_
 
 **OData** is a REST protocol for business data: entities, keys, relationships, and standard query options such as `$filter`, `$top`, and `$orderby`, all described in a `$metadata` document. SAP Fiori apps read and write data through OData. On SAP NetWeaver and SAP S/4HANA, **SAP Gateway** runs OData services, and the **Service Builder** (transaction `SEGW`) is the classic tool to build an OData V2 service in ABAP.
 

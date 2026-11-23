@@ -1,9 +1,8 @@
 ---
 title: L'architettura di un sistema SAP
 description: Livello di presentazione, applicativo e database, work process e istanze.
+level: beginner
 ---
-
-_Livello principiante_
 
 Un sistema SAP non è un programma su un computer. È un insieme di processi che collaborano, di solito distribuiti su più server, e che condividono un unico database. Sapere come si incastrano spiega molte cose che vedrai da sviluppatore: perché un programma va "in timeout", perché un job in background gira da un'altra parte o perché il codice che scrivi non gira mai sul tuo PC.
 

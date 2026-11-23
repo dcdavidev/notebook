@@ -1,9 +1,8 @@
 ---
 title: SELECT SINGLE e UP TO n ROWS
 description: Leggere una riga, o solo le prime righe.
+level: basic
 ---
-
-_Livello base_
 
 Spesso non ti serve una tabella intera. Vuoi la compagnia aerea di cui l'utente ha inserito il codice, o i cinque voli più cari. Leggere tutto e buttarne via la maggior parte fa perdere tempo al database e alla rete.
 

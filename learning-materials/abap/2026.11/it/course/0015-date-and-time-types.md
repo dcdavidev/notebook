@@ -1,9 +1,8 @@
 ---
 title: I tipi data e ora
 description: Date, ore, time stamp e calcoli con essi.
+level: beginner
 ---
-
-_Livello principiante_
 
 Date dei voli, orari di prenotazione, scadenze, termini di consegna: i dati di business sono pieni di date e orari. ABAP ha un tipo per le date (`d`), un tipo per gli orari (`t`) e i **time stamp**, che combinano i due e funzionano tra fusi orari diversi. Con le date puoi fare calcoli direttamente: aggiungere giorni, contare i giorni tra due date e molto altro.
 

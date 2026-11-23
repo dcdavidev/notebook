@@ -1,9 +1,8 @@
 ---
 title: The application log
 description: Collect and show messages with the BAL function modules and SLG1.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A [message](./0061-messages.md) shown on the screen is gone as soon as the user presses Enter, and a background job has no screen at all. When a program processes many records, you need to collect all its messages, save them, and let someone read them later. The **application log** (also called BAL, Business Application Log) does exactly that.
 

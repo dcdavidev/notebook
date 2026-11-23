@@ -1,9 +1,8 @@
 ---
 title: I documenti di modifica
 description: Registrare chi ha cambiato che cosa e quando, con SCDO.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Revisori, key user e team di supporto fanno sempre la stessa domanda: chi ha cambiato questo prezzo, e quando? SAP risponde con i **documenti di modifica** (change document): un registro delle modifiche ai campi, con valore vecchio, valore nuovo, utente, data, ora e transazione. Gli oggetti standard come materiali, clienti e ordini di vendita li scrivono già. Con la transazione `SCDO` puoi fare lo stesso per le tue tabelle.
 

@@ -1,9 +1,8 @@
 ---
 title: Il log applicativo
 description: Raccogliere e mostrare messaggi con i moduli funzione BAL e SLG1.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Un [messaggio](./0061-messages.md) mostrato a video sparisce appena l'utente preme Invio, e un job in background non ha proprio uno schermo. Quando un programma elabora molti record, devi raccogliere tutti i suoi messaggi, salvarli e permettere a qualcuno di leggerli in seguito. Il **log applicativo** (detto anche BAL, Business Application Log) fa esattamente questo.
 

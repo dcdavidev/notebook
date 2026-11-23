@@ -1,9 +1,8 @@
 ---
 title: Test doubles and dependency injection
 description: Isolate the code under test from the database and other classes.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A [unit test](./0105-abap-unit-basics.md) should test one piece of logic, quickly, with the same result every time. Real code, however, reads the database, calls other classes, and depends on the date. If the test uses all of that, it gets slow and breaks whenever the data changes.
 

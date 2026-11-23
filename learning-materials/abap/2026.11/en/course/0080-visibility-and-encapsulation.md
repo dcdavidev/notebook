@@ -1,9 +1,8 @@
 ---
 title: Visibility and encapsulation
 description: PUBLIC, PROTECTED, PRIVATE, READ-ONLY, and friends.
+level: intermediate
 ---
-
-_Intermediate level_
 
 **Encapsulation** means that an object hides its data and lets the outside world change it only through its methods. The methods can check every change, so the object can't end up in an invalid state, and you can change how the class works inside without breaking the programs that use it.
 

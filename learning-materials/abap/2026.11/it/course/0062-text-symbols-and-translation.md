@@ -1,9 +1,8 @@
 ---
 title: Simboli di testo e traduzione
 description: Tenere i testi fuori dal codice e tradurli.
+level: basic
 ---
-
-_Livello base_
 
 Un sistema SAP viene usato in più lingue contemporaneamente: un utente a Milano fa il logon in italiano, un collega a Monaco in tedesco. Un letterale di testo come `'Totale'` nel codice viene mostrato in italiano a tutti. Per mostrare a ogni utente la sua lingua, i testi devono stare fuori dal codice, dove i traduttori possono raggiungerli.
 

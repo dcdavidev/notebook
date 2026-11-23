@@ -1,9 +1,8 @@
 ---
 title: Smart Forms e Adobe Forms
 description: Stampare fatture, etichette e altri documenti.
+level: pro
 ---
-
-_Livello pro_
 
 Prima o poi ogni progetto SAP deve stampare qualcosa: una fattura, una bolla di consegna, un'etichetta di spedizione, una carta d'imbarco. SAP offre tre tecnologie di moduli di stampa. Qui vedi che cosa è ognuna, come un **programma di stampa** chiama un modulo e come ottenere un PDF invece di una stampa.
 

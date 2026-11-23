@@ -1,9 +1,8 @@
 ---
 title: Classi astratte e final
 description: Classi che non puoi istanziare e classi che non puoi estendere.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Con l'[ereditarietà](./0082-inheritance.md) qualsiasi classe si può istanziare e qualsiasi classe si può estendere. Due parole chiave cambiano le cose. `ABSTRACT` indica una classe che esiste solo per essere ereditata: non puoi crearne oggetti. `FINAL` indica una classe da cui nessuno può ereditare, o un metodo che nessuno può ridefinire. Insieme ti permettono di dire con precisione come vanno usate le tue classi.
 

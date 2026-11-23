@@ -1,9 +1,8 @@
 ---
 title: WHERE and ORDER BY
 description: Filter and sort the rows the database returns.
+level: basic
 ---
-
-_Basic level_
 
 The `WHERE` clause tells the database which rows you want; the `ORDER BY` clause tells it in which order to return them. Both run on the database, before any data reaches your program.
 

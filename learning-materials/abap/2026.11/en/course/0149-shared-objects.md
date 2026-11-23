@@ -1,9 +1,8 @@
 ---
 title: Shared objects
 description: Share data between programs through shared memory.
+level: pro
 ---
-
-_Pro level_
 
 Every ABAP program has its own memory: if a hundred users run the same report, each one reads the same customizing tables from the database a hundred times. **Shared objects** let you keep objects in the **shared memory** of the application server, where every program on that server can read them without a database access. They're useful for data that's read very often and changes rarely: a catalog of airlines, a set of rules, a parsed configuration file.
 

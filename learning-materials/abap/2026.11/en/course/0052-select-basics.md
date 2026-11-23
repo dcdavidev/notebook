@@ -1,9 +1,8 @@
 ---
 title: Reading data with SELECT
 description: 'Your first ABAP SQL queries: fields, INTO, and sy-subrc.'
+level: basic
 ---
-
-_Basic level_
 
 **ABAP SQL** is the part of the ABAP language that reads and writes database tables. It looks like standard SQL, but it's checked by the ABAP compiler and works the same way on every database SAP supports. The most important statement is `SELECT`: it reads rows from the database into variables and internal tables.
 

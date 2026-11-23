@@ -1,9 +1,8 @@
 ---
 title: Polymorphism and casting
 description: One call, many behaviors; up casts, down casts, and IS INSTANCE OF.
+level: intermediate
 ---
-
-_Intermediate level_
 
 **Polymorphism** means that the same method call does different things depending on the object behind the reference. You've already seen it at work with [inheritance](./0082-inheritance.md) and [interfaces](./0084-interfaces.md): a loop over a table of references called `get_price( )`, and each object answered in its own way. This lesson explains the rules behind it, and how to move a reference between general and specific types with **casts**.
 

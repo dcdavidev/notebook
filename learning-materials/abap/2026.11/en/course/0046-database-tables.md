@@ -1,9 +1,8 @@
 ---
 title: Database tables
 description: Create a transparent table with fields, keys, and technical settings.
+level: basic
 ---
-
-_Basic level_
 
 A **transparent table** is a Dictionary table that matches exactly one table in the database, with the same name and the same fields. When you activate it, the system creates the table in the database; from then on, your programs read and write it with ABAP SQL.
 

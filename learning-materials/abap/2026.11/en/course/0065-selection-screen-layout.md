@@ -1,9 +1,8 @@
 ---
 title: Selection screen layout
 description: Blocks, frames, comments, and dynamic screen changes.
+level: basic
 ---
-
-_Basic level_
 
 With [`PARAMETERS`](./0063-parameters.md) and [`SELECT-OPTIONS`](./0064-select-options-and-ranges.md) you get working input fields, but the runtime stacks them one below the other. As soon as a report has more than three or four fields, the screen gets hard to read.
 

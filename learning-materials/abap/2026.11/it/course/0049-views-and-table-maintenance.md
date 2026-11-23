@@ -1,9 +1,8 @@
 ---
 title: Viste e manutenzione delle tabelle
 description: Viste di database, viste di manutenzione e SM30.
+level: basic
 ---
-
-_Livello base_
 
 Una **vista** è un oggetto del Dizionario che mostra i dati di una o più tabelle senza memorizzarli una seconda volta. Sceglie i campi che ti servono e, quando combina più tabelle, le mette in join. I programmi leggono una vista come se fosse una tabella.
 

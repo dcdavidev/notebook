@@ -1,9 +1,8 @@
 ---
 title: What is SAP
 description: The company, its ERP products, and why businesses run on them.
+level: beginner
 ---
-
-_Beginner level_
 
 Before you write a line of ABAP, it helps to know what kind of system you're writing it for. ABAP programs run inside SAP systems, and SAP systems run the daily business of many of the world's largest companies: they sell, buy, pay, ship, and produce through them.
 

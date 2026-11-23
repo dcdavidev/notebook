@@ -1,9 +1,8 @@
 ---
 title: Le classi globali
 description: Creare classi riutilizzabili in ADT e SE24, con classi locali di test e di supporto.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Le classi che hai scritto finora erano **classi locali**: vivono dentro un report e nessun altro le può usare. Una **classe globale** è invece un oggetto del repository a sé stante, salvato in un **class pool**, visibile a tutti i programmi del sistema e trasportato come qualsiasi altro oggetto di sviluppo. Nell'ABAP moderno la logica riutilizzabile va nelle classi globali.
 

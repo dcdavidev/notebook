@@ -1,9 +1,8 @@
 ---
 title: Inviare email
 description: Inviare messaggi e allegati con CL_BCS e SOST.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Spesso un report finisce con "e manda il risultato via mail al team". Nell'ABAP classico lo fai con i **Business Communication Services (BCS)**, un insieme di classi attorno a `CL_BCS`. Costruisci un documento, aggiungi i destinatari e invii. SAP mette il messaggio in una coda, e il processo di invio di SAPconnect lo consegna tramite un server SMTP.
 

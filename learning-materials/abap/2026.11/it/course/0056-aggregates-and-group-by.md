@@ -1,9 +1,8 @@
 ---
 title: Aggregati, GROUP BY e HAVING
 description: COUNT, SUM, AVG, MIN, MAX e risultati raggruppati.
+level: basic
 ---
-
-_Livello base_
 
 Quanti voli ha Lufthansa? Quanti posti sono occupati su ogni collegamento? Potresti leggere tutti i voli e sommare i numeri in un ciclo, ma il database può farlo al posto tuo e restituirti solo i totali.
 

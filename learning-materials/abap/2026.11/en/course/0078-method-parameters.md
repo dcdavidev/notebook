@@ -1,9 +1,8 @@
 ---
 title: Method parameters
 description: IMPORTING, EXPORTING, CHANGING, RETURNING, and functional calls.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Methods exchange data with their callers through **parameters**. The kind of a parameter says in which direction the data flows, and how it's passed decides whether the method works on the original or on a copy.
 

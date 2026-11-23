@@ -1,9 +1,8 @@
 ---
 title: I cicli DO e WHILE
 description: Ripetere codice un numero fisso di volte o finché vale una condizione.
+level: beginner
 ---
-
-_Livello principiante_
 
 Un **ciclo** esegue lo stesso blocco di codice più volte. ABAP ha due cicli che non dipendono da una tabella: `DO` ripete il codice un certo numero di volte, e `WHILE` lo ripete finché una condizione è vera. (Per scorrere le righe di una tabella userai `LOOP AT`, in [Ciclare sulle tabelle interne](./0038-looping-internal-tables.md).)
 

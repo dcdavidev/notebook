@@ -1,9 +1,8 @@
 ---
 title: Classes and objects
 description: Local classes, DEFINITION and IMPLEMENTATION, NEW, and references.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A **class** is a type that bundles data and code. Before you can use it, you declare it and implement it. Then you create **objects** from it and work with them through **object references**.
 

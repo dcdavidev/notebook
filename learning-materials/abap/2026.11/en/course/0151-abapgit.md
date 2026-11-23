@@ -1,9 +1,8 @@
 ---
 title: abapGit and version control
 description: Keep ABAP code in Git repositories.
+level: pro
 ---
-
-_Pro level_
 
 ABAP code lives in the database of the SAP system, not in files. The system keeps a version history of each object, and the [transport system](./0007-packages-and-transport-requests.md) moves objects from development to production. But there are no branches, no pull requests, and no easy way to share code outside the landscape. **abapGit** fills that gap: it's an open-source **Git client written in ABAP** that turns the objects of a package into files and pushes them to a Git repository on GitHub, GitLab, Bitbucket, or any other Git server, and back.
 

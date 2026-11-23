@@ -1,9 +1,8 @@
 ---
 title: Static components
 description: CLASS-DATA, CLASS-METHODS, and the => operator.
+level: intermediate
 ---
-
-_Intermediate level_
 
 So far every attribute and method you wrote belonged to an object: each instance had its own copy of the data, and you needed a reference to call a method. **Static components** belong to the class itself. There's exactly one copy of a static attribute, shared by all instances, and you can call a static method without creating any object.
 

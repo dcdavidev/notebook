@@ -1,9 +1,8 @@
 ---
 title: I valori booleani
 description: abap_bool, abap_true, abap_false e xsdbool.
+level: beginner
 ---
-
-_Livello principiante_
 
 Molti valori di un programma sono semplicemente sì o no: il volo è pieno, il cliente è bloccato, l'utente ha spuntato la casella? A differenza della maggior parte dei linguaggi, ABAP non ha un vero tipo booleano. Usa un campo di un carattere con `'X'` per vero e uno spazio per falso, e ti dà dei nomi per questi valori, così il codice resta leggibile.
 

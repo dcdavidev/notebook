@@ -1,9 +1,8 @@
 ---
 title: I parametri dei metodi
 description: IMPORTING, EXPORTING, CHANGING, RETURNING e chiamate funzionali.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 I metodi scambiano dati con chi li chiama tramite i **parametri**. Il tipo di parametro dice in quale direzione scorrono i dati, e il modo in cui viene passato decide se il metodo lavora sull'originale o su una copia.
 

@@ -1,9 +1,8 @@
 ---
 title: Foreign keys and check tables
 description: Link tables and check input values against them.
+level: basic
 ---
-
-_Basic level_
 
 A **foreign key** links a field of one table to the primary key of another table, the **check table**. It says: "a value in this field is valid only if it exists in the check table". The Dictionary uses foreign keys to check user input on screens, to offer F4 help, and to describe how tables relate to each other.
 

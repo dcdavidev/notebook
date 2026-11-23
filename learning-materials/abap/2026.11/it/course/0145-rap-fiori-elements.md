@@ -1,9 +1,8 @@
 ---
 title: App Fiori elements dalle annotazioni
 description: Costruire la UI con le metadata extension e vederla in anteprima.
+level: pro
 ---
-
-_Livello pro_
 
 **SAP Fiori elements** costruisce un'interfaccia web completa a partire dai metadati di un servizio OData: non scrivi né JavaScript né HTML. È il servizio a dire alla UI quali campi mostrare, in che ordine, con quali etichette e quali filtri, tramite le **annotazioni UI**. Con RAP queste annotazioni le scrivi in CDS, quindi la UI del tuo business object sta accanto al suo modello dati e al suo comportamento.
 

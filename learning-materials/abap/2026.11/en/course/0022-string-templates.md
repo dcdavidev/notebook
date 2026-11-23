@@ -1,9 +1,8 @@
 ---
 title: String templates
 description: Build text with embedded expressions and formatting options.
+level: beginner
 ---
-
-_Beginner level_
 
 Building a message such as "Flight LH 0400 has 35 free seats" with `&&` or `CONCATENATE` means many small pieces and many quotes. A **string template** lets you write the whole text in one go, with the variables placed right where they belong.
 

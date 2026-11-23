@@ -1,9 +1,8 @@
 ---
 title: Validations, determinations, and actions
 description: Business logic in the behavior pool.
+level: pro
 ---
-
-_Pro level_
 
 The managed framework already creates, updates, deletes, and saves travels. What it can't know are your business rules: the end date can't be before the begin date, a new travel starts with status "open", a travel gets the next free number, and an agent can accept a travel with one click. These rules are **validations**, **determinations**, and **actions**. You declare them in the [behavior definition](./0141-rap-behavior-definition.md) and implement them in the **behavior pool**.
 

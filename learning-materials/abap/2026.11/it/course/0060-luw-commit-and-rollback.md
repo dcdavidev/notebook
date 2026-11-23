@@ -1,9 +1,8 @@
 ---
 title: 'La LUW: COMMIT e ROLLBACK'
 description: LUW di database, LUW SAP e la coerenza dei dati.
+level: basic
 ---
-
-_Livello base_
 
 Un'operazione di business modifica spesso più tabelle: una prenotazione aggiunge una riga a `SBOOK` e aumenta i posti occupati in `SFLIGHT`. O avvengono entrambe le modifiche, o nessuna delle due. Una prenotazione fatta a metà, con la riga in `SBOOK` ma il vecchio numero di posti, è peggio di nessuna prenotazione.
 

@@ -112,6 +112,13 @@ export default async function LessonPage({ params }: Props) {
       >
         <Chip label={courseData.title} size="small" color="primary" />
         <Chip label={editionData.label} size="small" variant="outlined" />
+        {data.level && (
+          <Chip
+            label={t('level', { level: data.level })}
+            size="small"
+            variant="outlined"
+          />
+        )}
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {t('lessonOf', { step: index + 1, total: lessons.length })}
         </Typography>

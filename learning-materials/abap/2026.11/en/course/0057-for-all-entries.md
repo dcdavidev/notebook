@@ -1,9 +1,8 @@
 ---
 title: FOR ALL ENTRIES
 description: Read rows that match the contents of an internal table.
+level: basic
 ---
-
-_Basic level_
 
 Sometimes the values you filter on aren't on the selection screen but in an internal table: the connections you read a moment ago, the materials a user uploaded from a file, the result of a function module. `FOR ALL ENTRIES IN` reads the database rows that match **any** row of an internal table, in one statement.
 

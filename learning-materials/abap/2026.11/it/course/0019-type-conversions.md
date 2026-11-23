@@ -1,9 +1,8 @@
 ---
 title: Le conversioni di tipo
 description: Che cosa succede quando assegni un valore a una variabile di un altro tipo.
+level: beginner
 ---
-
-_Livello principiante_
 
 In molti linguaggi assegnare un testo a una variabile numerica è un errore. ABAP è più tollerante: quando origine e destinazione hanno tipi diversi, **converte** il valore automaticamente, seguendo un insieme fisso di **regole di conversione**. Quasi sempre il risultato è quello che ti aspetti. A volte il valore viene troncato, arrotondato o riempito, e a volte il programma si ferma con un errore a runtime.
 

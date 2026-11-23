@@ -1,9 +1,8 @@
 ---
 title: Defining types with TYPES and LIKE
 description: Your own types, references to Dictionary types, and LIKE.
+level: beginner
 ---
-
-_Beginner level_
 
 So far you've declared variables with the predefined types: `c`, `n`, `i`, `p`, `d`, and the others. Real programs repeat the same technical details many times: "a customer name is 25 characters", "an amount is a packed number with 2 decimals". If you write those details in every `DATA` statement, a change means editing dozens of lines.
 

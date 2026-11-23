@@ -1,9 +1,8 @@
 ---
 title: Espressioni, funzioni e parametri CDS
 description: CASE, cast, funzioni predefinite, aggregati e parametri di input.
+level: pro
 ---
-
-_Livello pro_
 
 Una CDS view non si limita a rinominare colonne. I suoi elementi possono essere **calcolati**: aritmetica, condizioni, conversioni di tipo, funzioni su stringhe e date, conversione di valuta, aggregati. Tutto gira nel database, quindi è vero [code pushdown](./0131-code-pushdown.md). Con i **parametri di input**, chi chiama può passare valori alla vista, come gli argomenti di un metodo.
 

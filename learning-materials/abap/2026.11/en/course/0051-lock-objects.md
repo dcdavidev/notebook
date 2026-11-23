@@ -1,9 +1,8 @@
 ---
 title: Lock objects
 description: The SAP lock concept, ENQUEUE and DEQUEUE.
+level: basic
 ---
-
-_Basic level_
 
 When two users change the same record at the same time, the second save can silently overwrite the first. The database locks rows only for the very short time of one database transaction, and an SAP business transaction spans many of them, across several screens. So SAP has its own lock mechanism: the **SAP lock concept**.
 

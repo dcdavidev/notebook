@@ -1,9 +1,8 @@
 ---
 title: Comments and formatting
 description: Line and end-of-line comments, the pretty printer, and readable code.
+level: beginner
 ---
-
-_Beginner level_
 
 Code is read far more often than it's written: by your colleagues, by the person who fixes a bug in five years' time, and by you after you've forgotten why you wrote it that way. **Comments** explain what the code can't say by itself, and consistent **formatting** makes the structure visible at a glance.
 

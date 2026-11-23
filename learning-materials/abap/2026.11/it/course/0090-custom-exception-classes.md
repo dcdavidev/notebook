@@ -1,9 +1,8 @@
 ---
 title: Classi di eccezione personalizzate
 description: Le tue eccezioni con testi di messaggio, attributi, RETRY e RESUME.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Le eccezioni predefinite `CX_SY_` descrivono problemi tecnici: una divisione per zero, una riga di tabella mancante. La tua applicazione ha errori suoi: un volo che non esiste, una prenotazione per più posti di quelli liberi. Una **classe di eccezione personalizzata** dà a ciascuno di questi errori un nome, un testo di messaggio traducibile e attributi con i dettagli, così il chiamante può reagire con precisione. Questa lezione parte dalle [eccezioni basate su classi](./0089-class-based-exceptions.md).
 

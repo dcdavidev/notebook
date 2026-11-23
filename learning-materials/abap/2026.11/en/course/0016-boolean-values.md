@@ -1,9 +1,8 @@
 ---
 title: Boolean values
 description: abap_bool, abap_true, abap_false, and xsdbool.
+level: beginner
 ---
-
-_Beginner level_
 
 Many values in a program are simply yes or no: is the flight full, is the customer blocked, has the user ticked the checkbox? Unlike most languages, ABAP has no real Boolean type. It uses a one-character field with `'X'` for true and a blank for false, and it gives you names for these values so the code stays readable.
 

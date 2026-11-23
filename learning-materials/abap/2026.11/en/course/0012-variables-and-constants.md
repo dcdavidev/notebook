@@ -1,9 +1,8 @@
 ---
 title: Variables and constants
 description: Declare data objects with DATA and CONSTANTS, and use literals.
+level: beginner
 ---
-
-_Beginner level_
 
 Programs work with values: a number of seats, an airline code, a price. In ABAP, every value lives in a **data object**: a named piece of memory with a fixed type. A **variable** is a data object whose value can change while the program runs; a **constant** is one whose value is fixed. A **literal** is a value written directly in the code, such as `'LH'` or `42`.
 

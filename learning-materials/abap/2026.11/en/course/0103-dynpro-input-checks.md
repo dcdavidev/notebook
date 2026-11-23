@@ -1,9 +1,8 @@
 ---
 title: Input checks on screens
 description: FIELD, CHAIN, error messages, and exit commands.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A screen must not accept wrong data. Dynpros check input in two ways: some checks run **automatically** before PAI, and the others you write in PAI modules with the flow logic statements `FIELD` and `CHAIN`. Both send an error message and keep the user on the screen until the input is right, with only the wrong fields open for correction.
 

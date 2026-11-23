@@ -1,9 +1,8 @@
 ---
 title: Report events
 description: INITIALIZATION, AT SELECTION-SCREEN, START-OF-SELECTION, and more.
+level: basic
 ---
-
-_Basic level_
 
 A report isn't run from top to bottom like a script. The runtime calls it at fixed moments, called **events**: before the selection screen appears, when the user presses Enter, when the user presses Execute, and so on. You write an **event block** for each moment you want to react to.
 

@@ -1,9 +1,8 @@
 ---
 title: Writing fast ABAP
 description: The rules that make programs fast on the database and in memory.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Most slow ABAP programs are slow for the same few reasons: they read too much data, call the database too often, or search large internal tables row by row. A handful of rules avoid almost all of these problems, and they cost nothing when you write new code.
 

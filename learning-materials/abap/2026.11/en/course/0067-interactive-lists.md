@@ -1,9 +1,8 @@
 ---
 title: Interactive lists
 description: TOP-OF-PAGE, AT LINE-SELECTION, HIDE, and detail lists.
+level: basic
 ---
-
-_Basic level_
 
 The list you build with [`WRITE`](./0011-output-with-write.md) can do more than show text. It can have a page header that repeats on every page, and it can react when the user double-clicks a line, opening a **detail list** with more data about that line.
 

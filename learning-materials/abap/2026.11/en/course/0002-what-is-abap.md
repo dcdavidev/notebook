@@ -1,9 +1,8 @@
 ---
 title: What is ABAP
 description: 'The language of SAP systems: where it runs and what you build with it.'
+level: beginner
 ---
-
-_Beginner level_
 
 **ABAP** is SAP's own programming language. Most of the ERP you met in [What is SAP](./0001-what-is-sap.md) is written in it, and so is almost every custom extension that companies add to their systems. If you want to read, fix, or extend SAP code, ABAP is the language you need.
 

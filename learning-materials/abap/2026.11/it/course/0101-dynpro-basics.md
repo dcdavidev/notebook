@@ -1,9 +1,8 @@
 ---
 title: Le schermate classiche (Dynpro)
 description: Screen Painter, programmi di dialogo e codici transazione.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Un **dynpro** (dynamic program) è una schermata classica di SAP GUI: i campi, i pulsanti e i controlli che l'utente vede, più un piccolo pezzo di codice che dice al sistema che cosa fare prima e dopo la visualizzazione. Anche le selection screen e le liste ALV sono dynpro, generati al posto tuo. Quando ti serve una schermata con un layout tuo, come un modulo di inserimento con più schede, la disegni tu.
 

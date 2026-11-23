@@ -1,9 +1,8 @@
 ---
 title: Le operazioni aritmetiche
 description: Operatori, DIV e MOD, arrotondamenti e funzioni numeriche.
+level: beginner
 ---
-
-_Livello principiante_
 
 Prezzi, posti, totali, medie, percentuali: quasi ogni programma calcola qualcosa. ABAP ha i soliti operatori aritmetici, due operatori per la divisione intera e una serie di funzioni predefinite per gli arrotondamenti e le altre operazioni comuni.
 

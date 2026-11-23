@@ -1,9 +1,8 @@
 ---
 title: Definire tipi con TYPES e LIKE
 description: I tuoi tipi, i riferimenti ai tipi del Dizionario e LIKE.
+level: beginner
 ---
-
-_Livello principiante_
 
 Finora hai dichiarato le variabili con i tipi predefiniti: `c`, `n`, `i`, `p`, `d` e gli altri. Nei programmi veri gli stessi dettagli tecnici si ripetono molte volte: "il nome di un cliente è lungo 25 caratteri", "un importo è un numero packed con 2 decimali". Se scrivi questi dettagli in ogni istruzione `DATA`, per cambiarli devi modificare decine di righe.
 
