@@ -1,9 +1,8 @@
 ---
 title: Data elements
 description: Business meaning, field labels, and documentation of a field.
+level: basic
 ---
-
-_Basic level_
 
 A **data element** gives a field its business meaning. It says what the field is ("airline code", "flight status"), which labels the user sees, and which documentation appears with F1. For the technical type, it usually refers to a [domain](./0044-domains.md).
 

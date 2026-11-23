@@ -1,9 +1,8 @@
 ---
 title: I controlli di input sulle schermate
 description: FIELD, CHAIN, messaggi di errore e comandi di uscita.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Una schermata non deve accettare dati sbagliati. I dynpro controllano l'input in due modi: alcuni controlli vengono eseguiti **automaticamente** prima del PAI, gli altri li scrivi tu nei moduli PAI con le istruzioni di flow logic `FIELD` e `CHAIN`. In entrambi i casi parte un messaggio di errore e l'utente resta sulla schermata finché l'input non è corretto, con aperti alla modifica solo i campi sbagliati.
 

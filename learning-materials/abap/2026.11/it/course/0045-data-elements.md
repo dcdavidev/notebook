@@ -1,9 +1,8 @@
 ---
 title: Gli elementi dati
 description: Significato di business, etichette e documentazione di un campo.
+level: basic
 ---
-
-_Livello base_
 
 Un **elemento dati** dà a un campo il suo significato di business. Dice che cos'è il campo ("codice compagnia aerea", "stato del volo"), quali etichette vede l'utente e quale documentazione compare con F1. Per il tipo tecnico, di solito fa riferimento a un [dominio](./0044-domains.md).
 

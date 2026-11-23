@@ -1,9 +1,8 @@
 ---
 title: Why object-oriented programming
 description: 'From procedures to objects: what changes and why it helps.'
+level: intermediate
 ---
-
-_Intermediate level_
 
 Up to now you've split programs into [subroutines](./0069-includes-and-subroutines.md) and [function modules](./0070-function-modules.md): blocks of code that work on data passed to them or kept in global variables. That's **procedural programming**. It works, but as programs grow, the link between the data and the code that changes it gets lost.
 

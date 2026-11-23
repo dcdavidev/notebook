@@ -1,9 +1,8 @@
 ---
 title: CDS annotations
 description: Metadata for semantics, UI, analytics, and search.
+level: pro
 ---
-
-_Pro level_
 
 An **annotation** adds metadata to a CDS entity or to one of its elements. It doesn't change the SQL that runs in the database. It tells the compiler and the frameworks what the data means: this field is an amount in that currency, this one is the text of that key, this view is an analytical cube, show this column first in the list.
 

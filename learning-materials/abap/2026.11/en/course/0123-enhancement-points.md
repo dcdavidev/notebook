@@ -1,9 +1,8 @@
 ---
 title: Implicit and explicit enhancements
 description: Add code at enhancement points and sections of standard programs.
+level: pro
 ---
-
-_Pro level_
 
 When there's no [BAdI](./0122-badis.md) or exit where you need one, the enhancement framework still lets you add code to standard programs without modifying them. **Explicit enhancements** are places that SAP marked in the code on purpose. **Implicit enhancements** exist automatically at the start and end of almost every routine. Your code lives in an **enhancement implementation**, a separate object of your package, so SAP's source stays untouched.
 

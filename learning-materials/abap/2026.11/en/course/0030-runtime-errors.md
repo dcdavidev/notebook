@@ -1,9 +1,8 @@
 ---
 title: Runtime errors and ST22
 description: Read a short dump and find the cause of a crash.
+level: beginner
 ---
-
-_Beginner level_
 
 The syntax check catches many mistakes before a program runs, but not all of them. A division by zero, a text that isn't a number, a loop that never ends: these errors appear only while the program runs. When ABAP meets one it can't handle, it stops the program and writes a **runtime error** report, called a **short dump** or simply a dump.
 

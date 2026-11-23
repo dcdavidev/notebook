@@ -1,9 +1,8 @@
 ---
 title: Riempire le tabelle interne
 description: APPEND, INSERT, VALUE e BASE.
+level: basic
 ---
-
-_Livello base_
 
 Ci sono vari modi per mettere righe in una tabella interna. `APPEND` e `INSERT` aggiungono righe una alla volta o le copiano da un'altra tabella. L'operatore `VALUE` costruisce un'intera tabella in un'unica espressione e `BASE` conserva le righe già presenti.
 

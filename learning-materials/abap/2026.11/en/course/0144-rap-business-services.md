@@ -1,9 +1,8 @@
 ---
 title: Projections, service definitions, and bindings
 description: Expose a RAP business object as an OData service.
+level: pro
 ---
-
-_Pro level_
 
 The travel business object now has a [data model](./0140-rap-data-model.md), a [behavior](./0141-rap-behavior-definition.md), and [business logic](./0142-rap-validations-determinations-actions.md), but nobody outside ABAP can reach it. Three more layers turn it into an OData service: the **projection**, which picks what one app may see and do; the **service definition**, which lists the exposed entities; and the **service binding**, which chooses the protocol and publishes the service.
 

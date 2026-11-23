@@ -1,9 +1,8 @@
 ---
 title: Commenti e formattazione
 description: Commenti di riga e di fine riga, il pretty printer e il codice leggibile.
+level: beginner
 ---
-
-_Livello principiante_
 
 Il codice si legge molto più spesso di quanto si scriva: lo leggono i tuoi colleghi, la persona che correggerà un bug fra cinque anni e tu stesso, quando avrai dimenticato perché l'hai scritto così. I **commenti** spiegano quello che il codice non può dire da solo, e una **formattazione** coerente rende visibile la struttura a colpo d'occhio.
 

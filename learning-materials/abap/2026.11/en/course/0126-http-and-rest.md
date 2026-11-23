@@ -1,9 +1,8 @@
 ---
 title: HTTP clients and REST services
 description: Call external APIs and expose your own HTTP endpoints.
+level: pro
 ---
-
-_Pro level_
 
 Most modern integrations speak HTTP: a weather service, a payment provider, a cloud app, or another SAP system's REST API. ABAP can be on both sides. As a **client**, it sends HTTP requests and reads the responses. As a **server**, it receives requests through the **Internet Communication Framework (ICF)** and answers them with your own handler class. The data is usually JSON, covered in [JSON and XML](./0127-json-and-xml.md).
 

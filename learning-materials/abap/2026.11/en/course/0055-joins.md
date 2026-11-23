@@ -1,9 +1,8 @@
 ---
 title: Joins
 description: INNER JOIN and LEFT OUTER JOIN across several tables.
+level: basic
 ---
-
-_Basic level_
 
 Business data is spread over several tables. The airline's name is in `SCARR`, its connections in `SPFLI`, and the single flights in `SFLIGHT`. A **join** combines rows of two or more tables in one `SELECT`, by matching the columns they share.
 

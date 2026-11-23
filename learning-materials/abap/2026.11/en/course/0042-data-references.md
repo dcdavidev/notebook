@@ -1,9 +1,8 @@
 ---
 title: Data references
 description: REF TO, GET REFERENCE, the dereference operator, and REFERENCE INTO.
+level: basic
 ---
-
-_Basic level_
 
 A **data reference** is a variable that holds the address of a data object. Like a [field symbol](./0041-field-symbols.md), it lets you work on the original data without copying it. Unlike a field symbol, a reference is a normal variable: you can store it in a structure or a table, pass it to a method, and check whether it's set.
 

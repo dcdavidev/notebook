@@ -1,9 +1,8 @@
 ---
 title: Le BAPI
 description: Chiamare le API di business standard e gestire BAPIRET2.
+level: basic
 ---
-
-_Livello base_
 
 Quando il tuo programma deve creare un ordine di vendita, registrare una fattura o prenotare un volo, non dovresti scrivere direttamente nelle tabelle di SAP: le transazioni standard fanno molti controlli e aggiornamenti che ti sfuggirebbero. Chiami invece una **BAPI** (Business Application Programming Interface): un [modulo funzione](./0070-function-modules.md) standard che esegue un'operazione di business con tutti i controlli della transazione.
 

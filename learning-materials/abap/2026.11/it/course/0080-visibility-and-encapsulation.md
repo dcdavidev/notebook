@@ -1,9 +1,8 @@
 ---
 title: Visibilità e incapsulamento
 description: PUBLIC, PROTECTED, PRIVATE, READ-ONLY e friend.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 **Incapsulamento** significa che un oggetto nasconde i suoi dati e lascia che il mondo esterno li modifichi solo tramite i suoi metodi. I metodi possono controllare ogni modifica, così l'oggetto non può finire in uno stato non valido, e puoi cambiare il funzionamento interno della classe senza rompere i programmi che la usano.
 

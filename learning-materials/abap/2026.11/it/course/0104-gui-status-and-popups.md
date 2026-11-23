@@ -1,9 +1,8 @@
 ---
 title: GUI status, titoli e popup
 description: Menu, barre degli strumenti, tasti funzione e finestre di conferma.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Una schermata senza **GUI status** ha i pulsanti Indietro ed Esci grigi e nessun menu: l'utente è bloccato. Il GUI status definisce la barra dei menu, le barre degli strumenti e i tasti funzione di una schermata, e collega ognuno di essi a un codice funzione che arriva nell'[OK code](./0102-dynpro-flow-logic.md). Il **titolo** è il testo nella barra del titolo della finestra.
 

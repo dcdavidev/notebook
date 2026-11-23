@@ -1,9 +1,8 @@
 ---
 title: Breakpoints and watchpoints
 description: Stop the program exactly where and when you want.
+level: beginner
 ---
-
-_Beginner level_
 
 In [The debugger: first steps](./0028-debugger-basics.md) you stopped a program at a line and stepped through it. In real programs, with thousands of lines and loops over thousands of rows, pressing F5 isn't enough. You want the program to stop **exactly** where something interesting happens: at a given statement, in a given pass of a loop, or the moment a variable changes.
 

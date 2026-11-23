@@ -1,9 +1,8 @@
 ---
 title: Estendere lo standard SAP
 description: Modifiche, exit, BAdI e l'enhancement framework in sintesi.
+level: pro
 ---
-
-_Livello pro_
 
 Ogni azienda ha bisogno che SAP faccia qualcosa di leggermente diverso dallo standard: un controllo in più quando si salva un ordine di vendita, un campo aggiuntivo su una schermata, una regola di arrotondamento diversa. SAP offre molti modi per agganciare il tuo codice ai programmi standard, dalle vecchie user exit fino all'enhancement framework e all'estensibilità di SAP S/4HANA Cloud. Questa lezione ti dà la mappa; le lezioni successive trattano ogni tecnica nel dettaglio.
 

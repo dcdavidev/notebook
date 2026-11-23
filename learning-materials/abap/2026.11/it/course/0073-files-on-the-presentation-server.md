@@ -1,9 +1,8 @@
 ---
 title: I file sul PC dell'utente
 description: Caricare e scaricare file tramite SAP GUI.
+level: basic
 ---
-
-_Livello base_
 
 Gli utenti vogliono spesso esportare dati in un file sul loro PC, oppure caricare un elenco di valori da un foglio di calcolo che hanno preparato. In termini SAP, il PC dell'utente è il **presentation server**: la macchina su cui gira SAP GUI.
 

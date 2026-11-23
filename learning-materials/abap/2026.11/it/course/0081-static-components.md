@@ -1,9 +1,8 @@
 ---
 title: I componenti statici
 description: CLASS-DATA, CLASS-METHODS e l'operatore =>.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Finora ogni attributo e ogni metodo che hai scritto apparteneva a un oggetto: ogni istanza aveva la sua copia dei dati e per chiamare un metodo ti serviva un riferimento. I **componenti statici** appartengono invece alla classe stessa. Di un attributo statico esiste una sola copia, condivisa da tutte le istanze, e un metodo statico lo puoi chiamare senza creare nessun oggetto.
 

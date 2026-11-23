@@ -1,9 +1,8 @@
 ---
 title: ABAP SQL avanzato
 description: Common table expression, window function e SELECT da tabelle interne.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Con la [sintassi moderna](./0097-modern-abap-sql.md), ABAP SQL offre funzionalità che prima richiedevano più query e molto codice ABAP: le **common table expression** per costruire una query a passi, le **window function** per calcolare classifiche e totali progressivi, e la `SELECT` sulle **tabelle interne** per unire dati in memoria e dati nel database.
 

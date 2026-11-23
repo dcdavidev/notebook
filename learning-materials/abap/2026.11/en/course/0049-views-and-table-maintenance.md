@@ -1,9 +1,8 @@
 ---
 title: Views and table maintenance
 description: Database views, maintenance views, and SM30.
+level: basic
 ---
-
-_Basic level_
 
 A **view** is a Dictionary object that shows data from one or more tables without storing it again. It picks the fields you need and, when it combines tables, joins them. Programs read a view as if it were a table.
 

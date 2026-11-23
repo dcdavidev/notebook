@@ -1,9 +1,8 @@
 ---
 title: Dynamic data objects
 description: CREATE DATA, ASSIGN COMPONENT, and generic types.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A **dynamic data object** is a variable whose type is decided while the program runs. You create it with `CREATE DATA`, reach it through a data reference, and work on it with field symbols of a **generic type**. Together with [RTTS](./0115-rtts.md), this is how you write code that handles any table or any structure: generic exports, uploads, and comparison tools.
 

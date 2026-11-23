@@ -1,9 +1,8 @@
 ---
 title: Nested structures and includes
 description: Structures inside structures, and INCLUDE TYPE.
+level: basic
 ---
-
-_Basic level_
 
 A booking has its own data (airline, flight, date, booking number) and data about the customer (number, name, city). You could put all these fields side by side in one [structure](./0031-structures.md), but the customer data forms a group of its own, and you'll want to reuse it elsewhere.
 

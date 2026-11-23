@@ -1,9 +1,8 @@
 ---
 title: Che cos'è una tabella interna
 description: 'Elenchi di righe in memoria: lo strumento più usato in ABAP.'
+level: basic
 ---
-
-_Livello base_
 
 Una **tabella interna** è un elenco di righe che vive nella memoria del tuo programma. Tutte le righe hanno lo stesso tipo, di solito una [struttura](./0031-structures.md), e la tabella può crescere o ridursi mentre il programma gira. Quando il programma finisce, la tabella sparisce.
 

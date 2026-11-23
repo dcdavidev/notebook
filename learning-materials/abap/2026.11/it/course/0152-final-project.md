@@ -1,9 +1,8 @@
 ---
 title: Il progetto finale
 description: Costruire un'app completa che usa quello che hai imparato in ogni livello.
+level: pro
 ---
-
-_Livello pro_
 
 Il progetto finale è un'**app completa di prenotazione voli**: gli agenti di viaggio creano viaggi per i clienti, aggiungono prenotazioni di voli, vedono il prezzo totale e accettano il viaggio. La costruisci da cima a fondo, dalle tabelle di database a una UI Fiori elements, e ogni passo usa lezioni di tutti e quattro i livelli. Qui non c'è sintassi nuova: quando un passo ti sembra poco familiare, segui il link alla lezione che lo spiega.
 

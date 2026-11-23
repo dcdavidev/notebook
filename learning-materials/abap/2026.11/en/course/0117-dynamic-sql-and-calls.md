@@ -1,9 +1,8 @@
 ---
 title: Dynamic SQL and dynamic calls
 description: Build queries and call methods whose names you know only at runtime.
+level: intermediate
 ---
-
-_Intermediate level_
 
 In ABAP SQL, almost every clause can be a **dynamic token**: a character string in parentheses that the runtime parses when the statement runs. The same idea works for calls: the name of a class, a method, or a function module can come from a variable. This is how frameworks read configuration tables and decide at runtime what to select and which code to run.
 

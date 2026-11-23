@@ -1,9 +1,8 @@
 ---
 title: I moduli funzione
 description: Gruppi funzione, interfacce, eccezioni e SE37.
+level: basic
 ---
-
-_Livello base_
 
 Un **modulo funzione** è una procedura riutilizzabile, salvata centralmente nel sistema, con un'interfaccia tipizzata. Qualsiasi programma può chiamarlo con `CALL FUNCTION`. SAP ne fornisce decine di migliaia, e molte tecniche importanti funzionano solo con i moduli funzione: le chiamate remote ([RFC](./0124-rfc.md)), le [BAPI](./0071-bapis.md) e i [moduli di aggiornamento](./0113-update-task.md).
 

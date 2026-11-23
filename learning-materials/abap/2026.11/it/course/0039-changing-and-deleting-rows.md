@@ -1,9 +1,8 @@
 ---
 title: Modificare e cancellare righe
 description: MODIFY, DELETE e CLEAR, FREE, REFRESH sulle tabelle intere.
+level: basic
 ---
-
-_Livello base_
 
 Una volta riempita una tabella, spesso devi modificare alcune righe o toglierle. `MODIFY` sovrascrive le righe con il contenuto di una work area, e `DELETE` toglie le righe per indice, per chiave o per condizione. Per svuotare un'intera tabella usi `CLEAR` o `FREE`.
 

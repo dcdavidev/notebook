@@ -1,9 +1,8 @@
 ---
 title: System landscape and clients
 description: Development, quality, and production systems, and what a client is.
+level: beginner
 ---
-
-_Beginner level_
 
 A company never has just one SAP system. It has a chain of systems, and code moves along that chain from the place where you write it to the place where people use it. Inside each system, data is further split into separate **clients**.
 

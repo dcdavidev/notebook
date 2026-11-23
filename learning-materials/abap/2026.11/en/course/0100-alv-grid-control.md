@@ -1,9 +1,8 @@
 ---
 title: The ALV grid control
 description: CL_GUI_ALV_GRID, field catalog, layout, events, and editable cells.
+level: intermediate
 ---
-
-_Intermediate level_
 
 `CL_GUI_ALV_GRID` is the ALV class behind most custom grids in SAP GUI. Compared with [`CL_SALV_TABLE`](./0099-alv-with-salv.md) it needs more code, but it gives you full control: you describe every column in a **field catalog**, react to many events, and let the user **edit cells**.
 

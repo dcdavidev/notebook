@@ -1,9 +1,8 @@
 ---
 title: SELECT-OPTIONS e range
 description: Far inserire all'utente intervalli ed elenchi di valori.
+level: basic
 ---
-
-_Livello base_
 
 Un parametro accetta un solo valore. Gli utenti spesso vogliono di più: le compagnie da `AA` a `LH`, tutte le date di volo di marzo tranne il 15, tutte le città che cominciano con "NEW". `SELECT-OPTIONS` offre loro un campo con un valore "da" e un valore "a", e un pulsante di selezione multipla in cui inserire elenchi, intervalli, modelli ed esclusioni.
 

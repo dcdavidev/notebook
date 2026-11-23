@@ -49,6 +49,7 @@
   },
   "Learn": {
     "lessonOf": "Lesson {step} of {total}",
+    "level": "{level, select, beginner {Beginner level} basic {Basic level} intermediate {Intermediate level} pro {Pro level} other {}}",
     "previous": "Previous",
     "next": "Next",
     "lessons": "Lessons",

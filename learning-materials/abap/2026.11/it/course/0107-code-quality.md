@@ -1,9 +1,8 @@
 ---
 title: 'Qualità del codice: ATC e Clean ABAP'
 description: Controlli statici, l'ABAP Test Cockpit e la guida di stile Clean ABAP.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Un codice che compila non è per forza un buon codice. Può avere variabili inutilizzate, una `SELECT` dentro un ciclo, un controllo di autorizzazione mancante o un metodo così lungo che nessuno osa toccarlo. I **controlli statici** trovano molti di questi problemi leggendo il codice sorgente, senza eseguirlo. L'**ABAP Test Cockpit** (ATC) li esegue tutti insieme, e la guida di stile **Clean ABAP** copre quello che gli strumenti non possono controllare: nomi leggibili e un design semplice.
 

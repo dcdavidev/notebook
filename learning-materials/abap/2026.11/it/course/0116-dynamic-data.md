@@ -1,9 +1,8 @@
 ---
 title: Gli oggetti dati dinamici
 description: CREATE DATA, ASSIGN COMPONENT e i tipi generici.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Un **oggetto dati dinamico** è una variabile il cui tipo viene deciso mentre il programma gira. Lo crei con `CREATE DATA`, lo raggiungi tramite un riferimento ai dati e ci lavori con field symbol di un **tipo generico**. Insieme ai [RTTS](./0115-rtts.md), è così che scrivi codice che gestisce qualsiasi tabella o struttura: export generici, upload e strumenti di confronto.
 

@@ -1,9 +1,8 @@
 ---
 title: System fields
 description: sy-subrc, sy-datum, sy-uname, and the other fields the runtime fills.
+level: beginner
 ---
-
-_Beginner level_
 
 While your program runs, the ABAP runtime keeps a set of variables up to date for you: the current date and time, the user's name, the client, the result of the last statement, the current loop pass. These are the **system fields**, and every program can read them without declaring anything.
 

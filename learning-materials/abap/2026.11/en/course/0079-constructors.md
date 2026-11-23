@@ -1,9 +1,8 @@
 ---
 title: Constructors
 description: Instance and static constructors.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Creating an object and then filling its attributes one by one, as in [classes and objects](./0076-classes-and-objects.md), is clumsy and risky: someone can forget an attribute and use a half-built object. A **constructor** is a special method that runs automatically when an object is created, so every object starts in a valid state.
 

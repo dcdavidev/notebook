@@ -1,9 +1,8 @@
 ---
 title: COND e SWITCH
 description: Espressioni condizionali che restituiscono un valore.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 [`IF`](./0024-if-and-logical-expressions.md) e [`CASE`](./0025-case.md) sono istruzioni: scelgono quale codice eseguire. Molto spesso quel codice fa una cosa sola, assegnare un valore a una variabile. `COND` e `SWITCH` sono **espressioni condizionali**: scelgono un valore e lo restituiscono, così puoi scrivere la scelta proprio dove serve il valore, in un'assegnazione, in un argomento di metodo o in un template di stringa.
 

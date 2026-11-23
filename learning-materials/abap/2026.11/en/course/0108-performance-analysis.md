@@ -1,9 +1,8 @@
 ---
 title: Performance analysis
 description: SQL trace (ST05) and runtime analysis (SAT).
+level: intermediate
 ---
-
-_Intermediate level_
 
 When a program is slow, don't guess where the time goes: measure it. Two standard tools answer the question in minutes. The **SQL trace** (`ST05`) records every database access, and the **runtime analysis** (`SAT`) measures how long every statement and method takes in ABAP.
 

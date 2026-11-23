@@ -88,8 +88,11 @@ Every lesson starts with a YAML front matter block:
 ---
 title: Internal tables
 description: Store and process lists of data in memory.
+level: basic
 ---
 ```
+
+`level` is one of `beginner`, `basic`, `intermediate`, or `pro`, in English in every language. See [How to write a lesson](../docs/contributing/lesson-structure.md#1-front-matter).
 
 Put the title in quotes if it contains a colon, for example `title: 'Modularization: splitting code into blocks'`.
 

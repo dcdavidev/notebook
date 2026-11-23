@@ -1,9 +1,8 @@
 ---
 title: Files on the application server
 description: OPEN DATASET, TRANSFER, READ DATASET, and AL11.
+level: basic
 ---
-
-_Basic level_
 
 Interfaces with other systems often exchange files: a nightly job writes a file of bookings, and another system picks it up from a shared folder. These files live on the **application server**, the machine where the ABAP programs run, not on the user's PC.
 

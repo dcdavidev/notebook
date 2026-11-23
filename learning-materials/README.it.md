@@ -88,8 +88,11 @@ Ogni lezione inizia con un blocco di front matter YAML:
 ---
 title: Le tabelle interne
 description: Conservare ed elaborare elenchi di dati in memoria.
+level: basic
 ---
 ```
+
+`level` è uno fra `beginner`, `basic`, `intermediate` e `pro`, in inglese in tutte le lingue. Vedi [Come scrivere una lezione](../docs/contributing/lesson-structure.it.md#1-front-matter).
 
 Metti il titolo fra apici se contiene i due punti, per esempio `title: 'Modularizzazione: dividere il codice in blocchi'`.
 

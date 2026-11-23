@@ -1,9 +1,8 @@
 ---
 title: Standard, sorted, and hashed tables
 description: The three table categories and when to use each one.
+level: basic
 ---
-
-_Basic level_
 
 Every internal table belongs to a **table category**: standard, sorted, or hashed. The category decides how the rows are stored and how fast the system finds a row. The content can be the same; what changes is the speed of reading and the rules for adding rows.
 

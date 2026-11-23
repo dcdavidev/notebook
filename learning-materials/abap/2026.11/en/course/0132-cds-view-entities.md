@@ -1,9 +1,8 @@
 ---
 title: CDS view entities
 description: Define data models in the database with Core Data Services.
+level: pro
 ---
-
-_Pro level_
 
 **Core Data Services (CDS)** let you define data models in a dedicated language, close to SQL, and store them in the ABAP repository. When you activate a CDS view, the system creates the matching view in the database, so the logic runs there: CDS is the main tool for [code pushdown](./0131-code-pushdown.md) and the foundation of Fiori apps, analytics, and RAP.
 

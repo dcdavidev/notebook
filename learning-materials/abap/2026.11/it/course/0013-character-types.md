@@ -1,9 +1,8 @@
 ---
 title: 'I tipi carattere: c, n, string'
 description: Testo a lunghezza fissa, testo numerico e stringhe di qualsiasi lunghezza.
+level: beginner
 ---
-
-_Livello principiante_
 
 Gran parte dei dati di business è testo: nomi, città, codici di compagnie aeree, numeri di documento. ABAP ha tre tipi per il testo, e scegliere quello giusto conta più che in altri linguaggi, perché il tipo decide la lunghezza, il valore iniziale e il modo in cui vengono trattati spazi e cifre.
 

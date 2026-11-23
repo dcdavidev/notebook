@@ -1,9 +1,8 @@
 ---
 title: Working with strings
 description: Concatenate, split, measure, shift, and convert the case of text.
+level: beginner
 ---
-
-_Beginner level_
 
 Names, cities, codes, messages, file lines: a lot of business data is text. ABAP gives you statements and built-in functions to join pieces of text, cut them apart, measure them, remove blanks, and change their case.
 

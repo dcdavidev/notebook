@@ -1,9 +1,8 @@
 ---
 title: The RESTful Application Programming Model
 description: The architecture of RAP and the objects that make up a RAP app.
+level: pro
 ---
-
-_Pro level_
 
 The **ABAP RESTful Application Programming Model** (**RAP**) is SAP's model for building transactional apps and APIs in modern ABAP: Fiori apps that create, change, and delete data, and OData services that other systems call. It's the standard way to develop in S/4HANA and the only one in ABAP Cloud.
 

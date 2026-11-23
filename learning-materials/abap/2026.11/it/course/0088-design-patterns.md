@@ -1,9 +1,8 @@
 ---
 title: I design pattern
 description: Singleton, factory e strategy in ABAP.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Un **design pattern** è una soluzione collaudata a un problema di progettazione che si ripresenta di continuo. Non è una libreria da installare: è un modo di disporre classi, interfacce e riferimenti. Questa lezione mostra tre pattern che incontrerai in quasi ogni base di codice ABAP, costruiti con gli strumenti delle lezioni precedenti: i [componenti statici](./0081-static-components.md), le [interfacce](./0084-interfaces.md) e il [polimorfismo](./0085-polymorphism-and-casting.md).
 

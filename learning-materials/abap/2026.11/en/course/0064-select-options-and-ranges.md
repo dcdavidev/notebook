@@ -1,9 +1,8 @@
 ---
 title: SELECT-OPTIONS and ranges
 description: Let the user enter intervals and lists of values.
+level: basic
 ---
-
-_Basic level_
 
 A parameter takes one value. Users often want more: airlines `AA` to `LH`, every flight date in March except the 15th, all cities that start with "NEW". `SELECT-OPTIONS` gives them a field with a "from" and a "to" value, and a button for multiple selection where they can enter lists, intervals, patterns, and exclusions.
 

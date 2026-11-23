@@ -1,9 +1,8 @@
 ---
 title: Parallel and background processing
 description: Asynchronous RFC, bgRFC, and the background processing framework.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A program normally does one thing after another in a single work process. When the work is big (millions of documents, one slow call per customer), you can split it into packages and run them **in parallel** in several work processes, or hand it to the system to run **in the background** after your transaction ends.
 

@@ -1,9 +1,8 @@
 ---
 title: Function modules
 description: Function groups, interfaces, exceptions, and SE37.
+level: basic
 ---
-
-_Basic level_
 
 A **function module** is a reusable procedure stored centrally in the system, with a typed interface. Any program can call it with `CALL FUNCTION`. SAP delivers tens of thousands of them, and many important techniques work only with function modules: remote calls ([RFC](./0124-rfc.md)), [BAPIs](./0071-bapis.md), and [update modules](./0113-update-task.md).
 

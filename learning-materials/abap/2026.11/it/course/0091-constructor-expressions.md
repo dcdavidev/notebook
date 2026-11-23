@@ -1,9 +1,8 @@
 ---
 title: Le espressioni costruttore
 description: VALUE, NEW, CONV, CAST, REF, EXACT e LET.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Un'**espressione costruttore** crea un valore di un certo tipo proprio dove ti serve: in un'assegnazione, come argomento di un metodo o dentro un'altra espressione. Sostituisce con una sola espressione le variabili di appoggio e i blocchi su più righe dell'ABAP più vecchio. Ne hai già usate due, `VALUE` per [riempire le tabelle interne](./0036-filling-internal-tables.md) e `NEW` per [creare oggetti](./0076-classes-and-objects.md). Questa lezione copre l'intera famiglia dei costruttori di base.
 

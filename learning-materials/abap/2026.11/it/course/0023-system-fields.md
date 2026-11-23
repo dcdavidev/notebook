@@ -1,9 +1,8 @@
 ---
 title: I campi di sistema
 description: sy-subrc, sy-datum, sy-uname e gli altri campi che il runtime riempie.
+level: beginner
 ---
-
-_Livello principiante_
 
 Mentre il tuo programma gira, il runtime ABAP tiene aggiornate per te una serie di variabili: la data e l'ora correnti, il nome dell'utente, il mandante, il risultato dell'ultima istruzione, il passo corrente di un ciclo. Sono i **campi di sistema**, e ogni programma può leggerli senza dichiarare nulla.
 

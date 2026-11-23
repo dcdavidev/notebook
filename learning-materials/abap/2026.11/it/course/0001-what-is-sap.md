@@ -1,9 +1,8 @@
 ---
 title: Che cos'è SAP
 description: L'azienda, i suoi prodotti ERP e perché le imprese li usano.
+level: beginner
 ---
-
-_Livello principiante_
 
 Prima di scrivere una riga di ABAP conviene sapere per quale tipo di sistema la scrivi. I programmi ABAP girano dentro i sistemi SAP, e i sistemi SAP fanno funzionare ogni giorno molte delle più grandi aziende del mondo: è lì che vendono, comprano, pagano, spediscono e producono.
 

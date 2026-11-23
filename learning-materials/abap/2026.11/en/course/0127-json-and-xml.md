@@ -1,9 +1,8 @@
 ---
 title: JSON and XML
 description: Serialize and parse data with CALL TRANSFORMATION and XCO.
+level: pro
 ---
-
-_Pro level_
 
 When ABAP talks to other systems over [HTTP](./0126-http-and-rest.md), files, or queues, data must become text: XML or JSON. Turning ABAP data into text is **serialization**; reading text back into ABAP data is **deserialization** (or parsing). The kernel does both with `CALL TRANSFORMATION`, and in ABAP Cloud the XCO library adds a convenient JSON API.
 

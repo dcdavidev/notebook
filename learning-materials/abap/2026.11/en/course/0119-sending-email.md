@@ -1,9 +1,8 @@
 ---
 title: Sending email
 description: Send messages and attachments with CL_BCS and SOST.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Reports often end with "and mail the result to the team". In classic ABAP you do it with **Business Communication Services (BCS)**, a set of classes around `CL_BCS`. You build a document, add recipients, and send. SAP puts the message in a queue, and the SAPconnect send process delivers it through an SMTP server.
 

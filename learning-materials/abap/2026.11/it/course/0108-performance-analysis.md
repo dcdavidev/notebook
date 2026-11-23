@@ -1,9 +1,8 @@
 ---
 title: L'analisi delle prestazioni
 description: La traccia SQL (ST05) e l'analisi del runtime (SAT).
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Quando un programma è lento, non tirare a indovinare dove va il tempo: misuralo. Due strumenti standard rispondono alla domanda in pochi minuti. La **traccia SQL** (`ST05`) registra ogni accesso al database, e l'**analisi del runtime** (`SAT`) misura quanto dura in ABAP ogni istruzione e ogni metodo.
 

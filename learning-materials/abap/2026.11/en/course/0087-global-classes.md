@@ -1,9 +1,8 @@
 ---
 title: Global classes
 description: Create reusable classes in ADT and SE24, with local test and helper classes.
+level: intermediate
 ---
-
-_Intermediate level_
 
 The classes you've written so far were **local classes**: they live inside one report and nobody else can use them. A **global class** is a repository object of its own, stored in a **class pool**, visible to every program in the system, and transported like any other development object. Global classes are where reusable logic belongs in modern ABAP.
 

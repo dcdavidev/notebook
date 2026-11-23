@@ -1,9 +1,8 @@
 ---
 title: I domini
 description: Tipo tecnico, lunghezza, intervalli di valori e routine di conversione.
+level: basic
 ---
-
-_Livello base_
 
 Un **dominio** descrive il lato tecnico di un campo: il tipo del Dizionario, la lunghezza, il numero di decimali e, se serve, i valori che può assumere e come viene convertito per la visualizzazione. Non dice nulla sul significato del campo: quello è il compito dell'[elemento dati](./0045-data-elements.md).
 

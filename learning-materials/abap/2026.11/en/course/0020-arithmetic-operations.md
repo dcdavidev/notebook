@@ -1,9 +1,8 @@
 ---
 title: Arithmetic operations
 description: Operators, DIV and MOD, rounding, and numeric functions.
+level: beginner
 ---
-
-_Beginner level_
 
 Prices, seat counts, totals, averages, percentages: almost every program calculates something. ABAP has the usual arithmetic operators, two operators for integer division, and a set of built-in functions for rounding and other common operations.
 

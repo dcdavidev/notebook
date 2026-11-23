@@ -1,9 +1,8 @@
 ---
 title: Batch input
 description: Fill transactions automatically with BDC and SHDB.
+level: pro
 ---
-
-_Pro level_
 
 **Batch input** (also called **BDC**, batch data communication) runs a dialog transaction as if a user were typing: it fills the fields screen by screen and presses the buttons. The transaction runs all its normal checks, so the data that ends up in the database is as consistent as if someone had entered it by hand.
 

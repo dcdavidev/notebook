@@ -1,9 +1,8 @@
 ---
 title: The behavior definition
 description: Managed implementation, operations, field controls, and locking.
+level: pro
 ---
-
-_Pro level_
 
 The [data model](./0140-rap-data-model.md) says what a travel looks like. The **behavior definition** (BDEF) says what you can do with it: create, update, delete, which fields are read-only, how instances are locked, and where the business logic lives. It's a declarative source, written in the **behavior definition language**, with the same name as the root entity.
 

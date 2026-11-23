@@ -1,9 +1,8 @@
 ---
 title: Messages
 description: Message classes, message types, and the MESSAGE statement.
+level: basic
 ---
-
-_Basic level_
 
 Programs talk to users with **messages**: "Airline LH not found", "Booking saved", "Enter a date in the future". In SAP, these texts don't live in the code. They're stored in a **message class**, with a number, and translated like every other text.
 

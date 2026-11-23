@@ -1,9 +1,8 @@
 ---
 title: Filling internal tables
 description: APPEND, INSERT, VALUE, and BASE.
+level: basic
 ---
-
-_Basic level_
 
 There are several ways to put rows into an internal table. `APPEND` and `INSERT` add rows one at a time or copy them from another table. The `VALUE` operator builds a whole table in one expression, and `BASE` keeps the rows that are already there.
 

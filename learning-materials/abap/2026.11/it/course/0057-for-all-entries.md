@@ -1,9 +1,8 @@
 ---
 title: FOR ALL ENTRIES
 description: Leggere le righe che corrispondono al contenuto di una tabella interna.
+level: basic
 ---
-
-_Livello base_
 
 A volte i valori su cui filtri non stanno nella schermata di selezione ma in una tabella interna: i collegamenti che hai appena letto, i materiali che un utente ha caricato da un file, il risultato di un modulo funzione. `FOR ALL ENTRIES IN` legge le righe del database che corrispondono a **una qualsiasi** riga di una tabella interna, con una sola istruzione.
 

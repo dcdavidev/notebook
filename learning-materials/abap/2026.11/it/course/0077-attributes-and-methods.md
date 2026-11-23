@@ -1,9 +1,8 @@
 ---
 title: Attributi e metodi
 description: Dati e comportamento di un oggetto, e l'autoriferimento me.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Un oggetto ha due tipi di componenti: gli **attributi**, che contengono i suoi dati, e i **metodi**, che contengono il suo comportamento. I metodi lavorano sugli attributi dell'oggetto su cui vengono chiamati, quindi ogni oggetto si comporta in base ai propri dati.
 

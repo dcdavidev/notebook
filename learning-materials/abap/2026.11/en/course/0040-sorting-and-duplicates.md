@@ -1,9 +1,8 @@
 ---
 title: Sorting, summing, and removing duplicates
 description: SORT, DELETE ADJACENT DUPLICATES, and COLLECT.
+level: basic
 ---
-
-_Basic level_
 
 Three statements cover jobs you'll do on internal tables again and again. `SORT` puts the rows in order, `DELETE ADJACENT DUPLICATES` removes repeated rows, and `COLLECT` sums numeric fields of rows that share the same key.
 

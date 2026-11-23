@@ -1,9 +1,8 @@
 ---
 title: Strutture e tipi tabella nel Dizionario
 description: Tipi globali che ogni programma può riutilizzare.
+level: basic
 ---
-
-_Livello base_
 
 Una **struttura del Dizionario** è un gruppo di campi, come le [strutture](./0031-structures.md) che dichiari con `TYPES BEGIN OF`, ma definita una sola volta nel Dizionario ABAP. Un **tipo tabella** è la versione del Dizionario di un tipo di tabella interna: fissa il tipo di riga, la [categoria di tabella](./0034-table-categories.md) e la [chiave](./0035-table-keys.md).
 

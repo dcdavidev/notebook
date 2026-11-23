@@ -1,9 +1,8 @@
 ---
 title: Le associazioni CDS
 description: Relazioni fra entità, path expression ed esposizione.
+level: pro
 ---
-
-_Livello pro_
 
 Un'**associazione** dichiara una relazione fra due entità CDS: un volo appartiene a una compagnia, una compagnia ha molti collegamenti. A differenza di un join, un'associazione è solo una definizione. Il database unisce le due sorgenti **solo quando qualcuno usa l'associazione**, e solo con i campi richiesti.
 

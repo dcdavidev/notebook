@@ -1,9 +1,8 @@
 ---
 title: Draft handling
 description: Let users save their work before it's complete.
+level: pro
 ---
-
-_Pro level_
 
 Without drafts, a RAP app saves an instance only when everything is valid: if the user closes the browser halfway through a travel with five bookings, the work is gone. With **draft handling**, every change goes first into a **draft**, a copy of the instance stored in its own table. The user can leave and come back, and the data goes into the real tables only when they choose **Save**. Fiori elements supports drafts out of the box.
 

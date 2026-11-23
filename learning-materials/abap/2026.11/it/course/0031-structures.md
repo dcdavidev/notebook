@@ -1,9 +1,8 @@
 ---
 title: Le strutture
 description: Raggruppare campi correlati in un solo oggetto dati.
+level: basic
 ---
-
-_Livello base_
 
 Un volo non è un solo valore: ha una compagnia, un numero, una data, un prezzo, dei posti liberi. Con le variabili che conosci finora te ne servirebbero cinque separate, e dovresti passarle sempre tutte e cinque insieme. Una **struttura** raggruppa campi correlati in un solo oggetto dati, così puoi trattare "il volo" come una cosa sola.
 

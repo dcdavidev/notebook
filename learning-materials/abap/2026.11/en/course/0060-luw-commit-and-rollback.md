@@ -1,9 +1,8 @@
 ---
 title: 'The LUW: COMMIT and ROLLBACK'
 description: Database LUW, SAP LUW, and keeping data consistent.
+level: basic
 ---
-
-_Basic level_
 
 A business operation often changes several tables: a booking adds a row to `SBOOK` and increases the occupied seats in `SFLIGHT`. Either both changes happen, or neither does. A half-done booking, with a row in `SBOOK` but the old seat count, is worse than no booking at all.
 

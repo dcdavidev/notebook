@@ -1,9 +1,8 @@
 ---
 title: CDS expressions, functions, and parameters
 description: CASE, casts, built-in functions, aggregates, and input parameters.
+level: pro
 ---
-
-_Pro level_
 
 A CDS view does more than rename columns. Its elements can be **calculated**: arithmetic, conditions, type conversions, string and date functions, currency conversion, aggregates. All of it runs in the database, so it's real [code pushdown](./0131-code-pushdown.md). With **input parameters**, the caller can pass values into the view, like arguments to a method.
 

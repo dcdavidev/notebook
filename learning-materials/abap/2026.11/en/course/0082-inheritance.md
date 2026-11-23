@@ -1,9 +1,8 @@
 ---
 title: Inheritance
 description: Subclasses, REDEFINITION, and super.
+level: intermediate
 ---
-
-_Intermediate level_
 
 **Inheritance** lets you build a new class on top of an existing one. The new class, the **subclass**, gets all the components of the **superclass** and can add new ones or change how inherited methods behave. You write the common code once and put only the differences in the subclass.
 

@@ -1,9 +1,8 @@
 ---
 title: ABAP su SAP HANA e code pushdown
 description: Spostare la logica sui dati dall'application server al database.
+level: pro
 ---
-
-_Livello pro_
 
 L'ABAP classico è nato per database lenti in tutto ciò che andava oltre le letture semplici, quindi i programmi copiavano le righe nella memoria dell'application server e facevano lì il lavoro. SAP HANA ribalta la situazione: è un database in memoria e a colonne che aggrega e calcola su milioni di righe più velocemente di qualsiasi ciclo ABAP.
 

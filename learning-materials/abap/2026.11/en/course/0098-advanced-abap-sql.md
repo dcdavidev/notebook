@@ -1,9 +1,8 @@
 ---
 title: Advanced ABAP SQL
 description: Common table expressions, window functions, and SELECT from internal tables.
+level: intermediate
 ---
-
-_Intermediate level_
 
 With the [modern syntax](./0097-modern-abap-sql.md) in place, ABAP SQL offers features that used to require several queries and a lot of ABAP code: **common table expressions** to build a query in steps, **window functions** to compute rankings and running totals, and `SELECT` on **internal tables** to join data in memory with data in the database.
 

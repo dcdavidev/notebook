@@ -1,9 +1,8 @@
 ---
 title: What is an internal table
 description: 'Lists of rows in memory: the most used tool in ABAP.'
+level: basic
 ---
-
-_Basic level_
 
 An **internal table** is a list of rows that lives in the memory of your program. Every row has the same type, usually a [structure](./0031-structures.md), and the table can grow or shrink while the program runs. When the program ends, the table is gone.
 

@@ -1,9 +1,8 @@
 ---
 title: Unmanaged scenarios and additional save
 description: Reuse existing code and BAPIs inside RAP.
+level: pro
 ---
-
-_Pro level_
 
 In a **managed** business object, the RAP framework does all the work: it keeps the changes in memory, locks, and writes to the database. That's perfect for new apps on new tables. But many systems already have tested code that creates and changes documents: function modules, BAPIs, and classes that check everything and write several tables. RAP lets you reuse that code instead of rewriting it, with **additional save**, **unmanaged save**, and the fully **unmanaged** implementation type.
 

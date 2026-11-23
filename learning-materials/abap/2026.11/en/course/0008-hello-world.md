@@ -1,9 +1,8 @@
 ---
 title: Your first program
 description: Create, check, activate, and run a report that says hello.
+level: beginner
 ---
-
-_Beginner level_
 
 Time to write code. Your first program is a **report**, also called an **executable program**: a program that you start directly and that shows its output on the screen. It says hello, and on the way you go through the cycle you'll repeat for every object you ever write in ABAP: **create, save, check, activate, run**.
 

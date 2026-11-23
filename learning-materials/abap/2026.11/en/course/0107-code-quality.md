@@ -1,9 +1,8 @@
 ---
 title: 'Code quality: ATC and Clean ABAP'
 description: Static checks, the ABAP Test Cockpit, and the Clean ABAP style guide.
+level: intermediate
 ---
-
-_Intermediate level_
 
 Code that compiles isn't necessarily good code. It can have unused variables, a `SELECT` inside a loop, a missing authorization check, or a method so long that nobody dares to touch it. **Static checks** find many of these problems by reading the source code, without running it. The **ABAP Test Cockpit** (ATC) runs them all together, and the **Clean ABAP** style guide covers what tools can't check: readable names and simple design.
 

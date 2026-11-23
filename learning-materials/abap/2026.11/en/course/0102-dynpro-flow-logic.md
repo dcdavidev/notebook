@@ -1,9 +1,8 @@
 ---
 title: 'Flow logic: PBO and PAI'
 description: Modules, OK codes, and the round trip between screen and program.
+level: intermediate
 ---
-
-_Intermediate level_
 
 A [dynpro](./0101-dynpro-basics.md) doesn't run ABAP directly. It has its own small language, the **flow logic**, which calls ABAP **modules** at two moments: before the screen is shown and after the user acts. Understanding this round trip is the key to every classic screen.
 

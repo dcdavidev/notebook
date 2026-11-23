@@ -1,9 +1,8 @@
 ---
 title: Le interfacce
 description: Contratti che classi non correlate possono implementare.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 L'[ereditarietà](./0082-inheritance.md) funziona quando le classi sono imparentate: un biglietto business è un biglietto. Ma un volo e una camera d'albergo non hanno nulla in comune, a parte il fatto che entrambi hanno un prezzo. Un'**interfaccia** descrive che cosa sa fare una classe, senza dire come. Qualsiasi classe la può implementare, qualunque sia la sua superclasse, e una classe può implementare tutte le interfacce che le servono.
 

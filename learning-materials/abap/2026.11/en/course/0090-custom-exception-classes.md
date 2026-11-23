@@ -1,9 +1,8 @@
 ---
 title: Custom exception classes
 description: Your own exceptions with message texts, attributes, and RETRY and RESUME.
+level: intermediate
 ---
-
-_Intermediate level_
 
 The predefined `CX_SY_` exceptions describe technical problems: a division by zero, a missing table row. Your application has its own errors: a flight that doesn't exist, a booking for more seats than are free. A **custom exception class** gives each of these errors a name, a translatable message text, and attributes with the details, so the caller can react precisely. This lesson builds on [class-based exceptions](./0089-class-based-exceptions.md).
 

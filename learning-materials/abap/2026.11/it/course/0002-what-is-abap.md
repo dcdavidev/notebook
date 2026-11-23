@@ -1,9 +1,8 @@
 ---
 title: Che cos'è ABAP
 description: 'Il linguaggio dei sistemi SAP: dove gira e che cosa ci costruisci.'
+level: beginner
 ---
-
-_Livello principiante_
 
 **ABAP** è il linguaggio di programmazione di SAP. Gran parte dell'ERP che hai conosciuto in [Che cos'è SAP](./0001-what-is-sap.md) è scritta in ABAP, e così quasi ogni estensione personalizzata che le aziende aggiungono ai propri sistemi. Se vuoi leggere, correggere o estendere il codice SAP, ABAP è il linguaggio che ti serve.
 

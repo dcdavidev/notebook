@@ -1,9 +1,8 @@
 ---
 title: EXIT, CONTINUE e CHECK
 description: Uscire da un ciclo o saltare al passo successivo.
+level: beginner
 ---
-
-_Livello principiante_
 
 A volte un ciclo non deve fare tutti i suoi passi: hai trovato quello che cercavi, oppure il passo corrente non ha niente da fare. ABAP ha tre istruzioni per controllare un ciclo dall'interno: `EXIT` esce dal ciclo, `CONTINUE` salta al passo successivo e `CHECK` salta al passo successivo quando una condizione è falsa.
 

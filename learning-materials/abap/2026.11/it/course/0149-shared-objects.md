@@ -1,9 +1,8 @@
 ---
 title: Gli shared object
 description: Condividere dati fra programmi tramite la memoria condivisa.
+level: pro
 ---
-
-_Livello pro_
 
 Ogni programma ABAP ha la sua memoria: se cento utenti lanciano lo stesso report, ognuno legge dal database le stesse tabelle di customizing cento volte. Gli **shared object** ti permettono di tenere oggetti nella **memoria condivisa** (shared memory) dell'application server, dove ogni programma di quel server può leggerli senza accedere al database. Servono per dati che si leggono molto spesso e cambiano di rado: un catalogo di compagnie aeree, un insieme di regole, un file di configurazione già interpretato.
 

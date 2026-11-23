@@ -1,9 +1,8 @@
 ---
 title: Looping over internal tables
 description: LOOP AT with WHERE, FROM, TO, and the control level statements.
+level: basic
 ---
-
-_Basic level_
 
 `LOOP AT` processes the rows of an internal table one after the other. It's the statement you'll write most often with internal tables. You can limit the loop to the rows that match a condition or to a range of row numbers, and you can react when a group of rows begins or ends with the **control level statements**.
 

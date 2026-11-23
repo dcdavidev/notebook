@@ -1,9 +1,8 @@
 ---
 title: ABAP channels
 description: Push messages with ABAP Messaging Channels and ABAP Push Channels.
+level: pro
 ---
-
-_Pro level_
 
 Classic ABAP works with requests and responses: a program or a browser asks, the server answers. If something changes on the server, for example a new booking arrives, the client doesn't know until it asks again. **ABAP channels** turn this around and let the server **push** messages as soon as an event happens. There are two kinds:
 

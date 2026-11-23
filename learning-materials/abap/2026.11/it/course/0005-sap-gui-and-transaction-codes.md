@@ -1,9 +1,8 @@
 ---
 title: SAP GUI e codici transazione
 description: Accedere, muoversi e aprire le transazioni che uno sviluppatore usa ogni giorno.
+level: beginner
 ---
-
-_Livello principiante_
 
 **SAP GUI** è il client desktop classico dei sistemi SAP. Anche se scriverai gran parte del codice in Eclipse, userai SAP GUI ogni giorno: per eseguire programmi, guardare i dati, leggere i dump e aprire i tanti strumenti che esistono solo lì.
 

@@ -1,9 +1,8 @@
 ---
 title: I template di stringa
 description: Costruire testi con espressioni incorporate e opzioni di formato.
+level: beginner
 ---
-
-_Livello principiante_
 
 Costruire un messaggio come "Il volo LH 0400 ha 35 posti liberi" con `&&` o `CONCATENATE` vuol dire tanti pezzetti e tanti apici. Un **template di stringa** ti permette di scrivere tutto il testo in un colpo solo, con le variabili proprio dove devono stare.
 

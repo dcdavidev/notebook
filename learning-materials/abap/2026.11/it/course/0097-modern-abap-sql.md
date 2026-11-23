@@ -1,9 +1,8 @@
 ---
 title: ABAP SQL moderno
 description: Variabili host, dichiarazioni inline, espressioni SQL e CASE.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Da ABAP 7.40 SP05, ABAP SQL ha una sintassi nuova e più rigorosa. Contrassegna ogni variabile ABAP con `@`, separa i campi con le virgole, dichiara la tabella di destinazione inline e permette al database di calcolare valori con le **espressioni SQL**, invece di farlo con cicli in ABAP.
 

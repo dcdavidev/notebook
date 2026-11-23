@@ -1,9 +1,8 @@
 ---
 title: Enhancement impliciti ed espliciti
 description: Aggiungere codice negli enhancement point e nelle section dei programmi standard.
+level: pro
 ---
-
-_Livello pro_
 
 Quando nel punto che ti serve non c'è una [BAdI](./0122-badis.md) o una exit, l'enhancement framework ti permette comunque di aggiungere codice ai programmi standard senza modificarli. Gli **enhancement espliciti** sono punti che SAP ha marcato apposta nel codice. Gli **enhancement impliciti** esistono automaticamente all'inizio e alla fine di quasi ogni routine. Il tuo codice vive in un'**enhancement implementation**, un oggetto separato del tuo package, quindi il sorgente di SAP resta intatto.
 

@@ -1,9 +1,8 @@
 ---
 title: Leggere singole righe
 description: READ TABLE, espressioni tabella, line_exists e line_index.
+level: basic
 ---
-
-_Livello base_
 
 Spesso ti serve una sola riga di una tabella: il volo con un certo numero, o la prima riga. ABAP ti dà due modi per leggerla: l'istruzione classica **`READ TABLE`** e le **espressioni tabella**, che leggono una riga dentro qualsiasi espressione. Per le domande con risposta sì o no ci sono le funzioni `line_exists( )` e `line_index( )`.
 

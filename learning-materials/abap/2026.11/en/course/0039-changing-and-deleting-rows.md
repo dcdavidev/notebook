@@ -1,9 +1,8 @@
 ---
 title: Changing and deleting rows
 description: MODIFY, DELETE, and CLEAR, FREE, REFRESH on whole tables.
+level: basic
 ---
-
-_Basic level_
 
 Once a table is filled, you often need to change some rows or remove them. `MODIFY` overwrites rows with the content of a work area, and `DELETE` removes rows by index, by key, or by condition. To empty a whole table, you use `CLEAR` or `FREE`.
 

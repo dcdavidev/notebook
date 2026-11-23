@@ -1,9 +1,8 @@
 ---
 title: Aggregates, GROUP BY, and HAVING
 description: COUNT, SUM, AVG, MIN, MAX, and grouped results.
+level: basic
 ---
-
-_Basic level_
 
 How many flights does Lufthansa have? How many seats are occupied on each connection? You could read every flight and add up the numbers in a loop, but the database can do it for you and send back only the totals.
 

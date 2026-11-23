@@ -1,9 +1,8 @@
 ---
 title: 'La flow logic: PBO e PAI'
 description: Moduli, codici OK e il ciclo fra schermo e programma.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Un [dynpro](./0101-dynpro-basics.md) non esegue direttamente ABAP. Ha un suo piccolo linguaggio, la **flow logic**, che chiama dei **moduli** ABAP in due momenti: prima che la schermata sia mostrata e dopo l'azione dell'utente. Capire questo ciclo è la chiave di ogni schermata classica.
 

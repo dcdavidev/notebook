@@ -1,9 +1,8 @@
 ---
 title: I riferimenti ai dati
 description: REF TO, GET REFERENCE, l'operatore di dereferenziazione e REFERENCE INTO.
+level: basic
 ---
-
-_Livello base_
 
 Un **riferimento ai dati** è una variabile che contiene l'indirizzo di un oggetto dati. Come un [field symbol](./0041-field-symbols.md), ti permette di lavorare sui dati originali senza copiarli. A differenza di un field symbol, un riferimento è una variabile normale: lo puoi conservare in una struttura o in una tabella, passarlo a un metodo e controllare se è impostato.
 

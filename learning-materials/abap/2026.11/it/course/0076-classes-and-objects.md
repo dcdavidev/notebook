@@ -1,9 +1,8 @@
 ---
 title: Classi e oggetti
 description: Classi locali, DEFINITION e IMPLEMENTATION, NEW e riferimenti.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Una **classe** è un tipo che raggruppa dati e codice. Prima di usarla la dichiari e la implementi. Poi ne crei degli **oggetti** e lavori con loro tramite i **riferimenti a oggetti**.
 

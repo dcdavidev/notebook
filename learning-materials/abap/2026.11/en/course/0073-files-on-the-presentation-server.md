@@ -1,9 +1,8 @@
 ---
 title: Files on the user's PC
 description: Upload and download files through SAP GUI.
+level: basic
 ---
-
-_Basic level_
 
 Users often want to export data to a file on their PC, or load a list of values from a spreadsheet they prepared. In SAP terms, the user's PC is the **presentation server**: the machine where SAP GUI runs.
 

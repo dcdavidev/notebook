@@ -1,9 +1,8 @@
 ---
 title: Ordinare, sommare e togliere duplicati
 description: SORT, DELETE ADJACENT DUPLICATES e COLLECT.
+level: basic
 ---
-
-_Livello base_
 
 Tre istruzioni coprono lavori che farai sulle tabelle interne di continuo. `SORT` mette le righe in ordine, `DELETE ADJACENT DUPLICATES` toglie le righe ripetute e `COLLECT` somma i campi numerici delle righe che hanno la stessa chiave.
 

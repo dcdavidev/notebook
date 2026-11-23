@@ -1,9 +1,8 @@
 ---
 title: I moduli funzione di aggiornamento
 description: CALL FUNCTION IN UPDATE TASK, PERFORM ON COMMIT e SM13.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Una LUW SAP spesso attraversa più schermate, e ogni passo può girare in un work process diverso, con il suo commit di database. Per tenere insieme tutte le modifiche non scrivi subito nel database: **registri** le modifiche e lasci che SAP le esegua tutte insieme quando il programma chiama `COMMIT WORK`. Lo strumento per farlo è il **modulo funzione di aggiornamento** (update function module).
 

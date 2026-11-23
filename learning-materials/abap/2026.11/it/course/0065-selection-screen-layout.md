@@ -1,9 +1,8 @@
 ---
 title: Il layout della schermata di selezione
 description: Blocchi, cornici, commenti e modifiche dinamiche dello schermo.
+level: basic
 ---
-
-_Livello base_
 
 Con [`PARAMETERS`](./0063-parameters.md) e [`SELECT-OPTIONS`](./0064-select-options-and-ranges.md) ottieni campi di input funzionanti, ma il runtime li impila uno sotto l'altro. Appena un report ha più di tre o quattro campi, la schermata diventa difficile da leggere.
 

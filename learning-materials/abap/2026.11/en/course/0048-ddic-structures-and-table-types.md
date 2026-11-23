@@ -1,9 +1,8 @@
 ---
 title: Structures and table types in the Dictionary
 description: Global types that every program can reuse.
+level: basic
 ---
-
-_Basic level_
 
 A **Dictionary structure** is a group of fields, like the [structures](./0031-structures.md) you declare with `TYPES BEGIN OF`, but defined once in the ABAP Dictionary. A **table type** is the Dictionary version of an internal table type: it fixes the row type, the [table category](./0034-table-categories.md), and the [key](./0035-table-keys.md).
 

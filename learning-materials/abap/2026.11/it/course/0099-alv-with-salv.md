@@ -1,9 +1,8 @@
 ---
 title: ALV con CL_SALV_TABLE
 description: Mostrare qualsiasi tabella interna come griglia professionale in poche righe.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 L'**ALV** (ABAP List Viewer) è il modo standard per mostrare dati in forma di tabella in SAP GUI. Gli utenti hanno gratis ordinamento, filtri, totali, esportazione in Excel e layout salvati, e tu non scrivi nemmeno una `WRITE`.
 

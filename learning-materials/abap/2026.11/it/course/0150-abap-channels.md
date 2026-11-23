@@ -1,9 +1,8 @@
 ---
 title: Gli ABAP channel
 description: Inviare messaggi in push con ABAP Messaging Channel e ABAP Push Channel.
+level: pro
 ---
-
-_Livello pro_
 
 L'ABAP classico funziona a richieste e risposte: un programma o un browser chiede, il server risponde. Se sul server cambia qualcosa, per esempio arriva una nuova prenotazione, il client non lo sa finché non chiede di nuovo. Gli **ABAP channel** ribaltano lo schema e permettono al server di inviare messaggi in **push** appena succede un evento. Ce ne sono di due tipi:
 

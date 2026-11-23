@@ -1,9 +1,8 @@
 ---
 title: Variants and background jobs
 description: Save input values and schedule programs with SM36 and SM37.
+level: basic
 ---
-
-_Basic level_
 
 Users often run the same report with the same input every day. A **variant** saves the values of a selection screen under a name, so nobody has to type them again. Variants are also what makes **background jobs** possible: a job runs a report without a user in front of the screen, so it needs its input values from a variant.
 

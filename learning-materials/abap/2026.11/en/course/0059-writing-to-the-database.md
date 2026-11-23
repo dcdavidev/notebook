@@ -1,9 +1,8 @@
 ---
 title: 'Writing data: INSERT, UPDATE, MODIFY, DELETE'
 description: Change the contents of database tables.
+level: basic
 ---
-
-_Basic level_
 
 Reading is only half the job. ABAP SQL has four statements that change the contents of a database table: `INSERT` adds rows, `UPDATE` changes them, `MODIFY` adds or changes, and `DELETE` removes them.
 

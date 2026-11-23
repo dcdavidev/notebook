@@ -1,9 +1,8 @@
 ---
 title: Il controllo accessi CDS
 description: Limitare le righe con i ruoli DCL e gli oggetti di autorizzazione.
+level: pro
 ---
-
-_Livello pro_
 
 Un report classico controlla le autorizzazioni con [`AUTHORITY-CHECK`](./0110-authorization-checks.md) e poi filtra da solo le righe. Una CDS view la leggono molti consumatori, da ABAP SQL alle app Fiori agli strumenti di analisi, quindi il controllo appartiene alla vista. Il **controllo accessi CDS** fa esattamente questo: un **ruolo CDS**, scritto nel Data Control Language (**DCL**), aggiunge un filtro a ogni lettura ABAP SQL della vista, in base alle autorizzazioni dell'utente.
 

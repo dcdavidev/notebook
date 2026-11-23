@@ -1,9 +1,8 @@
 ---
 title: La gestione delle bozze
 description: Permettere agli utenti di salvare il lavoro prima che sia completo.
+level: pro
 ---
-
-_Livello pro_
 
 Senza bozze, un'app RAP salva un'istanza solo quando è tutto valido: se l'utente chiude il browser a metà di un viaggio con cinque prenotazioni, il lavoro è perso. Con la **gestione delle bozze** (draft), ogni modifica finisce prima in una **bozza**, una copia dell'istanza salvata in una tabella apposita. L'utente può uscire e tornare, e i dati arrivano nelle tabelle vere solo quando sceglie **Save**. Fiori elements supporta le bozze senza configurazioni aggiuntive.
 

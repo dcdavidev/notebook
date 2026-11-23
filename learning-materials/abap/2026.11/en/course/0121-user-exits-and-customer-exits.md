@@ -1,9 +1,8 @@
 ---
 title: User exits and customer exits
 description: The oldest extension techniques, still found in every system.
+level: pro
 ---
-
-_Pro level_
 
 Long before BAdIs, SAP left empty places in its programs where customers could add code. There are two kinds: **user exits**, empty subroutines in SAP includes, mostly in sales and distribution; and **customer exits**, calls to function modules whose body is a customer include. New code should use [BAdIs](./0122-badis.md) when one exists, but these exits are still in every ECC and S/4HANA system, and many are still the only hook in a given place.
 

@@ -1,9 +1,8 @@
 ---
 title: Subqueries and UNION
 description: EXISTS, IN with a subquery, and combining result sets.
+level: basic
 ---
-
-_Basic level_
 
 A **subquery** is a `SELECT` inside the `WHERE` or `HAVING` clause of another `SELECT`. It lets you filter on a question about another table: "airlines that have at least one connection", "flights more expensive than the average". The database answers the whole thing in one statement.
 

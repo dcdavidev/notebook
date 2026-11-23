@@ -1,9 +1,8 @@
 ---
 title: Raggruppare le tabelle interne
 description: LOOP AT ... GROUP BY e LOOP AT GROUP.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 I report hanno spesso bisogno di dati per gruppo: prenotazioni per cliente, voli per compagnia, posti per mese. Le istruzioni di livello di controllo `AT NEW` e `AT END OF` della lezione su come [ciclare sulle tabelle interne](./0038-looping-internal-tables.md) lo sanno fare, ma solo se la tabella è ordinata nel modo giusto e i campi del gruppo stanno all'inizio della riga. Il **raggruppamento** con `LOOP AT ... GROUP BY` non ha nessuno dei due limiti: indichi la chiave del gruppo, ABAP costruisce i gruppi, e tu elabori ogni gruppo e le sue righe.
 

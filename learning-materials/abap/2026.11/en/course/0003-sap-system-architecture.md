@@ -1,9 +1,8 @@
 ---
 title: The architecture of an SAP system
 description: Presentation, application, and database layers, work processes, and instances.
+level: beginner
 ---
-
-_Beginner level_
 
 An SAP system isn't one program on one computer. It's a set of cooperating processes, usually spread over several servers, that share one database. Knowing how they fit together explains a lot of what you'll see as a developer: why a program "times out", why a background job runs somewhere else, or why the code you write never runs on your PC.
 

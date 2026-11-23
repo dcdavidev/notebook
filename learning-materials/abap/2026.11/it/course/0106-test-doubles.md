@@ -1,9 +1,8 @@
 ---
 title: Test double e dependency injection
 description: Isolare il codice sotto test dal database e dalle altre classi.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Un [test unitario](./0105-abap-unit-basics.md) dovrebbe testare un solo pezzo di logica, velocemente, con lo stesso risultato ogni volta. Il codice reale però legge il database, chiama altre classi e dipende dalla data. Se il test usa tutto questo, diventa lento e si rompe ogni volta che cambiano i dati.
 

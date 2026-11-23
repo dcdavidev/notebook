@@ -1,9 +1,8 @@
 ---
 title: Le tabelle del database
 description: Creare una tabella trasparente con campi, chiavi e impostazioni tecniche.
+level: basic
 ---
-
-_Livello base_
 
 Una **tabella trasparente** è una tabella del Dizionario che corrisponde esattamente a una tabella del database, con lo stesso nome e gli stessi campi. Quando la attivi, il sistema crea la tabella nel database; da quel momento i tuoi programmi la leggono e la scrivono con ABAP SQL.
 

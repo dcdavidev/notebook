@@ -1,9 +1,8 @@
 ---
 title: Structures
 description: Group related fields into one data object.
+level: basic
 ---
-
-_Basic level_
 
 A flight isn't one value: it has an airline, a flight number, a date, a price, a number of seats. With the variables you know so far, you'd need five separate ones, and you'd have to pass all five around together. A **structure** groups related fields into a single data object, so you can handle "the flight" as one thing.
 

@@ -1,9 +1,8 @@
 ---
 title: Date and time types
 description: Dates, times, time stamps, and calculations with them.
+level: beginner
 ---
-
-_Beginner level_
 
 Flight dates, booking times, due dates, deadlines: business data is full of dates and times. ABAP has a type for dates (`d`), a type for times (`t`), and **time stamps** that combine both and work across time zones. You can calculate with dates directly: add days, count the days between two dates, and much more.
 

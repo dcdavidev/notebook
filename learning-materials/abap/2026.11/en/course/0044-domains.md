@@ -1,9 +1,8 @@
 ---
 title: Domains
 description: Technical type, length, value ranges, and conversion routines.
+level: basic
 ---
-
-_Basic level_
 
 A **domain** describes the technical side of a field: its Dictionary type, its length, the number of decimal places, and optionally the values it may take and how it's converted for display. It says nothing about the meaning of the field; that's the job of the [data element](./0045-data-elements.md).
 

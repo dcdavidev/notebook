@@ -1,9 +1,8 @@
 ---
 title: Abstract and final classes
 description: Classes you can't instantiate and classes you can't extend.
+level: intermediate
 ---
-
-_Intermediate level_
 
 With [inheritance](./0082-inheritance.md) any class can be instantiated and any class can be extended. Two keywords change that. `ABSTRACT` marks a class that exists only to be inherited from: you can't create objects of it. `FINAL` marks a class that nobody can inherit from, or a method that nobody can redefine. Together they let you say exactly how your classes are meant to be used.
 

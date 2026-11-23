@@ -1,9 +1,8 @@
 ---
 title: CDS access control
 description: Restrict rows with DCL roles and authorization objects.
+level: pro
 ---
-
-_Pro level_
 
 A classic report checks authorizations with [`AUTHORITY-CHECK`](./0110-authorization-checks.md) and then filters the rows itself. A CDS view is read by many consumers, from ABAP SQL to Fiori apps and analytics tools, so the check belongs to the view. **CDS access control** does exactly that: a **CDS role**, written in the Data Control Language (**DCL**), adds a filter to every ABAP SQL read of the view, based on the user's authorizations.
 

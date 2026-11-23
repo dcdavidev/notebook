@@ -1,9 +1,8 @@
 ---
 title: Le eccezioni basate su classi
 description: TRY, CATCH, CLEANUP, RAISE EXCEPTION e la gerarchia delle eccezioni.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Quando qualcosa va storto a runtime, come una divisione per zero, una riga di tabella che non c'è o un testo che non è un numero, ABAP solleva un'**eccezione**. Se nessuno la gestisce, il programma si ferma con un dump, come hai visto negli [errori di runtime](./0030-runtime-errors.md). Un'**eccezione basata su classi** è un oggetto di una classe di eccezione: porta con sé le informazioni sull'errore, risale lo stack delle chiamate finché qualcuno non la cattura, e permette al tuo codice di reagire invece di bloccarsi.
 

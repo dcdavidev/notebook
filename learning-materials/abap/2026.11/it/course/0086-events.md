@@ -1,9 +1,8 @@
 ---
 title: Gli eventi
 description: EVENTS, RAISE EVENT e SET HANDLER.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Di solito un oggetto che vuole far fare qualcosa chiama un metodo di un altro oggetto, quindi deve conoscerlo. Con gli **eventi** funziona al contrario: un oggetto annuncia che è successo qualcosa, e un numero qualsiasi di altri oggetti può reagire, senza che il primo sappia chi sono. Così le classi restano indipendenti: un volo non ha bisogno di conoscere l'ufficio vendite, il log o il servizio email che vogliono sapere quando si riempie.
 

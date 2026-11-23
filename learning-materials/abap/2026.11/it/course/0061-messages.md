@@ -1,9 +1,8 @@
 ---
 title: I messaggi
 description: Classi di messaggi, tipi di messaggio e l'istruzione MESSAGE.
+level: basic
 ---
-
-_Livello base_
 
 I programmi parlano agli utenti con i **messaggi**: "Compagnia LH non trovata", "Prenotazione salvata", "Inserisci una data futura". In SAP questi testi non stanno nel codice. Sono memorizzati in una **classe di messaggi**, con un numero, e vengono tradotti come ogni altro testo.
 

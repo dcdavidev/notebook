@@ -1,9 +1,8 @@
 ---
 title: Le dichiarazioni inline
 description: 'DATA(...) e FINAL(...): dichiarare una variabile dove la riempi la prima volta.'
+level: beginner
 ---
-
-_Livello principiante_
 
 Con `DATA` all'inizio del programma dichiari una variabile in un punto e la riempi da un'altra parte, spesso molte righe più sotto. Una **dichiarazione inline** fa le due cose in un colpo solo: dichiari la variabile proprio nel punto in cui riceve il primo valore, e ABAP ne ricava il tipo da quel valore.
 

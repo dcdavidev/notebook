@@ -1,9 +1,8 @@
 ---
 title: ABAP Cloud e clean core
 description: API rilasciate, versioni del linguaggio, il modello a livelli e la libreria XCO.
+level: pro
 ---
-
-_Livello pro_
 
 Per decenni il codice ABAP custom ha potuto leggere qualunque tabella SAP, chiamare qualunque modulo funzione e perfino modificare i programmi di SAP. Questa libertà ha reso gli upgrade lenti e costosi: ogni nuovo rilascio poteva rompere qualcosa. Il **clean core** è la risposta di SAP: lasciare intatto il sistema standard e costruire le estensioni solo su interfacce stabili e documentate. **ABAP Cloud** è il modello di sviluppo che lo impone, nell'ambiente ABAP di SAP BTP, in SAP S/4HANA Cloud e, dal rilascio 2022, anche in SAP S/4HANA on premise.
 

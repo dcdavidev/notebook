@@ -1,9 +1,8 @@
 ---
 title: The ABAP Dictionary
 description: The central catalog of types and database objects.
+level: basic
 ---
-
-_Basic level_
 
 The **ABAP Dictionary** (often called **DDIC**) is the central catalog of an SAP system. It describes the database tables, the types that every program can share, and many other objects such as views, search helps, and lock objects. When you create a table in the Dictionary, the system creates it in the database for you.
 

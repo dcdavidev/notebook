@@ -1,9 +1,8 @@
 ---
 title: Output with WRITE
 description: Print text and values on a classic list, with positions and formats.
+level: beginner
 ---
-
-_Beginner level_
 
 `WRITE` prints text and values on a **classic list**: the simple, page-like output screen you saw when you ran [your first program](./0008-hello-world.md). Modern applications show data in grids and Fiori apps, but `WRITE` is still the quickest way to see what a small program does, and you'll find it in thousands of existing reports.
 

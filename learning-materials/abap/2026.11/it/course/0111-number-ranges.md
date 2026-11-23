@@ -1,9 +1,8 @@
 ---
 title: Gli intervalli di numerazione
 description: Generare numeri di documento unici con SNRO.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 Ogni ordine di vendita, fattura e prenotazione in SAP ha un numero unico. Molti utenti creano documenti nello stesso momento, quindi il numero non può essere "il numero più alto della tabella più uno": due utenti leggerebbero lo stesso massimo e otterrebbero lo stesso numero. SAP risolve il problema con gli **intervalli di numerazione** (_number range_): un contatore centrale che assegna ogni numero una volta sola.
 

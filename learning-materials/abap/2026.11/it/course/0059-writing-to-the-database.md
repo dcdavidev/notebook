@@ -1,9 +1,8 @@
 ---
 title: 'Scrivere dati: INSERT, UPDATE, MODIFY, DELETE'
 description: Modificare il contenuto delle tabelle del database.
+level: basic
 ---
-
-_Livello base_
 
 Leggere è solo metà del lavoro. ABAP SQL ha quattro istruzioni che modificano il contenuto di una tabella del database: `INSERT` aggiunge righe, `UPDATE` le modifica, `MODIFY` aggiunge o modifica, e `DELETE` le elimina.
 

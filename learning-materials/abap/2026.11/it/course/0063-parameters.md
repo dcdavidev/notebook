@@ -1,9 +1,8 @@
 ---
 title: 'Schermate di selezione: PARAMETERS'
 description: Campi di input, checkbox, radio button e list box.
+level: basic
 ---
-
-_Livello base_
 
 La maggior parte dei report comincia chiedendo all'utente che cosa fare: quale compagnia, quale data, se mostrare una lista o una griglia. La schermata in cui inserisce questi valori è la **schermata di selezione**. In un report non la disegni: dichiari i suoi campi nel codice, e il sistema costruisce la schermata per te.
 

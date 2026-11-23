@@ -1,9 +1,8 @@
 ---
 title: Reading single rows
 description: READ TABLE, table expressions, line_exists, and line_index.
+level: basic
 ---
-
-_Basic level_
 
 Often you need one row of a table: the flight with a given number, or the first row. ABAP gives you two ways to read it: the classic **`READ TABLE`** statement, and **table expressions**, which read a row inside any expression. For yes-or-no questions there are the functions `line_exists( )` and `line_index( )`.
 

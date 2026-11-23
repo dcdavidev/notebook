@@ -1,9 +1,8 @@
 ---
 title: Ciclare sulle tabelle interne
 description: LOOP AT con WHERE, FROM, TO e le istruzioni di livello di controllo.
+level: basic
 ---
-
-_Livello base_
 
 `LOOP AT` elabora le righe di una tabella interna una dopo l'altra. È l'istruzione che scriverai più spesso con le tabelle interne. Puoi limitare il ciclo alle righe che soddisfano una condizione o a un intervallo di numeri di riga, e puoi reagire quando un gruppo di righe comincia o finisce con le **istruzioni di livello di controllo**.
 

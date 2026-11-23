@@ -1,9 +1,8 @@
 ---
 title: Scenari unmanaged e additional save
 description: Riutilizzare codice e BAPI esistenti dentro RAP.
+level: pro
 ---
-
-_Livello pro_
 
 In un business object **managed** il framework RAP fa tutto: tiene le modifiche in memoria, blocca e scrive sul database. È perfetto per app nuove su tabelle nuove. Ma molti sistemi hanno già codice collaudato che crea e modifica documenti: moduli funzione, BAPI e classi che controllano tutto e scrivono più tabelle. RAP ti permette di riutilizzare quel codice invece di riscriverlo, con l'**additional save**, l'**unmanaged save** e il tipo di implementazione completamente **unmanaged**.
 

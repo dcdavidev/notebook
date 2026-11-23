@@ -1,9 +1,8 @@
 ---
 title: IF e le espressioni logiche
 description: Confronti, AND, OR, NOT e predicati come IS INITIAL.
+level: beginner
 ---
-
-_Livello principiante_
 
 Un programma che fa sempre la stessa cosa non è molto utile. Con `IF` il tuo codice prende decisioni: stampa un avviso quando un volo è pieno, applica uno sconto sopra una certa cifra, si ferma quando manca un valore.
 

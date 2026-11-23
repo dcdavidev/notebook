@@ -1,9 +1,8 @@
 ---
 title: Gli oggetti di blocco
 description: Il concetto di blocco SAP, ENQUEUE e DEQUEUE.
+level: basic
 ---
-
-_Livello base_
 
 Quando due utenti modificano lo stesso record nello stesso momento, il secondo salvataggio può sovrascrivere il primo senza che nessuno se ne accorga. Il database blocca le righe solo per il brevissimo tempo di una transazione di database, mentre una transazione di business SAP ne comprende molte, distribuite su più schermate. Per questo SAP ha un suo meccanismo di blocco: il **concetto di blocco SAP**.
 

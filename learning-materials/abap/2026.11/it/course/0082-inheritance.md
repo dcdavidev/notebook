@@ -1,9 +1,8 @@
 ---
 title: L'ereditarietà
 description: Sottoclassi, REDEFINITION e super.
+level: intermediate
 ---
-
-_Livello intermedio_
 
 L'**ereditarietà** ti permette di costruire una nuova classe sopra una classe esistente. La nuova classe, la **sottoclasse**, riceve tutti i componenti della **superclasse** e può aggiungerne di nuovi o cambiare il comportamento dei metodi ereditati. Scrivi una volta sola il codice comune e metti nella sottoclasse solo le differenze.
 

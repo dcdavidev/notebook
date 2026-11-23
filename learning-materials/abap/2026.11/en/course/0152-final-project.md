@@ -1,9 +1,8 @@
 ---
 title: Final project
 description: Build a complete app that uses what you learned in every level.
+level: pro
 ---
-
-_Pro level_
 
 The final project is a complete **flight booking app**: travel agents create travels for customers, add flight bookings, see the total price, and accept the travel. You build it end to end, from the database tables to a Fiori elements UI, and every step uses lessons from all four levels. There's no new syntax here: when a step feels unfamiliar, follow the link back to the lesson that covers it.
 

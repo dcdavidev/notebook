@@ -1,9 +1,8 @@
 ---
 title: Search helps
 description: 'The F4 help: elementary and collective search helps.'
+level: basic
 ---
-
-_Basic level_
 
 When a user presses F4 on an input field, SAP shows a list of possible values. A **search help** is the Dictionary object that defines that list: where the values come from, which columns the user sees, and which value goes back into the field.
 

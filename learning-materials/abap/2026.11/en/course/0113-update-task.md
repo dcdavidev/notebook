@@ -1,9 +1,8 @@
 ---
 title: Update function modules
 description: CALL FUNCTION IN UPDATE TASK, PERFORM ON COMMIT, and SM13.
+level: intermediate
 ---
-
-_Intermediate level_
 
 An SAP LUW often spans several screens, and each screen step can run in a different work process with its own database commit. To keep all the changes together, you don't write to the database right away: you **register** the changes and let SAP execute them all at once when the program calls `COMMIT WORK`. The tool for this is the **update function module**.
 

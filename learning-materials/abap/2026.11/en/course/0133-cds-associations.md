@@ -1,9 +1,8 @@
 ---
 title: CDS associations
 description: Relationships between entities, path expressions, and exposure.
+level: pro
 ---
-
-_Pro level_
 
 An **association** declares a relationship between two CDS entities: a flight belongs to an airline, an airline has many connections. Unlike a join, an association is only a definition. The database joins the two sources **only when someone uses the association**, and only with the fields they ask for.
 

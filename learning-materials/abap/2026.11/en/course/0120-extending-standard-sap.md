@@ -1,9 +1,8 @@
 ---
 title: Extending standard SAP
 description: Modifications, exits, BAdIs, and the enhancement framework at a glance.
+level: pro
 ---
-
-_Pro level_
 
 Every company needs SAP to do something slightly different from the standard: one more check when a sales order is saved, an extra field on a screen, a different rounding rule. SAP offers many ways to plug your code into standard programs, from the oldest user exits to the enhancement framework and the extensibility of SAP S/4HANA Cloud. This lesson gives you the map; the next lessons cover each technique in detail.
 

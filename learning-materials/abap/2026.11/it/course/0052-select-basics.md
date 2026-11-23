@@ -1,9 +1,8 @@
 ---
 title: Leggere dati con SELECT
 description: 'Le prime query ABAP SQL: campi, INTO e sy-subrc.'
+level: basic
 ---
-
-_Livello base_
 
 **ABAP SQL** è la parte del linguaggio ABAP che legge e scrive le tabelle del database. Somiglia all'SQL standard, ma viene controllato dal compilatore ABAP e funziona allo stesso modo su tutti i database supportati da SAP. L'istruzione più importante è `SELECT`: legge righe dal database e le mette in variabili e tabelle interne.
 

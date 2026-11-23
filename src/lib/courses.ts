@@ -64,6 +64,19 @@ Topic folder name, for example `abap` or `golang`.
 */
 const namePattern = /^[a-z\d]+(?:[.-][a-z\d]+)*$/;
 
+/**
+The difficulty of a lesson, from its `level` front matter field. The page
+shows it translated.
+*/
+export const lessonLevels = [
+  'beginner',
+  'basic',
+  'intermediate',
+  'pro',
+] as const;
+
+export type LessonLevel = (typeof lessonLevels)[number];
+
 export interface LessonSummary {
   /**
   URL segment, for example `0001-what-is-sap`.
@@ -109,6 +122,7 @@ export interface CourseSummary {
 
 export interface Lesson extends LessonSummary {
   description: string;
+  level?: LessonLevel;
   /**
   Markdown body, without the front matter.
   */
@@ -190,7 +204,25 @@ export interface Glossary {
 interface FrontMatter {
   title?: string;
   description?: string;
+  level?: unknown;
   tags?: string[];
+}
+
+/**
+ * Reads the `level` field of a lesson. A value that is not a known level
+ * fails the build, so a typo never reaches the site.
+ */
+function parseLevel(value: unknown, file: string): LessonLevel | undefined {
+  if (value === undefined) {
+    return undefined;
+  }
+  const level = lessonLevels.find((item) => item === value);
+  if (!level) {
+    throw new Error(
+      `${file}: unknown level ${JSON.stringify(value)}, use one of ${lessonLevels.join(', ')}`
+    );
+  }
+  return level;
 }
 
 /**
@@ -417,13 +449,15 @@ export async function getLesson(
     return null;
   }
   const { data, body } = splitFrontMatter(source);
+  const sourcePath = `learning-materials/${topic}/${folder}/${locale}/course/${slug}.md`;
   return {
     slug,
     step: Number(slug.slice(0, 4)),
     title: data.title ?? slug,
     description: data.description ?? '',
+    level: parseLevel(data.level, sourcePath),
     body,
-    sourcePath: `learning-materials/${topic}/${folder}/${locale}/course/${slug}.md`,
+    sourcePath,
   };
 }
 
